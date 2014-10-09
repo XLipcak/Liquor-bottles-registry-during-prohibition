@@ -23,6 +23,9 @@ public class Bottle {
     private long id; 
     
     @ManyToOne
+    private Store store;
+    
+    @ManyToOne
     private BottleType bottleType;
 
     @Column
