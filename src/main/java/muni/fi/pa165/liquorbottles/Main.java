@@ -3,6 +3,7 @@ package muni.fi.pa165.liquorbottles;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 
@@ -28,8 +29,14 @@ public class Main {
         store.setName("Alco shop");
         store.setAddress("Get down.");
         
+        Bottle bottle = new Bottle();
+        bottle.setBatchNumber(1234);
+        bottle.setDateOfBirth("vcera");
+        bottle.setIsToxic(0);
+        
         em.persist(police);
         em.persist(store);
+        em.persist(bottle);
         
         em.getTransaction().commit();
         em.close();
