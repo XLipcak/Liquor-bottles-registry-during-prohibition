@@ -35,7 +35,6 @@ public class BottleType {
     @Column
     private int volume;
 
-    @Column
     @ManyToOne
     private Producer procuder;
     
