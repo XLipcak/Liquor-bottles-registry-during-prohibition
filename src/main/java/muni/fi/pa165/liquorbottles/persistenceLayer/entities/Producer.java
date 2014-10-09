@@ -13,8 +13,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @PrimaryKeyJoinColumn(name = "producer_id", referencedColumnName = "user_id")
 public class Producer extends User {
-    @OneToMany(mappedBy = "procuder")
-    private List<BottleType> bottleTypes;
 
     @Column
     private String name;

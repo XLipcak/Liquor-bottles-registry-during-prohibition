@@ -36,14 +36,14 @@ public class BottleType {
     private int volume;
 
     @ManyToOne
-    private Producer procuder;
+    private Producer producer;
     
     public Producer getProcuder() {
-        return procuder;
+        return producer;
     }
 
     public void setProcuder(Producer procuder) {
-        this.procuder = procuder;
+        this.producer = producer;
     }
     
    
