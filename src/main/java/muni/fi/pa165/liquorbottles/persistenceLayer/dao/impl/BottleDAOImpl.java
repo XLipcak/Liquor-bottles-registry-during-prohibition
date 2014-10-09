@@ -22,11 +22,6 @@ public class BottleDAOImpl implements BottleDAO{
     }
 
     @Override
-    public Bottle findByBatchId(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Bottle findByStamp(long stamp) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -53,6 +48,11 @@ public class BottleDAOImpl implements BottleDAO{
 
     @Override
     public void deleteBottle(Bottle bottle) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Bottle> findByBatchId(long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

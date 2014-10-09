@@ -1,7 +1,9 @@
 package muni.fi.pa165.liquorbottles.persistenceLayer.entities;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
@@ -11,6 +13,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @PrimaryKeyJoinColumn(name = "producer_id", referencedColumnName = "user_id")
 public class Producer extends User {
+    @OneToMany(mappedBy = "procuder")
+    private List<BottleType> bottleTypes;
 
     @Column
     private String name;
