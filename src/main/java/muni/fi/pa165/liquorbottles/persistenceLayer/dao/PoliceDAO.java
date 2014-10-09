@@ -12,8 +12,8 @@ public interface PoliceDAO {
     List<Police> findAll();
     Police findById(long id);
     Police findByUsername(String userName);
-    Police findByName(String userName);
-    Police findAddress(String userName);
+    Police findByName(String name);
+    Police findAddress(String address);
    
     void insertPolice(Police police);
     void updatePolice(Police police);

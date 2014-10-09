@@ -12,8 +12,8 @@ public interface ProducerDAO {
     List<Producer> findAll();
     Producer findById(long id);
     Producer findByUsername(String userName);
-    Producer findByName(String userName);
-    Producer findAddress(String userName);
+    Producer findByName(String name);
+    Producer findAddress(String address);
    
     void insertProducer(Producer producer);
     void updateProducer(Producer producer);

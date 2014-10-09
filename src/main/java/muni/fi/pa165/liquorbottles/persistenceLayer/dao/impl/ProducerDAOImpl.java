@@ -26,12 +26,12 @@ public class ProducerDAOImpl implements ProducerDAO{
     }
 
     @Override
-    public Producer findByName(String userName) {
+    public Producer findByName(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Producer findAddress(String userName) {
+    public Producer findAddress(String address) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

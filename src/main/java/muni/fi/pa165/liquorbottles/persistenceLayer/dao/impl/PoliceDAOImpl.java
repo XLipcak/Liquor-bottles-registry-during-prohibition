@@ -26,12 +26,12 @@ public class PoliceDAOImpl implements PoliceDAO{
     }
 
     @Override
-    public Police findByName(String userName) {
+    public Police findByName(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Police findAddress(String userName) {
+    public Police findAddress(String address) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
