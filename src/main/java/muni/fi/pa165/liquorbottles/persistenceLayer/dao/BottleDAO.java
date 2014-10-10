@@ -11,7 +11,7 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 public interface BottleDAO {
     List<Bottle> findAll();
     Bottle findById(long id);
-    Bottle findByBatchId(long id);
+    List<Bottle> findByBatchId(long id);
     Bottle findByStamp(long stamp);
     List<Bottle> findByDate(Date date); 
     List<Bottle> findByToxicity(boolean isToxic);
