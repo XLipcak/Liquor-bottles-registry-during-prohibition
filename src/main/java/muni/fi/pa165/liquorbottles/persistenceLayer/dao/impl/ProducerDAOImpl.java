@@ -31,7 +31,7 @@ public class ProducerDAOImpl implements ProducerDAO{
     }
 
     @Override
-    public Producer findAddress(String address) {
+    public Producer findByAddress(String address) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

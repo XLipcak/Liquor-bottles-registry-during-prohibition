@@ -21,7 +21,7 @@ public class StoreDAOImpl implements StoreDAO{
     }
 
     @Override
-    public Store findByAdress(String adress) {
+    public Store findByAddress(String adress) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

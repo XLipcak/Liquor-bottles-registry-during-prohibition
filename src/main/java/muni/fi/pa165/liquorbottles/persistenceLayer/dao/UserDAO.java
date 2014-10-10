@@ -12,7 +12,9 @@ public interface UserDAO {
     List<User> findAll();
     User findById(long id);
     User findByUsername(String userName);
-    User findPassByUsername(String userName);
-    void deleteById(long id);
+    String findPassByUsername(String userName);
+    void insertUser(User user);
+    void deleteUser(User user);
+    void updateUser(User user);
     
 }
