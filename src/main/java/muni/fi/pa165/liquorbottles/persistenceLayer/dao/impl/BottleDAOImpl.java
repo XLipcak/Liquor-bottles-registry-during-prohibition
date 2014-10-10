@@ -2,57 +2,194 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 
 /**
  *
- * @author Michal Taraj, Masaryk University
+ * @author Michal Štora, Masaryk University
  */
 public class BottleDAOImpl implements BottleDAO{
-
+    
+    EntityManagerFactory emf;
+    
+    public BottleDAOImpl(EntityManagerFactory emf){
+        this.emf = emf;
+    }
+    
     @Override
     public List<Bottle> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try{
+             em.getTransaction().begin();
+             TypedQuery<Bottle> allBottleQuerry = em.createQuery("SELECT b FROM Bottle b", Bottle.class);
+             List<Bottle> allBottle = allBottleQuerry.getResultList();
+             em.getTransaction().commit();
+             
+             return allBottle;
+        }
+        catch (Exception ex) {
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        
     }
 
     @Override
     public Bottle findById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            Bottle bottle = em.find(Bottle.class, id);
+            em.getTransaction().commit();
+            
+            return bottle;
+        }catch(Exception ex) {
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }finally{
+            if (em != null){
+                em.close();
+            }       
+        }
     }
 
     @Override
     public Bottle findByStamp(long stamp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            Bottle bottle = em.find(Bottle.class, stamp);
+            em.getTransaction().commit();
+            
+            return bottle;
+        }catch(Exception ex){ 
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }finally{
+            if (em != null){
+                em.close();
+            }       
+        }
     }
+       
+ 
 
     @Override
     public List<Bottle> findByDate(Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            TypedQuery<Bottle> bottleByDateQuerry = em.createQuery("SELECT b FROM Bottle b "
+                    + "WHERE b.date='" + date + "'", Bottle.class);
+            List<Bottle> dateBottle = bottleByDateQuerry.getResultList();
+            em.getTransaction().commit();
+            
+            return dateBottle;
+        }catch(Exception ex){ 
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }finally{
+            if (em != null){
+                em.close();
+            }       
+        }
     }
 
     @Override
-    public List<Bottle> findByToxicity(boolean isToxic) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Bottle> findByToxicity(Toxicity isToxic) {
+       EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            TypedQuery<Bottle> bottleByToxicityQuerry = em.createQuery("SELECT b FROM Bottle b "
+                    + "WHERE b.toxicity='" + isToxic + "'", Bottle.class);
+            List<Bottle> toxicityBottle = bottleByToxicityQuerry.getResultList();
+            em.getTransaction().commit();
+            
+            return toxicityBottle;
+        }catch(Exception ex){ 
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }finally{
+            if (em != null){
+                em.close();
+            }       
+        }
     }
 
     @Override
     public void insertBottle(Bottle bottle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.persist(bottle);
+            em.getTransaction().commit();
+
+        } catch (Exception ex) {
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 
     @Override
     public void updateBottle(Bottle bottle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(bottle);
+            em.getTransaction().commit();
+
+        } catch (Exception ex) {
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 
     @Override
     public void deleteBottle(Bottle bottle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.remove(em.contains(bottle) ? bottle : em.merge(bottle));
+            em.getTransaction().commit();
+
+        } catch (Exception ex) {
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 
     @Override
     public List<Bottle> findByBatchId(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            TypedQuery<Bottle> bottleByBatchIDQuerry = em.createQuery("SELECT b FROM Bottle b "
+                    + "WHERE b.toxicity='" + id + "'", Bottle.class);
+            List<Bottle> batchIdBottle = bottleByBatchIDQuerry.getResultList();
+            em.getTransaction().commit();
+            
+            return batchIdBottle;
+        }catch(Exception ex){ 
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }finally{
+            if (em != null){
+                em.close();
+            }       
+        }
     }
 }
