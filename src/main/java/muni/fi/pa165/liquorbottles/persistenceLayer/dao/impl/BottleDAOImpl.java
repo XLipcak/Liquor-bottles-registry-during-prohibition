@@ -1,6 +1,6 @@
 package muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;

@@ -1,6 +1,6 @@
 package muni.fi.pa165.liquorbottles.persistenceLayer.dao;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 
@@ -13,7 +13,7 @@ public interface BottleDAO {
     Bottle findById(long id);
     Bottle findByBatchId(long id);
     Bottle findByStamp(long stamp);
-    List<Bottle> findByDate(Date date); // mozno treba iny import (teraz je sql.Date)
+    List<Bottle> findByDate(Date date); 
     List<Bottle> findByToxicity(boolean isToxic);
     
     void insertBottle(Bottle bottle);
