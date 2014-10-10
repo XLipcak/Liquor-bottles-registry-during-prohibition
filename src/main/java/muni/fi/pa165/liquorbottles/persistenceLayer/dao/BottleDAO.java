@@ -14,7 +14,7 @@ public interface BottleDAO {
     List<Bottle> findByBatchId(long id);
     Bottle findByStamp(long stamp);
     List<Bottle> findByDate(Date date); 
-    List<Bottle> findByToxicity(Toxicity isToxic);
+    List<Bottle> findByToxicity(Toxicity toxic);
     public enum Toxicity{
         toxic, unchecked, nonToxic; 
     }

@@ -101,12 +101,12 @@ public class BottleDAOImpl implements BottleDAO{
     }
 
     @Override
-    public List<Bottle> findByToxicity(Toxicity isToxic) {
+    public List<Bottle> findByToxicity(Toxicity toxic) {
        EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
             TypedQuery<Bottle> bottleByToxicityQuerry = em.createQuery("SELECT b FROM Bottle b "
-                    + "WHERE b.toxicity='" + isToxic + "'", Bottle.class);
+                    + "WHERE b.toxicity='" + toxic + "'", Bottle.class);
             List<Bottle> toxicityBottle = bottleByToxicityQuerry.getResultList();
             em.getTransaction().commit();
             
