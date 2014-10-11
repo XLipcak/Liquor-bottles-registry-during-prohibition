@@ -10,7 +10,7 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 public interface StoreDAO {
     List<Store> findAll();
     Store findById(long id);
-    Store findByAddress(String adress);
+    Store findByAddress(String address);
     
     void insertStore(Store store);
     void updateStore(Store store);
