@@ -66,7 +66,9 @@ public class BottleDAOImpl implements BottleDAO{
         EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
-            Bottle bottle = em.find(Bottle.class, stamp);
+            TypedQuery<Bottle> bottleByStampQuerry = em.createQuery("SELECT b FROM Bottle b "
+                    + "WHERE b.stamp='" + stamp + "'", Bottle.class);
+            Bottle bottle = bottleByStampQuerry.getSingleResult();
             em.getTransaction().commit();
             
             return bottle;

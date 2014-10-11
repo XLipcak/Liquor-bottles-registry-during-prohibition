@@ -27,16 +27,20 @@ public class Main {
         Police police = new Police();
         police.setName("PoliceMan1");
         police.setAddress("Botanicka 68");
-        police.setUsername("user");
+        police.setUsername("user1");
         police.setPassword("123");
 
         Store store = new Store();
         store.setName("Alco shop");
         store.setAddress("Get down.");
+        store.setUsername("user2");
+        store.setPassword("123");
 
         Producer producer = new Producer();
         producer.setName("Alco producer");
         producer.setAddress("Bayerova 9");
+        producer.setUsername("user3");
+        producer.setPassword("123");
 
         UserDAO userDao = new UserDAOImpl(emf);
         

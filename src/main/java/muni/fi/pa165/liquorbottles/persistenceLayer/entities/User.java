@@ -24,10 +24,10 @@ public class User {
     @Column(name = "user_id")
     protected long id;
 
-    @Column
+    @Column(nullable = false, unique = true)
     protected String username;
 
-    @Column
+    @Column(nullable = false)
     protected String password;
 
     public String getUsername() {
