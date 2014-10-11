@@ -25,6 +25,7 @@ public class BottleDAOImpl implements BottleDAO{
     @Override
     public List<Bottle> findAll() {
         EntityManager em = emf.createEntityManager();
+        
         try{
              em.getTransaction().begin();
              TypedQuery<Bottle> allBottleQuerry = em.createQuery("SELECT b FROM Bottle b", Bottle.class);
@@ -46,6 +47,7 @@ public class BottleDAOImpl implements BottleDAO{
     @Override
     public Bottle findById(long id) {
         EntityManager em = emf.createEntityManager();
+        
         try{
             em.getTransaction().begin();
             Bottle bottle = em.find(Bottle.class, id);
@@ -64,10 +66,12 @@ public class BottleDAOImpl implements BottleDAO{
     @Override
     public Bottle findByStamp(long stamp) {
         EntityManager em = emf.createEntityManager();
+        
         try{
             em.getTransaction().begin();
-            TypedQuery<Bottle> bottleByStampQuerry = em.createQuery("SELECT b FROM Bottle b "
-                    + "WHERE b.stamp='" + stamp + "'", Bottle.class);
+            TypedQuery<Bottle> bottleByStampQuerry;
+            bottleByStampQuerry = em.createQuery("SELECT b FROM Bottle b WHERE b.stamp= :stamp "  , Bottle.class);
+            bottleByStampQuerry.setParameter("stamp", stamp);
             Bottle bottle = bottleByStampQuerry.getSingleResult();
             em.getTransaction().commit();
             
@@ -89,7 +93,8 @@ public class BottleDAOImpl implements BottleDAO{
         try{
             em.getTransaction().begin();
             TypedQuery<Bottle> bottleByDateQuerry = em.createQuery("SELECT b FROM Bottle b "
-                    + "WHERE b.date='" + date + "'", Bottle.class);
+                    + "WHERE b.dateOfBirth= :date", Bottle.class); 
+            bottleByDateQuerry.setParameter("date", date);
             List<Bottle> dateBottle = bottleByDateQuerry.getResultList();
             em.getTransaction().commit();
             
@@ -108,8 +113,9 @@ public class BottleDAOImpl implements BottleDAO{
        EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
-            TypedQuery<Bottle> bottleByToxicityQuerry = em.createQuery("SELECT b FROM Bottle b "
-                    + "WHERE b.toxicity='" + toxic + "'", Bottle.class);
+            TypedQuery<Bottle> bottleByToxicityQuerry;
+            bottleByToxicityQuerry = em.createQuery("SELECT b FROM Bottle b WHERE b.toxicity= :toxic" , Bottle.class);
+            bottleByToxicityQuerry.setParameter("toxic", toxic);
             List<Bottle> toxicityBottle = bottleByToxicityQuerry.getResultList();
             em.getTransaction().commit();
             
@@ -182,7 +188,8 @@ public class BottleDAOImpl implements BottleDAO{
         try{
             em.getTransaction().begin();
             TypedQuery<Bottle> bottleByBatchIDQuerry = em.createQuery("SELECT b FROM Bottle b "
-                    + "WHERE b.toxicity='" + id + "'", Bottle.class);
+                    + "WHERE b.batchNumber=:id", Bottle.class);
+            bottleByBatchIDQuerry.setParameter("id", id);
             List<Bottle> batchIdBottle = bottleByBatchIDQuerry.getResultList();
             em.getTransaction().commit();
             
