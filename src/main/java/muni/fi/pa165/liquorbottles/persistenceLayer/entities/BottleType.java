@@ -38,6 +38,20 @@ public class BottleType {
     @ManyToOne
     private Producer producer;
     
+    public BottleType(){
+        
+    }
+
+    public BottleType(String name, String alcType, int power, int volume, Producer producer) {
+        this.name = name;
+        this.alcType = alcType;
+        this.power = power;
+        this.volume = volume;
+        this.producer = producer;
+    }
+    
+    
+    
     public Producer getProcuder() {
         return producer;
     }

@@ -2,6 +2,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao;
 
 import java.util.Date;
 import java.util.List;
+import muni.fi.pa165.liquorbottles.classes.Toxicity;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 
 /**
@@ -15,9 +16,6 @@ public interface BottleDAO {
     Bottle findByStamp(long stamp);
     List<Bottle> findByDate(Date date); 
     List<Bottle> findByToxicity(Toxicity toxic);
-    public enum Toxicity{
-        toxic, unchecked, nonToxic; 
-    }
     void insertBottle(Bottle bottle);
     void updateBottle(Bottle bottle);
     void deleteBottle(Bottle bottle);

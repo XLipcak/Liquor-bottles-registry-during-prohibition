@@ -1,5 +1,6 @@
 package muni.fi.pa165.liquorbottles.persistenceLayer.entities;
 
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import muni.fi.pa165.liquorbottles.classes.Toxicity;
 
 /**
  *
@@ -32,21 +34,36 @@ public class Bottle {
     private long batchNumber;
 
     @Column
-    private String dateOfBirth;
+    private Date dateOfBirth;
 
     @Column
-    private int isToxic;
+    private Toxicity toxicity;
+    
+    public Bottle(){
+        
+    }
+
+    public Bottle(Store store, BottleType bottleType, long batchNumber, 
+            Date dateOfBirth, Toxicity toxicity) {
+        this.store = store;
+        this.bottleType = bottleType;
+        this.batchNumber = batchNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.toxicity = toxicity;
+    }
+    
+    
 
     public long getBatchNumber() {
         return batchNumber;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public int getIsToxic() {
-        return isToxic;
+    public Toxicity getToxicity() {
+        return toxicity;
     }
     
      public void setBottleType(BottleType bottleType) {
@@ -57,12 +74,12 @@ public class Bottle {
         this.batchNumber = batchNumber;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setIsToxic(int isToxic) {
-        this.isToxic = isToxic;
+    public void setToxicity(Toxicity toxicity) {
+        this.toxicity = toxicity;
     }
     
     @Override

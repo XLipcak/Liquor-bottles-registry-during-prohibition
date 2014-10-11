@@ -22,13 +22,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private long id;
+    protected long id;
 
     @Column
-    private String username;
+    protected String username;
 
     @Column
-    private String password;
+    protected String password;
 
     public String getUsername() {
         return username;

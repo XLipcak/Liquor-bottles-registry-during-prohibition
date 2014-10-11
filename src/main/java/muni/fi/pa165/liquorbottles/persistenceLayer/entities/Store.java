@@ -17,6 +17,20 @@ public class Store extends User {
 
     @Column
     private String address;
+    
+    public Store(){
+        
+    }
+
+    public Store(String name, String address, String username, String password) {
+        this.username = username;
+        this.password = password;
+        
+        this.name = name;
+        this.address = address;
+    }
+
+    
 
     public String getName() {
         return name;

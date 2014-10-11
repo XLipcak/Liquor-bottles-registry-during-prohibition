@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
+import muni.fi.pa165.liquorbottles.classes.Toxicity;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 
