@@ -1,17 +1,12 @@
 package muni.fi.pa165.liquorbottles;
 
-import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.PoliceDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.PoliceDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.UserDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
-import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
 
 /**
  *

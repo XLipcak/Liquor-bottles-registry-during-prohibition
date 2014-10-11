@@ -11,7 +11,9 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 
 /**
- *
+ * Implementation of BottleDAO executing basic operations described in BottleDAO 
+ * for returning desired Bottle classes from database 
+ * and also the CRUD operations to the database.
  * @author Michal Štora, Masaryk University
  */
 public class BottleDAOImpl implements BottleDAO{
@@ -22,6 +24,10 @@ public class BottleDAOImpl implements BottleDAO{
         this.emf = emf;
     }
     
+    /**
+     * This method returns all Bottles from database as a List
+     * @return List containing all Bottles from database
+     */
     @Override
     public List<Bottle> findAll() {
         EntityManager em = emf.createEntityManager();
@@ -44,6 +50,11 @@ public class BottleDAOImpl implements BottleDAO{
         
     }
 
+    /**
+     * This method returns the Bottle from database specified by id parameter
+     * @param id id of Bottle in the database
+     * @return Bottle with id as parameter
+     */
     @Override
     public Bottle findById(long id) {
         EntityManager em = emf.createEntityManager();
@@ -63,6 +74,11 @@ public class BottleDAOImpl implements BottleDAO{
         }
     }
 
+    /**
+     * This method returns the Bottle from database specified by stamp parameter
+     * @param stamp of BottleType in the database
+     * @return Bottle with stamp as parameter
+     */
     @Override
     public Bottle findByStamp(long stamp) {
         EntityManager em = emf.createEntityManager();
@@ -85,8 +101,11 @@ public class BottleDAOImpl implements BottleDAO{
         }
     }
        
- 
-
+    /**
+     * This method returns all Bottles from database specified by date parameter
+     * @param date of Bottle in the database
+     * @return List containing all Bottles with date as parameter from database
+     */
     @Override
     public List<Bottle> findByDate(Date date) {
         EntityManager em = emf.createEntityManager();
@@ -107,7 +126,12 @@ public class BottleDAOImpl implements BottleDAO{
             }       
         }
     }
-
+    
+    /**
+     * This method returns all Bottles from database specified by toxicity parameter
+     * @param toxic of Bottle in the database
+     * @return List containing all Bottles with toxic as parameter from database
+     */
     @Override
     public List<Bottle> findByToxicity(Toxicity toxic) {
        EntityManager em = emf.createEntityManager();
@@ -129,6 +153,10 @@ public class BottleDAOImpl implements BottleDAO{
         }
     }
 
+    /**
+     * This method inserts the Bottle as parameter to the database
+     * @param bottle  to be inserted to the database
+     */
     @Override
     public void insertBottle(Bottle bottle) {
           EntityManager em = emf.createEntityManager();
@@ -147,6 +175,10 @@ public class BottleDAOImpl implements BottleDAO{
         }
     }
 
+    /**
+     * This method updates the Bottle as parameter to the database
+     * @param bottle to be updated in the database
+     */
     @Override
     public void updateBottle(Bottle bottle) {
         EntityManager em = emf.createEntityManager();
@@ -165,6 +197,10 @@ public class BottleDAOImpl implements BottleDAO{
         }
     }
 
+    /**
+     * This method deletes the Bottle as parameter from the database
+     * @param bottle to be deleted from the database
+     */
     @Override
     public void deleteBottle(Bottle bottle) {
         EntityManager em = emf.createEntityManager();
@@ -182,6 +218,11 @@ public class BottleDAOImpl implements BottleDAO{
         }
     }
 
+    /**
+     * This method returns all Bottles from database specified by batchId parameter
+     * @param id of Bottle in the database
+     * @return List containing all Bottles with batchNumber as parameter from database
+     */
     @Override
     public List<Bottle> findByBatchId(long id) {
         EntityManager em = emf.createEntityManager();
