@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.StoreDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 import static org.testng.Assert.assertEquals;
@@ -46,32 +47,37 @@ public class StoreDAOImplTest {
         expectedResultList.add(last);
     }
     
-    @Test
-    public void testAll(){
+    @Test(groups = "executeBeforeDeleteTest")
+    public void testFindAll(){
         System.out.println("Testing findAll.");
          
         StoreDAO storeDao = new StoreDAOImpl(emf);
         List<Store> result = storeDao.findAll();
-         
-        assertEquals(result, expectedResultList);
+        
+        int count =0;
+        for (Store storeRe : result){
+            for (Store storeLis : expectedResultList){
+                if (storeRe.equals(storeLis)){
+                    count++;
+                }
+            }
+        } 
+        assertEquals(count, expectedResultList.size());
     }
     
-    @Test 
+    @Test(groups = "executeBeforeDeleteTest") 
     public void testFindById(){
         System.out.println("Testing findById");
-        
-        //TODO
-        
-        /*
         StoreDAO storeDao = new StoreDAOImpl(emf);
         for(int i=0;i<expectedResultList.size();i++ ){
-            assertEquals(storeDao.findById(expectedResultList.get(i).), expectedResultList.get(i));
-        }*/
+            assertEquals(storeDao.findById(expectedResultList.get(i).getId()), expectedResultList.get(i));
+        }
         
     }
     
-    @Test
-    public void findByAdress(){
+    
+    @Test(groups = "executeBeforeDeleteTest")
+    public void testFindByAdress(){
         System.out.println("Testing findByAdress");
         StoreDAO storeDao = new StoreDAOImpl(emf);
         for (int i = 0; i < expectedResultList.size(); i++) {
@@ -79,8 +85,8 @@ public class StoreDAOImplTest {
         }
     }
     
-    @Test
-    public void update(){
+    @Test(groups = "executeBeforeDeleteTest")
+    public void testUpdate(){
         System.out.println("Testing updateStore");
         StoreDAO storeDao = new StoreDAOImpl(emf);
         Store store;
@@ -92,8 +98,8 @@ public class StoreDAOImplTest {
         }
     }
     
-    @Test
-    public void insert(){
+    @Test(groups = "executeBeforeDeleteTest")
+    public void testInsert(){
         System.out.println("Testing insert");
         StoreDAO storeDao = new StoreDAOImpl(emf);
         Store toAdd = new Store("new", "somwhere", "lastshop", "passw");
@@ -104,8 +110,8 @@ public class StoreDAOImplTest {
         }
     }
     
-    @Test
-    public void delte(){
+    @Test(groups = "executeBeforeDeleteTest")
+    public void testDelte(){
         System.out.println("Testing delete");
         StoreDAO storeDao = new StoreDAOImpl(emf);
         storeDao.deleteStore(expectedResultList.get(expectedResultList.size()-1));

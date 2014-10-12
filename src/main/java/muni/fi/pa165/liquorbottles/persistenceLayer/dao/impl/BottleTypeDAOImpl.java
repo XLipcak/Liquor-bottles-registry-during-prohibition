@@ -9,9 +9,7 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 
 /**
- * Implementation of BottleTypeDAO executing basic operations described in BottleTypeDAO 
- * for returning desired BottleTypes classes from database 
- * and also the CRUD operations to the database.
+ * 
  * @author Michal Štora, Masaryk University
  */
 public class BottleTypeDAOImpl implements BottleTypeDAO{
@@ -21,11 +19,7 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
     public BottleTypeDAOImpl(EntityManagerFactory emf){
         this.emf = emf;
     }
-    
-    /**
-     * This method returns all BottleTypes from database as a List
-     * @return List containing all BottleTypes from database
-     */
+   
     @Override
     public List<BottleType> findAll() {
         EntityManager em = emf.createEntityManager();
@@ -47,11 +41,6 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         
     }
 
-    /**
-     * This method returns the BottleType from database specified by id parameter
-     * @param id id of BottleType in the database
-     * @return BottleType with id as parameter
-     */
     @Override
     public BottleType findById(long id) {
         EntityManager em = emf.createEntityManager();
@@ -70,11 +59,6 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
     
-    /**
-     * This method returns all BottleTypes from database specified by alcType parameter
-     * @param alcType of BottleType in the database
-     * @return List containing all BottleTypes from database
-     */
     @Override
     public List<BottleType> findByAlcType(String alcType) {
         EntityManager em = emf.createEntityManager();
@@ -96,11 +80,6 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
 
-    /**
-     * This method returns all BottleTypes from database specified by power parameter
-     * @param power  of BottleType in the database
-     * @return List containing all BottleTypes from database
-     */
     @Override
     public List<BottleType> findByPower(int power) {
          EntityManager em = emf.createEntityManager();
@@ -122,11 +101,6 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
     
-    /**
-     * This method returns all BottleTypes from database specified by volume parameter
-     * @param volume  of BottleType in the database
-     * @return List containing all BottleTypes from database
-     */
     @Override
     public List<BottleType> findByVolume(int volume) { 
         EntityManager em = emf.createEntityManager();
@@ -148,10 +122,6 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
 
-    /**
-     * This method inserts the BottleType as parameter to the database
-     * @param bottleType  to be inserted to the database
-     */
     @Override
     public void insertBottleType(BottleType bottleType) {
          EntityManager em = emf.createEntityManager();
@@ -170,10 +140,6 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
    
-    /**
-     * This method updates the BottleType as parameter to the database
-     * @param bottleType to be updated in the database
-     */
     @Override
     public void updateBottleType(BottleType bottleType) {
         EntityManager em = emf.createEntityManager();
@@ -192,10 +158,6 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
 
-     /**
-     * This method deletes the BottleType as parameter from the database
-     * @param bottleType to be deleted from the database
-     */
     @Override
     public void deleteBottleType(BottleType bottleType) {
         EntityManager em = emf.createEntityManager();
