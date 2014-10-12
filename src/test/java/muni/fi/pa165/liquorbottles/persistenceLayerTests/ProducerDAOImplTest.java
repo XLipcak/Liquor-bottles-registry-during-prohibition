@@ -28,10 +28,10 @@ public class ProducerDAOImplTest {
 
     @BeforeClass
     public void setup() {
-        
+
         ProducerDAO producerDAO = new ProducerDAOImpl(emf);
-        Producer producer1 = new Producer("1", "a1", "u1", "p1");
-        Producer producer2 = new Producer("2", "a2", "u2", "p2");
+        Producer producer1 = new Producer("1", "a1", "uu1", "p1");
+        Producer producer2 = new Producer("2", "a2", "uu2", "p2");
 
         producerDAO.insertProducer(producer1);
         producerDAO.insertProducer(producer2);
@@ -150,16 +150,17 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testDeleteProducer() {
         System.out.println("Testing deleteProducer");
 
         ProducerDAO producerDAO = new ProducerDAOImpl(emf);
 
+        int countOfProducers = producerDAO.findAll().size();
         for (int x = expectedResultList.size(); x > 0; x--) {
-            assertEquals(producerDAO.findAll().size(), x);
+            assertEquals(producerDAO.findAll().size(), countOfProducers);
             producerDAO.deleteProducer(expectedResultList.get(x - 1));
+            countOfProducers--;
         }
-        assertEquals(producerDAO.findAll().size(), 0);
     }
 }
