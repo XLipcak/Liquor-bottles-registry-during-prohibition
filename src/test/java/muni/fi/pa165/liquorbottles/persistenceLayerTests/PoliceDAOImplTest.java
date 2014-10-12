@@ -150,7 +150,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testDeletePolice() {
         System.out.println("Testing deletePolice");
 
