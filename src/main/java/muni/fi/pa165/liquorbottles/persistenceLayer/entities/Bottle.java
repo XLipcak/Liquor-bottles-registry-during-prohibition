@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import muni.fi.pa165.liquorbottles.classes.Toxicity;
 
 /**
@@ -39,7 +41,7 @@ public class Bottle {
     @Column(nullable = false)
     private long stamp;
 
-    @Column
+    @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
     @Column
@@ -49,14 +51,16 @@ public class Bottle {
 
     }
 
-    public Bottle(Store store, BottleType bottleType, long batchNumber,
-            Date dateOfBirth, Toxicity toxicity) {
+    public Bottle(Store store, BottleType bottleType, long batchNumber, long stamp, Date dateOfBirth, Toxicity toxicity) {
         this.store = store;
         this.bottleType = bottleType;
         this.batchNumber = batchNumber;
+        this.stamp = stamp;
         this.dateOfBirth = dateOfBirth;
         this.toxicity = toxicity;
     }
+
+    
 
     public long getBatchNumber() {
         return batchNumber;
