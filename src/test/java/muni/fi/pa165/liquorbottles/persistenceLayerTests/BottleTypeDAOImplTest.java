@@ -115,15 +115,17 @@ public class BottleTypeDAOImplTest {
      */
     @Test(groups = "executeBeforeDeleteTest")
     public void findByPower() {
-        System.out.println("Testing findByPower");
-
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
 
         for (int x = 0; x < bottleTypesInDb.size(); x++) {
-            BottleType b1 = bottleTypeDAO.findByPower(bottleTypesInDb.get(x).getPower()).get(0);
-            BottleType b2 = bottleTypesInDb.get(x);
-            assertEquals(bottleTypeDAO.findByPower(bottleTypesInDb.get(x).getPower()).get(0),
-                    bottleTypesInDb.get(x));
+            List<BottleType> b1 = bottleTypeDAO.findByPower(bottleTypesInDb.get(x).getPower());
+            int count =0;
+            for (int i=0;i<bottleTypesInDb.size();i++){
+                if (bottleTypesInDb.get(x).getPower()== bottleTypesInDb.get(i).getPower()){
+                    count++;
+                }
+            }
+            assertEquals(count,b1.size());
         }
     }
     
@@ -137,10 +139,14 @@ public class BottleTypeDAOImplTest {
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
 
         for (int x = 0; x < bottleTypesInDb.size(); x++) {
-            BottleType b1 = bottleTypeDAO.findByVolume(bottleTypesInDb.get(x).getVolume()).get(0);
-            BottleType b2 = bottleTypesInDb.get(x);
-            assertEquals(bottleTypeDAO.findByVolume(bottleTypesInDb.get(x).getVolume()).get(0),
-                    bottleTypesInDb.get(x));
+            List<BottleType> b1 = bottleTypeDAO.findByVolume(bottleTypesInDb.get(x).getVolume());
+            int count =0;
+            for (int i=0;i<bottleTypesInDb.size();i++){
+                if (bottleTypesInDb.get(x).getVolume()== bottleTypesInDb.get(i).getVolume()){
+                    count++;
+                }
+            }
+            assertEquals(count,b1.size());
         }
     }
     

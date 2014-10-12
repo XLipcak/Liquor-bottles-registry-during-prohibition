@@ -150,7 +150,7 @@ public class UserDAOImplTest {
     /**
      * Test of deleteUser method, of class UserDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testDelete(){
         System.out.println("Testing deleteUser");
         UserDAO userDao = new UserDAOImpl(emf);
