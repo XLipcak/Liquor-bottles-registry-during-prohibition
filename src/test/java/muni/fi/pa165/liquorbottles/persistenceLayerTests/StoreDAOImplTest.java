@@ -127,7 +127,7 @@ public class StoreDAOImplTest {
     /**
      * Test of deleteStore method, of class StoreDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testDelte(){
         System.out.println("Testing deleteStore");
         StoreDAO storeDao = new StoreDAOImpl(emf);
