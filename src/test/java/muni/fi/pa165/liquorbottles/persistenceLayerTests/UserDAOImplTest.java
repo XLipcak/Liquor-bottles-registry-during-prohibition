@@ -3,12 +3,13 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.UserDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
 import static org.testng.Assert.assertEquals;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -16,17 +17,18 @@ import org.testng.annotations.Test;
  * @author Michal Štora, Masaryk University
  */
 public class UserDAOImplTest {
+   
+    @PersistenceUnit
+    private EntityManagerFactory emf;
     
-    private final EntityManagerFactory emf;
-    private final List<User> expectedResultList;
+    private List<User> expectedResultList;
     
     public UserDAOImplTest(){
-        emf = Persistence.createEntityManagerFactory("muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
         expectedResultList = new ArrayList<>();
     }
     
-    @BeforeClass
-    public void setup(){
+    @BeforeMethod
+    public void BeforeMethod(){
         UserDAO userDao = new UserDAOImpl(emf);
         
         User user1 = new User();
@@ -55,6 +57,11 @@ public class UserDAOImplTest {
         userDao.insertUser(user3);
         userDao.insertUser(user4);
         
+    }
+    
+    @AfterMethod
+    public void afterMethod() {
+        expectedResultList = new ArrayList<>();
     }
     
     /**

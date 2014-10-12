@@ -4,13 +4,13 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.StoreDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 import static org.testng.Assert.assertEquals;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -19,16 +19,17 @@ import org.testng.annotations.Test;
  */
 public class StoreDAOImplTest {
     
-    private final EntityManagerFactory emf;
-    private final List<Store> expectedResultList;
+    @PersistenceUnit
+    private EntityManagerFactory emf;
+    
+    private List<Store> expectedResultList;
     
     public StoreDAOImplTest(){
-        emf = Persistence.createEntityManagerFactory("muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
         expectedResultList = new ArrayList<>();
     }
     
-    @BeforeClass
-    public void setup(){
+    @BeforeMethod
+    public void BeforeMethod(){
         StoreDAO storeDao = new StoreDAOImpl(emf);
         
         Store store1 = new Store("Test1", "Botanicka 68", "Muni", "pokus123");
@@ -45,6 +46,11 @@ public class StoreDAOImplTest {
         expectedResultList.add(store2);
         expectedResultList.add(store3);
         expectedResultList.add(last);
+    }
+    
+    @AfterMethod
+    public void afterMethod() {
+        expectedResultList = new ArrayList<>();
     }
     
     /**
