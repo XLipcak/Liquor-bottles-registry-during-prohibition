@@ -52,19 +52,11 @@ public interface BottleDAO {
      * @return List of Bottles with toxic as parameter
      */
     List<Bottle> findByToxicity(Toxicity toxic);
-<<<<<<< HEAD
-
-    public enum Toxicity {
-
-        toxic, unchecked, nonToxic;
-    }
 
     /**
      * This method inserts the Bottle as parameter to the database
      * @param bottle to be inserted to the database
      */
-=======
->>>>>>> d4c4d0b2107cac28cfe84a6ed7f57d518f2ddb2a
     void insertBottle(Bottle bottle);
 
     /**
