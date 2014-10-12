@@ -29,6 +29,15 @@ public class PoliceDAOImplTest {
     @BeforeClass
     public void setup() {
 
+        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
+        Police police1 = new Police("1", "a1", "u1", "p1");
+        Police police2 = new Police("2", "a2", "u2", "p2");
+        
+        policeDAO.insertPolice(police1);
+        policeDAO.insertPolice(police2);
+        
+        expectedResultList.add(police1);
+        expectedResultList.add(police2);
     }
 
     @Test(dependsOnGroups = "executeBeforeDeleteTest")
@@ -38,19 +47,27 @@ public class PoliceDAOImplTest {
         PoliceDAO policeDAO = new PoliceDAOImpl(emf);
 
         List<Police> result = policeDAO.findAll();
-        assertEquals(result, expectedResultList);
+        int x = 0;
+        for (Police p1 : result) {
+            for (Police p2 : expectedResultList) {
+                if (p1.equals(p2)) {
+                    x++;
+                }
+            }
+        }
+        assertEquals(x, expectedResultList.size());
     }
 
     @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testFindById() {
         System.out.println("Testing findById");
 
-        /*PoliceDAO policeDAO = new PoliceDAOImpl(emf);
+        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
 
-         for (int x = 0; x < expectedResultList.size(); x++) {
-         assertEquals(PoliceDAO.findById(expectedResultList.get(x).getId()),
-         expectedResultList.get(x));
-         }*/
+        for (int x = 0; x < expectedResultList.size(); x++) {
+            assertEquals(policeDAO.findById(expectedResultList.get(x).getId()),
+                    expectedResultList.get(x));
+        }
     }
 
     @Test(dependsOnGroups = "executeBeforeDeleteTest")
@@ -88,8 +105,8 @@ public class PoliceDAOImplTest {
         PoliceDAO policeDAO = new PoliceDAOImpl(emf);
         policeDAO.insertPolice(police);
         expectedResultList.add(police);
-        
-        assertEquals(expectedResultList.get(expectedResultList.size()-1), police);
+
+        assertEquals(expectedResultList.get(expectedResultList.size() - 1), police);
 
         try {
             policeDAO.insertPolice(police);
@@ -119,10 +136,11 @@ public class PoliceDAOImplTest {
         police.setPassword("NBU123");
         policeDAO.updatePolice(police);
 
-        /*assertEquals("Matejkova", policeDAO.findById(police.getId().getAddress));
-         assertEquals("Jozef", policeDAO.findById(police.getId()).getName());
-         assertEquals("MVSK", policeDAO.findById(police.getId()).getUserName());
-         assertEquals("NBU123", policeDAO.findById(police.getId()).getPassword());*/
+        assertEquals("Matejkova", policeDAO.findById(police.getId()).getAddress());
+        assertEquals("Jozef", policeDAO.findById(police.getId()).getName());
+        assertEquals("MVSK", policeDAO.findById(police.getId()).getUsername());
+        assertEquals("NBU123", policeDAO.findById(police.getId()).getPassword());
+
         try {
             Police police2 = new Police();
             policeDAO.updatePolice(police2);
@@ -136,12 +154,12 @@ public class PoliceDAOImplTest {
     public void testDeletePolice() {
         System.out.println("Testing deletePolice");
 
-        PoliceDAO PoliceDAO = new PoliceDAOImpl(emf);
+        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
 
         for (int x = expectedResultList.size(); x > 0; x--) {
-            assertEquals(PoliceDAO.findAll().size(), x);
-            PoliceDAO.deletePolice(expectedResultList.get(x - 1));
+            assertEquals(policeDAO.findAll().size(), x);
+            policeDAO.deletePolice(expectedResultList.get(x - 1));
         }
-        assertEquals(PoliceDAO.findAll().size(), 0);
+        assertEquals(policeDAO.findAll().size(), 0);
     }
 }
