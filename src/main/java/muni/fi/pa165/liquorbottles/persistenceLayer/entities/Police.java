@@ -17,6 +17,18 @@ public class Police extends User {
 
     @Column
     private String address;
+    
+    public Police(){
+        
+    }
+
+    public Police(String name, String address, String username, String password) {
+        this.username = username;
+        this.password = password;
+        
+        this.name = name;
+        this.address = address;
+    }
 
     public String getName() {
         return name;

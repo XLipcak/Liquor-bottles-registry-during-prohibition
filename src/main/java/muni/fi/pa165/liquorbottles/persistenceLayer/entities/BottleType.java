@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -36,7 +37,22 @@ public class BottleType {
     private int volume;
 
     @ManyToOne
+    @JoinColumn(nullable = false, referencedColumnName = "producer_id")
     private Producer producer;
+    
+    public BottleType(){
+        
+    }
+
+    public BottleType(String name, String alcType, int power, int volume, Producer producer) {
+        this.name = name;
+        this.alcType = alcType;
+        this.power = power;
+        this.volume = volume;
+        this.producer = producer;
+    }
+    
+    
     
     public Producer getProcuder() {
         return producer;

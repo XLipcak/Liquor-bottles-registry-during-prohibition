@@ -9,7 +9,9 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 
 /**
- *
+ * Implementation of BottleTypeDAO executing basic operations described in BottleTypeDAO 
+ * for returning desired BottleTypes classes from database 
+ * and also the CRUD operations to the database.
  * @author Michal Štora, Masaryk University
  */
 public class BottleTypeDAOImpl implements BottleTypeDAO{
@@ -20,6 +22,10 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         this.emf = emf;
     }
     
+    /**
+     * This method returns all BottleTypes from database as a List
+     * @return List containing all BottleTypes from database
+     */
     @Override
     public List<BottleType> findAll() {
         EntityManager em = emf.createEntityManager();
@@ -41,6 +47,11 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         
     }
 
+    /**
+     * This method returns the BottleType from database specified by id parameter
+     * @param id id of BottleType in the database
+     * @return BottleType with id as parameter
+     */
     @Override
     public BottleType findById(long id) {
         EntityManager em = emf.createEntityManager();
@@ -58,14 +69,20 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
             }       
         }
     }
-
+    
+    /**
+     * This method returns all BottleTypes from database specified by alcType parameter
+     * @param alcType of BottleType in the database
+     * @return List containing all BottleTypes from database
+     */
     @Override
     public List<BottleType> findByAlcType(String alcType) {
         EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
             TypedQuery<BottleType> bottleTypeByAlcTypeQuerry = em.createQuery("SELECT b FROM BottleType b "
-                    + "WHERE b.alctype='" + alcType + "'", BottleType.class);
+                    + "WHERE b.alcType= :alcType", BottleType.class);
+            bottleTypeByAlcTypeQuerry.setParameter("alcType", alcType);
             List<BottleType> alcTypeBottle = bottleTypeByAlcTypeQuerry.getResultList();
             em.getTransaction().commit();
             
@@ -79,13 +96,19 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
 
+    /**
+     * This method returns all BottleTypes from database specified by power parameter
+     * @param power  of BottleType in the database
+     * @return List containing all BottleTypes from database
+     */
     @Override
     public List<BottleType> findByPower(int power) {
          EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
             TypedQuery<BottleType> bottleTypeByPowerQuerry = em.createQuery("SELECT b FROM BottleType b "
-                    + "WHERE b.power='" + power + "'", BottleType.class);
+                    + "WHERE b.power= :power", BottleType.class);
+            bottleTypeByPowerQuerry.setParameter("power", power);
             List<BottleType> powerBottle = bottleTypeByPowerQuerry.getResultList();
             em.getTransaction().commit();
             
@@ -98,13 +121,20 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
             }       
         }
     }
+    
+    /**
+     * This method returns all BottleTypes from database specified by volume parameter
+     * @param volume  of BottleType in the database
+     * @return List containing all BottleTypes from database
+     */
     @Override
     public List<BottleType> findByVolume(int volume) { 
         EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
             TypedQuery<BottleType> bottleTypeByVolumeQuerry = em.createQuery("SELECT b FROM BottleType b "
-                    + "WHERE b.volum='" + volume + "'", BottleType.class);
+                    + "WHERE b.volume= :volume", BottleType.class);
+            bottleTypeByVolumeQuerry.setParameter("volume", volume);
             List<BottleType> volumeBottle = bottleTypeByVolumeQuerry.getResultList();
             em.getTransaction().commit();
             
@@ -118,6 +148,10 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
 
+    /**
+     * This method inserts the BottleType as parameter to the database
+     * @param bottleType  to be inserted to the database
+     */
     @Override
     public void insertBottleType(BottleType bottleType) {
          EntityManager em = emf.createEntityManager();
@@ -135,7 +169,11 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
             }
         }
     }
-    
+   
+    /**
+     * This method updates the BottleType as parameter to the database
+     * @param bottleType to be updated in the database
+     */
     @Override
     public void updateBottleType(BottleType bottleType) {
         EntityManager em = emf.createEntityManager();
@@ -154,6 +192,10 @@ public class BottleTypeDAOImpl implements BottleTypeDAO{
         }
     }
 
+     /**
+     * This method deletes the BottleType as parameter from the database
+     * @param bottleType to be deleted from the database
+     */
     @Override
     public void deleteBottleType(BottleType bottleType) {
         EntityManager em = emf.createEntityManager();

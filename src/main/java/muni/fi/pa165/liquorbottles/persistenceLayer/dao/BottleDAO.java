@@ -2,6 +2,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao;
 
 import java.util.Date;
 import java.util.List;
+import muni.fi.pa165.liquorbottles.classes.Toxicity;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 
 /**
@@ -51,6 +52,7 @@ public interface BottleDAO {
      * @return List of Bottles with toxic as parameter
      */
     List<Bottle> findByToxicity(Toxicity toxic);
+<<<<<<< HEAD
 
     public enum Toxicity {
 
@@ -61,6 +63,8 @@ public interface BottleDAO {
      * This method inserts the Bottle as parameter to the database
      * @param bottle to be inserted to the database
      */
+=======
+>>>>>>> d4c4d0b2107cac28cfe84a6ed7f57d518f2ddb2a
     void insertBottle(Bottle bottle);
 
     /**
