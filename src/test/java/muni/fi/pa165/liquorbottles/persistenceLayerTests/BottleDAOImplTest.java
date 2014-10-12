@@ -20,6 +20,7 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 import static org.testng.Assert.*;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -79,7 +80,16 @@ public class BottleDAOImplTest {
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
         List<Bottle> result = bottleDAO.findAll();
-        assertEquals(result, bottlesInDb);
+        
+        int x = 0;
+        for(Bottle b1 : result){
+            for(Bottle b2 : bottlesInDb){
+                if(b1.equals(b2)){
+                    x++;
+                }
+            }
+        }
+        assertEquals(x, bottlesInDb.size());
     }
 
     /**
