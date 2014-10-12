@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author Michal Štora
+ * @author Michal Štora, Masaryk University
  */
 public class StoreDAOImplTest {
     
@@ -47,6 +47,9 @@ public class StoreDAOImplTest {
         expectedResultList.add(last);
     }
     
+    /**
+     * Test of findAll method, of class StoreDAOImpl.
+     */
     @Test(groups = "executeBeforeDeleteTest")
     public void testFindAll(){
         System.out.println("Testing findAll.");
@@ -65,26 +68,34 @@ public class StoreDAOImplTest {
         assertEquals(count, expectedResultList.size());
     }
     
+    /**
+     * Test of findById method, of class StoreDAOImpl.
+     */
     @Test(groups = "executeBeforeDeleteTest") 
     public void testFindById(){
         System.out.println("Testing findById");
         StoreDAO storeDao = new StoreDAOImpl(emf);
-        for(int i=0;i<expectedResultList.size();i++ ){
-            assertEquals(storeDao.findById(expectedResultList.get(i).getId()), expectedResultList.get(i));
+        for (Store expectedResultList1 : expectedResultList) {
+            assertEquals(storeDao.findById(expectedResultList1.getId()), expectedResultList1);
         }
         
     }
     
-    
+    /**
+     * Test of findByAdress method, of class StoreDAOImpl.
+     */
     @Test(groups = "executeBeforeDeleteTest")
     public void testFindByAdress(){
         System.out.println("Testing findByAdress");
         StoreDAO storeDao = new StoreDAOImpl(emf);
-        for (int i = 0; i < expectedResultList.size(); i++) {
-            assertEquals(storeDao.findByAddress(expectedResultList.get(i).getAddress()), expectedResultList.get(i));
+        for (Store expectedResultList1 : expectedResultList) {
+            assertEquals(storeDao.findByAddress(expectedResultList1.getAddress()), expectedResultList1);
         }
     }
     
+    /**
+     * Test of updateStore method, of class StoreDAOImpl.
+     */
     @Test(groups = "executeBeforeDeleteTest")
     public void testUpdate(){
         System.out.println("Testing updateStore");
@@ -93,31 +104,37 @@ public class StoreDAOImplTest {
         expectedResultList.get(expectedResultList.size()-1).setUsername("Changed by update");
         store = expectedResultList.get(expectedResultList.size()-1);
         storeDao.updateStore(store);
-        for (int i = 0; i < expectedResultList.size(); i++) {
-            assertEquals(storeDao.findByAddress(expectedResultList.get(i).getAddress()), expectedResultList.get(i));
+        for (Store expectedResultList1 : expectedResultList) {
+            assertEquals(storeDao.findByAddress(expectedResultList1.getAddress()), expectedResultList1);
         }
     }
     
+    /**
+     * Test of insertStore method, of class StoreDAOImpl.
+     */
     @Test(groups = "executeBeforeDeleteTest")
     public void testInsert(){
-        System.out.println("Testing insert");
+        System.out.println("Testing insertStore");
         StoreDAO storeDao = new StoreDAOImpl(emf);
         Store toAdd = new Store("new", "somwhere", "lastshop", "passw");
         expectedResultList.add(toAdd);
         storeDao.insertStore(toAdd);
-        for (int i = 0; i < expectedResultList.size(); i++) {
-            assertEquals(storeDao.findByAddress(expectedResultList.get(i).getAddress()), expectedResultList.get(i));
+        for (Store expectedResultList1 : expectedResultList) {
+            assertEquals(storeDao.findByAddress(expectedResultList1.getAddress()), expectedResultList1);
         }
     }
     
+    /**
+     * Test of deleteStore method, of class StoreDAOImpl.
+     */
     @Test(groups = "executeBeforeDeleteTest")
     public void testDelte(){
-        System.out.println("Testing delete");
+        System.out.println("Testing deleteStore");
         StoreDAO storeDao = new StoreDAOImpl(emf);
         storeDao.deleteStore(expectedResultList.get(expectedResultList.size()-1));
         expectedResultList.remove(expectedResultList.size()-1);
-        for (int i = 0; i < expectedResultList.size(); i++) {
-            assertEquals(storeDao.findByAddress(expectedResultList.get(i).getAddress()), expectedResultList.get(i));
+        for (Store expectedResultList1 : expectedResultList) {
+            assertEquals(storeDao.findByAddress(expectedResultList1.getAddress()), expectedResultList1);
         }
     }
 }

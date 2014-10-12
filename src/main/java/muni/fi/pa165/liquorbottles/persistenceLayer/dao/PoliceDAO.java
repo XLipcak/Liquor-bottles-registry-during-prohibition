@@ -11,8 +11,7 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
 public interface PoliceDAO {
     
     /**
-     * This method returns all Police from database as a List
-     * @return 
+     * This method returns all Police from database as a List 
      */
     List<Police> findAll();
     
