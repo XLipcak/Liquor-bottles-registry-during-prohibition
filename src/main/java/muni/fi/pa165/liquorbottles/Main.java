@@ -19,7 +19,7 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(
                 "muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
 
-        Police police = new Police();
+        /*Police police = new Police();
         police.setName("PoliceMan1");
         police.setAddress("Botanicka 68");
         police.setUsername("user1");
@@ -35,13 +35,13 @@ public class Main {
         producer.setName("Alco producer");
         producer.setAddress("Bayerova 9");
         producer.setUsername("user3");
-        producer.setPassword("123");
+        producer.setPassword("123");*/
 
         UserDAO userDao = new UserDAOImpl(emf);
         
-        userDao.insertUser(police);
+        /*userDao.insertUser(police);
         userDao.insertUser(store);
-        userDao.insertUser(producer);
+        userDao.insertUser(producer);*/
 
         emf.close();
 

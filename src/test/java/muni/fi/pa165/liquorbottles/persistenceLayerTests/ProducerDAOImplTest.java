@@ -30,7 +30,7 @@ public class ProducerDAOImplTest {
 
     }
 
-    @Test
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
@@ -40,13 +40,13 @@ public class ProducerDAOImplTest {
         assertEquals(result, expectedResultList);
     }
 
-    @Test
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testFindById() {
         System.out.println("Testing findById");
 
     }
 
-    @Test
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void findByUsername() {
         System.out.println("Testing findByUsername");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -55,7 +55,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void findByfindByName() {
         System.out.println("Testing findByName");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -64,7 +64,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void findByAdress() {
         System.out.println("Testing findByAdress");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -73,19 +73,19 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testInsertPolice() {
         System.out.println("Testing insertProducer");
         //TODO
     }
 
-    @Test
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testUpdatePolice() {
         System.out.println("Testing updateProducer");
         //TODO
     }
 
-    @Test
+    @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testDeletePolice() {
         System.out.println("Testing deleteProducer");
         //TODO
