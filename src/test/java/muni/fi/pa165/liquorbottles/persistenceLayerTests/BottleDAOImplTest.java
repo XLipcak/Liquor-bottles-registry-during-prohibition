@@ -3,9 +3,12 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import javax.persistence.PersistenceUnit;
+import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.classes.Toxicity;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
@@ -19,27 +22,35 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.*;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author Jakub Lipcak, Masaryk University
  */
-public class BottleDAOImplTest {
+@ContextConfiguration(classes = DaoContext.class)
+@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
+public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
 
+    @PersistenceUnit
     private EntityManagerFactory emf;
+
     private List<Bottle> bottlesInDb;
 
     public BottleDAOImplTest() {
-        emf = Persistence.createEntityManagerFactory("muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
         bottlesInDb = new ArrayList<>();
     }
 
-    @BeforeClass
-    public void setup() {
+    @BeforeMethod
+    public void beforeMethod() {
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
         StoreDAO storeDAO = new StoreDAOImpl(emf);
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
@@ -70,21 +81,26 @@ public class BottleDAOImplTest {
         bottlesInDb.add(bottle3);
     }
 
+    @AfterMethod
+    public void afterMethod() {
+        bottlesInDb = new ArrayList<>();
+    }
+
     /**
      * Test of findAll method, of class BottleDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
         List<Bottle> result = bottleDAO.findAll();
-        
+
         int x = 0;
-        for(Bottle b1 : result){
-            for(Bottle b2 : bottlesInDb){
-                if(b1.equals(b2)){
+        for (Bottle b1 : result) {
+            for (Bottle b2 : bottlesInDb) {
+                if (b1.equals(b2)) {
                     x++;
                 }
             }
@@ -95,7 +111,7 @@ public class BottleDAOImplTest {
     /**
      * Test of findById method, of class BottleDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindById() {
         System.out.println("Testing findById");
 
@@ -110,7 +126,7 @@ public class BottleDAOImplTest {
     /**
      * Test of findByStamp method, of class BottleDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindByStamp() {
         System.out.println("Testing findByStamp");
 
@@ -125,7 +141,7 @@ public class BottleDAOImplTest {
     /**
      * Test of findByDate method, of class BottleDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindByDate() {
         System.out.println("Testing findByDate");
 
@@ -138,7 +154,7 @@ public class BottleDAOImplTest {
     /**
      * Test of findByToxicity method, of class BottleDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindByToxicity() {
         System.out.println("Testing findByToxicity");
 
@@ -155,7 +171,7 @@ public class BottleDAOImplTest {
     /**
      * Test of findByBatchId method, of class BottleDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindByBatchId() {
         System.out.println("Testing findByBatchId");
 
@@ -172,7 +188,7 @@ public class BottleDAOImplTest {
     /**
      * Test of insertBottle method, of class BottleDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testInsertBottle() {
         System.out.println("Testing insertBottle");
 
@@ -213,7 +229,7 @@ public class BottleDAOImplTest {
     /**
      * Test of updateBottle method, of class BottleDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testUpdateBottle() {
         System.out.println("Testing updateBottle");
 
@@ -240,7 +256,7 @@ public class BottleDAOImplTest {
     /**
      * Test of deleteBottle method, of class BottleDAOImpl.
      */
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test
     public void testDeleteBottle() {
         System.out.println("Testing deleteBottle");
 
