@@ -110,7 +110,7 @@ public class UserDAOImplTest {
         System.out.println("Testing findPassByUsername");
         UserDAO userDao = new UserDAOImpl(emf);
         for (User expectedResultList1 : expectedResultList) {
-            assertEquals(userDao.findByUsername(expectedResultList1.getPassword()), expectedResultList1.getUsername());
+            assertEquals(userDao.findPassByUsername(expectedResultList1.getUsername()), expectedResultList1.getPassword());
         }
     }
     
