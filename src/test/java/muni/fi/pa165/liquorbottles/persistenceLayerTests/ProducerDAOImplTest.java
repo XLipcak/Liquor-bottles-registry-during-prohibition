@@ -40,7 +40,7 @@ public class ProducerDAOImplTest {
         expectedResultList.add(producer2);
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
@@ -58,7 +58,7 @@ public class ProducerDAOImplTest {
         assertEquals(x, expectedResultList.size());
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testFindById() {
         System.out.println("Testing findById");
 
@@ -71,7 +71,7 @@ public class ProducerDAOImplTest {
 
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void findByUsername() {
         System.out.println("Testing findByUsername");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -80,7 +80,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void findByfindByName() {
         System.out.println("Testing findByName");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -89,7 +89,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void findByAdress() {
         System.out.println("Testing findByAdress");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -98,7 +98,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testInsertProducer() {
         System.out.println("Testing insertProducer");
 
@@ -123,7 +123,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testUpdateProducer() {
         System.out.println("Testing updateProducer");
 
@@ -150,7 +150,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testDeleteProducer() {
         System.out.println("Testing deleteProducer");
 

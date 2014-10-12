@@ -40,7 +40,7 @@ public class PoliceDAOImplTest {
         expectedResultList.add(police2);
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
@@ -58,7 +58,7 @@ public class PoliceDAOImplTest {
         assertEquals(x, expectedResultList.size());
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testFindById() {
         System.out.println("Testing findById");
 
@@ -70,7 +70,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void findByUsername() {
         System.out.println("Testing findByUsername");
         PoliceDAO policeDao = new PoliceDAOImpl(emf);
@@ -79,7 +79,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void findByfindByName() {
         System.out.println("Testing findByName");
         PoliceDAO policeDao = new PoliceDAOImpl(emf);
@@ -88,7 +88,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void findByAdress() {
         System.out.println("Testing findByAdress");
         PoliceDAO policeDao = new PoliceDAOImpl(emf);
@@ -97,7 +97,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testInsertPolice() {
         System.out.println("Testing insertPolice");
 
@@ -124,7 +124,7 @@ public class PoliceDAOImplTest {
 
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testUpdatePolice() {
         System.out.println("Testing updatePolice");
 
@@ -150,7 +150,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test(groups = "executeBeforeDeleteTest")
     public void testDeletePolice() {
         System.out.println("Testing deletePolice");
 
