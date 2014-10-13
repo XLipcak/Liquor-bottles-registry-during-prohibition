@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.UserDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +20,9 @@ import org.testng.annotations.Test;
  *
  * @author Michal Štora, Masaryk University
  */
-public class UserDAOImplTest {
+@ContextConfiguration(classes = DaoContext.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+public class UserDAOImplTest extends AbstractTestNGSpringContextTests{
    
     @PersistenceUnit
     private EntityManagerFactory emf;
