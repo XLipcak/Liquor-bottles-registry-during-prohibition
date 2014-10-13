@@ -5,30 +5,39 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import javax.persistence.PersistenceUnit;
+import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.*;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author Matus Novak, Masaryk University
  */
-public class ProducerDAOImplTest {
+@ContextConfiguration(classes = DaoContext.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+public class ProducerDAOImplTest extends AbstractTestNGSpringContextTests{
 
-    private final EntityManagerFactory emf;
-    private final List<Producer> expectedResultList;
+    @PersistenceUnit
+    private EntityManagerFactory emf;
+
+    private List<Producer> expectedResultList;
 
     public ProducerDAOImplTest() {
-        emf = Persistence.createEntityManagerFactory("muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
         expectedResultList = new ArrayList<>();
     }
 
-    @BeforeClass
-    public void setup() {
-
+    @BeforeMethod
+    public void beforeMethod() {
         ProducerDAO producerDAO = new ProducerDAOImpl(emf);
         Producer producer1 = new Producer("1", "a1", "uu1", "p1");
         Producer producer2 = new Producer("2", "a2", "uu2", "p2");
@@ -40,7 +49,12 @@ public class ProducerDAOImplTest {
         expectedResultList.add(producer2);
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @AfterMethod
+    public void afterMethod() {
+        expectedResultList = new ArrayList<>();
+    }
+
+    @Test
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
@@ -58,7 +72,7 @@ public class ProducerDAOImplTest {
         assertEquals(x, expectedResultList.size());
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindById() {
         System.out.println("Testing findById");
 
@@ -71,7 +85,7 @@ public class ProducerDAOImplTest {
 
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByUsername() {
         System.out.println("Testing findByUsername");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -80,7 +94,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByfindByName() {
         System.out.println("Testing findByName");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -89,7 +103,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByAdress() {
         System.out.println("Testing findByAdress");
         ProducerDAO producerDao = new ProducerDAOImpl(emf);
@@ -98,7 +112,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testInsertProducer() {
         System.out.println("Testing insertProducer");
 
@@ -123,7 +137,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testUpdateProducer() {
         System.out.println("Testing updateProducer");
 
@@ -150,7 +164,7 @@ public class ProducerDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test
     public void testDeleteProducer() {
         System.out.println("Testing deleteProducer");
 

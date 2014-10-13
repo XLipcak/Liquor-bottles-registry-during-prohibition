@@ -5,42 +5,56 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import javax.persistence.PersistenceUnit;
+import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.PoliceDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.PoliceDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.*;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author Matus Novak, Masaryk University
  */
-public class PoliceDAOImplTest {
+@ContextConfiguration(classes = DaoContext.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+public class PoliceDAOImplTest extends AbstractTestNGSpringContextTests {
 
-    private final EntityManagerFactory emf;
-    private final List<Police> expectedResultList;
+    @PersistenceUnit
+    private EntityManagerFactory emf;
+
+    private List<Police> expectedResultList;
 
     public PoliceDAOImplTest() {
-        emf = Persistence.createEntityManagerFactory("muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
         expectedResultList = new ArrayList<>();
     }
 
-    @BeforeClass
-    public void setup() {
-
+    @BeforeMethod
+    public void beforeMethod() {
         PoliceDAO policeDAO = new PoliceDAOImpl(emf);
         Police police1 = new Police("1", "a1", "u1", "p1");
         Police police2 = new Police("2", "a2", "u2", "p2");
-        
+
         policeDAO.insertPolice(police1);
         policeDAO.insertPolice(police2);
-        
+
         expectedResultList.add(police1);
         expectedResultList.add(police2);
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @AfterMethod
+    public void afterMethod() {
+        expectedResultList = new ArrayList<>();
+    }
+
+    @Test
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
@@ -58,7 +72,7 @@ public class PoliceDAOImplTest {
         assertEquals(x, expectedResultList.size());
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindById() {
         System.out.println("Testing findById");
 
@@ -70,7 +84,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByUsername() {
         System.out.println("Testing findByUsername");
         PoliceDAO policeDao = new PoliceDAOImpl(emf);
@@ -79,7 +93,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByfindByName() {
         System.out.println("Testing findByName");
         PoliceDAO policeDao = new PoliceDAOImpl(emf);
@@ -88,7 +102,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByAdress() {
         System.out.println("Testing findByAdress");
         PoliceDAO policeDao = new PoliceDAOImpl(emf);
@@ -97,7 +111,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testInsertPolice() {
         System.out.println("Testing insertPolice");
 
@@ -124,7 +138,7 @@ public class PoliceDAOImplTest {
 
     }
 
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testUpdatePolice() {
         System.out.println("Testing updatePolice");
 
@@ -150,7 +164,7 @@ public class PoliceDAOImplTest {
         }
     }
 
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test
     public void testDeletePolice() {
         System.out.println("Testing deletePolice");
 

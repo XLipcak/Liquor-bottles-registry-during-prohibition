@@ -10,36 +10,46 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import javax.persistence.PersistenceUnit;
+import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
  *
  * @author Michal Taraj, Masaryk University
  */
-public class BottleTypeDAOImplTest {
-    
+@ContextConfiguration(classes = DaoContext.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+public class BottleTypeDAOImplTest extends AbstractTestNGSpringContextTests{
+
+    @PersistenceUnit
     private EntityManagerFactory emf;
+
     private List<BottleType> bottleTypesInDb;
-    
+
     public BottleTypeDAOImplTest() {
-        emf = Persistence.createEntityManagerFactory("muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
         bottleTypesInDb = new ArrayList<>();
     }
-    
-    @BeforeClass
-    public void setup() {
+
+    @BeforeMethod
+    public void beforeMethod() {
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
         ProducerDAO producerDAO = new ProducerDAOImpl(emf);
-        
+
         Producer producer = new Producer("TestProducer", "Prod1", "user123", "test");
         BottleType bottleType1 = new BottleType("Bozkov RUM, 0,5l", "rum", 35, 500, producer);
         BottleType bottleType2 = new BottleType("Bozkov VODKA, 0,7l", "vodka", 40, 700, producer);
@@ -55,33 +65,38 @@ public class BottleTypeDAOImplTest {
         bottleTypesInDb.add(bottleType3);
 
     }
-    
+
+    @AfterMethod
+    public void afterMethod() {
+        bottleTypesInDb = new ArrayList<>();
+    }
+
     /**
      * Test of findAll method, of class BottleTypeDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
 
         List<BottleType> result = bottleTypeDAO.findAll();
-        
+
         int x = 0;
-        for(BottleType b1 : result){
-            for(BottleType b2 : bottleTypesInDb){
-                if(b1.equals(b2)){
+        for (BottleType b1 : result) {
+            for (BottleType b2 : bottleTypesInDb) {
+                if (b1.equals(b2)) {
                     x++;
                 }
             }
         }
         assertEquals(x, bottleTypesInDb.size());
     }
-    
+
     /**
      * Test of findById method, of class BottleTypeDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testFindById() {
         System.out.println("Testing findById");
 
@@ -92,11 +107,11 @@ public class BottleTypeDAOImplTest {
                     bottleTypesInDb.get(x));
         }
     }
-    
+
     /**
      * Test of findByAlcType method, of class BottleTypeDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByAlcType() {
         System.out.println("Testing findByAlcType");
 
@@ -109,30 +124,30 @@ public class BottleTypeDAOImplTest {
                     bottleTypesInDb.get(x));
         }
     }
-    
+
     /**
      * Test of findByPower method, of class BottleTypeDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByPower() {
-         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
 
         for (int x = 0; x < bottleTypesInDb.size(); x++) {
             List<BottleType> b1 = bottleTypeDAO.findByPower(bottleTypesInDb.get(x).getPower());
-            int count =0;
-            for (int i=0;i<bottleTypesInDb.size();i++){
-                if (bottleTypesInDb.get(x).getPower()== bottleTypesInDb.get(i).getPower()){
+            int count = 0;
+            for (int i = 0; i < bottleTypesInDb.size(); i++) {
+                if (bottleTypesInDb.get(x).getPower() == bottleTypesInDb.get(i).getPower()) {
                     count++;
                 }
             }
-            assertEquals(count,b1.size());
+            assertEquals(count, b1.size());
         }
     }
-    
+
     /**
      * Test of findByVolume method, of class BottleTypeDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void findByVolume() {
         System.out.println("Testing findByVolume");
 
@@ -140,20 +155,20 @@ public class BottleTypeDAOImplTest {
 
         for (int x = 0; x < bottleTypesInDb.size(); x++) {
             List<BottleType> b1 = bottleTypeDAO.findByVolume(bottleTypesInDb.get(x).getVolume());
-            int count =0;
-            for (int i=0;i<bottleTypesInDb.size();i++){
-                if (bottleTypesInDb.get(x).getVolume()== bottleTypesInDb.get(i).getVolume()){
+            int count = 0;
+            for (int i = 0; i < bottleTypesInDb.size(); i++) {
+                if (bottleTypesInDb.get(x).getVolume() == bottleTypesInDb.get(i).getVolume()) {
                     count++;
                 }
             }
-            assertEquals(count,b1.size());
+            assertEquals(count, b1.size());
         }
     }
-    
+
     /**
      * Test of insertBottleType method, of class BottleTypeDAOImpl.
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testInsertTypeBottle() {
         System.out.println("Testing insertBottleType");
 
@@ -161,7 +176,7 @@ public class BottleTypeDAOImplTest {
         BottleType bottleType = new BottleType("Bozkov RUM, 0,5l", "rum", 35, 500, producer);
 
         ProducerDAO producerDAO = new ProducerDAOImpl(emf);
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);       
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
 
         producerDAO.insertProducer(producer);
         bottleTypeDAO.insertBottleType(bottleType);
@@ -181,12 +196,12 @@ public class BottleTypeDAOImplTest {
             //ok
         }
     }
-    
+
     /**
      * Test of updateBottleType method, of class BottleTypeDAOImpl.
      *
      */
-    @Test(groups = "executeBeforeDeleteTest")
+    @Test
     public void testUpdateTypeBottle() {
         System.out.println("Testing updateBottleType");
 
@@ -197,7 +212,7 @@ public class BottleTypeDAOImplTest {
         bottleType.setAlcType("Updatecohol");
         bottleType.setPower(100);
         bottleType.setVolume(100);
-        
+
         bottleTypeDAO.updateBottleType(bottleType);
         assertEquals("Bozkov zmeneny, 0,1l", bottleTypeDAO.findById(bottleType.getId()).getName());
         assertEquals("Updatecohol", bottleTypeDAO.findById(bottleType.getId()).getAlcType());
@@ -212,11 +227,11 @@ public class BottleTypeDAOImplTest {
             //ok
         }
     }
-    
+
     /**
      * Test of deleteBottleType method, of class BottleTypeDAOImpl.
      */
-    @Test(dependsOnGroups = "executeBeforeDeleteTest")
+    @Test
     public void testDeleteBottleType() {
         System.out.println("Testing deleteBottleType");
 
