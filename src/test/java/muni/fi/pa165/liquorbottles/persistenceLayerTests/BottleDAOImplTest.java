@@ -3,12 +3,9 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-import javax.persistence.PersistenceUnit;
-import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.classes.Toxicity;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
@@ -22,13 +19,8 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -36,13 +28,13 @@ import org.testng.annotations.Test;
  *
  * @author Jakub Lipcak, Masaryk University
  */
-@ContextConfiguration(classes = DaoContext.class)
-@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
-public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
+public class BottleDAOImplTest {
 
-    @PersistenceUnit
+    //TODO: inject this values from XML
+    private final int NUMBER_OF_RECORDS = 50;
+    private final String NAME_OF_DB = "testDB";
+
     private EntityManagerFactory emf;
-
     private List<Bottle> bottlesInDb;
 
     public BottleDAOImplTest() {
@@ -51,34 +43,33 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
 
     @BeforeMethod
     public void beforeMethod() {
+        //prepare EntityManagerFactory
+        emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
+
+        //prepare records in db
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
         StoreDAO storeDAO = new StoreDAOImpl(emf);
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
         ProducerDAO producerDAO = new ProducerDAOImpl(emf);
 
-        Store store = new Store("TestShop", "Alco1", "user123", "test");
-        Producer producer = new Producer("TestProducer", "Vizovice", "user", "test");
-        BottleType bottleType = new BottleType("TestBottleType", "Kalashnikov",
-                55, 700, producer);
+        for (int x = 0; x < NUMBER_OF_RECORDS; x++) {
 
-        Bottle bottle1 = new Bottle(store, bottleType, 123456, 001122,
-                new Date(new Date().getTime()), Toxicity.TOXIC);
-        Bottle bottle2 = new Bottle(store, bottleType, 11111, 445566,
-                new Date(new Date().getTime()), Toxicity.UNCHECKED);
-        Bottle bottle3 = new Bottle(store, bottleType, 0000, 9,
-                new Date(new Date().getTime()), Toxicity.NON_TOXIC);
+            Store store = new Store("TestShop", "Alco1", "userStore" + x, "test");
+            Producer producer = new Producer("TestProducer", "Vizovice", "userProducer" + x, "test");
+            BottleType bottleType = new BottleType("TestBottleType" + x, "Kalashnikov" + x,
+                    55, 700, producer);
 
-        storeDAO.insertStore(store);
-        producerDAO.insertProducer(producer);
-        bottleTypeDAO.insertBottleType(bottleType);
+            Bottle bottle1 = new Bottle(store, bottleType, 123456, x,
+                    new Date(new Date().getTime()), Toxicity.values()[x % 3]);
 
-        bottleDAO.insertBottle(bottle1);
-        bottleDAO.insertBottle(bottle2);
-        bottleDAO.insertBottle(bottle3);
+            storeDAO.insertStore(store);
+            producerDAO.insertProducer(producer);
+            bottleTypeDAO.insertBottleType(bottleType);
 
-        bottlesInDb.add(bottle1);
-        bottlesInDb.add(bottle2);
-        bottlesInDb.add(bottle3);
+            bottleDAO.insertBottle(bottle1);
+
+            bottlesInDb.add(bottle1);
+        }
     }
 
     @AfterMethod
@@ -92,20 +83,10 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindAll() {
         System.out.println("Testing findAll.");
-
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
-
+        
         List<Bottle> result = bottleDAO.findAll();
-
-        int x = 0;
-        for (Bottle b1 : result) {
-            for (Bottle b2 : bottlesInDb) {
-                if (b1.equals(b2)) {
-                    x++;
-                }
-            }
-        }
-        assertEquals(x, bottlesInDb.size());
+        assertEquals(result, bottlesInDb);
     }
 
     /**
@@ -114,12 +95,10 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindById() {
         System.out.println("Testing findById");
-
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
-        for (int x = 0; x < bottlesInDb.size(); x++) {
-            assertEquals(bottleDAO.findById(bottlesInDb.get(x).getId()),
-                    bottlesInDb.get(x));
+        for (Bottle bottle : bottlesInDb) {
+            assertEquals(bottleDAO.findById(bottle.getId()), bottle);
         }
     }
 
@@ -129,12 +108,12 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindByStamp() {
         System.out.println("Testing findByStamp");
-
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
-        for (int x = 0; x < bottlesInDb.size(); x++) {
-            assertEquals(bottleDAO.findByStamp(bottlesInDb.get(x).getStamp()),
-                    bottlesInDb.get(x));
+        for (Bottle bottle : bottlesInDb) {
+            Bottle b1 = bottleDAO.findByStamp(bottle.getStamp());
+            Bottle b2 = bottle;
+            assertEquals(b1, b2);
         }
     }
 
@@ -144,7 +123,6 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindByDate() {
         System.out.println("Testing findByDate");
-
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
         assertEquals(bottleDAO.findByDate(new Date(new Date().getTime())),
@@ -157,15 +135,28 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindByToxicity() {
         System.out.println("Testing findByToxicity");
-
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
-        assertEquals(bottleDAO.findByToxicity(Toxicity.TOXIC).get(0),
-                bottlesInDb.get(0));
-        assertEquals(bottleDAO.findByToxicity(Toxicity.UNCHECKED).get(0),
-                bottlesInDb.get(1));
-        assertEquals(bottleDAO.findByToxicity(Toxicity.NON_TOXIC).get(0),
-                bottlesInDb.get(2));
+        List<Bottle> toxicBottles = bottleDAO.findByToxicity(Toxicity.TOXIC);
+        int x = 0;
+        for (Bottle bottle : toxicBottles) {
+            assertEquals(bottle, bottlesInDb.get(x * 3));
+            x++;
+        }
+
+        List<Bottle> uncheckedBottles = bottleDAO.findByToxicity(Toxicity.UNCHECKED);
+        x = 0;
+        for (Bottle bottle : uncheckedBottles) {
+            assertEquals(bottle, bottlesInDb.get((x * 3) + 1));
+            x++;
+        }
+
+        List<Bottle> nonToxicBottles = bottleDAO.findByToxicity(Toxicity.NON_TOXIC);
+        x = 0;
+        for (Bottle bottle : nonToxicBottles) {
+            assertEquals(bottle, bottlesInDb.get((x * 3) + 2));
+            x++;
+        }
     }
 
     /**
@@ -174,15 +165,11 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindByBatchId() {
         System.out.println("Testing findByBatchId");
-
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
-        for (int x = 0; x < bottlesInDb.size(); x++) {
-            Bottle b1 = bottleDAO.findByBatchId(bottlesInDb.get(x).getBatchNumber()).get(0);
-            Bottle b2 = bottlesInDb.get(x);
-            assertEquals(bottleDAO.findByBatchId(bottlesInDb.get(x).getBatchNumber()).get(0),
-                    bottlesInDb.get(x));
-        }
+        List<Bottle> b1 = bottleDAO.findByBatchId(bottlesInDb.get(0).getBatchNumber());
+        assertEquals(b1, bottlesInDb);
+
     }
 
     /**
@@ -210,6 +197,8 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
         bottleTypeDAO.insertBottleType(bottleType);
         bottleDAO.insertBottle(bottle);
         bottlesInDb.add(bottle);
+        
+        assertEquals(bottleDAO.findById(bottle.getId()), bottle);
 
         try {
             bottleDAO.insertBottle(bottle);
@@ -232,16 +221,18 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testUpdateBottle() {
         System.out.println("Testing updateBottle");
-
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
         Bottle bottle = bottlesInDb.get(0);
-        bottle.setBatchNumber(1010);
-        bottle.setStamp(777);
+        bottle.setBatchNumber(-300);
+        bottle.setStamp(-777);
 
         bottleDAO.updateBottle(bottle);
-        assertEquals(1010, bottleDAO.findById(bottle.getId()).getBatchNumber());
-        assertEquals(777, bottleDAO.findById(bottle.getId()).getStamp());
+        assertEquals(-300, bottleDAO.findById(bottle.getId()).getBatchNumber());
+        assertEquals(-777, bottleDAO.findById(bottle.getId()).getStamp());
+        
+        assertEquals(bottle, bottleDAO.findByBatchId(-300).get(0));
+        assertEquals(bottle, bottleDAO.findByStamp(-777));
 
         try {
             Bottle bottle2 = new Bottle(null, null, 123456, 001122,
@@ -263,8 +254,18 @@ public class BottleDAOImplTest extends AbstractTestNGSpringContextTests {
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
 
         for (int x = bottlesInDb.size(); x > 0; x--) {
+            //chech bottle in DB
+            assertEquals(bottleDAO.findById(bottlesInDb.get(x - 1).getId()),
+                    bottlesInDb.get(x - 1));
+
+            //check size of DB
             assertEquals(bottleDAO.findAll().size(), x);
+
             bottleDAO.deleteBottle(bottlesInDb.get(x - 1));
+
+            //chech deleted bottle in DB
+            assertEquals(bottleDAO.findById(bottlesInDb.get(x - 1).getId()),
+                    null);
         }
         assertEquals(bottleDAO.findAll().size(), 0);
     }
