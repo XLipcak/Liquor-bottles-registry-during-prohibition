@@ -5,17 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-import javax.persistence.PersistenceUnit;
-import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,13 +17,13 @@ import org.testng.annotations.Test;
  *
  * @author Matus Novak, Masaryk University
  */
-@ContextConfiguration(classes = DaoContext.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class ProducerDAOImplTest extends AbstractTestNGSpringContextTests{
+public class ProducerDAOImplTest {
 
-    @PersistenceUnit
+    //TODO: inject this values from XML
+    private final int NUMBER_OF_RECORDS = 50;
+    private final String NAME_OF_DB = "testDB";
+
     private EntityManagerFactory emf;
-
     private List<Producer> expectedResultList;
 
     public ProducerDAOImplTest() {
@@ -38,6 +32,7 @@ public class ProducerDAOImplTest extends AbstractTestNGSpringContextTests{
 
     @BeforeMethod
     public void beforeMethod() {
+        emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         ProducerDAO producerDAO = new ProducerDAOImpl(emf);
         Producer producer1 = new Producer("1", "a1", "uu1", "p1");
         Producer producer2 = new Producer("2", "a2", "uu2", "p2");

@@ -38,7 +38,7 @@ public class Bottle {
     @Column(nullable = false)
     private long batchNumber;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private long stamp;
 
     @Temporal(TemporalType.DATE)

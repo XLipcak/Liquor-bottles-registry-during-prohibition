@@ -5,17 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-import javax.persistence.PersistenceUnit;
-import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.PoliceDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.PoliceDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,13 +17,13 @@ import org.testng.annotations.Test;
  *
  * @author Matus Novak, Masaryk University
  */
-@ContextConfiguration(classes = DaoContext.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class PoliceDAOImplTest extends AbstractTestNGSpringContextTests {
+public class PoliceDAOImplTest {
 
-    @PersistenceUnit
+    //TODO: inject this values from XML
+    private final int NUMBER_OF_RECORDS = 50;
+    private final String NAME_OF_DB = "testDB";
+
     private EntityManagerFactory emf;
-
     private List<Police> expectedResultList;
 
     public PoliceDAOImplTest() {
@@ -38,6 +32,7 @@ public class PoliceDAOImplTest extends AbstractTestNGSpringContextTests {
 
     @BeforeMethod
     public void beforeMethod() {
+        emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         PoliceDAO policeDAO = new PoliceDAOImpl(emf);
         Police police1 = new Police("1", "a1", "u1", "p1");
         Police police2 = new Police("2", "a2", "u2", "p2");

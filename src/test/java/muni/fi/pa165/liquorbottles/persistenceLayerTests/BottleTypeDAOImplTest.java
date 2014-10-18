@@ -10,21 +10,15 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-import javax.persistence.PersistenceUnit;
-import muni.fi.pa165.liquorbottles.classes.DaoContext;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -32,13 +26,13 @@ import org.testng.annotations.Test;
  *
  * @author Michal Taraj, Masaryk University
  */
-@ContextConfiguration(classes = DaoContext.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class BottleTypeDAOImplTest extends AbstractTestNGSpringContextTests{
+public class BottleTypeDAOImplTest {
 
-    @PersistenceUnit
+    //TODO: inject this values from XML
+    private final int NUMBER_OF_RECORDS = 50;
+    private final String NAME_OF_DB = "testDB";
+
     private EntityManagerFactory emf;
-
     private List<BottleType> bottleTypesInDb;
 
     public BottleTypeDAOImplTest() {
@@ -47,6 +41,7 @@ public class BottleTypeDAOImplTest extends AbstractTestNGSpringContextTests{
 
     @BeforeMethod
     public void beforeMethod() {
+        emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
         ProducerDAO producerDAO = new ProducerDAOImpl(emf);
 
