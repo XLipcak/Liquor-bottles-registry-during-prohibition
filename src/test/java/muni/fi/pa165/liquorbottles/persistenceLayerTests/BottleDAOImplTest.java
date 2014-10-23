@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-import muni.fi.pa165.liquorbottles.classes.Toxicity;
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;

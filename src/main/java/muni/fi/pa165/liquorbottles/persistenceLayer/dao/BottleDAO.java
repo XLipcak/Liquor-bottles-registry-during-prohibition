@@ -2,7 +2,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao;
 
 import java.util.Date;
 import java.util.List;
-import muni.fi.pa165.liquorbottles.classes.Toxicity;
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 
 /**
