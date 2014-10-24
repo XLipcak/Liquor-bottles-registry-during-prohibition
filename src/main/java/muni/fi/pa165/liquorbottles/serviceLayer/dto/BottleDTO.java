@@ -1,7 +1,6 @@
 package muni.fi.pa165.liquorbottles.serviceLayer.dto;
 
 import java.util.Date;
-import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 
 /**
  *
@@ -15,7 +14,7 @@ public class BottleDTO {
     private long batchNumber;
     private long stamp;
     private Date dateOfBirth;
-    private Toxicity toxicity;
+    private ToxicityDTO toxicity;
 
     public long getId() {
         return id;
@@ -65,11 +64,11 @@ public class BottleDTO {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Toxicity getToxicity() {
+    public ToxicityDTO getToxicity() {
         return toxicity;
     }
 
-    public void setToxicity(Toxicity toxicity) {
+    public void setToxicity(ToxicityDTO toxicity) {
         this.toxicity = toxicity;
     }
 
