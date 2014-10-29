@@ -1,5 +1,7 @@
 package muni.fi.pa165.liquorbottles.serviceLayer.dto;
 
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
+
 /**
  *
  * @author Jakub Lipcak, Masaryk University
@@ -11,6 +13,7 @@ public class BottleTypeDTO {
     private String alcType;
     private int power;
     private int volume;
+    private ProducerDTO producer;
 
     public long getId() {
         return id;

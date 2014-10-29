@@ -1,5 +1,6 @@
 package muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor;
 
+import java.util.ArrayList;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.serviceLayer.dto.ProducerDTO;
@@ -31,12 +32,22 @@ public class DozerProducerDTOConvertor implements DTOConvertor<Producer, Produce
 
     @Override
     public List<ProducerDTO> fromEntityToDTO(List<Producer> entityList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<ProducerDTO> resultList = new ArrayList<>();
+
+        for (Producer producer : entityList) {
+            resultList.add(fromEntityToDTO(producer));
+        }
+        return resultList;
     }
 
     @Override
     public List<Producer> fromDTOToEntity(List<ProducerDTO> dtoList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Producer> resultList = new ArrayList<>();
+
+        for (ProducerDTO producerDto : dtoList) {
+            resultList.add(fromDTOToEntity(producerDto));
+        }
+        return resultList;
     }
 
 }

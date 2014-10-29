@@ -1,7 +1,15 @@
 package muni.fi.pa165.liquorbottles.serviceLayer.services.impl;
 
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.serviceLayer.dto.ProducerDTO;
+import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DTOConvertor;
+import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerProducerDTOConvertor;
 import muni.fi.pa165.liquorbottles.serviceLayer.services.ProducerService;
 
 /**
@@ -10,44 +18,94 @@ import muni.fi.pa165.liquorbottles.serviceLayer.services.ProducerService;
  */
 public class ProducerServiceImpl implements ProducerService {
 
+    //replace by Spring injection later
+    private ProducerDAO producerDao;
+    private DTOConvertor<Producer, ProducerDTO> convertor = new DozerProducerDTOConvertor();
+
+    public ProducerServiceImpl() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(
+                "localDB");
+        producerDao = new ProducerDAOImpl(emf);
+    }
+
     @Override
     public List<ProducerDTO> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<Producer> allProducers = producerDao.findAll();
+            return convertor.fromEntityToDTO(allProducers);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();//replace by service exception
+        }
     }
 
     @Override
     public ProducerDTO findById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Producer producerDto = producerDao.findById(id);
+            return convertor.fromEntityToDTO(producerDto);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();//replace by service exception
+        }
     }
 
     @Override
     public ProducerDTO findByUsername(String userName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Producer producerDto = producerDao.findByUsername(userName);
+            return convertor.fromEntityToDTO(producerDto);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();//replace by service exception
+        }
     }
 
     @Override
     public ProducerDTO findByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Producer producerDto = producerDao.findByName(name);
+            return convertor.fromEntityToDTO(producerDto);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();//replace by service exception
+        }
     }
 
     @Override
     public ProducerDTO findByAddress(String address) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Producer producerDto = producerDao.findByAddress(address);
+            return convertor.fromEntityToDTO(producerDto);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();//replace by service exception
+        }
     }
 
     @Override
-    public void insertProducer(ProducerDTO producer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void insertProducer(ProducerDTO producerDto) {
+        try {
+            Producer producer = convertor.fromDTOToEntity(producerDto);
+            producerDao.insertProducer(producer);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();//replace by service exception
+        }
     }
 
     @Override
-    public void updateProducer(ProducerDTO producer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateProducer(ProducerDTO producerDto) {
+        try {
+            Producer producer = convertor.fromDTOToEntity(producerDto);
+            producerDao.updateProducer(producer);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();//replace by service exception
+        }
     }
 
     @Override
-    public void deleteProducer(ProducerDTO producer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteProducer(ProducerDTO producerDto) {
+        try {
+            Producer producer = convertor.fromDTOToEntity(producerDto);
+            producerDao.deleteProducer(producer);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();//replace by service exception
+        }
     }
 
 }

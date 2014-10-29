@@ -19,9 +19,9 @@ public interface ProducerService {
 
     ProducerDTO findByAddress(String address);
 
-    void insertProducer(ProducerDTO producer);
+    void insertProducer(ProducerDTO producerDto);
 
-    void updateProducer(ProducerDTO producer);
+    void updateProducer(ProducerDTO producerDto);
 
-    void deleteProducer(ProducerDTO producer);
+    void deleteProducer(ProducerDTO producerDto);
 }
