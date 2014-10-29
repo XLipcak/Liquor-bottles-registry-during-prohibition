@@ -68,6 +68,10 @@ public class BottleType {
         return id;
     }
 
+    public Producer getProducer() {
+        return producer;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

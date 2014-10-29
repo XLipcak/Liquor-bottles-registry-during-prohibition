@@ -65,6 +65,10 @@ public class Bottle {
         return batchNumber;
     }
 
+    public BottleType getBottleType() {
+        return bottleType;
+    }
+
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
