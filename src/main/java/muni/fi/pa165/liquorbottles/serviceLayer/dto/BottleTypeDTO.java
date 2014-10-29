@@ -15,6 +15,14 @@ public class BottleTypeDTO {
     private int volume;
     private ProducerDTO producer;
 
+    public ProducerDTO getProducer() {
+        return producer;
+    }
+
+    public void setProducer(ProducerDTO producer) {
+        this.producer = producer;
+    }
+
     public long getId() {
         return id;
     }
@@ -80,7 +88,7 @@ public class BottleTypeDTO {
     @Override
     public String toString() {
         return "BottleTypeDTO{" + "id=" + id + ", name=" + name + ", alcType=" +
-                alcType + ", power=" + power + ", volume=" + volume + '}';
+                alcType + ", power=" + power + ", volume=" + volume + ", Producer=" + producer + '}';
     }
     
     

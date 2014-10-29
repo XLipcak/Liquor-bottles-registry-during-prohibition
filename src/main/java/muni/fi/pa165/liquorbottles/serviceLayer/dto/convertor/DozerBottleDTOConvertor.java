@@ -20,7 +20,6 @@ public class DozerBottleDTOConvertor implements DTOConvertor<Bottle, BottleDTO> 
     public BottleDTO fromEntityToDTO(Bottle entity) {
         Mapper mapper = new DozerBeanMapper();
         BottleDTO bottleDTO = mapper.map(entity, BottleDTO.class);
-
         return bottleDTO;
     }
 
