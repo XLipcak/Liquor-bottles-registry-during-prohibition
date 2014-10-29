@@ -15,9 +15,9 @@ public interface StoreService {
 
     StoreDTO findByAddress(String address);
 
-    void insertStore(StoreDTO store);
+    void insertStore(StoreDTO storeDTO);
 
-    void updateStore(StoreDTO store);
+    void updateStore(StoreDTO storeDTO);
 
-    void deleteStore(StoreDTO store);
+    void deleteStore(StoreDTO storeDTO);
 }

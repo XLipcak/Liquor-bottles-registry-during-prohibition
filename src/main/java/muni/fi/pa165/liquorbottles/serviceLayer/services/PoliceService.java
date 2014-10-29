@@ -19,9 +19,9 @@ public interface PoliceService {
 
     PoliceDTO findByAddress(String address);
 
-    void insertPolice(PoliceDTO police);
+    void insertPolice(PoliceDTO policeDTO);
 
-    void updatePolice(PoliceDTO police);
+    void updatePolice(PoliceDTO policeDTO);
 
-    void deletePolice(PoliceDTO police);
+    void deletePolice(PoliceDTO policeDTO);
 }
