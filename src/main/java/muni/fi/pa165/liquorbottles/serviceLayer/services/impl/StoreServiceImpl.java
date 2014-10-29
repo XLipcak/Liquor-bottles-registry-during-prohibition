@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.StoreDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 import muni.fi.pa165.liquorbottles.serviceLayer.dto.StoreDTO;
@@ -16,10 +17,19 @@ import muni.fi.pa165.liquorbottles.serviceLayer.services.StoreService;
  */
 public class StoreServiceImpl implements StoreService {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory(
-            "muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
-    StoreDAOImpl storeDAOImpl = new StoreDAOImpl(emf);
+    EntityManagerFactory emf;
+    StoreDAO storeDAOImpl;
     DozerStoreDTOConvertor dozerStoreDTOConvertor = new DozerStoreDTOConvertor();
+
+    public StoreServiceImpl() {
+        emf = Persistence.createEntityManagerFactory(
+                "localDB");
+        storeDAOImpl = new StoreDAOImpl(emf);
+    }
+    
+    public void closeEMF(){
+        this.emf.close();
+    }
 
     @Override
     public List<StoreDTO> findAll() {
@@ -43,7 +53,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public StoreDTO findByAddress(String address) {
-             try {
+        try {
             Store store = storeDAOImpl.findByAddress(address);
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
@@ -56,24 +66,25 @@ public class StoreServiceImpl implements StoreService {
         try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
             storeDAOImpl.insertStore(store);
+            storeDTO.setId(store.getId());
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new IllegalMonitorStateException(ex.getMessage());     //replace by service exception
         }
     }
 
     @Override
     public void updateStore(StoreDTO storeDTO) {
-             try {
+        try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
             storeDAOImpl.updateStore(store);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new IllegalMonitorStateException(ex.getMessage());     //replace by service exception
         }
     }
 
     @Override
     public void deleteStore(StoreDTO storeDTO) {
-            try {
+        try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
             storeDAOImpl.deleteStore(store);
         } catch (PersistenceException ex) {
