@@ -83,6 +83,7 @@ public class ProducerServiceImpl implements ProducerService {
         try {
             Producer producer = convertor.fromDTOToEntity(producerDto);
             producerDao.insertProducer(producer);
+            producerDto.setId(producer.getId());
         } catch (PersistenceException ex) {
             throw new IllegalMonitorStateException();//replace by service exception
         }
