@@ -1,3 +1,4 @@
 /target/
 /src-main/resources/META-INF/persistance.xml
 src/main/resources/META-INF/persistence.xml
+derby.log
