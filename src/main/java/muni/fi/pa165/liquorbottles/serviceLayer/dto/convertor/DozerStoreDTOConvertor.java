@@ -18,7 +18,7 @@ public class DozerStoreDTOConvertor implements DTOConvertor<Store, StoreDTO> {
     public StoreDTO fromEntityToDTO(Store entity) {
         Mapper mapper = new DozerBeanMapper();
         StoreDTO storeDTO = mapper.map(entity, StoreDTO.class);
-
+        
         return storeDTO;
     }
 

@@ -34,10 +34,14 @@ public class User {
         return username;
     }
 
-    public long getId(){
+    public long getId() {
         return id;
     }
-    
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
