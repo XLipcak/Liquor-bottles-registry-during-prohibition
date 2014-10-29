@@ -1,5 +1,6 @@
 package muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor;
 
+import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 import muni.fi.pa165.liquorbottles.serviceLayer.dto.StoreDTO;
 import org.dozer.DozerBeanMapper;
@@ -26,6 +27,16 @@ public class DozerStoreDTOConvertor implements DTOConvertor<Store, StoreDTO> {
         Store store = mapper.map(dto, Store.class);
 
         return store;
+    }
+
+    @Override
+    public List<StoreDTO> fromEntityToDTO(List<Store> entityList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Store> fromDTOToEntity(List<StoreDTO> dtoList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
