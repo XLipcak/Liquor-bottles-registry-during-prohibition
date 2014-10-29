@@ -1,53 +1,104 @@
 package muni.fi.pa165.liquorbottles.serviceLayer.services.impl;
 
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.PoliceDAOImpl;
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
 import muni.fi.pa165.liquorbottles.serviceLayer.dto.PoliceDTO;
+import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerPoliceDTOConvertor;
 import muni.fi.pa165.liquorbottles.serviceLayer.services.PoliceService;
 
 /**
  *
- * @author Jakub Lipcak, Masaryk University
+ * @author Matus Novak, Masaryk University
  */
 public class PoliceServiceImpl implements PoliceService {
 
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory(
+            "muni.fi.pa165_LiquorBottles_jar_1.0-SNAPSHOTPU");
+    PoliceDAOImpl policeDAOImpl = new PoliceDAOImpl(emf);
+    DozerPoliceDTOConvertor dozerPoliceDTOConvertor = new DozerPoliceDTOConvertor();
+
     @Override
     public List<PoliceDTO> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<Police> police = policeDAOImpl.findAll();
+            return dozerPoliceDTOConvertor.fromEntityToDTO(police);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();     //replace by service exception
+        }
     }
 
     @Override
     public PoliceDTO findById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Police police = policeDAOImpl.findById(id);
+            return dozerPoliceDTOConvertor.fromEntityToDTO(police);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();     //replace by service exception
+        }
     }
 
     @Override
     public PoliceDTO findByUsername(String userName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Police police = policeDAOImpl.findByUsername(userName);
+            return dozerPoliceDTOConvertor.fromEntityToDTO(police);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();     //replace by service exception
+        }
     }
 
     @Override
     public PoliceDTO findByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Police police = policeDAOImpl.findByName(name);
+            return dozerPoliceDTOConvertor.fromEntityToDTO(police);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();     //replace by service exception
+        }
     }
 
     @Override
     public PoliceDTO findByAddress(String address) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Police police = policeDAOImpl.findByAddress(address);
+            return dozerPoliceDTOConvertor.fromEntityToDTO(police);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();     //replace by service exception
+        }
     }
 
     @Override
-    public void insertPolice(PoliceDTO police) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void insertPolice(PoliceDTO policeDTO) {
+        try {
+            Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
+            policeDAOImpl.insertPolice(police);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();     //replace by service exception
+        }
     }
 
     @Override
-    public void updatePolice(PoliceDTO police) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updatePolice(PoliceDTO policeDTO) {
+        try {
+            Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
+            policeDAOImpl.updatePolice(police);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();     //replace by service exception
+        }
     }
 
     @Override
-    public void deletePolice(PoliceDTO police) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deletePolice(PoliceDTO policeDTO) {
+        try {
+            Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
+            policeDAOImpl.deletePolice(police);
+        } catch (PersistenceException ex) {
+            throw new IllegalMonitorStateException();     //replace by service exception
+        }
     }
 
 }
