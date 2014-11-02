@@ -3,14 +3,12 @@ package muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor;
 import java.util.ArrayList;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
-import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 import muni.fi.pa165.liquorbottles.serviceLayer.dto.BottleDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.StoreDTO;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
 /**
- * Convertor for Store entity using Dozer framework.
+ * Convertor for Bottle entity using Dozer framework.
  *
  * @author Michal Taraj, Masaryk University
  */

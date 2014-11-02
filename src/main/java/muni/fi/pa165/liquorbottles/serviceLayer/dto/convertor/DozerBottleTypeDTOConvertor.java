@@ -7,17 +7,17 @@ package muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor;
 
 import java.util.ArrayList;
 import java.util.List;
-import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.serviceLayer.dto.BottleTypeDTO;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
 /**
+ * Convertor for BottleType entity using Dozer framework.
  *
- * @author Michal Taraj
+ * @author Michal Taraj, Masaryk University
  */
+
 public class DozerBottleTypeDTOConvertor implements DTOConvertor<BottleType, BottleTypeDTO> {
     
     @Override
