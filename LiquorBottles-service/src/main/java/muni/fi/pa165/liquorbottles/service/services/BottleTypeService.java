@@ -1,7 +1,7 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.services;
+package muni.fi.pa165.liquorbottles.service.services;
 
 import java.util.List;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
 
 /**
  *

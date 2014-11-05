@@ -1,9 +1,9 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor;
+package muni.fi.pa165.liquorbottles.service.dto.convertor;
 
 import java.util.ArrayList;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.StoreDTO;
+import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 

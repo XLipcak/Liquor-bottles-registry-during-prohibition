@@ -1,4 +1,4 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor;
+package muni.fi.pa165.liquorbottles.service.dto.convertor;
 
 import java.util.List;
 

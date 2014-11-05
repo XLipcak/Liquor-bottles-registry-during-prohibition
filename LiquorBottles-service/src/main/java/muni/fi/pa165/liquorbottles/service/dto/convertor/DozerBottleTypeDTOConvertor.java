@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor;
+package muni.fi.pa165.liquorbottles.service.dto.convertor;
 
 import java.util.ArrayList;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 

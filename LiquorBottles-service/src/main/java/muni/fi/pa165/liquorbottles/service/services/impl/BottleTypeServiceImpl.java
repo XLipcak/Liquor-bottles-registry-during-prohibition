@@ -1,4 +1,4 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.services.impl;
+package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -8,10 +8,11 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.BottleTypeDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerBottleTypeDTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.services.BottleTypeService;
+import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DTOConvertor;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerBottleTypeDTOConvertor;
+import muni.fi.pa165.liquorbottles.service.services.BottleTypeService;
+import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -34,7 +35,7 @@ public class BottleTypeServiceImpl implements BottleTypeService{
             List<BottleType> allBottleTypes = bottleTypeDAO.findAll();
             return convertor.fromEntityToDTO(allBottleTypes);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException(); //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!"); 
         }
     }
 
@@ -44,7 +45,7 @@ public class BottleTypeServiceImpl implements BottleTypeService{
             BottleType bottleTypeDTO = bottleTypeDAO.findById(id);
             return convertor.fromEntityToDTO(bottleTypeDTO);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -54,7 +55,7 @@ public class BottleTypeServiceImpl implements BottleTypeService{
             List<BottleType> bottleTypesByAlcType = bottleTypeDAO.findByAlcType(alcType);
             return convertor.fromEntityToDTO(bottleTypesByAlcType);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException(); //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!"); 
         }
     }
 
@@ -64,7 +65,7 @@ public class BottleTypeServiceImpl implements BottleTypeService{
             List<BottleType> bottleTypesByPower = bottleTypeDAO.findByPower(power);
             return convertor.fromEntityToDTO(bottleTypesByPower);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException(); //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!"); 
         }
     }
 
@@ -74,7 +75,7 @@ public class BottleTypeServiceImpl implements BottleTypeService{
             List<BottleType> bottleTypesByVolume = bottleTypeDAO.findByVolume(volume);
             return convertor.fromEntityToDTO(bottleTypesByVolume);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException(); //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!"); 
         }
     }
 
@@ -85,7 +86,7 @@ public class BottleTypeServiceImpl implements BottleTypeService{
             bottleTypeDAO.insertBottleType(bottleType);
             bottleTypeDTO.setId(bottleType.getId());
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -95,7 +96,7 @@ public class BottleTypeServiceImpl implements BottleTypeService{
             BottleType bottleType = convertor.fromDTOToEntity(bottleTypeDTO);
             bottleTypeDAO.updateBottleType(bottleType);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -105,7 +106,7 @@ public class BottleTypeServiceImpl implements BottleTypeService{
             BottleType bottleType = convertor.fromDTOToEntity(bottleTypeDTO);
             bottleTypeDAO.deleteBottleType(bottleType);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
     

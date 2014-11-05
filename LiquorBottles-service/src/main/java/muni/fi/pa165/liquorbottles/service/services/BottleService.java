@@ -1,9 +1,9 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.services;
+package muni.fi.pa165.liquorbottles.service.services;
 
 import java.util.Date;
 import java.util.List;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.BottleDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.ToxicityDTO;
+import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
+import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
 
 /**
  *

@@ -1,4 +1,4 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.services.impl;
+package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -7,9 +7,10 @@ import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.UserDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.UserDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerUserDTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.services.UserService;
+import muni.fi.pa165.liquorbottles.service.dto.UserDTO;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerUserDTOConvertor;
+import muni.fi.pa165.liquorbottles.service.services.UserService;
+import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
             List<User> user = userDAOimpl.findAll();
             return userDTOConvertor.fromEntityToDTO(user);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -48,7 +49,7 @@ public class UserServiceImpl implements UserService {
             User user = userDAOimpl.findById(id);
             return userDTOConvertor.fromEntityToDTO(user);
         }catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
             User user = userDAOimpl.findByUsername(userName);
             return userDTOConvertor.fromEntityToDTO(user);
         }catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
         try{
             return userDAOimpl.findPassByUsername(userName);
         }catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -78,7 +79,7 @@ public class UserServiceImpl implements UserService {
             userDAOimpl.insertUser(user);
             userDTO.setId(user.getId());
         }catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -88,7 +89,7 @@ public class UserServiceImpl implements UserService {
             User user = userDTOConvertor.fromDTOToEntity(userDTO);
             userDAOimpl.deleteUser(user);
         }catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -98,7 +99,7 @@ public class UserServiceImpl implements UserService {
             User user = userDTOConvertor.fromDTOToEntity(userDTO);
             userDAOimpl.updateUser(user);
         }catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 

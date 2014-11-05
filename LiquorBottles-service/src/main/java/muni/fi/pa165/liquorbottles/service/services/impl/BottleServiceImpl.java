@@ -1,4 +1,4 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.services.impl;
+package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -8,14 +8,14 @@ import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
-import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.BottleDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.ToxicityDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerBottleDTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerToxicityDTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.services.BottleService;
+import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
+import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DTOConvertor;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerBottleDTOConvertor;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerToxicityDTOConvertor;
+import muni.fi.pa165.liquorbottles.service.services.BottleService;
+import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -38,7 +38,7 @@ public class BottleServiceImpl implements BottleService{
             List<Bottle> allBottles = bottleDAO.findAll();
             return convertor.fromEntityToDTO(allBottles);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -48,7 +48,7 @@ public class BottleServiceImpl implements BottleService{
             Bottle bottleDTO = bottleDAO.findById(id);
             return convertor.fromEntityToDTO(bottleDTO);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -58,7 +58,7 @@ public class BottleServiceImpl implements BottleService{
             List<Bottle> bottlesByBatchId = bottleDAO.findByBatchId(id);
             return convertor.fromEntityToDTO(bottlesByBatchId);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -68,7 +68,7 @@ public class BottleServiceImpl implements BottleService{
             Bottle bottleDTO = bottleDAO.findByStamp(stamp);
             return convertor.fromEntityToDTO(bottleDTO);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -78,7 +78,7 @@ public class BottleServiceImpl implements BottleService{
             List<Bottle> bottlesByDate = bottleDAO.findByDate(date);
             return convertor.fromEntityToDTO(bottlesByDate);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -90,7 +90,7 @@ public class BottleServiceImpl implements BottleService{
             List<Bottle> bottlesByToxicity = bottleDAO.findByToxicity(toxic);
             return convertor.fromEntityToDTO(bottlesByToxicity);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -101,7 +101,7 @@ public class BottleServiceImpl implements BottleService{
             bottleDAO.insertBottle(bottle);
             bottleDTO.setId(bottle.getId());
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -111,7 +111,7 @@ public class BottleServiceImpl implements BottleService{
             Bottle bottle = convertor.fromDTOToEntity(bottleDTO);
             bottleDAO.updateBottle(bottle);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -121,7 +121,7 @@ public class BottleServiceImpl implements BottleService{
             Bottle bottle = convertor.fromDTOToEntity(bottleDTO);
             bottleDAO.deleteBottle(bottle);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
     

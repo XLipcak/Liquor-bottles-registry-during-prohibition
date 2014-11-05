@@ -1,4 +1,4 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.services.impl;
+package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -7,10 +7,11 @@ import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.ProducerDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerProducerDTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.services.ProducerService;
+import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DTOConvertor;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerProducerDTOConvertor;
+import muni.fi.pa165.liquorbottles.service.services.ProducerService;
+import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -34,7 +35,7 @@ public class ProducerServiceImpl implements ProducerService {
             List<Producer> allProducers = producerDao.findAll();
             return convertor.fromEntityToDTO(allProducers);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -44,7 +45,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producerDto = producerDao.findById(id);
             return convertor.fromEntityToDTO(producerDto);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -54,7 +55,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producerDto = producerDao.findByUsername(userName);
             return convertor.fromEntityToDTO(producerDto);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -64,7 +65,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producerDto = producerDao.findByName(name);
             return convertor.fromEntityToDTO(producerDto);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -74,7 +75,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producerDto = producerDao.findByAddress(address);
             return convertor.fromEntityToDTO(producerDto);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -85,7 +86,7 @@ public class ProducerServiceImpl implements ProducerService {
             producerDao.insertProducer(producer);
             producerDto.setId(producer.getId());
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -95,7 +96,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producer = convertor.fromDTOToEntity(producerDto);
             producerDao.updateProducer(producer);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 
@@ -105,7 +106,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producer = convertor.fromDTOToEntity(producerDto);
             producerDao.deleteProducer(producer);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();//replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
 

@@ -1,4 +1,4 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.dto;
+package muni.fi.pa165.liquorbottles.service.dto;
 
 /**
  *

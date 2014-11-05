@@ -1,4 +1,4 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.services.impl;
+package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -7,9 +7,10 @@ import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.StoreDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.StoreDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerStoreDTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.services.StoreService;
+import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerStoreDTOConvertor;
+import muni.fi.pa165.liquorbottles.service.services.StoreService;
+import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -37,7 +38,7 @@ public class StoreServiceImpl implements StoreService {
             List<Store> store = storeDAOImpl.findAll();
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -47,7 +48,7 @@ public class StoreServiceImpl implements StoreService {
             Store store = storeDAOImpl.findById(id);
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -57,7 +58,7 @@ public class StoreServiceImpl implements StoreService {
             Store store = storeDAOImpl.findByAddress(address);
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -68,7 +69,7 @@ public class StoreServiceImpl implements StoreService {
             storeDAOImpl.insertStore(store);
             storeDTO.setId(store.getId());
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException(ex.getMessage());     //replace by service exception
+            throw new IllegalMonitorStateException(ex.getMessage());     
         }
     }
 
@@ -78,7 +79,7 @@ public class StoreServiceImpl implements StoreService {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
             storeDAOImpl.updateStore(store);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException(ex.getMessage());     //replace by service exception
+            throw new IllegalMonitorStateException(ex.getMessage());     
         }
     }
 
@@ -88,7 +89,7 @@ public class StoreServiceImpl implements StoreService {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
             storeDAOImpl.deleteStore(store);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 

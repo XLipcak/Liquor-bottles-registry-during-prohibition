@@ -1,4 +1,4 @@
-package muni.fi.pa165.liquorbottles.serviceLayer.services.impl;
+package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -7,9 +7,10 @@ import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.PoliceDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.PoliceDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.PoliceDTO;
-import muni.fi.pa165.liquorbottles.serviceLayer.dto.convertor.DozerPoliceDTOConvertor;
-import muni.fi.pa165.liquorbottles.serviceLayer.services.PoliceService;
+import muni.fi.pa165.liquorbottles.service.dto.PoliceDTO;
+import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerPoliceDTOConvertor;
+import muni.fi.pa165.liquorbottles.service.services.PoliceService;
+import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -37,7 +38,7 @@ public class PoliceServiceImpl implements PoliceService {
             List<Police> police = policeDAOImpl.findAll();
             return dozerPoliceDTOConvertor.fromEntityToDTO(police);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -47,7 +48,7 @@ public class PoliceServiceImpl implements PoliceService {
             Police police = policeDAOImpl.findById(id);
             return dozerPoliceDTOConvertor.fromEntityToDTO(police);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -57,7 +58,7 @@ public class PoliceServiceImpl implements PoliceService {
             Police police = policeDAOImpl.findByUsername(userName);
             return dozerPoliceDTOConvertor.fromEntityToDTO(police);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -67,7 +68,7 @@ public class PoliceServiceImpl implements PoliceService {
             Police police = policeDAOImpl.findByName(name);
             return dozerPoliceDTOConvertor.fromEntityToDTO(police);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -77,7 +78,7 @@ public class PoliceServiceImpl implements PoliceService {
             Police police = policeDAOImpl.findByAddress(address);
             return dozerPoliceDTOConvertor.fromEntityToDTO(police);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -88,7 +89,7 @@ public class PoliceServiceImpl implements PoliceService {
             policeDAOImpl.insertPolice(police);
             policeDTO.setId(police.getId());
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -98,7 +99,7 @@ public class PoliceServiceImpl implements PoliceService {
             Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
             policeDAOImpl.updatePolice(police);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
@@ -108,7 +109,7 @@ public class PoliceServiceImpl implements PoliceService {
             Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
             policeDAOImpl.deletePolice(police);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException();     //replace by service exception
+            throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
     }
 
