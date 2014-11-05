@@ -1,9 +1,4 @@
-/LiquorBottles-persistence/target/*
-/LiquorBottles-persistence/src-main/resources/META-INF/persistance.xml
+/LiquorBottles-persistence/target/
 /LiquorBottles-persistence/src/main/resources/META-INF/persistence.xml
 /LiquorBottles-persistence/derby.log
-
-# Manual modification #
-*.class
-*.log
-*.jar
+/LiquorBottles-service/target/
