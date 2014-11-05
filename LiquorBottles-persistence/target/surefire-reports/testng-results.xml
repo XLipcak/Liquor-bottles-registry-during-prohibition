@@ -2,583 +2,583 @@
 <testng-results skipped="0" failed="0" total="46" passed="46">
   <reporter-output>
   </reporter-output>
-  <suite name="Command line suite" duration-ms="35203" started-at="2014-11-05T15:06:30Z" finished-at="2014-11-05T15:07:05Z">
+  <suite name="Command line suite" duration-ms="29658" started-at="2014-11-05T09:50:23Z" finished-at="2014-11-05T09:50:53Z">
     <groups>
       <group name="executeBeforeDeleteTest">
-        <method signature="StoreDAOImplTest.testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testFindAll" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
-        <method signature="StoreDAOImplTest.testFindByAdress()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testFindByAdress" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
-        <method signature="StoreDAOImplTest.testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testFindById" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
-        <method signature="StoreDAOImplTest.testInsert()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testInsert" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
-        <method signature="StoreDAOImplTest.testUpdate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testUpdate" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
-        <method signature="UserDAOImplTest.testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testFindAll" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
-        <method signature="UserDAOImplTest.testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testFindById" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
-        <method signature="UserDAOImplTest.testFindByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testFindByUsername" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
-        <method signature="UserDAOImplTest.testFindPassByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testFindPassByUsername" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
-        <method signature="UserDAOImplTest.testInsert()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testInsert" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
-        <method signature="UserDAOImplTest.testUpdate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testUpdate" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
+        <method signature="StoreDAOImplTest.testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testFindAll" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
+        <method signature="StoreDAOImplTest.testFindByAdress()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testFindByAdress" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
+        <method signature="StoreDAOImplTest.testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testFindById" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
+        <method signature="StoreDAOImplTest.testInsert()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testInsert" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
+        <method signature="StoreDAOImplTest.testUpdate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testUpdate" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest"/>
+        <method signature="UserDAOImplTest.testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testFindAll" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
+        <method signature="UserDAOImplTest.testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testFindById" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
+        <method signature="UserDAOImplTest.testFindByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testFindByUsername" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
+        <method signature="UserDAOImplTest.testFindPassByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testFindPassByUsername" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
+        <method signature="UserDAOImplTest.testInsert()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testInsert" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
+        <method signature="UserDAOImplTest.testUpdate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testUpdate" class="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest"/>
       </group> <!-- executeBeforeDeleteTest -->
     </groups>
-    <test name="Command line test" duration-ms="35203" started-at="2014-11-05T15:06:30Z" finished-at="2014-11-05T15:07:05Z">
+    <test name="Command line test" duration-ms="29658" started-at="2014-11-05T09:50:23Z" finished-at="2014-11-05T09:50:53Z">
       <class name="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="beforeMethod" is-config="true" duration-ms="275" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:55Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="beforeMethod" is-config="true" duration-ms="187" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="findByAdress()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="findByAdress" duration-ms="37" started-at="2014-11-05T16:06:55Z" finished-at="2014-11-05T16:06:55Z">
+        <test-method status="PASS" signature="findByAdress()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="findByAdress" duration-ms="16" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findByAdress -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:55Z" finished-at="2014-11-05T16:06:55Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="beforeMethod" is-config="true" duration-ms="511" started-at="2014-11-05T16:06:55Z" finished-at="2014-11-05T16:06:55Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="beforeMethod" is-config="true" duration-ms="244" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="findByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="findByUsername" duration-ms="49" started-at="2014-11-05T16:06:55Z" finished-at="2014-11-05T16:06:55Z">
+        <test-method status="PASS" signature="findByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="findByUsername" duration-ms="47" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findByUsername -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="beforeMethod" is-config="true" duration-ms="318" started-at="2014-11-05T16:06:55Z" finished-at="2014-11-05T16:06:56Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="beforeMethod" is-config="true" duration-ms="198" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:55Z" finished-at="2014-11-05T16:06:55Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="findByfindByName()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="findByfindByName" duration-ms="48" started-at="2014-11-05T16:06:56Z" finished-at="2014-11-05T16:06:56Z">
+        <test-method status="PASS" signature="findByfindByName()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="findByfindByName" duration-ms="31" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findByfindByName -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="beforeMethod" is-config="true" duration-ms="502" started-at="2014-11-05T16:06:56Z" finished-at="2014-11-05T16:06:56Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="beforeMethod" is-config="true" duration-ms="238" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:56Z" finished-at="2014-11-05T16:06:56Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="testDeletePolice()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="testDeletePolice" duration-ms="62" started-at="2014-11-05T16:06:56Z" finished-at="2014-11-05T16:06:56Z">
+        <test-method status="PASS" signature="testDeletePolice()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="testDeletePolice" duration-ms="56" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeletePolice -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:56Z" finished-at="2014-11-05T16:06:56Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="beforeMethod" is-config="true" duration-ms="577" started-at="2014-11-05T16:06:56Z" finished-at="2014-11-05T16:06:57Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="beforeMethod" is-config="true" duration-ms="229" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="testFindAll" duration-ms="23" started-at="2014-11-05T16:06:57Z" finished-at="2014-11-05T16:06:57Z">
+        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="testFindAll" duration-ms="36" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAll -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="beforeMethod" is-config="true" duration-ms="537" started-at="2014-11-05T16:06:57Z" finished-at="2014-11-05T16:06:57Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:57Z" finished-at="2014-11-05T16:06:57Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="testFindById" duration-ms="52" started-at="2014-11-05T16:06:57Z" finished-at="2014-11-05T16:06:57Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="beforeMethod" is-config="true" duration-ms="218" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="testFindById" duration-ms="15" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindById -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="beforeMethod" is-config="true" duration-ms="379" started-at="2014-11-05T16:06:57Z" finished-at="2014-11-05T16:06:58Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:57Z" finished-at="2014-11-05T16:06:57Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="testInsertPolice()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="testInsertPolice" duration-ms="4" started-at="2014-11-05T16:06:58Z" finished-at="2014-11-05T16:06:58Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="beforeMethod" is-config="true" duration-ms="250" started-at="2014-11-05T10:50:45Z" finished-at="2014-11-05T10:50:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="beforeMethod" is-config="true" duration-ms="220" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testInsertPolice()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="testInsertPolice" duration-ms="0" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testInsertPolice -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:58Z" finished-at="2014-11-05T16:06:58Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="beforeMethod" is-config="true" duration-ms="364" started-at="2014-11-05T16:06:58Z" finished-at="2014-11-05T16:06:58Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testUpdatePolice()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="testUpdatePolice" duration-ms="120" started-at="2014-11-05T16:06:58Z" finished-at="2014-11-05T16:06:58Z">
+        <test-method status="PASS" signature="testUpdatePolice()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="testUpdatePolice" duration-ms="16" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdatePolice -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@1dc9d0e1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:58Z" finished-at="2014-11-05T16:06:58Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest@6f6c0ff5]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
       </class> <!-- muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest -->
       <class name="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest">
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="BeforeMethod" is-config="true" duration-ms="526" started-at="2014-11-05T16:06:58Z" finished-at="2014-11-05T16:06:59Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="BeforeMethod" is-config="true" duration-ms="241" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testFindAll" duration-ms="14" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:06:59Z">
+        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testFindAll" duration-ms="6" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAll -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:06:59Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="BeforeMethod" is-config="true" duration-ms="302" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:06:59Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="BeforeMethod" is-config="true" duration-ms="261" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testFindByAdress()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testFindByAdress" duration-ms="64" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:06:59Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testFindByAdress()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testFindByAdress" duration-ms="81" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByAdress -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:06:59Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="BeforeMethod" is-config="true" duration-ms="293" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:06:59Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="BeforeMethod" is-config="true" duration-ms="204" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testFindById" duration-ms="13" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:06:59Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:46Z" finished-at="2014-11-05T10:50:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testFindById" duration-ms="16" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindById -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:06:59Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="BeforeMethod" is-config="true" duration-ms="252" started-at="2014-11-05T16:06:59Z" finished-at="2014-11-05T16:07:00Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="BeforeMethod" is-config="true" duration-ms="283" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testInsert()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testInsert" duration-ms="89" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:00Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testInsert()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testInsert" duration-ms="88" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testInsert -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:00Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="BeforeMethod" is-config="true" duration-ms="282" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:00Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="BeforeMethod" is-config="true" duration-ms="266" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testUpdate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testUpdate" duration-ms="78" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:00Z">
+        <test-method status="PASS" signature="testUpdate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testUpdate" duration-ms="47" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdate -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:00Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="BeforeMethod" is-config="true" duration-ms="211" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="BeforeMethod" is-config="true" duration-ms="140" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testDelte()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="testDelte" duration-ms="62" depends-on-groups="executeBeforeDeleteTest" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="testDelte()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="testDelte" duration-ms="31" depends-on-groups="executeBeforeDeleteTest" started-at="2014-11-05T10:50:53Z" finished-at="2014-11-05T10:50:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDelte -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@2cb0730e]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest@1f8bd6f9]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:53Z" finished-at="2014-11-05T10:50:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
       </class> <!-- muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest -->
       <class name="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest">
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="BeforeMethod" is-config="true" duration-ms="243" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:00Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="BeforeMethod" is-config="true" duration-ms="219" started-at="2014-11-05T10:50:47Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testFindAll" duration-ms="26" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:00Z">
+        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testFindAll" duration-ms="15" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAll -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:00Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="BeforeMethod" is-config="true" duration-ms="237" started-at="2014-11-05T16:07:00Z" finished-at="2014-11-05T16:07:01Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="BeforeMethod" is-config="true" duration-ms="187" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testFindById" duration-ms="23" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:01Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testFindById" duration-ms="31" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindById -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:01Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="BeforeMethod" is-config="true" duration-ms="234" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:01Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="BeforeMethod" is-config="true" duration-ms="172" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testFindByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testFindByUsername" duration-ms="93" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:01Z">
+        <test-method status="PASS" signature="testFindByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testFindByUsername" duration-ms="62" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByUsername -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:01Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="BeforeMethod" is-config="true" duration-ms="271" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:01Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="BeforeMethod" is-config="true" duration-ms="207" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testFindPassByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testFindPassByUsername" duration-ms="45" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:01Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testFindPassByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testFindPassByUsername" duration-ms="32" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindPassByUsername -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:01Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="BeforeMethod" is-config="true" duration-ms="276" started-at="2014-11-05T16:07:01Z" finished-at="2014-11-05T16:07:02Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="BeforeMethod" is-config="true" duration-ms="216" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testInsert()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testInsert" duration-ms="130" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:02Z">
+        <test-method status="PASS" signature="testInsert()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testInsert" duration-ms="62" started-at="2014-11-05T10:50:48Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testInsert -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:02Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="BeforeMethod" is-config="true" duration-ms="257" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:02Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="BeforeMethod" is-config="true" duration-ms="187" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testUpdate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testUpdate" duration-ms="112" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:02Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testUpdate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testUpdate" duration-ms="63" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdate -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:02Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="BeforeMethod" is-config="true" duration-ms="251" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:05Z">
+        <test-method status="PASS" signature="BeforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="BeforeMethod" is-config="true" duration-ms="141" started-at="2014-11-05T10:50:53Z" finished-at="2014-11-05T10:50:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BeforeMethod -->
-        <test-method status="PASS" signature="testDelete()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="testDelete" duration-ms="106" depends-on-groups="executeBeforeDeleteTest" started-at="2014-11-05T16:07:05Z" finished-at="2014-11-05T16:07:05Z">
+        <test-method status="PASS" signature="testDelete()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="testDelete" duration-ms="46" depends-on-groups="executeBeforeDeleteTest" started-at="2014-11-05T10:50:53Z" finished-at="2014-11-05T10:50:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDelete -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@6a9e3110]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:05Z" finished-at="2014-11-05T16:07:05Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest@2b520293]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:53Z" finished-at="2014-11-05T10:50:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
       </class> <!-- muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest -->
       <class name="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="6708" started-at="2014-11-05T16:06:30Z" finished-at="2014-11-05T16:06:36Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="4641" started-at="2014-11-05T10:50:23Z" finished-at="2014-11-05T10:50:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testDeleteBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testDeleteBottle" duration-ms="6001" started-at="2014-11-05T16:06:36Z" finished-at="2014-11-05T16:06:42Z">
+        <test-method status="PASS" signature="testDeleteBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testDeleteBottle" duration-ms="6613" started-at="2014-11-05T10:50:28Z" finished-at="2014-11-05T10:50:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteBottle -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:42Z" finished-at="2014-11-05T16:06:42Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T10:50:34Z" finished-at="2014-11-05T10:50:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="1456" started-at="2014-11-05T16:06:42Z" finished-at="2014-11-05T16:06:44Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="1929" started-at="2014-11-05T10:50:34Z" finished-at="2014-11-05T10:50:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testFindAll" duration-ms="166" started-at="2014-11-05T16:06:44Z" finished-at="2014-11-05T16:06:44Z">
+        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testFindAll" duration-ms="269" started-at="2014-11-05T10:50:36Z" finished-at="2014-11-05T10:50:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAll -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:44Z" finished-at="2014-11-05T16:06:44Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:37Z" finished-at="2014-11-05T10:50:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="1104" started-at="2014-11-05T16:06:44Z" finished-at="2014-11-05T16:06:45Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="1349" started-at="2014-11-05T10:50:37Z" finished-at="2014-11-05T10:50:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindByBatchId()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testFindByBatchId" duration-ms="175" started-at="2014-11-05T16:06:45Z" finished-at="2014-11-05T16:06:45Z">
+        <test-method status="PASS" signature="testFindByBatchId()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testFindByBatchId" duration-ms="200" started-at="2014-11-05T10:50:38Z" finished-at="2014-11-05T10:50:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByBatchId -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:45Z" finished-at="2014-11-05T16:06:45Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:38Z" finished-at="2014-11-05T10:50:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="1010" started-at="2014-11-05T16:06:45Z" finished-at="2014-11-05T16:06:46Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="1178" started-at="2014-11-05T10:50:38Z" finished-at="2014-11-05T10:50:39Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindByDate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testFindByDate" duration-ms="135" started-at="2014-11-05T16:06:46Z" finished-at="2014-11-05T16:06:46Z">
+        <test-method status="PASS" signature="testFindByDate()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testFindByDate" duration-ms="196" started-at="2014-11-05T10:50:39Z" finished-at="2014-11-05T10:50:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByDate -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:46Z" finished-at="2014-11-05T16:06:46Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T10:50:40Z" finished-at="2014-11-05T10:50:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="907" started-at="2014-11-05T16:06:46Z" finished-at="2014-11-05T16:06:47Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="807" started-at="2014-11-05T10:50:40Z" finished-at="2014-11-05T10:50:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testFindById" duration-ms="179" started-at="2014-11-05T16:06:47Z" finished-at="2014-11-05T16:06:47Z">
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testFindById" duration-ms="78" started-at="2014-11-05T10:50:40Z" finished-at="2014-11-05T10:50:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindById -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:47Z" finished-at="2014-11-05T16:06:47Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:40Z" finished-at="2014-11-05T10:50:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="868" started-at="2014-11-05T16:06:47Z" finished-at="2014-11-05T16:06:48Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="678" started-at="2014-11-05T10:50:40Z" finished-at="2014-11-05T10:50:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindByStamp()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testFindByStamp" duration-ms="227" started-at="2014-11-05T16:06:48Z" finished-at="2014-11-05T16:06:49Z">
+        <test-method status="PASS" signature="testFindByStamp()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testFindByStamp" duration-ms="156" started-at="2014-11-05T10:50:41Z" finished-at="2014-11-05T10:50:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByStamp -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:49Z" finished-at="2014-11-05T16:06:49Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="732" started-at="2014-11-05T16:06:49Z" finished-at="2014-11-05T16:06:49Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="803" started-at="2014-11-05T10:50:41Z" finished-at="2014-11-05T10:50:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindByToxicity()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testFindByToxicity" duration-ms="134" started-at="2014-11-05T16:06:49Z" finished-at="2014-11-05T16:06:49Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:41Z" finished-at="2014-11-05T10:50:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testFindByToxicity()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testFindByToxicity" duration-ms="135" started-at="2014-11-05T10:50:42Z" finished-at="2014-11-05T10:50:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByToxicity -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="756" started-at="2014-11-05T16:06:49Z" finished-at="2014-11-05T16:06:50Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:49Z" finished-at="2014-11-05T16:06:49Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:42Z" finished-at="2014-11-05T10:50:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="testInsertBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testInsertBottle" duration-ms="66" started-at="2014-11-05T16:06:50Z" finished-at="2014-11-05T16:06:50Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="698" started-at="2014-11-05T10:50:42Z" finished-at="2014-11-05T10:50:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testInsertBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testInsertBottle" duration-ms="46" started-at="2014-11-05T10:50:43Z" finished-at="2014-11-05T10:50:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testInsertBottle -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:50Z" finished-at="2014-11-05T16:06:50Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="beforeMethod" is-config="true" duration-ms="765" started-at="2014-11-05T16:06:50Z" finished-at="2014-11-05T16:06:51Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="beforeMethod" is-config="true" duration-ms="702" started-at="2014-11-05T10:50:43Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testUpdateBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="testUpdateBottle" duration-ms="169" started-at="2014-11-05T16:06:51Z" finished-at="2014-11-05T16:06:51Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:43Z" finished-at="2014-11-05T10:50:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testUpdateBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="testUpdateBottle" duration-ms="125" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateBottle -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@7451b30d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:51Z" finished-at="2014-11-05T16:06:51Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest@139c21c1]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:44Z" finished-at="2014-11-05T10:50:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
       </class> <!-- muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest -->
       <class name="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="beforeMethod" is-config="true" duration-ms="340" started-at="2014-11-05T16:06:51Z" finished-at="2014-11-05T16:06:52Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="beforeMethod" is-config="true" duration-ms="212" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="findByAlcType()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="findByAlcType" duration-ms="46" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:52Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- findByAlcType -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:52Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="beforeMethod" is-config="true" duration-ms="328" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:52Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="findByPower()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="findByPower" duration-ms="31" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:52Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- findByPower -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:52Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="beforeMethod" is-config="true" duration-ms="414" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:52Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="findByVolume()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="findByVolume" duration-ms="29" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:52Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- findByVolume -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:52Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="beforeMethod" is-config="true" duration-ms="292" started-at="2014-11-05T16:06:52Z" finished-at="2014-11-05T16:06:53Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testDeleteBottleType()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="testDeleteBottleType" duration-ms="52" started-at="2014-11-05T16:06:53Z" finished-at="2014-11-05T16:06:53Z">
+        <test-method status="PASS" signature="testDeleteBottleType()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="testDeleteBottleType" duration-ms="18" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteBottleType -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:53Z" finished-at="2014-11-05T16:06:53Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="beforeMethod" is-config="true" duration-ms="388" started-at="2014-11-05T16:06:53Z" finished-at="2014-11-05T16:06:53Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="beforeMethod" is-config="true" duration-ms="156" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="testFindAll" duration-ms="83" started-at="2014-11-05T16:06:53Z" finished-at="2014-11-05T16:06:53Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testFindAll -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="beforeMethod" is-config="true" duration-ms="377" started-at="2014-11-05T16:06:53Z" finished-at="2014-11-05T16:06:54Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:53Z" finished-at="2014-11-05T16:06:53Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="testFindById" duration-ms="16" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:54Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testFindById -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:54Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="beforeMethod" is-config="true" duration-ms="395" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:54Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testInsertTypeBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="testInsertTypeBottle" duration-ms="5" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:54Z">
+        <test-method status="PASS" signature="testInsertTypeBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="testInsertTypeBottle" duration-ms="15" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testInsertTypeBottle -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:54Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="beforeMethod" is-config="true" duration-ms="302" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:54Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="beforeMethod" is-config="true" duration-ms="141" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testUpdateTypeBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="testUpdateTypeBottle" duration-ms="55" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:54Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="findByAlcType()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="findByAlcType" duration-ms="31" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findByAlcType -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="beforeMethod" is-config="true" duration-ms="158" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="findByPower()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="findByPower" duration-ms="16" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findByPower -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="beforeMethod" is-config="true" duration-ms="171" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="testFindById" duration-ms="0" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindById -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="beforeMethod" is-config="true" duration-ms="172" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="findByVolume()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="findByVolume" duration-ms="15" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findByVolume -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="beforeMethod" is-config="true" duration-ms="562" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="testFindAll" duration-ms="16" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindAll -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="beforeMethod" is-config="true" duration-ms="187" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testUpdateTypeBottle()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="testUpdateTypeBottle" duration-ms="32" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateTypeBottle -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@29aa48fe]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:06:54Z" finished-at="2014-11-05T16:06:54Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest@645f4e2d]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:52Z" finished-at="2014-11-05T10:50:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
       </class> <!-- muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest -->
       <class name="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest">
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="beforeMethod" is-config="true" duration-ms="239" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:02Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="beforeMethod" is-config="true" duration-ms="156" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testDeleteProducer()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="testDeleteProducer" duration-ms="38" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:02Z">
+        <test-method status="PASS" signature="testDeleteProducer()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="testDeleteProducer" duration-ms="31" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteProducer -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:02Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="beforeMethod" is-config="true" duration-ms="269" started-at="2014-11-05T16:07:02Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="beforeMethod" is-config="true" duration-ms="203" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="findByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="findByUsername" duration-ms="20" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- findByUsername -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="beforeMethod" is-config="true" duration-ms="240" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="beforeMethod" is-config="true" duration-ms="246" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="testFindById" duration-ms="10" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="testFindById" duration-ms="0" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindById -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="beforeMethod" is-config="true" duration-ms="243" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="findByUsername()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="findByUsername" duration-ms="10" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        </test-method> <!-- findByUsername -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="findByfindByName()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="findByfindByName" duration-ms="15" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="beforeMethod" is-config="true" duration-ms="234" started-at="2014-11-05T10:50:49Z" finished-at="2014-11-05T10:50:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="findByfindByName()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="findByfindByName" duration-ms="0" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findByfindByName -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="beforeMethod" is-config="true" duration-ms="235" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="beforeMethod" is-config="true" duration-ms="196" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="findByAdress()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="findByAdress" duration-ms="17" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="findByAdress()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="findByAdress" duration-ms="15" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findByAdress -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:03Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="beforeMethod" is-config="true" duration-ms="230" started-at="2014-11-05T16:07:03Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="beforeMethod" is-config="true" duration-ms="223" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="testFindAll" duration-ms="12" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="testFindAll()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="testFindAll" duration-ms="16" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAll -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="beforeMethod" is-config="true" duration-ms="220" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="beforeMethod" is-config="true" duration-ms="203" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testUpdateProducer()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="testUpdateProducer" duration-ms="23" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testUpdateProducer -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="beforeMethod" is-config="true" duration-ms="265" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="testInsertProducer()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="testInsertProducer" duration-ms="2" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        </test-method> <!-- afterMethod -->
+        <test-method status="PASS" signature="testInsertProducer()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="testInsertProducer" duration-ms="0" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testInsertProducer -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@64be4d44]" name="afterMethod" is-config="true" duration-ms="1" started-at="2014-11-05T16:07:04Z" finished-at="2014-11-05T16:07:04Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="beforeMethod" is-config="true" duration-ms="187" started-at="2014-11-05T10:50:50Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testUpdateProducer()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="testUpdateProducer" duration-ms="55" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdateProducer -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest@402c507f]" name="afterMethod" is-config="true" duration-ms="0" started-at="2014-11-05T10:50:51Z" finished-at="2014-11-05T10:50:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
