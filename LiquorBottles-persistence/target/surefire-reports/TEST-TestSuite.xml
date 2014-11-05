@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="31.439" errors="0" skipped="0" tests="46" name="TestSuite">
+<testsuite failures="0" time="38.486" errors="0" skipped="0" tests="46" name="TestSuite">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_67\jre\bin"/>
     <property name="java.vm.version" value="24.65-b04"/>
-    <property name="user.country.format" value="SK"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
@@ -12,47 +11,46 @@
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
     <property name="user.script" value=""/>
-    <property name="user.country" value="US"/>
+    <property name="user.country" value="GB"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\Kubo\Desktop\Skola\PA165 Vývoj systémů v jazyce Java\Semestralny projekt\LiquorBottlesRegistry"/>
+    <property name="user.dir" value="C:\Users\Not\Documents\GitHub\Liquor-bottles-registry-during-prohibition"/>
     <property name="java.runtime.version" value="1.7.0_67-b01"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_67\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\Kubo\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\Not\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows 7"/>
-    <property name="maven.ext.class.path" value="C:\Users\Kubo\AppData\Roaming\NetBeans\8.0.1\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="os.name" value="Windows 8.1"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.0.1\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.0.1\java\maven\bin\m2.conf"/>
-    <property name="sun.jnu.encoding" value="Cp1250"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_67\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\TortoiseSVN\bin;c:\Program Files (x86)\Unzip;."/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_67\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Lenovo\Bluetooth Software\;C:\Program Files\Lenovo\Bluetooth Software\syswow64;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="51.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="6.1"/>
-    <property name="user.home" value="C:\Users\Kubo"/>
+    <property name="os.version" value="6.3"/>
+    <property name="user.home" value="C:\Users\Not"/>
     <property name="user.timezone" value="Europe/Prague"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.7"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="user.name" value="Kubo"/>
+    <property name="user.name" value="Not"/>
     <property name="java.class.path" value="C:\Program Files\NetBeans 8.0.1\java\maven\boot\plexus-classworlds-2.4.jar"/>
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_67\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Users\Kubo\AppData\Roaming\NetBeans\8.0.1\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.0.1\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
-    <property name="user.language.format" value="sk"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.version" value="1.7.0_67"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext;C:\windows\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_67\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_67\jre\classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="C:\Program Files\NetBeans 8.0.1\java\maven"/>
@@ -63,50 +61,50 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="6.614" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testDeleteBottle"/>
-  <testcase time="0.351" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindAll"/>
-  <testcase time="0.319" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindByBatchId"/>
-  <testcase time="0.198" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindByDate"/>
-  <testcase time="0.078" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindById"/>
-  <testcase time="0.156" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindByStamp"/>
-  <testcase time="0.135" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindByToxicity"/>
-  <testcase time="0" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testInsertBottle"/>
-  <testcase time="0.125" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testUpdateBottle"/>
-  <testcase time="0.016" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="findByAdress"/>
-  <testcase time="0.031" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="findByUsername"/>
-  <testcase time="0.031" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="findByfindByName"/>
-  <testcase time="0.056" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testDeletePolice"/>
-  <testcase time="0.027" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testFindAll"/>
-  <testcase time="0.015" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testFindById"/>
-  <testcase time="0" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testInsertPolice"/>
-  <testcase time="0.016" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testUpdatePolice"/>
-  <testcase time="0.006" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testFindAll"/>
-  <testcase time="0.081" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testFindByAdress"/>
-  <testcase time="0.016" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testFindById"/>
+  <testcase time="5.999" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testDeleteBottle"/>
+  <testcase time="0.166" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindAll"/>
+  <testcase time="0.175" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindByBatchId"/>
+  <testcase time="0.136" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindByDate"/>
+  <testcase time="0.178" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindById"/>
+  <testcase time="0.226" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindByStamp"/>
+  <testcase time="0.134" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testFindByToxicity"/>
+  <testcase time="0.066" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testInsertBottle"/>
+  <testcase time="0.17" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleDAOImplTest" name="testUpdateBottle"/>
+  <testcase time="0.045" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="findByAlcType"/>
+  <testcase time="0.031" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="findByPower"/>
+  <testcase time="0.03" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="findByVolume"/>
+  <testcase time="0.051" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testDeleteBottleType"/>
+  <testcase time="0.084" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testFindAll"/>
+  <testcase time="0.016" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testFindById"/>
+  <testcase time="0.004" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testInsertTypeBottle"/>
+  <testcase time="0.056" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testUpdateTypeBottle"/>
+  <testcase time="0.037" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="findByAdress"/>
+  <testcase time="0.049" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="findByUsername"/>
+  <testcase time="0.049" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="findByfindByName"/>
+  <testcase time="0.062" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testDeletePolice"/>
+  <testcase time="0.023" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testFindAll"/>
+  <testcase time="0.053" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testFindById"/>
+  <testcase time="0.004" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testInsertPolice"/>
+  <testcase time="0.108" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.PoliceDAOImplTest" name="testUpdatePolice"/>
+  <testcase time="0.015" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testFindAll"/>
+  <testcase time="0.064" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testFindByAdress"/>
+  <testcase time="0.013" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testFindById"/>
   <testcase time="0.088" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testInsert"/>
-  <testcase time="0.047" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testUpdate"/>
-  <testcase time="0.031" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testFindAll"/>
-  <testcase time="0.031" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testFindById"/>
-  <testcase time="0.062" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testFindByUsername"/>
-  <testcase time="0.033" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testFindPassByUsername"/>
-  <testcase time="0.062" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testInsert"/>
-  <testcase time="0.063" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testUpdate"/>
-  <testcase time="0.031" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testDeleteProducer"/>
-  <testcase time="0" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testFindById"/>
-  <testcase time="0.01" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="findByUsername"/>
-  <testcase time="0" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="findByfindByName"/>
-  <testcase time="0.015" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="findByAdress"/>
-  <testcase time="0.016" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testFindAll"/>
-  <testcase time="0" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testInsertProducer"/>
-  <testcase time="0.055" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testUpdateProducer"/>
-  <testcase time="0.018" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testDeleteBottleType"/>
-  <testcase time="0.015" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testInsertTypeBottle"/>
-  <testcase time="0.031" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="findByAlcType"/>
-  <testcase time="0" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="findByPower"/>
-  <testcase time="0" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testFindById"/>
-  <testcase time="0.015" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="findByVolume"/>
-  <testcase time="0.016" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testFindAll"/>
-  <testcase time="0.032" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.BottleTypeDAOImplTest" name="testUpdateTypeBottle"/>
-  <testcase time="0.047" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testDelte"/>
-  <testcase time="0.046" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testDelete"/>
+  <testcase time="0.078" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testUpdate"/>
+  <testcase time="0.025" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testFindAll"/>
+  <testcase time="0.023" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testFindById"/>
+  <testcase time="0.093" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testFindByUsername"/>
+  <testcase time="0.045" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testFindPassByUsername"/>
+  <testcase time="0.129" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testInsert"/>
+  <testcase time="0.112" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testUpdate"/>
+  <testcase time="0.038" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testDeleteProducer"/>
+  <testcase time="0.02" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="findByUsername"/>
+  <testcase time="0.011" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testFindById"/>
+  <testcase time="0.015" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="findByfindByName"/>
+  <testcase time="0.017" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="findByAdress"/>
+  <testcase time="0.012" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testFindAll"/>
+  <testcase time="0.023" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testUpdateProducer"/>
+  <testcase time="0.003" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.ProducerDAOImplTest" name="testInsertProducer"/>
+  <testcase time="0.062" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.StoreDAOImplTest" name="testDelte"/>
+  <testcase time="0.106" classname="muni.fi.pa165.liquorbottles.persistenceLayerTests.UserDAOImplTest" name="testDelete"/>
 </testsuite>
