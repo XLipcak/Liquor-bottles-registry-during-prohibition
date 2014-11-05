@@ -1,4 +1,4 @@
-/LiquorBottles-persistence/target/
+/LiquorBottles-persistence/target/*
 /LiquorBottles-persistence/src-main/resources/META-INF/persistance.xml
 /LiquorBottles-persistence/src/main/resources/META-INF/persistence.xml
 /LiquorBottles-persistence/derby.log
