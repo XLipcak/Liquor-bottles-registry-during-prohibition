@@ -10,11 +10,15 @@ import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerPoliceDTOConvertor
 import muni.fi.pa165.liquorbottles.service.services.PoliceService;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Matus Novak, Masaryk University
  */
+@Service
+@Transactional
 public class PoliceServiceImpl implements PoliceService {
 
     PoliceDAO policeDAO;
