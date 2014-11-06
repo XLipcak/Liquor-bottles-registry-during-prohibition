@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <aop:aspectj-autoproxy/>
+    
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+    
+    <!-- EntityManagerFactoryBean    -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="localDB" />  
+    </bean>
+        
+    
+    <!-- DAO Beans    -->
+    <bean id="producerDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl" >
+        <property name="emf" ref="entityManagerFactory" />
+    </bean>
+    
+    
+    <!-- Service Beans    -->
+    <bean id="producerServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl">
+        <property name="producerDao" ref="producerDAO" />
+    </bean>
+    
+    <!-- TODO: Split Beans into more XML files depending on logical content -->
+
+</beans>

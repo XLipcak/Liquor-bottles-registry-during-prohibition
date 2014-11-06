@@ -8,25 +8,29 @@ import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
+import org.springframework.beans.factory.annotation.Required;
 
 /**
- * 
+ *
  * @author Michal Štora, Masaryk University
  */
-public class ProducerDAOImpl implements ProducerDAO{
+public class ProducerDAOImpl implements ProducerDAO {
 
     EntityManagerFactory emf;
     UserDAO userDAO;
+
+    public ProducerDAOImpl() {
+    }
 
     public ProducerDAOImpl(EntityManagerFactory emf) {
         this.emf = emf;
         userDAO = new UserDAOImpl(emf);
     }
-    
+
     @Override
     public List<Producer> findAll() {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             TypedQuery<Producer> allProducerQuery = em.createQuery("SELECT p FROM Producer p", Producer.class);
@@ -46,7 +50,7 @@ public class ProducerDAOImpl implements ProducerDAO{
     @Override
     public Producer findById(long id) {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             Producer producer = em.find(Producer.class, id);
@@ -65,7 +69,7 @@ public class ProducerDAOImpl implements ProducerDAO{
     @Override
     public Producer findByUsername(String userName) {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             TypedQuery<Producer> producerByUserNameQuery = em.createQuery("SELECT p FROM Producer p "
@@ -86,8 +90,8 @@ public class ProducerDAOImpl implements ProducerDAO{
 
     @Override
     public Producer findByName(String name) {
-         EntityManager em = emf.createEntityManager();
-        
+        EntityManager em = emf.createEntityManager();
+
         try {
             em.getTransaction().begin();
             TypedQuery<Producer> producerByNameQuery = em.createQuery("SELECT p FROM Producer p "
@@ -108,8 +112,8 @@ public class ProducerDAOImpl implements ProducerDAO{
 
     @Override
     public Producer findByAddress(String address) {
-         EntityManager em = emf.createEntityManager();
-        
+        EntityManager em = emf.createEntityManager();
+
         try {
             em.getTransaction().begin();
             TypedQuery<Producer> producerByAddress = em.createQuery("SELECT p FROM Producer p "
@@ -142,5 +146,10 @@ public class ProducerDAOImpl implements ProducerDAO{
     public void deleteProducer(Producer producer) {
         userDAO.deleteUser(producer);
     }
-    
+
+    @Required
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+        userDAO = new UserDAOImpl(emf);
+    }
 }

@@ -11,24 +11,27 @@ import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DTOConvertor;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerProducerDTOConvertor;
 import muni.fi.pa165.liquorbottles.service.services.ProducerService;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Jakub Lipcak, Masaryk University
  */
+@Service
+@Transactional
 public class ProducerServiceImpl implements ProducerService {
 
-    //replace by Spring injection later
     private ProducerDAO producerDao;
     private DTOConvertor<Producer, ProducerDTO> convertor = new DozerProducerDTOConvertor();
 
-    public ProducerServiceImpl() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(
-                "localDB");
-        producerDao = new ProducerDAOImpl(emf);
-    }
-
+    /*public ProducerServiceImpl() {
+     EntityManagerFactory emf = Persistence.createEntityManagerFactory(
+     "localDB");
+     producerDao = new ProducerDAOImpl(emf);
+     }*/
     @Override
     public List<ProducerDTO> findAll() {
         try {
@@ -108,6 +111,16 @@ public class ProducerServiceImpl implements ProducerService {
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
         }
+    }
+
+    @Required
+    public void setProducerDao(ProducerDAO producerDao) {
+        this.producerDao = producerDao;
+    }
+
+    //@Required
+    public void setConvertor(DTOConvertor<Producer, ProducerDTO> convertor) {
+        this.convertor = convertor;
     }
 
 }
