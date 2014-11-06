@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.PoliceDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
+import org.springframework.beans.factory.annotation.Required;
 
 /**
  *
@@ -18,6 +19,10 @@ public class PoliceDAOImpl implements PoliceDAO {
     EntityManagerFactory emf;
     UserDAO userDAO;
 
+    public PoliceDAOImpl() {
+
+    }
+
     public PoliceDAOImpl(EntityManagerFactory emf) {
         this.emf = emf;
         userDAO = new UserDAOImpl(emf);
@@ -26,7 +31,7 @@ public class PoliceDAOImpl implements PoliceDAO {
     @Override
     public List<Police> findAll() {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             TypedQuery<Police> allPoliceQuery = em.createQuery("SELECT p FROM Police p", Police.class);
@@ -46,7 +51,7 @@ public class PoliceDAOImpl implements PoliceDAO {
     @Override
     public Police findById(long id) {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             Police police = em.find(Police.class, id);
@@ -65,7 +70,7 @@ public class PoliceDAOImpl implements PoliceDAO {
     @Override
     public Police findByUsername(String userName) {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             TypedQuery<Police> policeByUserNameQuery = em.createQuery("SELECT p FROM Police p "
@@ -86,7 +91,7 @@ public class PoliceDAOImpl implements PoliceDAO {
     @Override
     public Police findByName(String name) {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             TypedQuery<Police> policeByNameQuery = em.createQuery("SELECT p FROM Police p "
@@ -107,7 +112,7 @@ public class PoliceDAOImpl implements PoliceDAO {
     @Override
     public Police findByAddress(String address) {
         EntityManager em = emf.createEntityManager();
-        
+
         try {
             em.getTransaction().begin();
             TypedQuery<Police> policeByAddress = em.createQuery("SELECT p FROM Police p "
@@ -140,4 +145,9 @@ public class PoliceDAOImpl implements PoliceDAO {
         userDAO.deleteUser(police);
     }
 
+    @Required
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+        userDAO = new UserDAOImpl(emf);
+    }
 }
