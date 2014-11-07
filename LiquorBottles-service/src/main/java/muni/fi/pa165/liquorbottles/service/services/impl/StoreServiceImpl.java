@@ -2,40 +2,38 @@ package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.StoreDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerStoreDTOConvertor;
 import muni.fi.pa165.liquorbottles.service.services.StoreService;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Matus Novak, Masaryk University
  */
+@Service
+@Transactional
 public class StoreServiceImpl implements StoreService {
 
-    EntityManagerFactory emf;
-    StoreDAO storeDAOImpl;
+    StoreDAO storeDAO;
     DozerStoreDTOConvertor dozerStoreDTOConvertor = new DozerStoreDTOConvertor();
 
-    public StoreServiceImpl() {
+    /*public StoreServiceImpl() {
         emf = Persistence.createEntityManagerFactory(
                 "localDB");
         storeDAOImpl = new StoreDAOImpl(emf);
-    }
-    
-    public void closeEMF(){
-        this.emf.close();
-    }
+    }*/
 
     @Override
     public List<StoreDTO> findAll() {
         try {
-            List<Store> store = storeDAOImpl.findAll();
+            List<Store> store = storeDAO.findAll();
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");     
@@ -45,7 +43,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public StoreDTO findById(long id) {
         try {
-            Store store = storeDAOImpl.findById(id);
+            Store store = storeDAO.findById(id);
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");     
@@ -55,7 +53,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public StoreDTO findByAddress(String address) {
         try {
-            Store store = storeDAOImpl.findByAddress(address);
+            Store store = storeDAO.findByAddress(address);
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");     
@@ -66,7 +64,7 @@ public class StoreServiceImpl implements StoreService {
     public void insertStore(StoreDTO storeDTO) {
         try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
-            storeDAOImpl.insertStore(store);
+            storeDAO.insertStore(store);
             storeDTO.setId(store.getId());
         } catch (PersistenceException ex) {
             throw new IllegalMonitorStateException(ex.getMessage());     
@@ -77,7 +75,7 @@ public class StoreServiceImpl implements StoreService {
     public void updateStore(StoreDTO storeDTO) {
         try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
-            storeDAOImpl.updateStore(store);
+            storeDAO.updateStore(store);
         } catch (PersistenceException ex) {
             throw new IllegalMonitorStateException(ex.getMessage());     
         }
@@ -87,10 +85,14 @@ public class StoreServiceImpl implements StoreService {
     public void deleteStore(StoreDTO storeDTO) {
         try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
-            storeDAOImpl.deleteStore(store);
+            storeDAO.deleteStore(store);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");     
         }
+    }
+    @Required
+    public void setStoreDAO(StoreDAO storeDAO) {
+        this.storeDAO = storeDAO;
     }
 
 }

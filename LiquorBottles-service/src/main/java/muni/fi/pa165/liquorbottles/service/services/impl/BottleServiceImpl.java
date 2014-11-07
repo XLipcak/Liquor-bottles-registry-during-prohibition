@@ -2,11 +2,8 @@ package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.Date;
 import java.util.List;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleDAO;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
@@ -15,28 +12,31 @@ import muni.fi.pa165.liquorbottles.service.dto.convertor.DTOConvertor;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerBottleDTOConvertor;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerToxicityDTOConvertor;
 import muni.fi.pa165.liquorbottles.service.services.BottleService;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Michal Taraj, Masaryk University
  */
-public class BottleServiceImpl implements BottleService{
-    
-    // TODO replace by Spring injection later
+@Service
+@Transactional
+public class BottleServiceImpl implements BottleService {
+
     private BottleDAO bottleDAO;
-    private DTOConvertor<Bottle, BottleDTO> convertor = new DozerBottleDTOConvertor();
+    private DozerBottleDTOConvertor bottleDTOConvertor = new DozerBottleDTOConvertor();
 
-    public BottleServiceImpl(BottleDAO bottleDao) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("localDB");
-        bottleDAO = new BottleDAOImpl(emf);
-    }
-
+    /*public BottleServiceImpl(BottleDAO bottleDao) {
+     EntityManagerFactory emf = Persistence.createEntityManagerFactory("localDB");
+     bottleDAO = new BottleDAOImpl(emf);
+     }*/
     @Override
     public List<BottleDTO> findAll() {
         try {
             List<Bottle> allBottles = bottleDAO.findAll();
-            return convertor.fromEntityToDTO(allBottles);
+            return bottleDTOConvertor.fromEntityToDTO(allBottles);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
         }
@@ -46,7 +46,7 @@ public class BottleServiceImpl implements BottleService{
     public BottleDTO findById(long id) {
         try {
             Bottle bottleDTO = bottleDAO.findById(id);
-            return convertor.fromEntityToDTO(bottleDTO);
+            return bottleDTOConvertor.fromEntityToDTO(bottleDTO);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
         }
@@ -56,7 +56,7 @@ public class BottleServiceImpl implements BottleService{
     public List<BottleDTO> findByBatchId(long id) {
         try {
             List<Bottle> bottlesByBatchId = bottleDAO.findByBatchId(id);
-            return convertor.fromEntityToDTO(bottlesByBatchId);
+            return bottleDTOConvertor.fromEntityToDTO(bottlesByBatchId);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
         }
@@ -66,7 +66,7 @@ public class BottleServiceImpl implements BottleService{
     public BottleDTO findByStamp(long stamp) {
         try {
             Bottle bottleDTO = bottleDAO.findByStamp(stamp);
-            return convertor.fromEntityToDTO(bottleDTO);
+            return bottleDTOConvertor.fromEntityToDTO(bottleDTO);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
         }
@@ -76,7 +76,7 @@ public class BottleServiceImpl implements BottleService{
     public List<BottleDTO> findByDate(Date date) {
         try {
             List<Bottle> bottlesByDate = bottleDAO.findByDate(date);
-            return convertor.fromEntityToDTO(bottlesByDate);
+            return bottleDTOConvertor.fromEntityToDTO(bottlesByDate);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
         }
@@ -88,7 +88,7 @@ public class BottleServiceImpl implements BottleService{
             DTOConvertor<Toxicity, ToxicityDTO> toxicityConvertor = new DozerToxicityDTOConvertor();
             Toxicity toxic = toxicityConvertor.fromDTOToEntity(toxicDTO);
             List<Bottle> bottlesByToxicity = bottleDAO.findByToxicity(toxic);
-            return convertor.fromEntityToDTO(bottlesByToxicity);
+            return bottleDTOConvertor.fromEntityToDTO(bottlesByToxicity);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
         }
@@ -97,7 +97,7 @@ public class BottleServiceImpl implements BottleService{
     @Override
     public void insertBottle(BottleDTO bottleDTO) {
         try {
-            Bottle bottle = convertor.fromDTOToEntity(bottleDTO);
+            Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);
             bottleDAO.insertBottle(bottle);
             bottleDTO.setId(bottle.getId());
         } catch (PersistenceException ex) {
@@ -108,7 +108,7 @@ public class BottleServiceImpl implements BottleService{
     @Override
     public void updateBottle(BottleDTO bottleDTO) {
         try {
-            Bottle bottle = convertor.fromDTOToEntity(bottleDTO);
+            Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);
             bottleDAO.updateBottle(bottle);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
@@ -118,11 +118,16 @@ public class BottleServiceImpl implements BottleService{
     @Override
     public void deleteBottle(BottleDTO bottleDTO) {
         try {
-            Bottle bottle = convertor.fromDTOToEntity(bottleDTO);
+            Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);
             bottleDAO.deleteBottle(bottle);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!");
         }
     }
-    
+
+    @Required
+    public void setBottleDAO(BottleDAO bottleDAO) {
+        this.bottleDAO = bottleDAO;
+    }
+
 }

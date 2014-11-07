@@ -7,6 +7,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
+import org.springframework.beans.factory.annotation.Required;
 
 /**
  *
@@ -15,6 +16,10 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
 public class UserDAOImpl implements UserDAO {
 
     EntityManagerFactory emf;
+
+    public UserDAOImpl() {
+
+    }
 
     public UserDAOImpl(EntityManagerFactory emf) {
         this.emf = emf;
@@ -154,4 +159,10 @@ public class UserDAOImpl implements UserDAO {
             }
         }
     }
+
+    @Required
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
 }

@@ -6,7 +6,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
+import org.springframework.beans.factory.annotation.Required;
 
 /**
  *
@@ -15,9 +17,15 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 public class StoreDAOImpl implements StoreDAO {
 
     EntityManagerFactory emf;
+    UserDAO userDAO;
+    
+    public StoreDAOImpl(){
+        
+    }
 
     public StoreDAOImpl(EntityManagerFactory emf) {
         this.emf = emf;
+        userDAO = new UserDAOImpl(emf);
     }
 
     @Override
@@ -85,59 +93,23 @@ public class StoreDAOImpl implements StoreDAO {
 
     @Override
     public void insertStore(Store store) {
-
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            em.getTransaction().begin();
-            em.persist(store);
-            em.getTransaction().commit();
-
-        } catch (Exception ex) {
-            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
+        userDAO.insertUser(store);
     }
 
     @Override
     public void updateStore(Store store) {
-
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            em.getTransaction().begin();
-            em.merge(store);
-            em.getTransaction().commit();
-
-        } catch (Exception ex) {
-            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
+        userDAO.updateUser(store);
     }
 
     @Override
     public void deleteStore(Store store) {
+        userDAO.deleteUser(store);
+    }
 
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            em.getTransaction().begin();
-            em.remove(em.contains(store) ? store : em.merge(store));
-            em.getTransaction().commit();
-
-        } catch (Exception ex) {
-            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }
+    @Required
+    public void setEmf(EntityManagerFactory emf) {
+        this.emf = emf;
+        userDAO = new UserDAOImpl(emf);
     }
 
 }

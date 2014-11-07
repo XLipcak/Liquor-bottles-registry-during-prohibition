@@ -23,13 +23,45 @@
         <property name="emf" ref="entityManagerFactory" />
     </bean>
     
+    <bean id="storeDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.StoreDAOImpl" >
+        <property name="emf" ref="entityManagerFactory" />
+    </bean>
+    
+    <bean id="userDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.UserDAOImpl" >
+        <property name="emf" ref="entityManagerFactory" />
+    </bean>
+    
+    <bean id="bottleDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleDAOImpl" >
+        <property name="emf" ref="entityManagerFactory" />
+    </bean>
+    
+    <bean id="bottleTypeDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl" >
+        <property name="emf" ref="entityManagerFactory" />
+    </bean>
+    
     <!-- Service Beans    -->
-    <bean id="producerServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl">
+    <bean id="producerServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl" >
         <property name="producerDao" ref="producerDAO" />
     </bean>
     
     <bean id="policeServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.PoliceServiceImpl">
         <property name="policeDAO" ref="policeDAO" />
+    </bean>
+    
+    <bean id="storeServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.StoreServiceImpl">
+        <property name="storeDAO" ref="storeDAO" />
+    </bean>
+    
+    <bean id="userServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.UserServiceImpl">
+        <property name="userDAO" ref="userDAO" />
+    </bean>
+    
+    <bean id="bottleServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.BottleServiceImpl">
+        <property name="bottleDAO" ref="bottleDAO" />
+    </bean>
+    
+    <bean id="bottleTypeServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.BottleTypeServiceImpl">
+        <property name="bottleTypeDAO" ref="bottleTypeDAO" />
     </bean>
     
     <!-- TODO: Split Beans into more XML files depending on logical content -->
