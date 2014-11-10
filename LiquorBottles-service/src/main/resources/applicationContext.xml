@@ -7,6 +7,18 @@
 
     <aop:aspectj-autoproxy/>
     
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="emf" ref="entityManagerFactory" />
+    </bean>
+    <tx:annotation-driven transaction-manager="txManager" />
+    
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name=""/>
+        </tx:attributes>
+    </tx:advice>
+    
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
     
     <!-- EntityManagerFactoryBean    -->
