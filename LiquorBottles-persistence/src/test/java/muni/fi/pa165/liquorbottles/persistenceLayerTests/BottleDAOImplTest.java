@@ -51,9 +51,9 @@ public class BottleDAOImplTest {
         em = emf.createEntityManager();
 
         //prepare records in db
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
         StoreDAO storeDAO = new StoreDAOImpl(em);
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         for (int x = 0; x < NUMBER_OF_RECORDS; x++) {
@@ -87,7 +87,7 @@ public class BottleDAOImplTest {
     @Test
     public void testFindAll() {
         System.out.println("Testing findAll.");
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
 
         List<Bottle> result = bottleDAO.findAll();
         assertEquals(result, bottlesInDb);
@@ -99,7 +99,7 @@ public class BottleDAOImplTest {
     @Test
     public void testFindById() {
         System.out.println("Testing findById");
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
 
         for (Bottle bottle : bottlesInDb) {
             assertEquals(bottleDAO.findById(bottle.getId()), bottle);
@@ -112,7 +112,7 @@ public class BottleDAOImplTest {
     @Test
     public void testFindByStamp() {
         System.out.println("Testing findByStamp");
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
 
         for (Bottle bottle : bottlesInDb) {
             Bottle b1 = bottleDAO.findByStamp(bottle.getStamp());
@@ -127,7 +127,7 @@ public class BottleDAOImplTest {
     @Test
     public void testFindByDate() {
         System.out.println("Testing findByDate");
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
 
         assertEquals(bottleDAO.findByDate(new Date(new Date().getTime())),
                 bottlesInDb);
@@ -139,7 +139,7 @@ public class BottleDAOImplTest {
     @Test
     public void testFindByToxicity() {
         System.out.println("Testing findByToxicity");
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
 
         List<Bottle> toxicBottles = bottleDAO.findByToxicity(Toxicity.TOXIC);
         int x = 0;
@@ -169,7 +169,7 @@ public class BottleDAOImplTest {
     @Test
     public void testFindByBatchId() {
         System.out.println("Testing findByBatchId");
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
 
         List<Bottle> b1 = bottleDAO.findByBatchId(bottlesInDb.get(0).getBatchNumber());
         assertEquals(b1, bottlesInDb);
@@ -191,9 +191,9 @@ public class BottleDAOImplTest {
         Bottle bottle = new Bottle(store, bottleType, 123456, 001122,
                 new Date(new Date().getTime()), Toxicity.TOXIC);
 
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
         StoreDAO storeDAO = new StoreDAOImpl(em);
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         storeDAO.insertStore(store);
@@ -225,7 +225,7 @@ public class BottleDAOImplTest {
     @Test
     public void testUpdateBottle() {
         System.out.println("Testing updateBottle");
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
 
         Bottle bottle = bottlesInDb.get(0);
         bottle.setBatchNumber(-300);
@@ -255,7 +255,7 @@ public class BottleDAOImplTest {
     public void testDeleteBottle() {
         System.out.println("Testing deleteBottle");
 
-        BottleDAO bottleDAO = new BottleDAOImpl(emf);
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
 
         for (int x = bottlesInDb.size(); x > 0; x--) {
             //chech bottle in DB

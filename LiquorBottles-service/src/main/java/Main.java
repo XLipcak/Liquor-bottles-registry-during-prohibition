@@ -1,18 +1,13 @@
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.UserDAOImpl;
-import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
-import muni.fi.pa165.liquorbottles.service.dto.PoliceDTO;
+import java.util.Date;
+import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
+import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
-import muni.fi.pa165.liquorbottles.service.dto.UserDTO;
-import muni.fi.pa165.liquorbottles.service.services.PoliceService;
+import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
+import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
+import muni.fi.pa165.liquorbottles.service.services.BottleService;
+import muni.fi.pa165.liquorbottles.service.services.BottleTypeService;
 import muni.fi.pa165.liquorbottles.service.services.ProducerService;
-import muni.fi.pa165.liquorbottles.service.services.UserService;
-import muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl;
-import muni.fi.pa165.liquorbottles.service.services.impl.UserServiceImpl;
+import muni.fi.pa165.liquorbottles.service.services.StoreService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -25,14 +20,48 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        UserDTO user = new UserDTO();
-        user.setUsername("Fero");
-        user.setPassword("1234567");
-        
-        UserService userService = (UserService) applicationContext.getBean(UserService.class);
+        ProducerDTO producer = new ProducerDTO();
+        producer.setAddress("Botanicka");
+        producer.setName("Alko");
+        producer.setPassword("xxx");
+        producer.setUsername("Hello");
 
-        userService.insertUser(user);
-        
-        System.out.println("Hello world!");
+        ProducerService producerService = (ProducerService) applicationContext.getBean(ProducerService.class);
+        producerService.insertProducer(producer);
+
+        BottleTypeDTO type = new BottleTypeDTO();
+        type.setAlcType("123456");
+        type.setName("Bororo");
+        type.setPower(9);
+        type.setProducer(producer);
+        type.setVolume(123);
+
+        BottleTypeService bottleTypeService = (BottleTypeService) applicationContext.
+                getBean(BottleTypeService.class);
+        bottleTypeService.insertBottleType(type);
+
+        StoreDTO store = new StoreDTO();
+        store.setAddress("adresa");
+        store.setName("obchod");
+        store.setUsername("Tesco");
+        store.setPassword("12");
+
+        StoreService storeService = (StoreService) applicationContext.
+                getBean(StoreService.class);
+        storeService.insertStore(store);
+
+        BottleDTO bottle = new BottleDTO();
+        bottle.setBatchNumber(123456);
+        bottle.setDateOfBirth(new Date(new Date().getTime()));
+        bottle.setStamp(123456);
+        bottle.setToxicity(ToxicityDTO.TOXIC);
+        bottle.setBottleType(type);
+        bottle.setStore(store);
+
+        BottleService bottleService = (BottleService) applicationContext.
+                getBean(BottleService.class);
+        bottleService.insertBottle(bottle);
+
+        System.out.println("Kubek");
     }
 }

@@ -77,13 +77,11 @@
     </bean>
     
     <bean id="bottleDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleDAOImpl" >
-        <!-- <property name="em" ref="entityManager" /> -->
-        <property name="emf" ref="entityManagerFactory" />
+        <property name="em" ref="entityManager" />
     </bean>
     
     <bean id="bottleTypeDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl" >
-        <!-- <property name="em" ref="entityManager" /> -->
-        <property name="emf" ref="entityManagerFactory" />
+        <property name="em" ref="entityManager" />
     </bean>
     <!--_________________________________________________________________-->
     

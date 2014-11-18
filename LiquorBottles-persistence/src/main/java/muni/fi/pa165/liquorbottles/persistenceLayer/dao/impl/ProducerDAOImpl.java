@@ -34,17 +34,17 @@ public class ProducerDAOImpl implements ProducerDAO {
     public List<Producer> findAll() {
 
         try {
-            em.getTransaction().begin();
+            //em.getTransaction().begin();
             TypedQuery<Producer> allProducerQuery = em.createQuery("SELECT p FROM Producer p", Producer.class);
             List<Producer> allProducer = allProducerQuery.getResultList();
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
 
             return allProducer;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                // em.close();
+                // //em.close();
             }
         }
     }
@@ -53,16 +53,16 @@ public class ProducerDAOImpl implements ProducerDAO {
     public Producer findById(long id) {
 
         try {
-            em.getTransaction().begin();
+            //em.getTransaction().begin();
             Producer producer = em.find(Producer.class, id);
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
 
             return producer;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                // em.close();
+                // //em.close();
             }
         }
     }
@@ -71,19 +71,19 @@ public class ProducerDAOImpl implements ProducerDAO {
     public Producer findByUsername(String userName) {
 
         try {
-            em.getTransaction().begin();
+            //em.getTransaction().begin();
             TypedQuery<Producer> producerByUserNameQuery = em.createQuery("SELECT p FROM Producer p "
                     + "WHERE p.username= :username", Producer.class);
             producerByUserNameQuery.setParameter("username", userName);
             Producer producer = producerByUserNameQuery.getSingleResult();
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
 
             return producer;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                // em.close();
+                // //em.close();
             }
         }
     }
@@ -92,19 +92,19 @@ public class ProducerDAOImpl implements ProducerDAO {
     public Producer findByName(String name) {
 
         try {
-            em.getTransaction().begin();
+            //em.getTransaction().begin();
             TypedQuery<Producer> producerByNameQuery = em.createQuery("SELECT p FROM Producer p "
                     + "WHERE p.name= :name", Producer.class);
             producerByNameQuery.setParameter("name", name);
             Producer producer = producerByNameQuery.getSingleResult();
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
 
             return producer;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                // em.close();
+                // //em.close();
             }
         }
     }
@@ -113,19 +113,19 @@ public class ProducerDAOImpl implements ProducerDAO {
     public Producer findByAddress(String address) {
 
         try {
-            em.getTransaction().begin();
+            //em.getTransaction().begin();
             TypedQuery<Producer> producerByAddress = em.createQuery("SELECT p FROM Producer p "
                     + "WHERE p.address= :address", Producer.class);
             producerByAddress.setParameter("address", address);
             Producer producer = producerByAddress.getSingleResult();
-            em.getTransaction().commit();
+            //em.getTransaction().commit();
 
             return producer;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                // em.close();
+                // //em.close();
             }
         }
     }

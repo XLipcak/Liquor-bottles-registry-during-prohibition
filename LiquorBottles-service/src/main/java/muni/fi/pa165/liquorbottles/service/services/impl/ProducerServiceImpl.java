@@ -38,7 +38,7 @@ public class ProducerServiceImpl implements ProducerService {
             List<Producer> allProducers = producerDao.findAll();
             return convertor.fromEntityToDTO(allProducers);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -48,7 +48,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producerDto = producerDao.findById(id);
             return convertor.fromEntityToDTO(producerDto);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -58,7 +58,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producerDto = producerDao.findByUsername(userName);
             return convertor.fromEntityToDTO(producerDto);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -68,7 +68,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producerDto = producerDao.findByName(name);
             return convertor.fromEntityToDTO(producerDto);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -78,7 +78,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producerDto = producerDao.findByAddress(address);
             return convertor.fromEntityToDTO(producerDto);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -89,7 +89,7 @@ public class ProducerServiceImpl implements ProducerService {
             producerDao.insertProducer(producer);
             producerDto.setId(producer.getId());
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -99,7 +99,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producer = convertor.fromDTOToEntity(producerDto);
             producerDao.updateProducer(producer);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -109,7 +109,7 @@ public class ProducerServiceImpl implements ProducerService {
             Producer producer = convertor.fromDTOToEntity(producerDto);
             producerDao.deleteProducer(producer);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 

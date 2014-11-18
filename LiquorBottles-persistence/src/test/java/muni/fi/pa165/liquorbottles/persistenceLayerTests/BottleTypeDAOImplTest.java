@@ -47,7 +47,7 @@ public class BottleTypeDAOImplTest {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         em = emf.createEntityManager();
 
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         Producer producer = new Producer("TestProducer", "Prod1", "user123", "test");
@@ -78,7 +78,7 @@ public class BottleTypeDAOImplTest {
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
         List<BottleType> result = bottleTypeDAO.findAll();
 
@@ -100,7 +100,7 @@ public class BottleTypeDAOImplTest {
     public void testFindById() {
         System.out.println("Testing findById");
 
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
         for (int x = 0; x < bottleTypesInDb.size(); x++) {
             assertEquals(bottleTypeDAO.findById(bottleTypesInDb.get(x).getId()),
@@ -115,7 +115,7 @@ public class BottleTypeDAOImplTest {
     public void findByAlcType() {
         System.out.println("Testing findByAlcType");
 
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
         for (int x = 0; x < bottleTypesInDb.size(); x++) {
             BottleType b1 = bottleTypeDAO.findByAlcType(bottleTypesInDb.get(x).getAlcType()).get(0);
@@ -130,7 +130,7 @@ public class BottleTypeDAOImplTest {
      */
     @Test
     public void findByPower() {
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
         for (int x = 0; x < bottleTypesInDb.size(); x++) {
             List<BottleType> b1 = bottleTypeDAO.findByPower(bottleTypesInDb.get(x).getPower());
@@ -151,7 +151,7 @@ public class BottleTypeDAOImplTest {
     public void findByVolume() {
         System.out.println("Testing findByVolume");
 
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
         for (int x = 0; x < bottleTypesInDb.size(); x++) {
             List<BottleType> b1 = bottleTypeDAO.findByVolume(bottleTypesInDb.get(x).getVolume());
@@ -176,7 +176,7 @@ public class BottleTypeDAOImplTest {
         BottleType bottleType = new BottleType("Bozkov RUM, 0,5l", "rum", 35, 500, producer);
 
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
         producerDAO.insertProducer(producer);
         bottleTypeDAO.insertBottleType(bottleType);
@@ -205,7 +205,7 @@ public class BottleTypeDAOImplTest {
     public void testUpdateTypeBottle() {
         System.out.println("Testing updateBottleType");
 
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
         BottleType bottleType = bottleTypesInDb.get(0);
         bottleType.setName("Bozkov zmeneny, 0,1l");
@@ -235,7 +235,7 @@ public class BottleTypeDAOImplTest {
     public void testDeleteBottleType() {
         System.out.println("Testing deleteBottleType");
 
-        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
+        BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
         for (int x = bottleTypesInDb.size(); x > 0; x--) {
             assertEquals(bottleTypeDAO.findAll().size(), x);

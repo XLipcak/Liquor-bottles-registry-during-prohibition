@@ -34,7 +34,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             List<BottleType> allBottleTypes = bottleTypeDAO.findAll();
             return bottleTypeDTOConvertor.fromEntityToDTO(allBottleTypes);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -44,7 +44,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             BottleType bottleTypeDTO = bottleTypeDAO.findById(id);
             return bottleTypeDTOConvertor.fromEntityToDTO(bottleTypeDTO);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -54,7 +54,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             List<BottleType> bottleTypesByAlcType = bottleTypeDAO.findByAlcType(alcType);
             return bottleTypeDTOConvertor.fromEntityToDTO(bottleTypesByAlcType);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -64,7 +64,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             List<BottleType> bottleTypesByPower = bottleTypeDAO.findByPower(power);
             return bottleTypeDTOConvertor.fromEntityToDTO(bottleTypesByPower);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -74,7 +74,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             List<BottleType> bottleTypesByVolume = bottleTypeDAO.findByVolume(volume);
             return bottleTypeDTOConvertor.fromEntityToDTO(bottleTypesByVolume);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -85,7 +85,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             bottleTypeDAO.insertBottleType(bottleType);
             bottleTypeDTO.setId(bottleType.getId());
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -95,7 +95,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             BottleType bottleType = bottleTypeDTOConvertor.fromDTOToEntity(bottleTypeDTO);
             bottleTypeDAO.updateBottleType(bottleType);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -105,7 +105,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             BottleType bottleType = bottleTypeDTOConvertor.fromDTOToEntity(bottleTypeDTO);
             bottleTypeDAO.deleteBottleType(bottleType);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 

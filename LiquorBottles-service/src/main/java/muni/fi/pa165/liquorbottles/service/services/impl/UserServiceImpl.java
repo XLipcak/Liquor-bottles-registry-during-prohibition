@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
             List<User> user = userDAO.findAll();
             return userDTOConvertor.fromEntityToDTO(user);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
             User user = userDAO.findById(id);
             return userDTOConvertor.fromEntityToDTO(user);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             User user = userDAO.findByUsername(userName);
             return userDTOConvertor.fromEntityToDTO(user);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDAO.findPassByUsername(userName);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
             User user = userDTOConvertor.fromDTOToEntity(userDTO);
             userDAO.deleteUser(user);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
             User user = userDTOConvertor.fromDTOToEntity(userDTO);
             userDAO.updateUser(user);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
