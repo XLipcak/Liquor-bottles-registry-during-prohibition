@@ -3,6 +3,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
@@ -35,6 +36,8 @@ public class BottleDAOImplTest {
     private final String NAME_OF_DB = "testDB";
 
     private EntityManagerFactory emf;
+    private EntityManager em;
+
     private List<Bottle> bottlesInDb;
 
     public BottleDAOImplTest() {
@@ -45,12 +48,13 @@ public class BottleDAOImplTest {
     public void beforeMethod() {
         //prepare EntityManagerFactory
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
+        em = emf.createEntityManager();
 
         //prepare records in db
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
-        StoreDAO storeDAO = new StoreDAOImpl(emf);
+        StoreDAO storeDAO = new StoreDAOImpl(em);
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         for (int x = 0; x < NUMBER_OF_RECORDS; x++) {
 
@@ -84,7 +88,7 @@ public class BottleDAOImplTest {
     public void testFindAll() {
         System.out.println("Testing findAll.");
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
-        
+
         List<Bottle> result = bottleDAO.findAll();
         assertEquals(result, bottlesInDb);
     }
@@ -188,16 +192,16 @@ public class BottleDAOImplTest {
                 new Date(new Date().getTime()), Toxicity.TOXIC);
 
         BottleDAO bottleDAO = new BottleDAOImpl(emf);
-        StoreDAO storeDAO = new StoreDAOImpl(emf);
+        StoreDAO storeDAO = new StoreDAOImpl(em);
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         storeDAO.insertStore(store);
         producerDAO.insertProducer(producer);
         bottleTypeDAO.insertBottleType(bottleType);
         bottleDAO.insertBottle(bottle);
         bottlesInDb.add(bottle);
-        
+
         assertEquals(bottleDAO.findById(bottle.getId()), bottle);
 
         try {
@@ -230,7 +234,7 @@ public class BottleDAOImplTest {
         bottleDAO.updateBottle(bottle);
         assertEquals(-300, bottleDAO.findById(bottle.getId()).getBatchNumber());
         assertEquals(-777, bottleDAO.findById(bottle.getId()).getStamp());
-        
+
         assertEquals(bottle, bottleDAO.findByBatchId(-300).get(0));
         assertEquals(bottle, bottleDAO.findByStamp(-777));
 

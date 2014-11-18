@@ -3,11 +3,14 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
+import javax.persistence.metamodel.StaticMetamodel;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -15,19 +18,18 @@ import org.springframework.beans.factory.annotation.Required;
  */
 public class UserDAOImpl implements UserDAO {
 
-    EntityManagerFactory emf;
+    @PersistenceContext
+    EntityManager em;
 
     public UserDAOImpl() {
-
     }
 
-    public UserDAOImpl(EntityManagerFactory emf) {
-        this.emf = emf;
+    public UserDAOImpl(EntityManager em) {
+        this.em = em;
     }
 
     @Override
     public List<User> findAll() {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -40,14 +42,13 @@ public class UserDAOImpl implements UserDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public User findById(long id) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -59,14 +60,13 @@ public class UserDAOImpl implements UserDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public User findByUsername(String userName) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -80,14 +80,13 @@ public class UserDAOImpl implements UserDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public String findPassByUsername(String userName) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -101,14 +100,13 @@ public class UserDAOImpl implements UserDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public void insertUser(User user) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -119,14 +117,13 @@ public class UserDAOImpl implements UserDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public void deleteUser(User user) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -137,14 +134,13 @@ public class UserDAOImpl implements UserDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public void updateUser(User user) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -155,14 +151,13 @@ public class UserDAOImpl implements UserDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Required
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
+    public void setEm(EntityManager em) {
+        this.em = em;
     }
-
 }

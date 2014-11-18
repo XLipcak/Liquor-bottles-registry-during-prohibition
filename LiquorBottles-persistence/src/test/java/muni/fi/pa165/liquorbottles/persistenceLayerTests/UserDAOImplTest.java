@@ -2,6 +2,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
@@ -23,16 +24,20 @@ public class UserDAOImplTest {
     private final String NAME_OF_DB = "testDB";
 
     private EntityManagerFactory emf;
+    private EntityManager em;
+    
     private List<User> expectedResultList;
 
     public UserDAOImplTest() {
         expectedResultList = new ArrayList<>();
+
     }
 
     @BeforeMethod
     public void BeforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
-        UserDAO userDao = new UserDAOImpl(emf);
+        em = emf.createEntityManager();
+        UserDAO userDao = new UserDAOImpl(em);
 
         User user1 = new User();
         user1.setUsername("prvy");
@@ -59,7 +64,6 @@ public class UserDAOImplTest {
         userDao.insertUser(user2);
         userDao.insertUser(user3);
         userDao.insertUser(user4);
-
     }
 
     @AfterMethod
@@ -74,8 +78,8 @@ public class UserDAOImplTest {
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
-        UserDAO storeDao = new UserDAOImpl(emf);
-        List<User> result = storeDao.findAll();
+        UserDAO userDao = new UserDAOImpl(em);
+        List<User> result = userDao.findAll();
 
         int count = 0;
         for (User userRe : result) {
@@ -94,7 +98,7 @@ public class UserDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testFindById() {
         System.out.println("Testing findById");
-        UserDAO userDao = new UserDAOImpl(emf);
+        UserDAO userDao = new UserDAOImpl(em);
         for (User expectedResultList1 : expectedResultList) {
             assertEquals(userDao.findById(expectedResultList1.getId()), expectedResultList1);
         }
@@ -106,7 +110,7 @@ public class UserDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testFindByUsername() {
         System.out.println("Testing findByUserName");
-        UserDAO userDao = new UserDAOImpl(emf);
+        UserDAO userDao = new UserDAOImpl(em);
         for (User expectedResultList1 : expectedResultList) {
             assertEquals(userDao.findByUsername(expectedResultList1.getUsername()), expectedResultList1);
         }
@@ -118,7 +122,7 @@ public class UserDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testFindPassByUsername() {
         System.out.println("Testing findPassByUsername");
-        UserDAO userDao = new UserDAOImpl(emf);
+        UserDAO userDao = new UserDAOImpl(em);
         for (User expectedResultList1 : expectedResultList) {
             assertEquals(userDao.findPassByUsername(expectedResultList1.getUsername()), expectedResultList1.getPassword());
         }
@@ -130,7 +134,7 @@ public class UserDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testInsert() {
         System.out.println("Testing insertUser");
-        UserDAO userDao = new UserDAOImpl(emf);
+        UserDAO userDao = new UserDAOImpl(em);
         User toAdd = new User();
         toAdd.setUsername("last");
         toAdd.setPassword("lastpass");
@@ -147,7 +151,7 @@ public class UserDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testUpdate() {
         System.out.println("Testing updateUser");
-        UserDAO userDao = new UserDAOImpl(emf);
+        UserDAO userDao = new UserDAOImpl(em);
         User user;
         expectedResultList.get(expectedResultList.size() - 1).setUsername("Changed by update");
         user = expectedResultList.get(expectedResultList.size() - 1);
@@ -163,7 +167,7 @@ public class UserDAOImplTest {
     @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testDelete() {
         System.out.println("Testing deleteUser");
-        UserDAO userDao = new UserDAOImpl(emf);
+        UserDAO userDao = new UserDAOImpl(em);
         userDao.deleteUser(expectedResultList.get(expectedResultList.size() - 1));
         expectedResultList.remove(expectedResultList.size() - 1);
         for (User expectedResultList1 : expectedResultList) {

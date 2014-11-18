@@ -2,56 +2,100 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd     
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    
+    <!--________________________Spring configuration________________________-->
+    
     <aop:aspectj-autoproxy/>
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+    <!--_________________________________________________________________-->
+
+        
+    
+    <!--_______________________Transaction Management_______________________-->
+   
+    <tx:annotation-driven transaction-manager="txManager" />
     
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="emf" ref="entityManagerFactory" />
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
-    <tx:annotation-driven transaction-manager="txManager" />
     
     <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
-            <tx:method name="get*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
             <tx:method name=""/>
         </tx:attributes>
     </tx:advice>
+    <!--_________________________________________________________________-->
     
-    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
     
-    <!-- EntityManagerFactoryBean    -->
+    <!-- 
+   TODO: COnfigure package pointcut
+    <aop:config>
+        <aop:pointcut id="liquorRegistryServiceMethods" expression="execution(* muni.fi.pa165.liquorbottles.service.services.impl(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="liquorRegistryServiceMethods"/>
+    </aop:config>
+    -->
+    
+    <!--_______________________Entity Managers Beans_______________________-->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="localDB" />  
-    </bean>        
+    </bean>
+
+    <bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <!--_________________________________________________________________-->
     
-    <!-- DAO Beans    -->
+    
+    
+    
+    
+    <!--__________________________DAO Beans__________________________-->
     <bean id="producerDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl" >
-        <property name="emf" ref="entityManagerFactory" />
+        <property name="em" ref="entityManager" />
+        <property name="userDAO" ref="userDAO" />
     </bean>
     
     <bean id="policeDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.PoliceDAOImpl" >
-        <property name="emf" ref="entityManagerFactory" />
+        <property name="em" ref="entityManager" />
+        <property name="userDAO" ref="userDAO" />
     </bean>
     
     <bean id="storeDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.StoreDAOImpl" >
-        <property name="emf" ref="entityManagerFactory" />
+        <property name="em" ref="entityManager" />
+        <property name="userDAO" ref="userDAO" />
     </bean>
     
     <bean id="userDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.UserDAOImpl" >
-        <property name="emf" ref="entityManagerFactory" />
+        <property name="em" ref="entityManager" />
     </bean>
     
     <bean id="bottleDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleDAOImpl" >
+        <!-- <property name="em" ref="entityManager" /> -->
         <property name="emf" ref="entityManagerFactory" />
     </bean>
     
     <bean id="bottleTypeDAO" class="muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl" >
+        <!-- <property name="em" ref="entityManager" /> -->
         <property name="emf" ref="entityManagerFactory" />
     </bean>
+    <!--_________________________________________________________________-->
     
-    <!-- Service Beans    -->
+    
+    
+    
+    <!--__________________________Service Beans__________________________-->
+    
+    <bean id="userServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.UserServiceImpl">
+        <property name="userDAO" ref="userDAO" />
+    </bean>
+    
     <bean id="producerServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl" >
         <property name="producerDao" ref="producerDAO" />
     </bean>
@@ -64,10 +108,6 @@
         <property name="storeDAO" ref="storeDAO" />
     </bean>
     
-    <bean id="userServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.UserServiceImpl">
-        <property name="userDAO" ref="userDAO" />
-    </bean>
-    
     <bean id="bottleServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.BottleServiceImpl">
         <property name="bottleDAO" ref="bottleDAO" />
     </bean>
@@ -75,6 +115,17 @@
     <bean id="bottleTypeServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.BottleTypeServiceImpl">
         <property name="bottleTypeDAO" ref="bottleTypeDAO" />
     </bean>
+    <!--_________________________________________________________________-->
+    
+    
+    
+    <!--__________________________Convertor Beans__________________________-->
+    
+    
+    <!--    TODO    -->
+    
+    
+    <!--_________________________________________________________________-->
     
     <!-- TODO: Split Beans into more XML files depending on logical content -->
 

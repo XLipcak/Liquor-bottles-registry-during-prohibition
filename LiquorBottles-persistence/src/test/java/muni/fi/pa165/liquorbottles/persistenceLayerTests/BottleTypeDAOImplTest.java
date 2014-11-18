@@ -7,6 +7,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
@@ -33,6 +34,8 @@ public class BottleTypeDAOImplTest {
     private final String NAME_OF_DB = "testDB";
 
     private EntityManagerFactory emf;
+    private EntityManager em;
+
     private List<BottleType> bottleTypesInDb;
 
     public BottleTypeDAOImplTest() {
@@ -42,8 +45,10 @@ public class BottleTypeDAOImplTest {
     @BeforeMethod
     public void beforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
+        em = emf.createEntityManager();
+
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         Producer producer = new Producer("TestProducer", "Prod1", "user123", "test");
         BottleType bottleType1 = new BottleType("Bozkov RUM, 0,5l", "rum", 35, 500, producer);
@@ -170,7 +175,7 @@ public class BottleTypeDAOImplTest {
         Producer producer = new Producer("TestProducerInsertBT", "Prod1234", "userInsertType", "test");
         BottleType bottleType = new BottleType("Bozkov RUM, 0,5l", "rum", 35, 500, producer);
 
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(emf);
 
         producerDAO.insertProducer(producer);

@@ -3,6 +3,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
@@ -16,22 +17,21 @@ import org.springframework.beans.factory.annotation.Required;
  */
 public class StoreDAOImpl implements StoreDAO {
 
-    EntityManagerFactory emf;
+    @PersistenceContext
+    EntityManager em;
+
     UserDAO userDAO;
-    
-    public StoreDAOImpl(){
-        
+
+    public StoreDAOImpl() {
     }
 
-    public StoreDAOImpl(EntityManagerFactory emf) {
-        this.emf = emf;
-        userDAO = new UserDAOImpl(emf);
+    public StoreDAOImpl(EntityManager em) {
+        this.em = em;
+        userDAO = new UserDAOImpl(em);
     }
 
     @Override
     public List<Store> findAll() {
-
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -44,15 +44,13 @@ public class StoreDAOImpl implements StoreDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Store findById(long id) {
-
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -64,15 +62,13 @@ public class StoreDAOImpl implements StoreDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Store findByAddress(String address) {
-
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -86,7 +82,7 @@ public class StoreDAOImpl implements StoreDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
@@ -107,9 +103,14 @@ public class StoreDAOImpl implements StoreDAO {
     }
 
     @Required
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-        userDAO = new UserDAOImpl(emf);
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+
+    @Required
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
 }

@@ -39,6 +39,7 @@ public class BottleDAOImpl implements BottleDAO {
 
             return allBottle;
         } catch (Exception ex) {
+            em.getTransaction().rollback();
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {

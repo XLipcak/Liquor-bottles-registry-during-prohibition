@@ -2,6 +2,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
@@ -23,6 +24,8 @@ public class StoreDAOImplTest {
     private final String NAME_OF_DB = "testDB";
 
     private EntityManagerFactory emf;
+    private EntityManager em;
+    
     private List<Store> expectedResultList;
 
     public StoreDAOImplTest() {
@@ -32,7 +35,9 @@ public class StoreDAOImplTest {
     @BeforeMethod
     public void BeforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
-        StoreDAO storeDao = new StoreDAOImpl(emf);
+        em = emf.createEntityManager();
+        
+        StoreDAO storeDao = new StoreDAOImpl(em);
 
         Store store1 = new Store("Test1", "Botanicka 68", "Muni", "pokus123");
         Store store2 = new Store("Test2", "Polna 48", "Zalesak", "90028");
@@ -62,7 +67,7 @@ public class StoreDAOImplTest {
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
-        StoreDAO storeDao = new StoreDAOImpl(emf);
+        StoreDAO storeDao = new StoreDAOImpl(em);
         List<Store> result = storeDao.findAll();
 
         int count = 0;
@@ -82,7 +87,7 @@ public class StoreDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testFindById() {
         System.out.println("Testing findById");
-        StoreDAO storeDao = new StoreDAOImpl(emf);
+        StoreDAO storeDao = new StoreDAOImpl(em);
         for (Store expectedResultList1 : expectedResultList) {
             assertEquals(storeDao.findById(expectedResultList1.getId()), expectedResultList1);
         }
@@ -95,7 +100,7 @@ public class StoreDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testFindByAdress() {
         System.out.println("Testing findByAdress");
-        StoreDAO storeDao = new StoreDAOImpl(emf);
+        StoreDAO storeDao = new StoreDAOImpl(em);
         for (Store expectedResultList1 : expectedResultList) {
             assertEquals(storeDao.findByAddress(expectedResultList1.getAddress()), expectedResultList1);
         }
@@ -107,7 +112,7 @@ public class StoreDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testUpdate() {
         System.out.println("Testing updateStore");
-        StoreDAO storeDao = new StoreDAOImpl(emf);
+        StoreDAO storeDao = new StoreDAOImpl(em);
         Store store;
         expectedResultList.get(expectedResultList.size() - 1).setUsername("Changed by update");
         store = expectedResultList.get(expectedResultList.size() - 1);
@@ -123,7 +128,7 @@ public class StoreDAOImplTest {
     @Test(groups = "executeBeforeDeleteTest")
     public void testInsert() {
         System.out.println("Testing insertStore");
-        StoreDAO storeDao = new StoreDAOImpl(emf);
+        StoreDAO storeDao = new StoreDAOImpl(em);
         Store toAdd = new Store("new", "somwhere", "lastshop", "passw");
         expectedResultList.add(toAdd);
         storeDao.insertStore(toAdd);
@@ -138,7 +143,7 @@ public class StoreDAOImplTest {
     @Test(dependsOnGroups = "executeBeforeDeleteTest")
     public void testDelte() {
         System.out.println("Testing deleteStore");
-        StoreDAO storeDao = new StoreDAOImpl(emf);
+        StoreDAO storeDao = new StoreDAOImpl(em);
         storeDao.deleteStore(expectedResultList.get(expectedResultList.size() - 1));
         expectedResultList.remove(expectedResultList.size() - 1);
         for (Store expectedResultList1 : expectedResultList) {

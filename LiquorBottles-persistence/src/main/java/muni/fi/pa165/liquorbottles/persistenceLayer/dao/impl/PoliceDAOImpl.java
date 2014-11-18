@@ -3,6 +3,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.PoliceDAO;
@@ -16,21 +17,21 @@ import org.springframework.beans.factory.annotation.Required;
  */
 public class PoliceDAOImpl implements PoliceDAO {
 
-    EntityManagerFactory emf;
+    @PersistenceContext
+    EntityManager em;
+
     UserDAO userDAO;
 
     public PoliceDAOImpl() {
-
     }
 
-    public PoliceDAOImpl(EntityManagerFactory emf) {
-        this.emf = emf;
-        userDAO = new UserDAOImpl(emf);
+    public PoliceDAOImpl(EntityManager em) {
+        this.em = em;
+        userDAO = new UserDAOImpl(em);
     }
 
     @Override
     public List<Police> findAll() {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -43,14 +44,13 @@ public class PoliceDAOImpl implements PoliceDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Police findById(long id) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -62,14 +62,13 @@ public class PoliceDAOImpl implements PoliceDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Police findByUsername(String userName) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -83,14 +82,13 @@ public class PoliceDAOImpl implements PoliceDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Police findByName(String name) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -104,14 +102,13 @@ public class PoliceDAOImpl implements PoliceDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Police findByAddress(String address) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -125,7 +122,7 @@ public class PoliceDAOImpl implements PoliceDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
@@ -146,8 +143,13 @@ public class PoliceDAOImpl implements PoliceDAO {
     }
 
     @Required
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-        userDAO = new UserDAOImpl(emf);
+    public void setEm(EntityManager em) {
+        this.em = em;
     }
+
+    @Required
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
 }

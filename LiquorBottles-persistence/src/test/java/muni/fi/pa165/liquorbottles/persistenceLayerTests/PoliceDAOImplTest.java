@@ -2,6 +2,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
@@ -24,6 +25,8 @@ public class PoliceDAOImplTest {
     private final String NAME_OF_DB = "testDB";
 
     private EntityManagerFactory emf;
+    private EntityManager em;
+
     private List<Police> expectedResultList;
 
     public PoliceDAOImplTest() {
@@ -33,7 +36,9 @@ public class PoliceDAOImplTest {
     @BeforeMethod
     public void beforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
-        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
+        em = emf.createEntityManager();
+
+        PoliceDAO policeDAO = new PoliceDAOImpl(em);
         Police police1 = new Police("1", "a1", "u1", "p1");
         Police police2 = new Police("2", "a2", "u2", "p2");
 
@@ -53,7 +58,7 @@ public class PoliceDAOImplTest {
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
-        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
+        PoliceDAO policeDAO = new PoliceDAOImpl(em);
 
         List<Police> result = policeDAO.findAll();
         int x = 0;
@@ -71,7 +76,7 @@ public class PoliceDAOImplTest {
     public void testFindById() {
         System.out.println("Testing findById");
 
-        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
+        PoliceDAO policeDAO = new PoliceDAOImpl(em);
 
         for (int x = 0; x < expectedResultList.size(); x++) {
             assertEquals(policeDAO.findById(expectedResultList.get(x).getId()),
@@ -82,7 +87,7 @@ public class PoliceDAOImplTest {
     @Test
     public void findByUsername() {
         System.out.println("Testing findByUsername");
-        PoliceDAO policeDao = new PoliceDAOImpl(emf);
+        PoliceDAO policeDao = new PoliceDAOImpl(em);
         for (int i = 0; i < expectedResultList.size(); i++) {
             assertEquals(policeDao.findByUsername(expectedResultList.get(i).getUsername()), expectedResultList.get(i));
         }
@@ -91,7 +96,7 @@ public class PoliceDAOImplTest {
     @Test
     public void findByfindByName() {
         System.out.println("Testing findByName");
-        PoliceDAO policeDao = new PoliceDAOImpl(emf);
+        PoliceDAO policeDao = new PoliceDAOImpl(em);
         for (int i = 0; i < expectedResultList.size(); i++) {
             assertEquals(policeDao.findByName(expectedResultList.get(i).getName()), expectedResultList.get(i));
         }
@@ -100,7 +105,7 @@ public class PoliceDAOImplTest {
     @Test
     public void findByAdress() {
         System.out.println("Testing findByAdress");
-        PoliceDAO policeDao = new PoliceDAOImpl(emf);
+        PoliceDAO policeDao = new PoliceDAOImpl(em);
         for (int i = 0; i < expectedResultList.size(); i++) {
             assertEquals(policeDao.findByAddress(expectedResultList.get(i).getAddress()), expectedResultList.get(i));
         }
@@ -111,18 +116,11 @@ public class PoliceDAOImplTest {
         System.out.println("Testing insertPolice");
 
         Police police = new Police("PPolice", "VDolnychZenskychKoncinach", "Kalinak", "0000");
-        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
+        PoliceDAO policeDAO = new PoliceDAOImpl(em);
         policeDAO.insertPolice(police);
         expectedResultList.add(police);
 
         assertEquals(expectedResultList.get(expectedResultList.size() - 1), police);
-
-        try {
-            policeDAO.insertPolice(police);
-            fail("Same police cannot be inserted twice.");
-        } catch (PersistenceException p) {
-
-        }
 
         try {
             policeDAO.insertPolice(new Police(null, null, null, null));
@@ -137,7 +135,7 @@ public class PoliceDAOImplTest {
     public void testUpdatePolice() {
         System.out.println("Testing updatePolice");
 
-        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
+        PoliceDAO policeDAO = new PoliceDAOImpl(em);
         Police police = expectedResultList.get(0);
         police.setAddress("Matejkova");
         police.setName("Jozef");
@@ -163,7 +161,7 @@ public class PoliceDAOImplTest {
     public void testDeletePolice() {
         System.out.println("Testing deletePolice");
 
-        PoliceDAO policeDAO = new PoliceDAOImpl(emf);
+        PoliceDAO policeDAO = new PoliceDAOImpl(em);
 
         for (int x = expectedResultList.size(); x > 0; x--) {
             assertEquals(policeDAO.findAll().size(), x);

@@ -2,6 +2,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
@@ -24,6 +25,8 @@ public class ProducerDAOImplTest {
     private final String NAME_OF_DB = "testDB";
 
     private EntityManagerFactory emf;
+    private EntityManager em;
+    
     private List<Producer> expectedResultList;
 
     public ProducerDAOImplTest() {
@@ -33,7 +36,9 @@ public class ProducerDAOImplTest {
     @BeforeMethod
     public void beforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        em = emf.createEntityManager();
+        
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
         Producer producer1 = new Producer("1", "a1", "uu1", "p1");
         Producer producer2 = new Producer("2", "a2", "uu2", "p2");
 
@@ -53,7 +58,7 @@ public class ProducerDAOImplTest {
     public void testFindAll() {
         System.out.println("Testing findAll.");
 
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         List<Producer> result = producerDAO.findAll();
         int x = 0;
@@ -71,7 +76,7 @@ public class ProducerDAOImplTest {
     public void testFindById() {
         System.out.println("Testing findById");
 
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         for (int x = 0; x < expectedResultList.size(); x++) {
             assertEquals(producerDAO.findById(expectedResultList.get(x).getId()),
@@ -83,7 +88,7 @@ public class ProducerDAOImplTest {
     @Test
     public void findByUsername() {
         System.out.println("Testing findByUsername");
-        ProducerDAO producerDao = new ProducerDAOImpl(emf);
+        ProducerDAO producerDao = new ProducerDAOImpl(em);
         for (int i = 0; i < expectedResultList.size(); i++) {
             assertEquals(producerDao.findByUsername(expectedResultList.get(i).getUsername()), expectedResultList.get(i));
         }
@@ -92,7 +97,7 @@ public class ProducerDAOImplTest {
     @Test
     public void findByfindByName() {
         System.out.println("Testing findByName");
-        ProducerDAO producerDao = new ProducerDAOImpl(emf);
+        ProducerDAO producerDao = new ProducerDAOImpl(em);
         for (int i = 0; i < expectedResultList.size(); i++) {
             assertEquals(producerDao.findByName(expectedResultList.get(i).getName()), expectedResultList.get(i));
         }
@@ -101,7 +106,7 @@ public class ProducerDAOImplTest {
     @Test
     public void findByAdress() {
         System.out.println("Testing findByAdress");
-        ProducerDAO producerDao = new ProducerDAOImpl(emf);
+        ProducerDAO producerDao = new ProducerDAOImpl(em);
         for (int i = 0; i < expectedResultList.size(); i++) {
             assertEquals(producerDao.findByAddress(expectedResultList.get(i).getAddress()), expectedResultList.get(i));
         }
@@ -112,17 +117,11 @@ public class ProducerDAOImplTest {
         System.out.println("Testing insertProducer");
 
         Producer producer = new Producer("PProducer", "Alberquerque", "Fetak", "9999");
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
         producerDAO.insertProducer(producer);
         expectedResultList.add(producer);
 
         assertEquals(expectedResultList.get(expectedResultList.size() - 1), producer);
-        try {
-            producerDAO.insertProducer(producer);
-            fail("Same producer cannot be inserted twice.");
-        } catch (PersistenceException p) {
-
-        }
 
         try {
             producerDAO.insertProducer(new Producer(null, null, null, null));
@@ -136,7 +135,7 @@ public class ProducerDAOImplTest {
     public void testUpdateProducer() {
         System.out.println("Testing updateProducer");
 
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
         Producer producer = expectedResultList.get(0);
 
         producer.setAddress("JT");
@@ -163,7 +162,7 @@ public class ProducerDAOImplTest {
     public void testDeleteProducer() {
         System.out.println("Testing deleteProducer");
 
-        ProducerDAO producerDAO = new ProducerDAOImpl(emf);
+        ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
         int countOfProducers = producerDAO.findAll().size();
         for (int x = expectedResultList.size(); x > 0; x--) {

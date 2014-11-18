@@ -3,6 +3,7 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
@@ -16,20 +17,21 @@ import org.springframework.beans.factory.annotation.Required;
  */
 public class ProducerDAOImpl implements ProducerDAO {
 
-    EntityManagerFactory emf;
+    @PersistenceContext
+    EntityManager em;
+
     UserDAO userDAO;
 
     public ProducerDAOImpl() {
     }
 
-    public ProducerDAOImpl(EntityManagerFactory emf) {
-        this.emf = emf;
-        userDAO = new UserDAOImpl(emf);
+    public ProducerDAOImpl(EntityManager em) {
+        this.em = em;
+        userDAO = new UserDAOImpl(em);
     }
 
     @Override
     public List<Producer> findAll() {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -42,14 +44,13 @@ public class ProducerDAOImpl implements ProducerDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Producer findById(long id) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -61,14 +62,13 @@ public class ProducerDAOImpl implements ProducerDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Producer findByUsername(String userName) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -83,14 +83,13 @@ public class ProducerDAOImpl implements ProducerDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Producer findByName(String name) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -105,14 +104,13 @@ public class ProducerDAOImpl implements ProducerDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
 
     @Override
     public Producer findByAddress(String address) {
-        EntityManager em = emf.createEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -127,7 +125,7 @@ public class ProducerDAOImpl implements ProducerDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         } finally {
             if (em != null) {
-                em.close();
+                // em.close();
             }
         }
     }
@@ -148,8 +146,13 @@ public class ProducerDAOImpl implements ProducerDAO {
     }
 
     @Required
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-        userDAO = new UserDAOImpl(emf);
+    public void setEm(EntityManager em) {
+        this.em = em;
     }
+
+    @Required
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
 }

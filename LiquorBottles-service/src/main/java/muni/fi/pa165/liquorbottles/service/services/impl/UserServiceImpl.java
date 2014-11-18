@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
             userDAO.insertUser(user);
             userDTO.setId(user.getId());
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!");
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
