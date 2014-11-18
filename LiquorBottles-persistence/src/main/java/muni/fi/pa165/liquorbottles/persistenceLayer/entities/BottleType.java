@@ -51,19 +51,11 @@ public class BottleType {
         this.volume = volume;
         this.producer = producer;
     }
-    
-    
-    
-    public Producer getProcuder() {
-        return producer;
-    }
 
-    public void setProcuder(Producer procuder) {
+    public void setProducer(Producer producer) {
         this.producer = producer;
     }
     
-   
-
     public long getId() {
         return id;
     }
