@@ -2,3 +2,4 @@
 /LiquorBottles-persistence/src/main/resources/META-INF/persistence.xml
 /LiquorBottles-persistence/derby.log
 /LiquorBottles-service/target/
+/LiquorBottles-presentation/target/

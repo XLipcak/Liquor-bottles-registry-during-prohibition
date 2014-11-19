@@ -8,7 +8,8 @@
     <modules>
         <module>LiquorBottles-persistence</module>
         <module>LiquorBottles-service</module>
-    </modules>
+    <module>LiquorBottles-presentation</module>
+  </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
