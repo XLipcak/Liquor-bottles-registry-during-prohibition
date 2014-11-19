@@ -3,9 +3,9 @@
     <persistence-unit name="localDB" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/TestDB"/>
-            <property name="javax.persistence.jdbc.user" value="maduzs"/>
-            <property name="javax.persistence.jdbc.password" value="admin"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/pa165"/>
+            <property name="javax.persistence.jdbc.user" value="pa165"/>
+            <property name="javax.persistence.jdbc.password" value="pa165"/>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
             <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
