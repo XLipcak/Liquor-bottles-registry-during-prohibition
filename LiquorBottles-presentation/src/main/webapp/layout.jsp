@@ -1,8 +1,3 @@
-<%-- 
-    Document   : layout
-    Created on : 19.11.2014, 17:52:34
-    Author     : Michal Štora, Masaryk University
---%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,14 +7,14 @@
 <html lang="${pageContext.request.locale}">
 <head>
   <title><f:message key="${titlekey}"/></title>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css" />
   <s:layout-component name="header"/>
 </head>
 <body>
    <h1><f:message key="${titlekey}"/></h1>
    <div id="navigation">
      <ul>
-       <li><s:link href="/bottles.jsp"><f:message key="navigation.index"/></s:link></li>
-       
+       <li><s:link href="/index.jsp"><f:message key="navigation.index"/></s:link></li>
      </ul>
    </div>
    <div id="content">

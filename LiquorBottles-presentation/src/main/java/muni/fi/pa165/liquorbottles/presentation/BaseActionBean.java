@@ -1,15 +1,9 @@
 package muni.fi.pa165.liquorbottles.presentation;
 
-/**
- *
- * @author Michal Štora, Masaryk University
- */
-
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
-import net.sourceforge.stripes.action.LocalizableMessage;
-import net.sourceforge.stripes.action.SimpleMessage;
 import org.apache.taglibs.standard.functions.Functions;
+
 /**
  * Base actionBean implementing the required methods for setting and getting context.
  *

@@ -7,10 +7,8 @@ package muni.fi.pa165.liquorbottles.presentation;
 
 /**
  *
- * @author Michal Štora, Masaryk University
+ * @author Not
  */
-public class StoreActionBean extends BaseActionBean{
-    
-    
+public class StoreActionBean {
     
 }

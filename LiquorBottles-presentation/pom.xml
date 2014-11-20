@@ -20,54 +20,37 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.1.2</version>
-        </dependency>
-        
+            
+       <!-- servlet, JSP, JSTL -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
-    
-        <!-- stripes -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        
+        
+         
         <dependency>
             <groupId>net.sourceforge.stripes</groupId>
             <artifactId>stripes</artifactId>
-            <version>1.5.7</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>servlets.com</groupId>
-            <artifactId>cos</artifactId>
-            <version>05Nov2002</version>
+            <version>1.5.6</version>
         </dependency>
         
-        <dependency>
-           <groupId>org.glassfish.web</groupId>
-           <artifactId>javax.servlet.jsp.jstl</artifactId>
-           <version>1.2.2</version>
-       </dependency>
- 
+        
     </dependencies>
-    
+
     <build>
-        <!-- war name-->
-        <finalName>pa165</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
