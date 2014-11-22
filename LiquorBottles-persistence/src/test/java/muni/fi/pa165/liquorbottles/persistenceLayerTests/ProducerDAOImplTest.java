@@ -37,6 +37,7 @@ public class ProducerDAOImplTest {
     public void beforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         em = emf.createEntityManager();
+        em.getTransaction().begin();
         
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
         Producer producer1 = new Producer("1", "a1", "uu1", "p1");
@@ -47,6 +48,8 @@ public class ProducerDAOImplTest {
 
         expectedResultList.add(producer1);
         expectedResultList.add(producer2);
+        
+        em.getTransaction().commit();
     }
 
     @AfterMethod
@@ -118,7 +121,11 @@ public class ProducerDAOImplTest {
 
         Producer producer = new Producer("PProducer", "Alberquerque", "Fetak", "9999");
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
+        
+        em.getTransaction().begin();
         producerDAO.insertProducer(producer);
+        em.getTransaction().commit();
+        
         expectedResultList.add(producer);
 
         assertEquals(expectedResultList.get(expectedResultList.size() - 1), producer);
@@ -142,7 +149,10 @@ public class ProducerDAOImplTest {
         producer.setName("Heinsenberg");
         producer.setUsername("Kladivo");
         producer.setPassword("1234");
+        
+        em.getTransaction().begin();
         producerDAO.updateProducer(producer);
+        em.getTransaction().commit();
 
         assertEquals("JT", producerDAO.findById(producer.getId()).getAddress());
         assertEquals("Heinsenberg", producerDAO.findById(producer.getId()).getName());
@@ -167,7 +177,11 @@ public class ProducerDAOImplTest {
         int countOfProducers = producerDAO.findAll().size();
         for (int x = expectedResultList.size(); x > 0; x--) {
             assertEquals(producerDAO.findAll().size(), countOfProducers);
+            
+            em.getTransaction().begin();
             producerDAO.deleteProducer(expectedResultList.get(x - 1));
+            em.getTransaction().commit();
+            
             countOfProducers--;
         }
     }

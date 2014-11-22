@@ -37,6 +37,7 @@ public class PoliceDAOImplTest {
     public void beforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         em = emf.createEntityManager();
+        em.getTransaction().begin();
 
         PoliceDAO policeDAO = new PoliceDAOImpl(em);
         Police police1 = new Police("1", "a1", "u1", "p1");
@@ -47,6 +48,8 @@ public class PoliceDAOImplTest {
 
         expectedResultList.add(police1);
         expectedResultList.add(police2);
+        
+        em.getTransaction().commit();
     }
 
     @AfterMethod
@@ -117,7 +120,10 @@ public class PoliceDAOImplTest {
 
         Police police = new Police("PPolice", "VDolnychZenskychKoncinach", "Kalinak", "0000");
         PoliceDAO policeDAO = new PoliceDAOImpl(em);
+        em.getTransaction().begin();
         policeDAO.insertPolice(police);
+        em.getTransaction().commit();
+        
         expectedResultList.add(police);
 
         assertEquals(expectedResultList.get(expectedResultList.size() - 1), police);
@@ -141,7 +147,10 @@ public class PoliceDAOImplTest {
         police.setName("Jozef");
         police.setUsername("MVSK");
         police.setPassword("NBU123");
+        
+        em.getTransaction().begin();
         policeDAO.updatePolice(police);
+        em.getTransaction().commit();
 
         assertEquals("Matejkova", policeDAO.findById(police.getId()).getAddress());
         assertEquals("Jozef", policeDAO.findById(police.getId()).getName());
@@ -150,10 +159,11 @@ public class PoliceDAOImplTest {
 
         try {
             Police police2 = new Police();
+            
+            em.getTransaction().begin();
             policeDAO.updatePolice(police2);
             fail("Non persisted POLICE cannot be updated.");
         } catch (PersistenceException ex) {
-
         }
     }
 
@@ -165,7 +175,10 @@ public class PoliceDAOImplTest {
 
         for (int x = expectedResultList.size(); x > 0; x--) {
             assertEquals(policeDAO.findAll().size(), x);
+            
+            em.getTransaction().begin();
             policeDAO.deletePolice(expectedResultList.get(x - 1));
+            em.getTransaction().commit();
         }
         assertEquals(policeDAO.findAll().size(), 0);
     }

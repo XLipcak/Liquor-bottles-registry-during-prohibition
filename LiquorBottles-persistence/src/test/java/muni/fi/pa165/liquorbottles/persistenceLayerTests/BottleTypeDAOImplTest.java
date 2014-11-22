@@ -46,6 +46,7 @@ public class BottleTypeDAOImplTest {
     public void beforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         em = emf.createEntityManager();
+        em.getTransaction().begin();
 
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
@@ -64,6 +65,7 @@ public class BottleTypeDAOImplTest {
         bottleTypesInDb.add(bottleType2);
         bottleTypesInDb.add(bottleType3);
 
+        em.getTransaction().commit();
     }
 
     @AfterMethod
@@ -178,16 +180,15 @@ public class BottleTypeDAOImplTest {
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
 
+        em.getTransaction().begin();
         producerDAO.insertProducer(producer);
+        em.getTransaction().commit();
+        
+        em.getTransaction().begin();
         bottleTypeDAO.insertBottleType(bottleType);
+        em.getTransaction().commit();
+        
         bottleTypesInDb.add(bottleType);
-
-        try {
-            bottleTypeDAO.insertBottleType(bottleType);
-            fail("Same bottle type cannot be inserted twice.");
-        } catch (PersistenceException p) {
-            //ok
-        }
 
         try {
             bottleTypeDAO.insertBottleType(new BottleType(null, null, 0, 0, null));
@@ -239,7 +240,10 @@ public class BottleTypeDAOImplTest {
 
         for (int x = bottleTypesInDb.size(); x > 0; x--) {
             assertEquals(bottleTypeDAO.findAll().size(), x);
+            
+            em.getTransaction().begin();
             bottleTypeDAO.deleteBottleType(bottleTypesInDb.get(x - 1));
+            em.getTransaction().commit();
         }
         assertEquals(bottleTypeDAO.findAll().size(), 0);
     }

@@ -37,6 +37,8 @@ public class UserDAOImplTest {
     public void BeforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         em = emf.createEntityManager();
+        em.getTransaction().begin();
+        
         UserDAO userDao = new UserDAOImpl(em);
 
         User user1 = new User();
@@ -64,6 +66,8 @@ public class UserDAOImplTest {
         userDao.insertUser(user2);
         userDao.insertUser(user3);
         userDao.insertUser(user4);
+        
+        em.getTransaction().commit();
     }
 
     @AfterMethod
@@ -139,7 +143,11 @@ public class UserDAOImplTest {
         toAdd.setUsername("last");
         toAdd.setPassword("lastpass");
         expectedResultList.add(toAdd);
+        
+        em.getTransaction().begin();
         userDao.insertUser(toAdd);
+        em.getTransaction().commit();
+        
         for (User expectedResultList1 : expectedResultList) {
             assertEquals(userDao.findByUsername(expectedResultList1.getUsername()), expectedResultList1);
         }
@@ -155,7 +163,11 @@ public class UserDAOImplTest {
         User user;
         expectedResultList.get(expectedResultList.size() - 1).setUsername("Changed by update");
         user = expectedResultList.get(expectedResultList.size() - 1);
+        
+        em.getTransaction().begin();
         userDao.updateUser(user);
+        em.getTransaction().commit();
+        
         for (User expectedResultList1 : expectedResultList) {
             assertEquals(userDao.findByUsername(expectedResultList1.getUsername()), expectedResultList1);
         }
@@ -168,7 +180,11 @@ public class UserDAOImplTest {
     public void testDelete() {
         System.out.println("Testing deleteUser");
         UserDAO userDao = new UserDAOImpl(em);
+        
+        em.getTransaction().begin();
         userDao.deleteUser(expectedResultList.get(expectedResultList.size() - 1));
+        em.getTransaction().commit();
+        
         expectedResultList.remove(expectedResultList.size() - 1);
         for (User expectedResultList1 : expectedResultList) {
             assertEquals(userDao.findByUsername(expectedResultList1.getUsername()), expectedResultList1);

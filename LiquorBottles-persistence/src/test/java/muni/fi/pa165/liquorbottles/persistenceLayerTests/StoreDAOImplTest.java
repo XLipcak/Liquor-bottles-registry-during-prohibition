@@ -36,6 +36,7 @@ public class StoreDAOImplTest {
     public void BeforeMethod() {
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         em = emf.createEntityManager();
+        em.getTransaction().begin();
         
         StoreDAO storeDao = new StoreDAOImpl(em);
 
@@ -53,6 +54,8 @@ public class StoreDAOImplTest {
         expectedResultList.add(store2);
         expectedResultList.add(store3);
         expectedResultList.add(last);
+        
+        em.getTransaction().commit();
     }
 
     @AfterMethod
@@ -116,7 +119,11 @@ public class StoreDAOImplTest {
         Store store;
         expectedResultList.get(expectedResultList.size() - 1).setUsername("Changed by update");
         store = expectedResultList.get(expectedResultList.size() - 1);
+        
+        em.getTransaction().begin();
         storeDao.updateStore(store);
+        em.getTransaction().commit();
+        
         for (Store expectedResultList1 : expectedResultList) {
             assertEquals(storeDao.findByAddress(expectedResultList1.getAddress()), expectedResultList1);
         }
@@ -131,7 +138,11 @@ public class StoreDAOImplTest {
         StoreDAO storeDao = new StoreDAOImpl(em);
         Store toAdd = new Store("new", "somwhere", "lastshop", "passw");
         expectedResultList.add(toAdd);
+        
+        em.getTransaction().begin();
         storeDao.insertStore(toAdd);
+        em.getTransaction().commit();
+        
         for (Store expectedResultList1 : expectedResultList) {
             assertEquals(storeDao.findByAddress(expectedResultList1.getAddress()), expectedResultList1);
         }
@@ -144,7 +155,11 @@ public class StoreDAOImplTest {
     public void testDelte() {
         System.out.println("Testing deleteStore");
         StoreDAO storeDao = new StoreDAOImpl(em);
+        
+        em.getTransaction().begin();
         storeDao.deleteStore(expectedResultList.get(expectedResultList.size() - 1));
+        em.getTransaction().commit();
+        
         expectedResultList.remove(expectedResultList.size() - 1);
         for (Store expectedResultList1 : expectedResultList) {
             assertEquals(storeDao.findByAddress(expectedResultList1.getAddress()), expectedResultList1);

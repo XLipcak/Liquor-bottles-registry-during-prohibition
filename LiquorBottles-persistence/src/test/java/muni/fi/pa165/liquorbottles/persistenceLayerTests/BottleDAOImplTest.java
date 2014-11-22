@@ -49,6 +49,7 @@ public class BottleDAOImplTest {
         //prepare EntityManagerFactory
         emf = Persistence.createEntityManagerFactory(NAME_OF_DB);
         em = emf.createEntityManager();
+        em.getTransaction().begin();
 
         //prepare records in db
         BottleDAO bottleDAO = new BottleDAOImpl(em);
@@ -74,6 +75,7 @@ public class BottleDAOImplTest {
 
             bottlesInDb.add(bottle1);
         }
+        em.getTransaction().commit();
     }
 
     @AfterMethod
@@ -182,12 +184,12 @@ public class BottleDAOImplTest {
     @Test
     public void testInsertBottle() {
         System.out.println("Testing insertBottle");
-
+        
         Store store = new Store("TestShop", "Alco1", "userAlco", "test");
         Producer producer = new Producer("TestProducer", "Vizovice", "userProducer", "test");
         BottleType bottleType = new BottleType("TestBottleType", "Kalashnikov",
                 55, 700, producer);
-
+        
         Bottle bottle = new Bottle(store, bottleType, 123456, 001122,
                 new Date(new Date().getTime()), Toxicity.TOXIC);
 
@@ -196,20 +198,25 @@ public class BottleDAOImplTest {
         BottleTypeDAO bottleTypeDAO = new BottleTypeDAOImpl(em);
         ProducerDAO producerDAO = new ProducerDAOImpl(em);
 
+        em.getTransaction().begin();
         storeDAO.insertStore(store);
+        em.getTransaction().commit();
+        
+        em.getTransaction().begin();
         producerDAO.insertProducer(producer);
+        em.getTransaction().commit();
+        
+        em.getTransaction().begin();
         bottleTypeDAO.insertBottleType(bottleType);
+        em.getTransaction().commit();
+        
+        em.getTransaction().begin();
         bottleDAO.insertBottle(bottle);
+        em.getTransaction().commit();
+        
         bottlesInDb.add(bottle);
 
         assertEquals(bottleDAO.findById(bottle.getId()), bottle);
-
-        try {
-            bottleDAO.insertBottle(bottle);
-            fail("Same bottle cannot be inserted twice.");
-        } catch (PersistenceException p) {
-            //ok
-        }
 
         try {
             bottleDAO.insertBottle(new Bottle(null, null, 0, 0, null, Toxicity.TOXIC));
@@ -231,7 +238,10 @@ public class BottleDAOImplTest {
         bottle.setBatchNumber(-300);
         bottle.setStamp(-777);
 
+        em.getTransaction().begin();
         bottleDAO.updateBottle(bottle);
+        em.getTransaction().commit();
+        
         assertEquals(-300, bottleDAO.findById(bottle.getId()).getBatchNumber());
         assertEquals(-777, bottleDAO.findById(bottle.getId()).getStamp());
 
@@ -265,7 +275,9 @@ public class BottleDAOImplTest {
             //check size of DB
             assertEquals(bottleDAO.findAll().size(), x);
 
+            em.getTransaction().begin();
             bottleDAO.deleteBottle(bottlesInDb.get(x - 1));
+            em.getTransaction().commit();
 
             //chech deleted bottle in DB
             assertEquals(bottleDAO.findById(bottlesInDb.get(x - 1).getId()),
