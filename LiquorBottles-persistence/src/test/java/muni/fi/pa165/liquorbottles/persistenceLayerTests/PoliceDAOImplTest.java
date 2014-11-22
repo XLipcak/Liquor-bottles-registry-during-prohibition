@@ -9,8 +9,12 @@ import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.PoliceDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.PoliceDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -31,6 +35,13 @@ public class PoliceDAOImplTest {
 
     public PoliceDAOImplTest() {
         expectedResultList = new ArrayList<>();
+    }
+    
+        @BeforeClass
+    public void setup() {
+        //Set Logger
+        BasicConfigurator.configure();
+        Logger.getRootLogger().setLevel(Level.INFO);
     }
 
     @BeforeMethod

@@ -8,6 +8,8 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
@@ -15,6 +17,8 @@ import org.springframework.beans.factory.annotation.Required;
  * @author Michal Štora, Masaryk University
  */
 public class BottleTypeDAOImpl implements BottleTypeDAO {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(BottleDAOImpl.class);
 
     @PersistenceContext
     EntityManager em;
@@ -29,12 +33,15 @@ public class BottleTypeDAOImpl implements BottleTypeDAO {
 
     @Override
     public List<BottleType> findAll() {
+        LOGGER.info("Finding all Bottle types.");
+        
         try {
             TypedQuery<BottleType> allBottleTypeQuerry = em.createQuery("SELECT b FROM BottleType b", BottleType.class);
             List<BottleType> allBottle = allBottleTypeQuerry.getResultList();
 
             return allBottle;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
 
@@ -42,17 +49,22 @@ public class BottleTypeDAOImpl implements BottleTypeDAO {
 
     @Override
     public BottleType findById(long id) {
+        LOGGER.info("Finding Bottle type by ID.");
+        
         try {
             BottleType bottleType = em.find(BottleType.class, id);
 
             return bottleType;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public List<BottleType> findByAlcType(String alcType) {
+        LOGGER.info("Finding Bottle types by AlcType.");
+        
         try {
             TypedQuery<BottleType> bottleTypeByAlcTypeQuerry = em.createQuery("SELECT b FROM BottleType b "
                     + "WHERE b.alcType= :alcType", BottleType.class);
@@ -61,12 +73,15 @@ public class BottleTypeDAOImpl implements BottleTypeDAO {
 
             return alcTypeBottle;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public List<BottleType> findByPower(int power) {
+        LOGGER.info("Finding Bottle types by power.");
+        
         try {
             TypedQuery<BottleType> bottleTypeByPowerQuerry = em.createQuery("SELECT b FROM BottleType b "
                     + "WHERE b.power= :power", BottleType.class);
@@ -75,12 +90,15 @@ public class BottleTypeDAOImpl implements BottleTypeDAO {
 
             return powerBottle;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public List<BottleType> findByVolume(int volume) {
+        LOGGER.info("Finding Bottle types by volume.");
+        
         try {
             TypedQuery<BottleType> bottleTypeByVolumeQuerry = em.createQuery("SELECT b FROM BottleType b "
                     + "WHERE b.volume= :volume", BottleType.class);
@@ -89,38 +107,46 @@ public class BottleTypeDAOImpl implements BottleTypeDAO {
 
             return volumeBottle;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public void insertBottleType(BottleType bottleType) {
+        LOGGER.info("Inserting Bottle type.");
 
         try {
             em.persist(bottleType);
 
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public void updateBottleType(BottleType bottleType) {
+        LOGGER.info("Updating Bottle type.");
 
         try {
             em.merge(bottleType);
 
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public void deleteBottleType(BottleType bottleType) {
+        LOGGER.info("Deleting Bottle type.");
+        
         try {
             em.remove(em.contains(bottleType) ? bottleType : em.merge(bottleType));
 
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }

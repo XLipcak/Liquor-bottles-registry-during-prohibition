@@ -20,8 +20,12 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Bottle;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -42,6 +46,13 @@ public class BottleDAOImplTest {
 
     public BottleDAOImplTest() {
         bottlesInDb = new ArrayList<>();
+    }
+
+    @BeforeClass
+    public void setup() {
+        //Set Logger
+        BasicConfigurator.configure();
+        Logger.getRootLogger().setLevel(Level.INFO);
     }
 
     @BeforeMethod
@@ -184,12 +195,12 @@ public class BottleDAOImplTest {
     @Test
     public void testInsertBottle() {
         System.out.println("Testing insertBottle");
-        
+
         Store store = new Store("TestShop", "Alco1", "userAlco", "test");
         Producer producer = new Producer("TestProducer", "Vizovice", "userProducer", "test");
         BottleType bottleType = new BottleType("TestBottleType", "Kalashnikov",
                 55, 700, producer);
-        
+
         Bottle bottle = new Bottle(store, bottleType, 123456, 001122,
                 new Date(new Date().getTime()), Toxicity.TOXIC);
 
@@ -201,19 +212,19 @@ public class BottleDAOImplTest {
         em.getTransaction().begin();
         storeDAO.insertStore(store);
         em.getTransaction().commit();
-        
+
         em.getTransaction().begin();
         producerDAO.insertProducer(producer);
         em.getTransaction().commit();
-        
+
         em.getTransaction().begin();
         bottleTypeDAO.insertBottleType(bottleType);
         em.getTransaction().commit();
-        
+
         em.getTransaction().begin();
         bottleDAO.insertBottle(bottle);
         em.getTransaction().commit();
-        
+
         bottlesInDb.add(bottle);
 
         assertEquals(bottleDAO.findById(bottle.getId()), bottle);
@@ -241,7 +252,7 @@ public class BottleDAOImplTest {
         em.getTransaction().begin();
         bottleDAO.updateBottle(bottle);
         em.getTransaction().commit();
-        
+
         assertEquals(-300, bottleDAO.findById(bottle.getId()).getBatchNumber());
         assertEquals(-777, bottleDAO.findById(bottle.getId()).getStamp());
 

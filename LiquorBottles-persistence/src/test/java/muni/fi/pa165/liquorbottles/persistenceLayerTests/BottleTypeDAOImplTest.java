@@ -17,9 +17,13 @@ import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -40,6 +44,13 @@ public class BottleTypeDAOImplTest {
 
     public BottleTypeDAOImplTest() {
         bottleTypesInDb = new ArrayList<>();
+    }
+    
+        @BeforeClass
+    public void setup() {
+        //Set Logger
+        BasicConfigurator.configure();
+        Logger.getRootLogger().setLevel(Level.INFO);
     }
 
     @BeforeMethod

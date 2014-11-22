@@ -9,6 +9,8 @@ import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.PoliceDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
@@ -16,6 +18,8 @@ import org.springframework.beans.factory.annotation.Required;
  * @author Jakub Lipcak, Masaryk University
  */
 public class PoliceDAOImpl implements PoliceDAO {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(BottleDAOImpl.class);
 
     @PersistenceContext
     EntityManager em;
@@ -32,6 +36,7 @@ public class PoliceDAOImpl implements PoliceDAO {
 
     @Override
     public List<Police> findAll() {
+        LOGGER.info("Finding all Police.");
 
         try {
             TypedQuery<Police> allPoliceQuery = em.createQuery("SELECT p FROM Police p", Police.class);
@@ -39,24 +44,28 @@ public class PoliceDAOImpl implements PoliceDAO {
 
             return allPolice;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Police findById(long id) {
+        LOGGER.info("Finding Police by ID.");
 
         try {
             Police police = em.find(Police.class, id);
 
             return police;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Police findByUsername(String userName) {
+        LOGGER.info("Finding Police by username.");
 
         try {
             TypedQuery<Police> policeByUserNameQuery = em.createQuery("SELECT p FROM Police p "
@@ -65,12 +74,14 @@ public class PoliceDAOImpl implements PoliceDAO {
 
             return police;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Police findByName(String name) {
+        LOGGER.info("Finding Police by name.");
 
         try {
             TypedQuery<Police> policeByNameQuery = em.createQuery("SELECT p FROM Police p "
@@ -79,12 +90,14 @@ public class PoliceDAOImpl implements PoliceDAO {
 
             return police;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Police findByAddress(String address) {
+        LOGGER.info("Finding Police by address.");
 
         try {
             TypedQuery<Police> policeByAddress = em.createQuery("SELECT p FROM Police p "
@@ -93,6 +106,7 @@ public class PoliceDAOImpl implements PoliceDAO {
 
             return police;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }

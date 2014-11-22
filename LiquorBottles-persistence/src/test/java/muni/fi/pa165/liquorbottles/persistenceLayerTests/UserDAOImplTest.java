@@ -8,8 +8,12 @@ import javax.persistence.Persistence;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.UserDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -31,6 +35,13 @@ public class UserDAOImplTest {
     public UserDAOImplTest() {
         expectedResultList = new ArrayList<>();
 
+    }
+    
+        @BeforeClass
+    public void setup() {
+        //Set Logger
+        BasicConfigurator.configure();
+        Logger.getRootLogger().setLevel(Level.INFO);
     }
 
     @BeforeMethod

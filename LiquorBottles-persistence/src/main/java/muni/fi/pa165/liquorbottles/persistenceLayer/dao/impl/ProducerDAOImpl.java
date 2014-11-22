@@ -9,6 +9,8 @@ import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
@@ -16,6 +18,8 @@ import org.springframework.beans.factory.annotation.Required;
  * @author Michal Štora, Masaryk University
  */
 public class ProducerDAOImpl implements ProducerDAO {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(BottleDAOImpl.class);
 
     @PersistenceContext
     EntityManager em;
@@ -32,6 +36,7 @@ public class ProducerDAOImpl implements ProducerDAO {
 
     @Override
     public List<Producer> findAll() {
+        LOGGER.info("Finding all Producers.");
 
         try {
             TypedQuery<Producer> allProducerQuery = em.createQuery("SELECT p FROM Producer p", Producer.class);
@@ -39,24 +44,28 @@ public class ProducerDAOImpl implements ProducerDAO {
 
             return allProducer;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Producer findById(long id) {
+        LOGGER.info("Finding Producer by ID.");
 
         try {
             Producer producer = em.find(Producer.class, id);
 
             return producer;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Producer findByUsername(String userName) {
+        LOGGER.info("Finding Producer by username.");
 
         try {
             TypedQuery<Producer> producerByUserNameQuery = em.createQuery("SELECT p FROM Producer p "
@@ -66,12 +75,14 @@ public class ProducerDAOImpl implements ProducerDAO {
 
             return producer;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Producer findByName(String name) {
+        LOGGER.info("Finding Producer by name.");
 
         try {
             TypedQuery<Producer> producerByNameQuery = em.createQuery("SELECT p FROM Producer p "
@@ -81,12 +92,14 @@ public class ProducerDAOImpl implements ProducerDAO {
 
             return producer;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Producer findByAddress(String address) {
+        LOGGER.info("Finding Producer by address.");
 
         try {
             TypedQuery<Producer> producerByAddress = em.createQuery("SELECT p FROM Producer p "
@@ -96,6 +109,7 @@ public class ProducerDAOImpl implements ProducerDAO {
 
             return producer;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }

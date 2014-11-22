@@ -8,6 +8,7 @@ import muni.fi.pa165.liquorbottles.service.services.BottleService;
 import muni.fi.pa165.liquorbottles.service.services.BottleTypeService;
 import muni.fi.pa165.liquorbottles.service.services.ProducerService;
 import muni.fi.pa165.liquorbottles.service.services.StoreService;
+import org.apache.log4j.BasicConfigurator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,6 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
+        BasicConfigurator.configure();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         ProducerDTO producer = new ProducerDTO();

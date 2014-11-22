@@ -9,6 +9,8 @@ import javax.persistence.TypedQuery;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
@@ -16,6 +18,8 @@ import org.springframework.beans.factory.annotation.Required;
  * @author Matúš Novák, Masaryk University
  */
 public class StoreDAOImpl implements StoreDAO {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(BottleDAOImpl.class);
 
     @PersistenceContext
     EntityManager em;
@@ -32,6 +36,7 @@ public class StoreDAOImpl implements StoreDAO {
 
     @Override
     public List<Store> findAll() {
+        LOGGER.info("Finding all Stores.");
 
         try {
             TypedQuery<Store> allStoreQuerry = em.createQuery("SELECT s FROM Store s", Store.class);
@@ -39,24 +44,28 @@ public class StoreDAOImpl implements StoreDAO {
 
             return allStore;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Store findById(long id) {
+        LOGGER.info("Finding Store by ID.");
 
         try {
             Store store = em.find(Store.class, id);
 
             return store;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
 
     @Override
     public Store findByAddress(String address) {
+        LOGGER.info("Finding Store by address.");
 
         try {
             TypedQuery<Store> policeByAddress = em.createQuery("SELECT s FROM Store s "
@@ -65,6 +74,7 @@ public class StoreDAOImpl implements StoreDAO {
 
             return store;
         } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
