@@ -34,18 +34,12 @@ public class StoreDAOImpl implements StoreDAO {
     public List<Store> findAll() {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<Store> allStoreQuerry = em.createQuery("SELECT s FROM Store s", Store.class);
             List<Store> allStore = allStoreQuerry.getResultList();
-            //em.getTransaction().commit();
 
             return allStore;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -53,17 +47,11 @@ public class StoreDAOImpl implements StoreDAO {
     public Store findById(long id) {
 
         try {
-            //em.getTransaction().begin();
             Store store = em.find(Store.class, id);
-            //em.getTransaction().commit();
 
             return store;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -71,19 +59,13 @@ public class StoreDAOImpl implements StoreDAO {
     public Store findByAddress(String address) {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<Store> policeByAddress = em.createQuery("SELECT s FROM Store s "
                     + "WHERE s.address='" + address + "'", Store.class);
             Store store = policeByAddress.getSingleResult();
-            //em.getTransaction().commit();
 
             return store;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 

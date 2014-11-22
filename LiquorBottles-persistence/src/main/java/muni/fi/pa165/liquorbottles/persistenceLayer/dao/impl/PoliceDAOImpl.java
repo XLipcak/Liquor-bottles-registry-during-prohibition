@@ -34,18 +34,12 @@ public class PoliceDAOImpl implements PoliceDAO {
     public List<Police> findAll() {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<Police> allPoliceQuery = em.createQuery("SELECT p FROM Police p", Police.class);
             List<Police> allPolice = allPoliceQuery.getResultList();
-            //em.getTransaction().commit();
 
             return allPolice;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -53,17 +47,11 @@ public class PoliceDAOImpl implements PoliceDAO {
     public Police findById(long id) {
 
         try {
-            //em.getTransaction().begin();
             Police police = em.find(Police.class, id);
-            //em.getTransaction().commit();
 
             return police;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -71,19 +59,13 @@ public class PoliceDAOImpl implements PoliceDAO {
     public Police findByUsername(String userName) {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<Police> policeByUserNameQuery = em.createQuery("SELECT p FROM Police p "
                     + "WHERE p.username='" + userName + "'", Police.class);
             Police police = policeByUserNameQuery.getSingleResult();
-            //em.getTransaction().commit();
 
             return police;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -91,19 +73,13 @@ public class PoliceDAOImpl implements PoliceDAO {
     public Police findByName(String name) {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<Police> policeByNameQuery = em.createQuery("SELECT p FROM Police p "
                     + "WHERE p.name='" + name + "'", Police.class);
             Police police = policeByNameQuery.getSingleResult();
-            //em.getTransaction().commit();
 
             return police;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -111,19 +87,13 @@ public class PoliceDAOImpl implements PoliceDAO {
     public Police findByAddress(String address) {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<Police> policeByAddress = em.createQuery("SELECT p FROM Police p "
                     + "WHERE p.address='" + address + "'", Police.class);
             Police police = policeByAddress.getSingleResult();
-            //em.getTransaction().commit();
 
             return police;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 

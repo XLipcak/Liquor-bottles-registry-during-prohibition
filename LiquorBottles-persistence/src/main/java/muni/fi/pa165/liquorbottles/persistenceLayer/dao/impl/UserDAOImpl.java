@@ -32,18 +32,12 @@ public class UserDAOImpl implements UserDAO {
     public List<User> findAll() {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<User> allUsersQuery = em.createQuery("SELECT u FROM User u", User.class);
             List<User> allUsers = allUsersQuery.getResultList();
-            //em.getTransaction().commit();
 
             return allUsers;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -51,17 +45,11 @@ public class UserDAOImpl implements UserDAO {
     public User findById(long id) {
 
         try {
-            //em.getTransaction().begin();
             User user = em.find(User.class, id);
-            //em.getTransaction().commit();
 
             return user;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -69,19 +57,13 @@ public class UserDAOImpl implements UserDAO {
     public User findByUsername(String userName) {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<User> userByUserNameQuery = em.createQuery("SELECT u FROM User u "
                     + "WHERE u.username='" + userName + "'", User.class);
             User user = userByUserNameQuery.getSingleResult();
-            //em.getTransaction().commit();
 
             return user;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -89,19 +71,13 @@ public class UserDAOImpl implements UserDAO {
     public String findPassByUsername(String userName) {
 
         try {
-            //em.getTransaction().begin();
             TypedQuery<String> passByNameQuery = em.createQuery("SELECT u.password FROM User u "
                     + "WHERE u.username='" + userName + "'", String.class);
             String password = passByNameQuery.getSingleResult();
-            //em.getTransaction().commit();
 
             return password;
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -109,16 +85,10 @@ public class UserDAOImpl implements UserDAO {
     public void insertUser(User user) {
 
         try {
-            //em.getTransaction().begin();
             em.persist(user);
-            //em.getTransaction().commit();
 
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -126,16 +96,10 @@ public class UserDAOImpl implements UserDAO {
     public void deleteUser(User user) {
 
         try {
-            //em.getTransaction().begin();
             em.remove(em.contains(user) ? user : em.merge(user));
-            //em.getTransaction().commit();
 
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
@@ -143,16 +107,10 @@ public class UserDAOImpl implements UserDAO {
     public void updateUser(User user) {
 
         try {
-            //em.getTransaction().begin();
             em.merge(user);
-            //em.getTransaction().commit();
 
         } catch (Exception ex) {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
-        } finally {
-            if (em != null) {
-                // //em.close();
-            }
         }
     }
 
