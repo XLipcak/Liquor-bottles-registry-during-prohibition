@@ -20,8 +20,15 @@
     </properties>
 
     <dependencies>
-            
-       <!-- servlet, JSP, JSTL -->
+        
+        <!-- Spring - version may need to change TODO -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.0.6.RELEASE</version>
+        </dependency>
+        
+        <!-- servlet, JSP, JSTL -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -39,15 +46,31 @@
             <version>1.1.2</version>
         </dependency>
         
-        
-         
+        <!-- Stripes --> 
         <dependency>
             <groupId>net.sourceforge.stripes</groupId>
             <artifactId>stripes</artifactId>
             <version>1.5.6</version>
         </dependency>
-        
-        
+        <dependency>
+            <groupId>servlets.com</groupId>
+            <artifactId>cos</artifactId>
+            <version>05Nov2002</version>
+        </dependency>
+        <!-- Logging --> 
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.7</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>muni.fi.pa165</groupId>
+            <artifactId>LiquorBottles-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+             
     </dependencies>
 
     <build>

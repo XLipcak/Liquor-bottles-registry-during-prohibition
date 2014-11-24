@@ -5,9 +5,10 @@
 <s:layout-render name="/layout.jsp" titlekey="index.title">
     <s:layout-component name="body">
 
-        <h1>
-            Hello World
-        </h1>
+        <%-- store --%>
+        <ul>
+            <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean"><f:message key="index.store.link"/></s:link></li> 
+        </ul>
 
     </s:layout-component>
 </s:layout-render>

@@ -115,7 +115,17 @@
     </bean>
     <!--_________________________________________________________________-->
     
+    <!--__________________________Presentation Beans_____________________-->
+    <!--
     
+    <bean id="storePresentation" class="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
+        <property name="storeService" >
+            <bean class= "muni.fi.pa165.liquorbottles.service.services.impl.BottleService" />
+        </property>
+    </bean>
+    
+    -->
+    <!--_________________________________________________________________-->
     
     <!--__________________________Convertor Beans__________________________-->
     

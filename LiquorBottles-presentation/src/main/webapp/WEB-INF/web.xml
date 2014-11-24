@@ -4,12 +4,23 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
     
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener> 
+      
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring-context.xml</param-value>
+    </context-param> 
+    
     <!-- JSTL -->
     <context-param>
         <description>JSTL tags will use localized string from the same source as Stripes</description>
         <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
         <param-value>StripesResources</param-value>
     </context-param>
+
     
     <!-- Stripes -->
     <filter>
@@ -33,6 +44,14 @@
             <param-name>Interceptor.Classes</param-name>
             <param-value>net.sourceforge.stripes.integration.spring.SpringInterceptor</param-value>
         </init-param>
+        
+       <!-- ADDED --> 
+        <init-param>
+            <description>where Stripes searches for ActionBeans</description>
+            <param-name>ActionResolver.Packages</param-name>
+            <param-value>muni.fi.pa165.liquorbottles.presentation</param-value>
+        </init-param>
+        
     </filter>
     <filter-mapping>
         <filter-name>StripesFilter</filter-name>
