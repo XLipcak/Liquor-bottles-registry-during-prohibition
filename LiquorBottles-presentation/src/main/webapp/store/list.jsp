@@ -7,7 +7,7 @@
     <s:layout-component name="body">
         <s:useActionBean beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean" var="actionBean"/>
 
-        <p><f:message key="store.list.allbooks"/></p>
+        <p><f:message key="store.list.allstores"/></p>
 
         <table class="basic">
             <tr>
@@ -24,20 +24,20 @@
                     <td><c:out value="${store.name}"/></td>
                     <td><c:out value="${store.address}"/></td>
             
-                    <%--   edit TODO
+                    <%--   edit TODO --%>
                     <td>
-                     <s:link beanclass="cz.muni.fi.pa165.books.BooksActionBean" event="edit"><s:param name="book.id" value="${book.id}"/>edit</s:link>
+                     <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean" event="edit"><s:param name="store.id" value="${store.id}"/>edit</s:link>
                     </td>
                     
-                    --%>
-                    <%--   delete TODO
+                    
+                    <%--   delete TODO  --%>
                     <td>
-                        <s:form beanclass="cz.muni.fi.pa165.books.BooksActionBean">
-                            <s:hidden name="book.id" value="${book.id}"/>
-                            <s:submit name="delete"><f:message key="book.list.delete"/></s:submit>
+                        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
+                            <s:hidden name="store.id" value="${store.id}"/>
+                            <s:submit name="delete"><f:message key="store.list.delete"/></s:submit>
                         </s:form>
                     </td> 
-                    --%>
+                    
             <%--  end vypis --%>
                  </tr>
              </c:forEach>
