@@ -36,7 +36,7 @@ import org.testng.annotations.Test;
 public class BottleDAOImplTest {
 
     //TODO: inject this values from XML
-    private final int NUMBER_OF_RECORDS = 50;
+    private final int NUMBER_OF_RECORDS = 1;
     private final String NAME_OF_DB = "testDB";
 
     private EntityManagerFactory emf;
@@ -78,13 +78,28 @@ public class BottleDAOImplTest {
             Bottle bottle1 = new Bottle(store, bottleType, 123456, x,
                     new Date(new Date().getTime()), Toxicity.values()[x % 3]);
 
+            /*Bottle bottle2 = new Bottle(store, bottleType, 1, x,
+             new Date(new Date().getTime()), Toxicity.values()[x % 3]);
+
+             Bottle bottle3 = new Bottle(store, bottleType, 2, x - 1,
+             new Date(new Date().getTime()), Toxicity.values()[x % 3]);
+
+             Bottle bottle4 = new Bottle(store, bottleType, 1, x,
+             new Date(new Date().getTime()), Toxicity.values()[x % 3]);
+             */
             storeDAO.insertStore(store);
             producerDAO.insertProducer(producer);
             bottleTypeDAO.insertBottleType(bottleType);
 
             bottleDAO.insertBottle(bottle1);
+            /*bottleDAO.insertBottle(bottle2);
+             bottleDAO.insertBottle(bottle3);
+             bottleDAO.insertBottle(bottle4);*/
 
             bottlesInDb.add(bottle1);
+            /*bottlesInDb.add(bottle2);
+             bottlesInDb.add(bottle3);
+             bottlesInDb.add(bottle4);*/
         }
         em.getTransaction().commit();
     }
@@ -188,6 +203,18 @@ public class BottleDAOImplTest {
         assertEquals(b1, bottlesInDb);
 
     }
+
+    /**
+     * Test of testFindByFilter method, of class BottleDAOImpl.
+     */
+    /*@Test
+    public void testFindByFilter() {
+        System.out.println("Testing testFindByFilter");
+        BottleDAO bottleDAO = new BottleDAOImpl(em);
+
+        //List<Bottle> b1 = bottleDAO.findByFilter(-1, -1, Toxicity.TOXIC, null, 1, 1);
+        //assertEquals(b1, bottlesInDb);
+    }*/
 
     /**
      * Test of insertBottle method, of class BottleDAOImpl.

@@ -2,6 +2,7 @@ package muni.fi.pa165.liquorbottles.service.services;
 
 import java.util.Date;
 import java.util.List;
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
 
@@ -21,7 +22,11 @@ public interface BottleService {
 
     List<BottleDTO> findByDate(Date date);
 
-    List<BottleDTO> findByToxicity(ToxicityDTO toxic);
+    List<BottleDTO> findByToxicity(ToxicityDTO toxicDTO);
+
+    List<BottleDTO> findByFilter(long bottleTypeDAO_id, long producerDAO_id, long storeDAO_id,
+            Toxicity toxic, Date date, long batch_id, long stamp
+    );
 
     void insertBottle(BottleDTO bottle);
 

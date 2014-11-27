@@ -95,6 +95,19 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    public List<BottleDTO> findByFilter(long bottleTypeDAO_id, long producerDAO_id, long storeDAO_id, Toxicity toxic, Date date, long batch_id, long stamp) {
+        try {
+            // problem s konverom toxicityDTO
+            //DTOConvertor<Toxicity, ToxicityDTO> toxicityConvertor = new DozerToxicityDTOConvertor();
+            //Toxicity toxic = toxicityConvertor.fromDTOToEntity(toxicDTO);
+            List<Bottle> bottlesByFilter = bottleDAO.findByFilter(bottleTypeDAO_id, producerDAO_id, storeDAO_id, toxic, date, batch_id, stamp);
+            return bottleDTOConvertor.fromEntityToDTO(bottlesByFilter);
+        } catch (PersistenceException ex) {
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
+        }
+    }
+
+    @Override
     public void insertBottle(BottleDTO bottleDTO) {
         try {
             Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);

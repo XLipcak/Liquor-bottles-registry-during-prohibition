@@ -52,7 +52,21 @@ public interface BottleDAO {
      * @return List of Bottles with toxic as parameter
      */
     List<Bottle> findByToxicity(Toxicity toxic);
-
+ 
+    /**
+     * This method returns the List of Bottles from database specified by the filter parameters
+     * @param bottleTypeDAO_id
+     * @param date
+     * @param storeDAO_id
+     * @param batch_id
+     * @param stamp
+     * @param toxic the toxicity
+     * @param producerDAO_id
+     * @return List of Bottles with toxic as parameter
+     */
+    List<Bottle> findByFilter(long bottleTypeDAO_id, long producerDAO_id, long storeDAO_id,
+            Toxicity toxic, Date date, long batch_id, long stamp);
+    
     /**
      * This method inserts the Bottle as parameter to the database
      * @param bottle to be inserted to the database
