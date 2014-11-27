@@ -11,9 +11,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
       
     <!--________________________Spring configuration_________________________
    
-    <aop:aspectj-autoproxy/>
-    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
-     -->
+   <aop:aspectj-autoproxy/>
+   <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+    -->
     <context:component-scan base-package= "muni.fi.pa165.liquorbottles"/>
     
     <import resource="classpath:applicationContext.xml"/>
@@ -21,5 +21,17 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean name="storeService" class="muni.fi.pa165.liquorbottles.service.services.impl.StoreServiceImpl" >
         <property name="storeDAO" ref="storeDAO" />
     </bean> 
-
+    
+    <!--<bean name="producerService" class="muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl" >
+        <property name="producerDAO" ref="producerDAO" />
+    </bean>  -->
+    
+    <bean name="producerService" class="muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl">
+        <property name="producerDao" ref="producerDAO"/>    
+    </bean>
+    
+    <bean name="bottleTypeService" class="muni.fi.pa165.liquorbottles.service.services.impl.BottleTypeServiceImpl">
+        <property name="bottleTypeDAO" ref="bottleTypeDAO"/>
+    </bean>
+    
 </beans>
