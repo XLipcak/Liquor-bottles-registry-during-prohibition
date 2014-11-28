@@ -9,6 +9,13 @@
 
         <p><f:message key="store.list.allstores"/></p>
 
+        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
+                <fieldset><legend><f:message key="filter.list"/></legend>
+                    <%@include file="filter.jsp"%>
+                    <s:submit name="filter"><f:message key="filter.submit"/></s:submit>
+                </fieldset>
+        </s:form>
+        
         <table class="basic">
             <tr>
                 <th>id</th>
@@ -24,13 +31,13 @@
                     <td><c:out value="${store.name}"/></td>
                     <td><c:out value="${store.address}"/></td>
             
-                    <%--   edit TODO --%>
+                    <%--   edit  --%>
                     <td>
                      <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean" event="edit"><s:param name="store.id" value="${store.id}"/>edit</s:link>
                     </td>
                     
                     
-                    <%--   delete TODO  --%>
+                    <%--   delete   --%>
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
                             <s:hidden name="store.id" value="${store.id}"/>

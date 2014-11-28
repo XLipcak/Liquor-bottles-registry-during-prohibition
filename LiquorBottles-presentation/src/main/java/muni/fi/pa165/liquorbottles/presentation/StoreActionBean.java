@@ -30,7 +30,6 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StoreActionBean.class);
 
-
     //inject
     @SpringBean
     protected StoreService storeService;
@@ -95,6 +94,35 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
     public Resolution edit() {
         LOGGER.debug("edit() store={}", store);
         return new ForwardResolution("/store/edit.jsp");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    private String name;
+    private String address;
+
+    public Resolution filter() {
+        LOGGER.debug("filter() store={}", store);
+        if (name == null)
+            name = "";
+        if (address == null)
+            address = "";
+        storeList = storeService.findByFilter(name, address);
+        return new ForwardResolution("/store/list.jsp");
     }
 
     public Resolution save() {

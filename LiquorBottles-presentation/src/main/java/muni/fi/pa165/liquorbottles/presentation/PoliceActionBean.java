@@ -25,13 +25,13 @@ import net.sourceforge.stripes.validation.ValidationErrors;
  * @author Jakub Lipcak, Masaryk University
  */
 @UrlBinding("/police.action")
-public class PoliceActionBean extends BaseActionBean implements ValidationErrorHandler{
-    
+public class PoliceActionBean extends BaseActionBean implements ValidationErrorHandler {
+
     @SpringBean
     private PoliceService policeService;
 
     private List<PoliceDTO> policeList;
-    
+
     private PoliceDTO police;
 
     // View All part
@@ -41,7 +41,6 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
         return new ForwardResolution("/police/list.jsp");
     }
 
-
     // ADD part
     @ValidateNestedProperties(value = {
         @Validate(on = {"add", "save"}, field = "name", required = true),
@@ -49,8 +48,6 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
         @Validate(on = {"add", "save"}, field = "username", required = true),
         @Validate(on = {"add", "save"}, field = "password", required = true)
     })
-
-    
 
     public Resolution add() {
         policeService.insertPolice(police);
@@ -66,7 +63,6 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
         return null;
     }
 
-
     // EDIT part   
     @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "save"})
     public void loadStoreFromDatabase() {
@@ -76,13 +72,41 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
         }
         police = policeService.findById(Long.parseLong(ids));
     }
-    
 
     public Resolution edit() {
         return new ForwardResolution("/police/edit.jsp");
     }
 
-    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    private String name;
+    private String address;
+
+    public Resolution filter() {
+        if (name == null) {
+            name = "";
+        }
+        if (address == null) {
+            address = "";
+        }
+        policeList = policeService.findByFilter(name, address);
+        return new ForwardResolution("/police/list.jsp");
+    }
+
     public Resolution save() {
         policeService.updatePolice(police);
         return new RedirectResolution(this.getClass(), "list");
@@ -118,6 +142,5 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
     public void setPolice(PoliceDTO police) {
         this.police = police;
     }
-    
-    
+
 }

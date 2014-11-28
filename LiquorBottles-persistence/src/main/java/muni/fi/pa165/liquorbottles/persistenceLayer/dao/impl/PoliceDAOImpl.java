@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Required;
  * @author Jakub Lipcak, Masaryk University
  */
 public class PoliceDAOImpl implements PoliceDAO {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(BottleDAOImpl.class);
 
     @PersistenceContext
@@ -105,6 +105,47 @@ public class PoliceDAOImpl implements PoliceDAO {
             Police police = policeByAddress.getSingleResult();
 
             return police;
+        } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Police> findByFilter(String name, String address) {
+        LOGGER.info("Finding Store by filter.");
+        try {
+            TypedQuery<Police> policeByFilterQuerry;
+
+            String query = "SELECT p FROM Police p WHERE ";
+            // -1 may need to change
+            // String Query lepenie CIASTOCNA ZHODA
+            if (!name.equals("")) {
+                query += "p.name LIKE :name AND ";
+            }
+            if (!address.equals("")) {
+                query += "p.address LIKE :address AND ";
+            }
+
+            // osetrenie po AND + prazdnych argumentov
+            query += "1=1";
+
+            // naviazanie stringu 
+            policeByFilterQuerry = em.createQuery(query, Police.class);
+
+            // -1 may need to change
+            // nastavenie parametrov
+            // % je CIASTOCNA ZHODA
+            if (!name.equals("")) {
+                policeByFilterQuerry.setParameter("name", '%'+ name +'%');
+            }
+            if (!address.equals("")) {
+                policeByFilterQuerry.setParameter("address", '%'+ address +'%');
+            }
+
+            List<Police> filterPolice = policeByFilterQuerry.getResultList();
+
+            return filterPolice;
         } catch (Exception ex) {
             LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);

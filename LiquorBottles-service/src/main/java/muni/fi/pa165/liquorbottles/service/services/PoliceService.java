@@ -18,6 +18,8 @@ public interface PoliceService {
     PoliceDTO findByName(String name);
 
     PoliceDTO findByAddress(String address);
+    
+    List<PoliceDTO> findByFilter(String name, String address);
 
     void insertPolice(PoliceDTO policeDTO);
 

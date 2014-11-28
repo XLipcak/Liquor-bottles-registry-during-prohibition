@@ -15,6 +15,13 @@
 
         <p><f:message key="police.list.allPolice"/></p>
 
+        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean">
+            <fieldset><legend><f:message key="filter.list"/></legend>
+                <%@include file="filter.jsp"%>
+                <s:submit name="filter"><f:message key="filter.submit"/></s:submit>
+                </fieldset>
+        </s:form>
+
         <table class="basic">
             <tr>
                 <th>id</th>
@@ -30,19 +37,18 @@
                     <td><c:out value="${police.name}"/></td>
                     <td><c:out value="${police.address}"/></td>
 
-                    
+
                     <td>
-                    <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean" event="edit"><s:param name="police.id" value="${police.id}"/>edit</s:link>
-                   </td>
-                   
+                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean" event="edit"><s:param name="police.id" value="${police.id}"/>edit</s:link>
+                        </td>
+
                     <%--   delete  --%>
                     <td>
-                    <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean">
-                        <s:hidden name="police.id" value="${police.id}"/>
-                        <s:submit name="delete"><f:message key="police.list.delete"/></s:submit>
-                    </s:form>
-                </td> 
-                    -->
+                        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean">
+                            <s:hidden name="police.id" value="${police.id}"/>
+                            <s:submit name="delete"><f:message key="police.list.delete"/></s:submit>
+                        </s:form>
+                    </td> 
 
                     <%--  end vypis --%>
                 </tr>
