@@ -2,7 +2,9 @@ package muni.fi.pa165.liquorbottles.presentation;
 
 import java.util.List;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
+import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
+import muni.fi.pa165.liquorbottles.service.services.BottleTypeService;
 import muni.fi.pa165.liquorbottles.service.services.ProducerService;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -33,6 +35,9 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
 
     @SpringBean
     protected ProducerService producerService;
+    
+    @SpringBean
+    protected BottleTypeService bottleTypeService;
 
     private List<ProducerDTO> producerList;
 
@@ -105,10 +110,15 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
     
     public Resolution delete() {
         LOGGER.debug("delete({})", producer.getId());
-        //only id is filled by the form
-        producer = producerService.findById(producer.getId());
-        producerService.deleteProducer(producer);
-        getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producer.getName()), escapeHTML(producer.getAddress())));
+        //only id is filled by the form 
+        producer = producerService.findById(producer.getId());      
+        if(bottleTypeService.findByProducer(producer.getId()).isEmpty()){
+           getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producer.getName()), escapeHTML(producer.getAddress())));        
+           producerService.deleteProducer(producer);
+        } else {
+           getContext().getMessages().add(new LocalizableMessage("producer.delete.error.message", escapeHTML(producer.getName()))); 
+        }
+        
         return new RedirectResolution(this.getClass(), "list");
     }
 }

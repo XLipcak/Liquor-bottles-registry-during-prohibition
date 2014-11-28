@@ -77,6 +77,16 @@ public class BottleTypeServiceImpl implements BottleTypeService {
             throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
+    
+    @Override
+    public List<BottleTypeDTO> findByProducer(long producerID) {
+       try {
+            List<BottleType> bottleTypesByProducer = bottleTypeDAO.findByProducer(producerID);
+            return bottleTypeDTOConvertor.fromEntityToDTO(bottleTypesByProducer);
+        } catch (PersistenceException ex) {
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
+        }
+    }
 
     @Override
     public void insertBottleType(BottleTypeDTO bottleTypeDTO) {
@@ -113,5 +123,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     public void setBottleTypeDAO(BottleTypeDAO bottleTypeDAO) {
         this.bottleTypeDAO = bottleTypeDAO;
     }
+
+   
 
 }

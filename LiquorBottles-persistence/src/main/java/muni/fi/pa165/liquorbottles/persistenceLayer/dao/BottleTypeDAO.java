@@ -44,6 +44,13 @@ public interface BottleTypeDAO {
      * @return the bottle type with volume as parameter
      */
     List<BottleType> findByVolume(int volume);
+    
+    /**
+     * This method returns the bottle types from database specified by producer id as parameter
+     * @param producerID of bottle type in the database
+     * @return the bottle types produced by specific producer
+     */
+    List<BottleType> findByProducer(long producerID);
 
     /**
      * This method inserts the bottle type as parameter to the database

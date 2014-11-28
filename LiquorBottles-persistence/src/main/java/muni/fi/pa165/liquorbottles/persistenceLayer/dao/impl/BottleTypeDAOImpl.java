@@ -111,6 +111,23 @@ public class BottleTypeDAOImpl implements BottleTypeDAO {
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
         }
     }
+    
+    @Override
+    public List<BottleType> findByProducer(long producerID) {
+        LOGGER.info("Finding Bottle types by producer.");
+        
+        try {
+            TypedQuery<BottleType> bottleTypeByProducerQuerry = em.createQuery("SELECT b FROM BottleType b "
+                    + "WHERE b.producer.id= :producerID", BottleType.class);
+            bottleTypeByProducerQuerry.setParameter("producerID", producerID);
+            List<BottleType> producerBottle = bottleTypeByProducerQuerry.getResultList();
+
+            return producerBottle;
+        } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }
+    }
 
     @Override
     public void insertBottleType(BottleType bottleType) {
@@ -155,5 +172,7 @@ public class BottleTypeDAOImpl implements BottleTypeDAO {
     public void setEm(EntityManager em) {
         this.em = em;
     }
+
+    
 
 }

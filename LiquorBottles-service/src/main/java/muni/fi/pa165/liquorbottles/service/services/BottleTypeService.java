@@ -18,6 +18,8 @@ public interface BottleTypeService {
     List<BottleTypeDTO> findByPower(int power);
 
     List<BottleTypeDTO> findByVolume(int volume);
+    
+    List<BottleTypeDTO> findByProducer(long producerID);
 
     void insertBottleType(BottleTypeDTO bottleType);
 
