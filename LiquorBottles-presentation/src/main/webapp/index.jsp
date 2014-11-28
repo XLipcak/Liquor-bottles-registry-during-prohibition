@@ -6,7 +6,7 @@
     <s:layout-component name="body">
 
         
-        <ul>
+        <ul id="menu">
             <%-- store --%>
             <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean"><f:message key="index.store.link"/></s:link></li> 
             <!-- producer -->
