@@ -23,5 +23,5 @@ public interface ProducerService {
 
     void updateProducer(ProducerDTO producerDto);
 
-    void deleteProducer(ProducerDTO producerDto);
+    boolean deleteProducer(ProducerDTO producerDto);
 }

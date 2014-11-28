@@ -39,6 +39,10 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     protected ProducerService producerService;
 
     private List<BottleTypeDTO> bottleTypeList;
+    
+    private List<ProducerDTO> producerList;
+    private BottleTypeDTO bottleType;
+    
 
     public List<ProducerDTO> getProducerList() {
         return producerList;
@@ -47,7 +51,7 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     public void setProducerList(List<ProducerDTO> producerList) {
         this.producerList = producerList;
     }
-    private List<ProducerDTO> producerList;
+    
 
     public List<BottleTypeDTO> getBottleTypeList() {
         return bottleTypeList;
@@ -86,7 +90,7 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         @Validate(on = {"add", "save"}, field = "power", required = true)
     })
 
-    private BottleTypeDTO bottleType;
+   
 
     public BottleTypeDTO getBottleType() {
         return bottleType;
@@ -104,10 +108,6 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     public void setProducerID(long producerID) {
         this.producerID = producerID;
     }
-
-
-
-    private String id;
 
     public Resolution add() {
         LOGGER.debug("add() bottleType={}", bottleType);

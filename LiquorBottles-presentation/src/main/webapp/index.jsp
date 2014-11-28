@@ -13,6 +13,8 @@
             <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean"><f:message key="index.producer.link"/></s:link></li>
             <!-- bottleType -->
             <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean"><f:message key="index.bottleType.link"/></s:link></li>
+            <!-- bottle -->
+            <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean"><f:message key="index.bottle.link"/></s:link></li>
         </ul>
         
         

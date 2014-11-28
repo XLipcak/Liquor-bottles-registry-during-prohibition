@@ -111,12 +111,13 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
     public Resolution delete() {
         LOGGER.debug("delete({})", producer.getId());
         //only id is filled by the form 
-        producer = producerService.findById(producer.getId());      
-        if(bottleTypeService.findByProducer(producer.getId()).isEmpty()){
-           getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producer.getName()), escapeHTML(producer.getAddress())));        
-           producerService.deleteProducer(producer);
+        producer = producerService.findById(producer.getId());
+        
+        //TODO tu to niekde pada netusim preco lebo servis je v pohode.
+        if(producerService.deleteProducer(producer)){
+          // getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producerName), escapeHTML(producerAddress)));        
         } else {
-           getContext().getMessages().add(new LocalizableMessage("producer.delete.error.message", escapeHTML(producer.getName()))); 
+          // getContext().getMessages().add(new LocalizableMessage("producer.delete.error.message", escapeHTML(producerName))); 
         }
         
         return new RedirectResolution(this.getClass(), "list");

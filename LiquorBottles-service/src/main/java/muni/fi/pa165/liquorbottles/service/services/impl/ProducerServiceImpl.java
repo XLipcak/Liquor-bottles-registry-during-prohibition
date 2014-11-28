@@ -1,11 +1,9 @@
 package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.List;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.BottleTypeDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.ProducerDAO;
-import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DTOConvertor;
@@ -25,6 +23,7 @@ import org.springframework.stereotype.Service;
 public class ProducerServiceImpl implements ProducerService {
 
     private ProducerDAO producerDao;
+    private BottleTypeDAO bottleTypeDao;
     private DTOConvertor<Producer, ProducerDTO> convertor = new DozerProducerDTOConvertor();
 
     /*public ProducerServiceImpl() {
@@ -104,18 +103,32 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    public void deleteProducer(ProducerDTO producerDto) {
+    public boolean deleteProducer(ProducerDTO producerDto) {
         try {
             Producer producer = convertor.fromDTOToEntity(producerDto);
-            producerDao.deleteProducer(producer);
+            if(checkDeletePossibility(producerDto.getId())){
+                producerDao.deleteProducer(producer);
+                return true;
+            }
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
+        return false;
+    }
+    
+    private boolean checkDeletePossibility(long producerID){
+        return bottleTypeDao.findByProducer(producerID).isEmpty();
+        
     }
 
     @Required
     public void setProducerDao(ProducerDAO producerDao) {
         this.producerDao = producerDao;
+    }
+    
+    @Required
+    public void setBottleTypeDao(BottleTypeDAO bottleTypeDao) {
+        this.bottleTypeDao = bottleTypeDao;
     }
 
     //@Required

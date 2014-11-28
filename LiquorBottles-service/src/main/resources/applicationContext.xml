@@ -96,6 +96,7 @@
     
     <bean id="producerServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl" >
         <property name="producerDao" ref="producerDAO" />
+        <property name="bottleTypeDao" ref="bottleTypeDAO" />
     </bean>
     
     <bean id="policeServiceImpl" class="muni.fi.pa165.liquorbottles.service.services.impl.PoliceServiceImpl">
