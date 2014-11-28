@@ -30,11 +30,6 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StoreActionBean.class);
 
-    public StoreActionBean() {
-        //Set Logger
-        BasicConfigurator.configure();
-        org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
-    }
 
     //inject
     @SpringBean

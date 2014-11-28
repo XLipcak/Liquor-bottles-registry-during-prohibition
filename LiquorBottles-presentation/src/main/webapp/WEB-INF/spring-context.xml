@@ -34,4 +34,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="bottleTypeDAO" ref="bottleTypeDAO"/>
     </bean>
     
+    <bean name="policeService" class="muni.fi.pa165.liquorbottles.service.services.impl.PoliceServiceImpl">
+        <property name="policeDAO" ref="policeDAO"/>
+    </bean>
+    
 </beans>
