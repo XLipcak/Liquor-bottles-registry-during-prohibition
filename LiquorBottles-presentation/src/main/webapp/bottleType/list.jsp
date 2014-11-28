@@ -38,7 +38,7 @@
                     <%--   edit TODO --%>
                     <td>
                         <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean" event="edit"><s:param name="bottleType.id" value="${bottleType.id}"/>edit</s:link>
-                        </td>
+                    </td>
 
 
                     <%--   delete TODO  --%>

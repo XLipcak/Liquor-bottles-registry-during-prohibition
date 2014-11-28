@@ -6,12 +6,14 @@ import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.service.services.BottleTypeService;
 import muni.fi.pa165.liquorbottles.service.services.ProducerService;
+import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.LocalizableMessage;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
+import net.sourceforge.stripes.controller.LifecycleStage;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
@@ -72,6 +74,7 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
 
     @Override
     public Resolution handleValidationErrors(ValidationErrors ve) throws Exception {
+        producerList = producerService.findAll();
         bottleTypeList = bottleTypeService.findAll();
         return null;
     }
@@ -111,6 +114,37 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         bottleType.setProducer(producerService.findById(producerID));
         bottleTypeService.insertBottleType(bottleType);
         getContext().getMessages().add(new LocalizableMessage("bottleType.add.message", escapeHTML(bottleType.getName())));
+        return new RedirectResolution(this.getClass(), "list");
+    }
+    
+    @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "save"})
+    public void loadBottleTypeFromDatabase() {
+        String ids = getContext().getRequest().getParameter("bottleType.id");
+        if (ids == null) {
+            return;
+        }
+        bottleType = bottleTypeService.findById(Long.parseLong(ids));
+    }
+    
+    public Resolution edit() {
+        LOGGER.debug("edit() bottleType={}", bottleType);
+        producerList = producerService.findAll();
+        return new ForwardResolution("/bottleType/edit.jsp");
+    }
+    
+    public Resolution save() {
+        LOGGER.debug("save() bottleType={}", bottleType);
+        bottleType.setProducer(producerService.findById(producerID));
+        bottleTypeService.updateBottleType(bottleType);
+        return new RedirectResolution(this.getClass(), "list");
+    }
+    
+    public Resolution delete() {
+        LOGGER.debug("delete({})", bottleType.getId());
+        //only id is filled by the form
+        bottleType = bottleTypeService.findById(bottleType.getId());
+        bottleTypeService.deleteBottleType(bottleType);
+        getContext().getMessages().add(new LocalizableMessage("bottleType.delete.message", escapeHTML(bottleType.getName())));
         return new RedirectResolution(this.getClass(), "list");
     }
 
