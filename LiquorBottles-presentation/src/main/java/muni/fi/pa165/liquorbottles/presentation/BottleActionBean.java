@@ -6,6 +6,7 @@ import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
+import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
 import muni.fi.pa165.liquorbottles.service.services.BottleService;
 import muni.fi.pa165.liquorbottles.service.services.BottleTypeService;
 
@@ -50,6 +51,7 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
     private long storeID;
     private long bottleTypeID;
     private BottleDTO bottle;
+    private String toxicity;
 
     private List<BottleTypeDTO> bottleTypeList;
     private List<StoreDTO> storeList;
@@ -141,6 +143,7 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         LOGGER.debug("add() bottle={}", bottle);
         bottle.setStore(storeService.findById(storeID));
         bottle.setBottleType(bottleTypeService.findById(bottleTypeID));
+        setToxicityOfBottle(toxicity);
         bottleService.insertBottle(bottle);
         getContext().getMessages().add(new LocalizableMessage("bottle.add.message", escapeHTML(bottleTypeService.findById(bottle.getBottleType().getId()).getName()), escapeHTML(String.valueOf(bottle.getStamp()))));
         return new RedirectResolution(this.getClass(), "list");
@@ -165,8 +168,10 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
     public Resolution save() {
         LOGGER.debug("save() bottle={}", bottle);
         bottle.setStore(storeService.findById(storeID));
-        bottle.setBottleType(bottleTypeService.findById(bottleTypeID));      
+        bottle.setBottleType(bottleTypeService.findById(bottleTypeID));    
+        setToxicityOfBottle(toxicity);
         bottleService.updateBottle(bottle);
+        System.out.println("PRINTINGGGGGGGGGGG"+toxicity);
         return new RedirectResolution(this.getClass(), "list");
     }
     
@@ -178,5 +183,50 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         getContext().getMessages().add(new LocalizableMessage("bottle.delete.message", escapeHTML(String.valueOf(bottle.getStamp()))));
         return new RedirectResolution(this.getClass(), "list");
     }
+
+    public BottleService getBottleService() {
+        return bottleService;
+    }
+
+    public void setBottleService(BottleService bottleService) {
+        this.bottleService = bottleService;
+    }
+
+    public StoreService getStoreService() {
+        return storeService;
+    }
+
+    public void setStoreService(StoreService storeService) {
+        this.storeService = storeService;
+    }
+
+    public BottleTypeService getBottleTypeService() {
+        return bottleTypeService;
+    }
+
+    public void setBottleTypeService(BottleTypeService bottleTypeService) {
+        this.bottleTypeService = bottleTypeService;
+    }
+
+    public String getToxicity() {
+        return toxicity;
+    }
+
+    public void setToxicity(String toxicity) {
+        this.toxicity = toxicity;
+    }
+    
+    private void setToxicityOfBottle(String input){
+        if(toxicity.equals("toxic")){
+            bottle.setToxicity(ToxicityDTO.TOXIC);
+        }
+        if(toxicity.equals("unchecked")){
+            bottle.setToxicity(ToxicityDTO.UNCHECKED);
+        }
+        if(toxicity.equals("nontoxic")){
+            bottle.setToxicity(ToxicityDTO.NON_TOXIC);
+        }
+    }
+    
 
 }
