@@ -106,7 +106,7 @@ public class ProducerServiceImpl implements ProducerService {
     public boolean deleteProducer(ProducerDTO producerDto) {
         try {
             Producer producer = convertor.fromDTOToEntity(producerDto);
-            if(checkDeletePossibility(producerDto.getId())){
+            if(isDeletePossible(producerDto.getId())){
                 producerDao.deleteProducer(producer);
                 return true;
             }
@@ -116,7 +116,7 @@ public class ProducerServiceImpl implements ProducerService {
         return false;
     }
     
-    private boolean checkDeletePossibility(long producerID){
+    private boolean isDeletePossible(long producerID){
         return bottleTypeDao.findByProducer(producerID).isEmpty();
         
     }

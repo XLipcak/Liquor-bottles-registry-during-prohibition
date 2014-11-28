@@ -5,6 +5,7 @@
  */
 package muni.fi.pa165.liquorbootles.serviceTests;
 
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
 import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
@@ -26,6 +27,8 @@ public class ProducerServiceImplTest {
     
     @Mock 
     private ProducerDAOImpl mockProducerDaoImpl;
+    @Mock 
+    private BottleTypeDAOImpl bottleTypeDAOImpl;
     
     @InjectMocks
     private ProducerServiceImpl producerSeviceImpl;
