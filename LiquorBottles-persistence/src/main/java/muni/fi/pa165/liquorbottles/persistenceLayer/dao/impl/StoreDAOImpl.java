@@ -15,10 +15,10 @@ import org.springframework.beans.factory.annotation.Required;
 
 /**
  *
- * @author Matúš Novák, Masaryk University
+ * @author MatÃºÅ¡ NovÃ¡k, Masaryk University
  */
 public class StoreDAOImpl implements StoreDAO {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(BottleDAOImpl.class);
 
     @PersistenceContext
@@ -73,6 +73,47 @@ public class StoreDAOImpl implements StoreDAO {
             Store store = policeByAddress.getSingleResult();
 
             return store;
+        } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }
+    }
+
+    @Override
+    public List<Store> findByFilter(String name, String address) {
+        LOGGER.info("Finding Store by filter.");
+        try {
+            TypedQuery<Store> storeByFilterQuerry;
+
+            String query = "SELECT s FROM Store s WHERE ";
+            // -1 may need to change
+            // String Query lepenie CIASTOCNA ZHODA
+            if (!name.equals("")) {
+                query += "s.name LIKE :name AND ";
+            }
+            if (!address.equals("")) {
+                query += "s.address LIKE :address AND ";
+            }
+
+            // osetrenie po AND + prazdnych argumentov
+            query += "1=1";
+
+            // naviazanie stringu 
+            storeByFilterQuerry = em.createQuery(query, Store.class);
+
+            // -1 may need to change
+            // nastavenie parametrov
+            // % je CIASTOCNA ZHODA
+            if (!name.equals("")) {
+                storeByFilterQuerry.setParameter("name", '%'+ name +'%');
+            }
+            if (!address.equals("")) {
+                storeByFilterQuerry.setParameter("address", '%'+ address +'%');
+            }
+
+            List<Store> filterStore = storeByFilterQuerry.getResultList();
+
+            return filterStore;
         } catch (Exception ex) {
             LOGGER.error(ex.getMessage());
             throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);

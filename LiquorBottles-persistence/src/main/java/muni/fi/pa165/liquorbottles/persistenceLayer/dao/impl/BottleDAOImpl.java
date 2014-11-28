@@ -114,7 +114,7 @@ public class BottleDAOImpl implements BottleDAO {
 
     @Override
     public List<Bottle> findByFilter(long bottleTypeDAO_id, long producerDAO_id, long storeDAO_id,
-            Toxicity toxic, Date date, long batch_id, long stamp) {
+            Toxicity toxic, Date startDate, Date endDate, long batch_id, long stamp) {
 
         LOGGER.info("Finding bottle by filter.");
         try {
@@ -135,8 +135,8 @@ public class BottleDAOImpl implements BottleDAO {
             if (toxic != null) {
                 query += "b.toxicity= :toxic AND ";
             }
-            if (date != null) {
-                query += "b.dateOfBirth= :date AND ";
+            if (startDate != null && endDate != null) {
+                query += "(b.dateOfBirth BETWEEN :startDate AND :endDate) AND ";
             }
             if (batch_id != -1) {
                 query += "b.batchNumber= :batch_id AND ";
@@ -164,8 +164,9 @@ public class BottleDAOImpl implements BottleDAO {
             if (toxic != null) {
                 bottleByFilterQuerry.setParameter("toxic", toxic);
             }
-            if (date != null) {
-                bottleByFilterQuerry.setParameter("date", date);
+            if (startDate != null && endDate != null) {
+                bottleByFilterQuerry.setParameter("startDate", startDate);
+                bottleByFilterQuerry.setParameter("endDate", endDate);
             }
             if (batch_id != -1) {
                 bottleByFilterQuerry.setParameter("batch_id", batch_id);

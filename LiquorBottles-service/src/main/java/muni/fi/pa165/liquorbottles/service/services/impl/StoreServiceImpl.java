@@ -25,18 +25,17 @@ public class StoreServiceImpl implements StoreService {
     DozerStoreDTOConvertor dozerStoreDTOConvertor = new DozerStoreDTOConvertor();
 
     /*public StoreServiceImpl() {
-        emf = Persistence.createEntityManagerFactory(
-                "localDB");
-        storeDAOImpl = new StoreDAOImpl(emf);
-    }*/
-
+     emf = Persistence.createEntityManagerFactory(
+     "localDB");
+     storeDAOImpl = new StoreDAOImpl(emf);
+     }*/
     @Override
     public List<StoreDTO> findAll() {
         try {
             List<Store> store = storeDAO.findAll();
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!", ex);     
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -46,7 +45,7 @@ public class StoreServiceImpl implements StoreService {
             Store store = storeDAO.findById(id);
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!", ex);     
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -56,7 +55,17 @@ public class StoreServiceImpl implements StoreService {
             Store store = storeDAO.findByAddress(address);
             return dozerStoreDTOConvertor.fromEntityToDTO(store);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!", ex);     
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
+        }
+    }
+
+    @Override
+    public List<StoreDTO> findByFilter(String name, String address) {
+        try {
+            List<Store> store = storeDAO.findByFilter(name, address);
+            return dozerStoreDTOConvertor.fromEntityToDTO(store);
+        } catch (PersistenceException ex) {
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
 
@@ -67,7 +76,7 @@ public class StoreServiceImpl implements StoreService {
             storeDAO.insertStore(store);
             storeDTO.setId(store.getId());
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException(ex.getMessage());     
+            throw new IllegalMonitorStateException(ex.getMessage());
         }
     }
 
@@ -77,7 +86,7 @@ public class StoreServiceImpl implements StoreService {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
             storeDAO.updateStore(store);
         } catch (PersistenceException ex) {
-            throw new IllegalMonitorStateException(ex.getMessage());     
+            throw new IllegalMonitorStateException(ex.getMessage());
         }
     }
 
@@ -87,9 +96,10 @@ public class StoreServiceImpl implements StoreService {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
             storeDAO.deleteStore(store);
         } catch (PersistenceException ex) {
-            throw new NonTransientDataAccessResourceException("Operation failed!", ex);     
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
     }
+
     @Required
     public void setStoreDAO(StoreDAO storeDAO) {
         this.storeDAO = storeDAO;

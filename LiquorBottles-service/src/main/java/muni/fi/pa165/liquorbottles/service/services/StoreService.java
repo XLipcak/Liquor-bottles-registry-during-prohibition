@@ -14,6 +14,8 @@ public interface StoreService {
     StoreDTO findById(long id);
 
     StoreDTO findByAddress(String address);
+    
+    List<StoreDTO> findByFilter(String name, String address);
 
     void insertStore(StoreDTO storeDTO);
 
