@@ -27,7 +27,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     </bean>  -->
     
     <bean name="producerService" class="muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl">
-        <property name="producerDao" ref="producerDAO"/>    
+        <property name="producerDao" ref="producerDAO"/>   
+        <property name="bottleTypeDao" ref="bottleTypeDAO"/> 
     </bean>
     
     <bean name="bottleTypeService" class="muni.fi.pa165.liquorbottles.service.services.impl.BottleTypeServiceImpl">
