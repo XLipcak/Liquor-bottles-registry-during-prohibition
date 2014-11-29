@@ -22,9 +22,9 @@ form {
     margin-left: 10%;
 }
 
-input[type=submit]{
-    margin-left: 10%;
-    padding: 1px;
+table.filter{
+    float: left;
+    margin-left: 1%;
 }
 
 p{

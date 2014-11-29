@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
-<table>
+<table class="filter">
     <tr>
         <th><s:label for="f1" name="name"/></th>
         <td><s:text id="f1" name="name" value=""/></td>
