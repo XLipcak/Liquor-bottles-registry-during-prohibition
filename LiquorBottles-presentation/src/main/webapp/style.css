@@ -11,17 +11,42 @@ a{
 }
 
 a:hover {
-    font-size:1.2em;
+    font-size:1.1em;
 }  
 table{
-    margin-left: 15%;
+    margin-left: 10%;
 }
+
 form {
     width: 50%;
-    margin-left: 15%;
+    margin-left: 10%;
+}
+
+input[type=submit]{
+    margin-left: 10%;
+    padding: 1px;
+}
+
+p{
+    margin-left: 2%;
 }
 
 .menu{
     position: relative;
     width: 15%;
+}
+
+.basic, tr , th.info{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+td, th{
+    padding-left: 7px;
+    padding-right: 4px;
+}
+
+.info{
+    border-collapse: collapse;
+    border: 1px solid black;
 }

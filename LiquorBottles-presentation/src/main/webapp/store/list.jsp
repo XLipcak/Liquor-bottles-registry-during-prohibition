@@ -17,10 +17,10 @@
         </s:form>
         
         <table class="basic">
-            <tr>
-                <th>id</th>
-                <th><f:message key="store.name"/></th>
-                <th><f:message key="store.address"/></th>
+            <tr> 
+                <th class="info">id</th>
+                <th class="info"><f:message key="store.name"/></th>
+                <th class="info"><f:message key="store.address"/></th>
                 <th></th>
                 <th></th>
             </tr>

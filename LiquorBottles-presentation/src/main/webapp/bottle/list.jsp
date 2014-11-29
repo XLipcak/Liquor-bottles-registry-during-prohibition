@@ -11,13 +11,15 @@
 
         <table class="basic">
             <tr>
-                <th>id</th>
-                <th><f:message key="bottle.store.name"/></th>
-                <th><f:message key="bottle.bottleType.name"/></th>
-                <th><f:message key="bottle.batchNumber"/></th>
-                <th><f:message key="bottle.stamp"/></th>
-                <th><f:message key="bottle.dateOfBirth"/></th>
-                <th><f:message key="bottle.toxicity"/></th>
+                <th class="info">id</th>
+                <th class="info"><f:message key="bottle.store.name"/></th>
+                <th class="info"><f:message key="bottle.bottleType.name"/></th>
+                <th class="info"><f:message key="bottle.batchNumber"/></th>
+                <th class="info"><f:message key="bottle.stamp"/></th>
+                <th class="info"><f:message key="bottle.dateOfBirth"/></th>
+                <th class="info"><f:message key="bottle.toxicity"/></th>
+                <th></th>
+                <th></th>
             </tr>
             <%--  vypis vsetkeho   --%>
             <c:forEach items="${actionBean.bottleList}" var="bottle">
@@ -33,7 +35,7 @@
                     <%--   edit TODO --%>
                     <td>
                         <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit"><s:param name="bottle.id" value="${bottle.id}"/>edit</s:link>
-                    </td>
+                        </td>
 
 
                     <%--   delete TODO  --%>
