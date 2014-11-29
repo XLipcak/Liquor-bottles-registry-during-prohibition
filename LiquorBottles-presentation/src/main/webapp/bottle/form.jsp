@@ -47,10 +47,8 @@
     <tr>
         <th><s:label for="toxicitySelect" name="bottle.toxicity"/></th>
         <td>
-        <s:select name="toxicity" id="toxicitySelect">  
-                <c:forEach items="${actionBean.toxicityList}" var="toxicity">
-                    <s:option value="${toxicity}">${toxicity}</s:option>
-                </c:forEach>     
+            <s:select name="toxicitySelect" id="select" value="${actionBean.toxicitySelect}">  
+                <s:options-enumeration enum="muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO" />   
         </s:select>
         </td>
     </tr>

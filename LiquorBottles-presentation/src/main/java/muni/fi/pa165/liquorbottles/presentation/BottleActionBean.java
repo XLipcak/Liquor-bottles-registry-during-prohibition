@@ -1,11 +1,9 @@
 package muni.fi.pa165.liquorbottles.presentation;
 
-import java.util.ArrayList;
 import java.util.List;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
 import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
-import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
 import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
 import muni.fi.pa165.liquorbottles.service.services.BottleService;
@@ -25,8 +23,6 @@ import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,10 +37,10 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
 
     @SpringBean
     protected BottleService bottleService;
-    
+
     @SpringBean
     protected StoreService storeService;
-    
+
     @SpringBean
     protected BottleTypeService bottleTypeService;
 
@@ -52,68 +48,18 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
     private long storeID;
     private long bottleTypeID;
     private BottleDTO bottle;
-    private String toxicity;
+    private ToxicityDTO toxicitySelect = ToxicityDTO.TOXIC;
 
     private List<BottleTypeDTO> bottleTypeList;
     private List<StoreDTO> storeList;
-    private List<String> toxicityList;
-
-    public List<BottleTypeDTO> getBottleTypeList() {
-        return bottleTypeList;
-    }
-
-    public void setBottleTypeList(List<BottleTypeDTO> bottleTypeList) {
-        this.bottleTypeList = bottleTypeList;
-    }
-    
-    
-
-    public List<StoreDTO> getStoreList() {
-        return storeList;
-    }
-
-    public void setStoreList(List<StoreDTO> storeList) {
-        this.storeList = storeList;
-    }
-
-    public List<BottleDTO> getBottleList() {
-        return bottleList;
-    }
-
-    public void setBottleList(List<BottleDTO> bottleList) {
-        this.bottleList = bottleList;
-    }
-    
-    public List<String> getToxicityList() {
-        return toxicityList;
-    }
-
-    public void setToxicityList(List<String> toxicityList) {
-        this.toxicityList = toxicityList;
-    } 
-
-    public BottleActionBean() {
-        //Set Logger
-        BasicConfigurator.configure();
-        org.apache.log4j.Logger.getRootLogger().setLevel(Level.INFO);
-
-    }
 
     @DefaultHandler
     public Resolution list() {
         LOGGER.debug("list()");
         bottleList = bottleService.findAll();
         bottleTypeList = bottleTypeService.findAll();
-        storeList = storeService.findAll();      
-        generateToxicityList();
+        storeList = storeService.findAll();
         return new ForwardResolution("/bottle/list.jsp");
-    }
-    
-    private void generateToxicityList(){
-        toxicityList = new ArrayList<String>();
-        toxicityList.add("TOXIC");
-        toxicityList.add("NON_TOXIC");
-        toxicityList.add("UNCHECKED");
     }
 
     @Override
@@ -121,7 +67,6 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         bottleList = bottleService.findAll();
         bottleTypeList = bottleTypeService.findAll();
         storeList = storeService.findAll();
-        generateToxicityList();
         return null;
     }
 
@@ -131,43 +76,16 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         @Validate(on = {"add", "save"}, field = "dateOfBirth", required = true)
     })
 
-    
-
-    public BottleDTO getBottle() {
-        return bottle;
-    }
-
-    public void setBottle(BottleDTO bottle) {
-        this.bottle = bottle;
-    }
-    
-
-    public long getStoreID() {
-        return storeID;
-    }
-
-    public void setStoreID(long storeID) {
-        this.storeID = storeID;
-    }
-    
-    public long getBottleTypeID() {
-        return storeID;
-    }
-
-    public void setBottleTypeID(long bottleTypeID) {
-        this.bottleTypeID = bottleTypeID;
-    }
-
     public Resolution add() {
         LOGGER.debug("add() bottle={}", bottle);
         bottle.setStore(storeService.findById(storeID));
         bottle.setBottleType(bottleTypeService.findById(bottleTypeID));
-        setToxicityOfBottle(toxicity);
+        bottle.setToxicity(toxicitySelect);
         bottleService.insertBottle(bottle);
         getContext().getMessages().add(new LocalizableMessage("bottle.add.message", escapeHTML(bottleTypeService.findById(bottle.getBottleType().getId()).getName()), escapeHTML(String.valueOf(bottle.getStamp()))));
         return new RedirectResolution(this.getClass(), "list");
     }
-    
+
     @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "save"})
     public void loadBottleFromDatabase() {
         String ids = getContext().getRequest().getParameter("bottle.id");
@@ -176,25 +94,24 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         }
         bottle = bottleService.findById(Long.parseLong(ids));
     }
-    
+
     public Resolution edit() {
         LOGGER.debug("edit() bottle={}", bottle);
         bottleTypeList = bottleTypeService.findAll();
         storeList = storeService.findAll();
-        generateToxicityList();
+        toxicitySelect = bottle.getToxicity();
         return new ForwardResolution("/bottle/edit.jsp");
     }
-    
+
     public Resolution save() {
         LOGGER.debug("save() bottle={}", bottle);
         bottle.setStore(storeService.findById(storeID));
-        bottle.setBottleType(bottleTypeService.findById(bottleTypeID));    
-        setToxicityOfBottle(toxicity);
+        bottle.setBottleType(bottleTypeService.findById(bottleTypeID));
+        bottle.setToxicity(toxicitySelect);
         bottleService.updateBottle(bottle);
-        System.out.println("PRINTINGGGGGGGGGGG"+toxicity);
         return new RedirectResolution(this.getClass(), "list");
     }
-    
+
     public Resolution delete() {
         LOGGER.debug("delete({})", bottle.getId());
         //only id is filled by the form
@@ -228,25 +145,60 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         this.bottleTypeService = bottleTypeService;
     }
 
-    public String getToxicity() {
-        return toxicity;
+    public ToxicityDTO getToxicitySelect() {
+        return toxicitySelect;
     }
 
-    public void setToxicity(String toxicity) {
-        this.toxicity = toxicity;
+    public void setToxicitySelect(ToxicityDTO toxicitySelect) {
+        this.toxicitySelect = toxicitySelect;
     }
-    
-    private void setToxicityOfBottle(String input){
-        if(toxicity.equals("TOXIC")){
-            bottle.setToxicity(ToxicityDTO.TOXIC);
-        }
-        if(toxicity.equals("UNCHECKED")){
-            bottle.setToxicity(ToxicityDTO.UNCHECKED);
-        }
-        if(toxicity.equals("NON_TOXIC")){
-            bottle.setToxicity(ToxicityDTO.NON_TOXIC);
-        }
+
+    public List<BottleTypeDTO> getBottleTypeList() {
+        return bottleTypeList;
     }
-    
+
+    public void setBottleTypeList(List<BottleTypeDTO> bottleTypeList) {
+        this.bottleTypeList = bottleTypeList;
+    }
+
+    public List<StoreDTO> getStoreList() {
+        return storeList;
+    }
+
+    public void setStoreList(List<StoreDTO> storeList) {
+        this.storeList = storeList;
+    }
+
+    public List<BottleDTO> getBottleList() {
+        return bottleList;
+    }
+
+    public void setBottleList(List<BottleDTO> bottleList) {
+        this.bottleList = bottleList;
+    }
+
+    public BottleDTO getBottle() {
+        return bottle;
+    }
+
+    public void setBottle(BottleDTO bottle) {
+        this.bottle = bottle;
+    }
+
+    public long getStoreID() {
+        return storeID;
+    }
+
+    public void setStoreID(long storeID) {
+        this.storeID = storeID;
+    }
+
+    public long getBottleTypeID() {
+        return storeID;
+    }
+
+    public void setBottleTypeID(long bottleTypeID) {
+        this.bottleTypeID = bottleTypeID;
+    }
 
 }
