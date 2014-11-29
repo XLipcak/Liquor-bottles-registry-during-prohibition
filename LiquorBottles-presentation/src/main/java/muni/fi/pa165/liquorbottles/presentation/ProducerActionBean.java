@@ -113,11 +113,13 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
         //only id is filled by the form 
         producer = producerService.findById(producer.getId());
         
+        String producerAddress = producer.getAddress();
+        String producerName = producer.getName();
         //TODO tu to niekde pada netusim preco lebo servis je v pohode.
         if(producerService.deleteProducer(producer)){
-          // getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producerName), escapeHTML(producerAddress)));        
+          getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producerName), escapeHTML(producerAddress)));        
         } else {
-          // getContext().getMessages().add(new LocalizableMessage("producer.delete.error.message", escapeHTML(producerName))); 
+          getContext().getMessages().add(new LocalizableMessage("producer.delete.error.message", escapeHTML(producerName))); 
         }
         
         return new RedirectResolution(this.getClass(), "list");

@@ -1,5 +1,6 @@
 package muni.fi.pa165.liquorbottles.presentation;
 
+import java.util.ArrayList;
 import java.util.List;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
 import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
@@ -55,6 +56,7 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
 
     private List<BottleTypeDTO> bottleTypeList;
     private List<StoreDTO> storeList;
+    private List<String> toxicityList;
 
     public List<BottleTypeDTO> getBottleTypeList() {
         return bottleTypeList;
@@ -81,6 +83,14 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
     public void setBottleList(List<BottleDTO> bottleList) {
         this.bottleList = bottleList;
     }
+    
+    public List<String> getToxicityList() {
+        return toxicityList;
+    }
+
+    public void setToxicityList(List<String> toxicityList) {
+        this.toxicityList = toxicityList;
+    } 
 
     public BottleActionBean() {
         //Set Logger
@@ -94,8 +104,16 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         LOGGER.debug("list()");
         bottleList = bottleService.findAll();
         bottleTypeList = bottleTypeService.findAll();
-        storeList = storeService.findAll();
+        storeList = storeService.findAll();      
+        generateToxicityList();
         return new ForwardResolution("/bottle/list.jsp");
+    }
+    
+    private void generateToxicityList(){
+        toxicityList = new ArrayList<String>();
+        toxicityList.add("TOXIC");
+        toxicityList.add("NON_TOXIC");
+        toxicityList.add("UNCHECKED");
     }
 
     @Override
@@ -103,6 +121,7 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         bottleList = bottleService.findAll();
         bottleTypeList = bottleTypeService.findAll();
         storeList = storeService.findAll();
+        generateToxicityList();
         return null;
     }
 
@@ -162,6 +181,7 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         LOGGER.debug("edit() bottle={}", bottle);
         bottleTypeList = bottleTypeService.findAll();
         storeList = storeService.findAll();
+        generateToxicityList();
         return new ForwardResolution("/bottle/edit.jsp");
     }
     
@@ -217,13 +237,13 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
     }
     
     private void setToxicityOfBottle(String input){
-        if(toxicity.equals("toxic")){
+        if(toxicity.equals("TOXIC")){
             bottle.setToxicity(ToxicityDTO.TOXIC);
         }
-        if(toxicity.equals("unchecked")){
+        if(toxicity.equals("UNCHECKED")){
             bottle.setToxicity(ToxicityDTO.UNCHECKED);
         }
-        if(toxicity.equals("nontoxic")){
+        if(toxicity.equals("NON_TOXIC")){
             bottle.setToxicity(ToxicityDTO.NON_TOXIC);
         }
     }

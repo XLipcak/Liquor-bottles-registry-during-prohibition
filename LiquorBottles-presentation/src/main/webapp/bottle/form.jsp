@@ -5,10 +5,10 @@
     
     <tr>
         <th>
-            <s:label for="select" name="storeID">store</s:label>
+            <s:label for="storeSelect" name="storeID">store</s:label>
         </th>
         <td>
-            <s:select name="storeID" id="select">  
+            <s:select name="storeID" id="storeSelect">  
                 <c:forEach items="${actionBean.storeList}" var="store">
                     <s:option value="${store.id}">${store.name}</s:option>
                 </c:forEach>     
@@ -18,10 +18,10 @@
     
     <tr>
         <th>
-            <s:label for="select" name="bottleTypeID">bottle type</s:label>
+            <s:label for="bottleTypeSelect" name="bottleTypeID">bottle type</s:label>
         </th>
         <td>
-            <s:select name="bottleTypeID" id="select">  
+            <s:select name="bottleTypeID" id="bottleTypeSelect">  
                 <c:forEach items="${actionBean.bottleTypeList}" var="bottleType">
                     <s:option value="${bottleType.id}">${bottleType.name}</s:option>
                 </c:forEach>     
@@ -45,8 +45,14 @@
     </tr>
     
     <tr>
-        <th><s:label for="toxicityInput" name="bottle.toxicity"/></th>
-        <td><s:checkbox id="toxicityInput" name="bottle.toxicity"/></td>
+        <th><s:label for="toxicitySelect" name="bottle.toxicity"/></th>
+        <td>
+        <s:select name="toxicity" id="toxicitySelect">  
+                <c:forEach items="${actionBean.toxicityList}" var="toxicity">
+                    <s:option value="${toxicity}">${toxicity}</s:option>
+                </c:forEach>     
+        </s:select>
+        </td>
     </tr>
 
 </table>
