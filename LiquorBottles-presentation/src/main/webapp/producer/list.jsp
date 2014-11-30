@@ -11,9 +11,9 @@
 
         <table class="basic">
             <tr>
-                <th>id</th>
-                <th><f:message key="producer.name"/></th>
-                <th><f:message key="producer.address"/></th>
+                <th class="info">id</th>
+                <th class="info"><f:message key="producer.name"/></th>
+                <th class="info"><f:message key="producer.address"/></th>
                 <th></th>
                 <th></th>
             </tr>
