@@ -12,8 +12,8 @@
         <table class="basic">
             <tr>
                 <th class="info">id</th>
-                <th class="info"><f:message key="producer.name"/></th>
-                <th class="info"><f:message key="producer.address"/></th>
+                <th class="info"><f:message key="common.name"/></th>
+                <th class="info"><f:message key="common.address"/></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -25,7 +25,10 @@
                     <td><c:out value="${producer.address}"/></td>
                     
                     <td>
-                     <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean" event="edit"><s:param name="producer.id" value="${producer.id}"/>edit</s:link>
+                     <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean" event="edit">
+                         <s:param name="producer.id" value="${producer.id}"/>
+                         <f:message key="common.edit"/>
+                     </s:link>
                     </td>
                     
                     
@@ -33,7 +36,7 @@
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
                             <s:hidden name="producer.id" value="${producer.id}"/>
-                            <s:submit name="delete"><f:message key="producer.list.delete"/></s:submit>
+                            <s:submit name="delete"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td>
                     

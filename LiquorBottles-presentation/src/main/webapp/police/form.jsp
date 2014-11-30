@@ -8,19 +8,19 @@
 <s:errors/>
 <table>
     <tr>
-        <th><s:label for="s1" name="police.name"/></th>
+        <th><s:label for="s1" name="common.name"/></th>
         <td><s:text id="s1" name="police.name"/></td>
     </tr>
     <tr>
-        <th><s:label for="s2" name="police.address"/></th>
+        <th><s:label for="s2" name="common.address"/></th>
         <td><s:text id="s2" name="police.address"/></td>
     </tr>
     <tr>
-        <th><s:label for="s3" name="police.username"/></th>
+        <th><s:label for="s3" name="common.username"/></th>
         <td><s:text id="s3" name="police.username"/></td>
     </tr>
     <tr>
-        <th><s:label for="s4" name="police.password"/></th>
+        <th><s:label for="s4" name="common.password"/></th>
         <td><s:text id="s4" name="police.password"/></td>
     </tr>
 </table>

@@ -12,7 +12,7 @@
         <table class="basic">
             <tr>
                 <th class="info">id</th>
-                <th class="info"><f:message key="bottle.store.name"/></th>
+                <th class="info"><f:message key="bottle.common.name"/></th>
                 <th class="info"><f:message key="bottle.bottleType.name"/></th>
                 <th class="info"><f:message key="bottle.batchNumber"/></th>
                 <th class="info"><f:message key="bottle.stamp"/></th>
@@ -34,7 +34,10 @@
 
                     <%--   edit TODO --%>
                     <td>
-                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit"><s:param name="bottle.id" value="${bottle.id}"/>edit</s:link>
+                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit">
+                            <s:param name="bottle.id" value="${bottle.id}"/>
+                            <f:message key="common.edit"/>
+                        </s:link>
                         </td>
 
 
@@ -42,7 +45,7 @@
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
                             <s:hidden name="bottle.id" value="${bottle.id}"/>
-                            <s:submit name="delete"><f:message key="bottle.list.delete"/></s:submit>
+                            <s:submit name="delete"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td> 
 

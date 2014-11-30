@@ -23,7 +23,7 @@
                 <th class="info"><f:message key="bottleType.alcType"/></th>
                 <th class="info"><f:message key="bottleType.power"/></th>
                 <th class="info"><f:message key="bottleType.volume"/></th>
-                <th class="info"><f:message key="bottleType.producer.name"/></th>
+                <th class="info"><f:message key="bottleType.common.name"/></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -39,7 +39,10 @@
 
                     <%--   edit TODO --%>
                     <td>
-                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean" event="edit"><s:param name="bottleType.id" value="${bottleType.id}"/>edit</s:link>
+                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean" event="edit">
+                            <s:param name="bottleType.id" value="${bottleType.id}"/>
+                            <f:message key="common.edit"/>
+                        </s:link>
                         </td>
 
 
@@ -47,7 +50,7 @@
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
                             <s:hidden name="bottleType.id" value="${bottleType.id}"/>
-                            <s:submit name="delete"><f:message key="bottleType.list.delete"/></s:submit>
+                            <s:submit name="delete"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td> 
 

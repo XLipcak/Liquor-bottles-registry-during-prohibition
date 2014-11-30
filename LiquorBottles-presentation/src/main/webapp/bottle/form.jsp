@@ -5,7 +5,7 @@
     
     <tr>
         <th>
-            <s:label for="storeSelect" name="storeID">store</s:label>
+            <s:label for="storeSelect" name="bottle.store.name" />
         </th>
         <td>
             <s:select name="storeID" id="storeSelect">  
@@ -18,7 +18,7 @@
     
     <tr>
         <th>
-            <s:label for="bottleTypeSelect" name="bottleTypeID">bottle type</s:label>
+            <s:label for="bottleTypeSelect" name="bottle.bottleType.name" />
         </th>
         <td>
             <s:select name="bottleTypeID" id="bottleTypeSelect">  

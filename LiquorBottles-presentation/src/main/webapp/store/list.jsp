@@ -19,8 +19,8 @@
         <table class="basic">
             <tr> 
                 <th class="info">id</th>
-                <th class="info"><f:message key="store.name"/></th>
-                <th class="info"><f:message key="store.address"/></th>
+                <th class="info"><f:message key="common.name"/></th>
+                <th class="info"><f:message key="common.address"/></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -33,7 +33,10 @@
             
                     <%--   edit  --%>
                     <td>
-                     <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean" event="edit"><s:param name="store.id" value="${store.id}"/>edit</s:link>
+                     <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean" event="edit">
+                         <s:param name="store.id" value="${store.id}"/>
+                         <f:message key="common.edit"/>
+                     </s:link>
                     </td>
                     
                     
@@ -41,7 +44,7 @@
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
                             <s:hidden name="store.id" value="${store.id}"/>
-                            <s:submit name="delete"><f:message key="store.list.delete"/></s:submit>
+                            <s:submit name="delete"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td> 
                     
@@ -55,7 +58,7 @@
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
             <fieldset><legend><f:message key="store.list.newstore"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="add">Vytvořit novy obchod</s:submit>
+                <s:submit name="add"><f:message key="store.button.add"/></s:submit>
             </fieldset>
         </s:form>
         

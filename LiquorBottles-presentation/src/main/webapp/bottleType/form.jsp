@@ -4,7 +4,7 @@
 <table>
     <tr>
         <th>
-            <s:label for="select" name="producerID">producer</s:label>
+            <s:label for="select" name="bottleType.common.name" />
         </th>
         <td>
             <s:select name="producerID" id="select">  

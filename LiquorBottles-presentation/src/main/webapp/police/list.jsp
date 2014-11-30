@@ -25,8 +25,8 @@
         <table class="basic">
             <tr>
                 <th class="info">id</th>
-                <th class="info"><f:message key="police.name"/></th>
-                <th class="info"><f:message key="police.address"/></th>
+                <th class="info"><f:message key="common.name"/></th>
+                <th class="info"><f:message key="common.address"/></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -39,14 +39,17 @@
 
 
                     <td>
-                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean" event="edit"><s:param name="police.id" value="${police.id}"/>edit</s:link>
+                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean" event="edit">
+                            <s:param name="police.id" value="${police.id}"/>
+                            <f:message key="common.edit"/>
+                        </s:link>
                         </td>
 
                     <%--   delete  --%>
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean">
                             <s:hidden name="police.id" value="${police.id}"/>
-                            <s:submit name="delete"><f:message key="police.list.delete"/></s:submit>
+                            <s:submit name="delete"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td> 
 
@@ -60,7 +63,7 @@
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean">
             <fieldset><legend><f:message key="police.list.newpolice"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="add">Create Police</s:submit>
+                <s:submit name="add"><f:message key="police.add.button"/></s:submit>
                 </fieldset>
         </s:form>
 

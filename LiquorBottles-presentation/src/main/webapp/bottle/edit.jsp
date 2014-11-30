@@ -8,9 +8,9 @@
 
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
             <s:hidden name="bottle.id"/>
-            <fieldset><legend><f:message key="bottle.edit.edit"/></legend>
+            <fieldset><legend><f:message key="common.edit"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="save"><f:message key="bottle.edit.save"/></s:submit>
+                <s:submit name="save"><f:message key="common.save"/></s:submit>
             </fieldset>
         </s:form>
 
