@@ -103,29 +103,25 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    public boolean deleteProducer(ProducerDTO producerDto) {
+    public void deleteProducer(ProducerDTO producerDto) {
         try {
             Producer producer = convertor.fromDTOToEntity(producerDto);
-            if(isDeletePossible(producerDto.getId())){
-                producerDao.deleteProducer(producer);
-                return true;
-            }
+            producerDao.deleteProducer(producer);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!", ex);
         }
-        return false;
     }
-    
-    private boolean isDeletePossible(long producerID){
+
+    private boolean isDeletePossible(long producerID) {
         return bottleTypeDao.findByProducer(producerID).isEmpty();
-        
+
     }
 
     @Required
     public void setProducerDao(ProducerDAO producerDao) {
         this.producerDao = producerDao;
     }
-    
+
     @Required
     public void setBottleTypeDao(BottleTypeDAO bottleTypeDao) {
         this.bottleTypeDao = bottleTypeDao;

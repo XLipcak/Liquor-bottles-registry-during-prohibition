@@ -23,6 +23,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -35,7 +36,7 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
 
     @SpringBean
     protected ProducerService producerService;
-    
+
     @SpringBean
     protected BottleTypeService bottleTypeService;
 
@@ -101,27 +102,27 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
         return new ForwardResolution("/producer/edit.jsp");
     }
 
-    
     public Resolution save() {
         LOGGER.debug("save() producer={}", producer);
         producerService.updateProducer(producer);
         return new RedirectResolution(this.getClass(), "list");
     }
-    
+
     public Resolution delete() {
         LOGGER.debug("delete({})", producer.getId());
-        //only id is filled by the form 
-        producer = producerService.findById(producer.getId());
         
+        producer = producerService.findById(producer.getId());
+
         String producerAddress = producer.getAddress();
         String producerName = producer.getName();
-        //TODO tu to niekde pada netusim preco lebo servis je v pohode.
-        if(producerService.deleteProducer(producer)){
-          getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producerName), escapeHTML(producerAddress)));        
-        } else {
-          getContext().getMessages().add(new LocalizableMessage("producer.delete.error.message", escapeHTML(producerName))); 
-        }
         
+        try {
+            producerService.deleteProducer(producer);
+            getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producerName), escapeHTML(producerAddress)));
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("producer.delete.error.message", escapeHTML(producerName)));
+        }
+
         return new RedirectResolution(this.getClass(), "list");
     }
 }

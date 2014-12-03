@@ -134,10 +134,15 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
 
     public Resolution delete() {
         LOGGER.debug("delete({})", store.getId());
-        //only id is filled by the form
         store = storeService.findById(store.getId());
-        storeService.deleteStore(store);
-        getContext().getMessages().add(new LocalizableMessage("store.delete.message", escapeHTML(store.getName()), escapeHTML(store.getAddress())));
+        
+        try {
+            storeService.deleteStore(store);
+            getContext().getMessages().add(new LocalizableMessage("store.delete.message", escapeHTML(store.getName()), escapeHTML(store.getAddress())));
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("store.delete.error.message", escapeHTML(store.getName())));
+        }
+        
         return new RedirectResolution(this.getClass(), "list");
     }
 }

@@ -23,6 +23,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -39,10 +40,9 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     protected ProducerService producerService;
 
     private List<BottleTypeDTO> bottleTypeList;
-    
+
     private List<ProducerDTO> producerList;
     private BottleTypeDTO bottleType;
-    
 
     public List<ProducerDTO> getProducerList() {
         return producerList;
@@ -51,7 +51,6 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     public void setProducerList(List<ProducerDTO> producerList) {
         this.producerList = producerList;
     }
-    
 
     public List<BottleTypeDTO> getBottleTypeList() {
         return bottleTypeList;
@@ -90,8 +89,6 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         @Validate(on = {"add", "save"}, field = "power", required = true)
     })
 
-   
-
     public BottleTypeDTO getBottleType() {
         return bottleType;
     }
@@ -116,7 +113,7 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         getContext().getMessages().add(new LocalizableMessage("bottleType.add.message", escapeHTML(bottleType.getName())));
         return new RedirectResolution(this.getClass(), "list");
     }
-    
+
     @Before(stages = LifecycleStage.BindingAndValidation, on = {"edit", "save"})
     public void loadBottleTypeFromDatabase() {
         String ids = getContext().getRequest().getParameter("bottleType.id");
@@ -125,26 +122,31 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         }
         bottleType = bottleTypeService.findById(Long.parseLong(ids));
     }
-    
+
     public Resolution edit() {
         LOGGER.debug("edit() bottleType={}", bottleType);
         producerList = producerService.findAll();
         return new ForwardResolution("/bottleType/edit.jsp");
     }
-    
+
     public Resolution save() {
         LOGGER.debug("save() bottleType={}", bottleType);
         bottleType.setProducer(producerService.findById(producerID));
         bottleTypeService.updateBottleType(bottleType);
         return new RedirectResolution(this.getClass(), "list");
     }
-    
+
     public Resolution delete() {
         LOGGER.debug("delete({})", bottleType.getId());
         //only id is filled by the form
         bottleType = bottleTypeService.findById(bottleType.getId());
-        bottleTypeService.deleteBottleType(bottleType);
-        getContext().getMessages().add(new LocalizableMessage("bottleType.delete.message", escapeHTML(bottleType.getName())));
+        try {
+            bottleTypeService.deleteBottleType(bottleType);
+            getContext().getMessages().add(new LocalizableMessage("bottleType.delete.message", escapeHTML(bottleType.getName())));
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("bottleType.delete.error.message", escapeHTML(bottleType.getName())));
+        }
+
         return new RedirectResolution(this.getClass(), "list");
     }
 
