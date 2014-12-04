@@ -81,8 +81,15 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         bottle.setStore(storeService.findById(storeID));
         bottle.setBottleType(bottleTypeService.findById(bottleTypeID));
         bottle.setToxicity(toxicitySelect);
-        bottleService.insertBottle(bottle);
-        getContext().getMessages().add(new LocalizableMessage("bottle.add.message", escapeHTML(bottleTypeService.findById(bottle.getBottleType().getId()).getName()), escapeHTML(String.valueOf(bottle.getStamp()))));
+        try{
+            bottleService.insertBottle(bottle);
+            getContext().getMessages().add(new LocalizableMessage("bottle.add.message", 
+                    escapeHTML(bottleTypeService.findById(bottle.getBottleType().getId()).getName()), 
+                    escapeHTML(String.valueOf(bottle.getStamp()))));
+        }catch(Exception ex){
+            getContext().getMessages().add(new LocalizableMessage("bottle.stamp.error.message", escapeHTML(Long.toString(bottle.getStamp()))));
+        }
+        
         return new RedirectResolution(this.getClass(), "list");
     }
 
@@ -108,7 +115,13 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         bottle.setStore(storeService.findById(storeID));
         bottle.setBottleType(bottleTypeService.findById(bottleTypeID));
         bottle.setToxicity(toxicitySelect);
-        bottleService.updateBottle(bottle);
+        
+        try{
+            bottleService.updateBottle(bottle);
+        }catch(Exception ex){
+            getContext().getMessages().add(new LocalizableMessage("bottle.stamp.error.message", escapeHTML(Long.toString(bottle.getStamp()))));
+        }
+        
         return new RedirectResolution(this.getClass(), "list");
     }
 

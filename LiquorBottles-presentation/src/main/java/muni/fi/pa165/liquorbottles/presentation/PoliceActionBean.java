@@ -50,8 +50,12 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
     })
 
     public Resolution add() {
-        policeService.insertPolice(police);
-        getContext().getMessages().add(new LocalizableMessage("police.add.message", escapeHTML(police.getName()), escapeHTML(police.getAddress())));
+        try {
+            policeService.insertPolice(police);
+            getContext().getMessages().add(new LocalizableMessage("police.add.message", escapeHTML(police.getName()), escapeHTML(police.getAddress())));
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(police.getUsername())));
+        }
         return new RedirectResolution(this.getClass(), "list");
     }
 
@@ -108,7 +112,12 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
     }
 
     public Resolution save() {
-        policeService.updatePolice(police);
+        
+        try {
+            policeService.updatePolice(police);
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(police.getUsername())));
+        }
         return new RedirectResolution(this.getClass(), "list");
     }
 

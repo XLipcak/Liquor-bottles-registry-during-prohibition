@@ -60,8 +60,12 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
 
     public Resolution add() {
         LOGGER.debug("add() store={}", store);
-        storeService.insertStore(store);
-        getContext().getMessages().add(new LocalizableMessage("store.add.message", escapeHTML(store.getName()), escapeHTML(store.getAddress())));
+        try {
+            storeService.insertStore(store);
+            getContext().getMessages().add(new LocalizableMessage("store.add.message", escapeHTML(store.getName()), escapeHTML(store.getAddress())));
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(store.getUsername())));
+        }
         return new RedirectResolution(this.getClass(), "list");
     }
 
@@ -127,7 +131,12 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
 
     public Resolution save() {
         LOGGER.debug("save() store={}", store);
-        storeService.updateStore(store);
+        
+        try {
+            storeService.updateStore(store);
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(store.getUsername())));
+        }
         return new RedirectResolution(this.getClass(), "list");
     }
     // DELETE part

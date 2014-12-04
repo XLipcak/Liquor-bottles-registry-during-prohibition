@@ -83,8 +83,13 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
 
     public Resolution add() {
         LOGGER.debug("add() producer={}", producer);
-        producerService.insertProducer(producer);
-        getContext().getMessages().add(new LocalizableMessage("producer.add.message", escapeHTML(producer.getName()), escapeHTML(producer.getAddress())));
+        try {
+            producerService.insertProducer(producer);
+            getContext().getMessages().add(new LocalizableMessage("producer.add.message", escapeHTML(producer.getName()), escapeHTML(producer.getAddress())));
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(producer.getUsername())));
+        }
+        
         return new RedirectResolution(this.getClass(), "list");
     }
 
@@ -104,7 +109,13 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
 
     public Resolution save() {
         LOGGER.debug("save() producer={}", producer);
-        producerService.updateProducer(producer);
+        
+        try {
+            producerService.updateProducer(producer);
+        } catch (Exception ex) {
+            getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(producer.getUsername())));
+        }
+        
         return new RedirectResolution(this.getClass(), "list");
     }
 
