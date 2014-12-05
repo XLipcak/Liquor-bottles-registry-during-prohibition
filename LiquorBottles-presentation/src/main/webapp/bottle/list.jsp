@@ -9,15 +9,15 @@
 
         <p><f:message key="bottle.list.allbottles"/></p>
 
-        <table class="basic">
+        <table class="table table-hover">
             <tr>
-                <th class="info">id</th>
-                <th class="info"><f:message key="bottle.common.name"/></th>
-                <th class="info"><f:message key="bottle.bottleType.name"/></th>
-                <th class="info"><f:message key="bottle.batchNumber"/></th>
-                <th class="info"><f:message key="bottle.stamp"/></th>
-                <th class="info"><f:message key="bottle.dateOfBirth"/></th>
-                <th class="info"><f:message key="bottle.toxicity"/></th>
+                <th >id</th>
+                <th ><f:message key="bottle.common.name"/></th>
+                <th ><f:message key="bottle.bottleType.name"/></th>
+                <th ><f:message key="bottle.batchNumber"/></th>
+                <th ><f:message key="bottle.stamp"/></th>
+                <th ><f:message key="bottle.dateOfBirth"/></th>
+                <th ><f:message key="bottle.toxicity"/></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -34,7 +34,7 @@
 
                     <%--   edit TODO --%>
                     <td>
-                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit">
+                        <s:link class="btn btn-success" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit">
                             <s:param name="bottle.id" value="${bottle.id}"/>
                             <f:message key="common.edit"/>
                         </s:link>
@@ -45,7 +45,7 @@
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
                             <s:hidden name="bottle.id" value="${bottle.id}"/>
-                            <s:submit name="delete"><f:message key="common.delete"/></s:submit>
+                            <s:submit name="delete" class="btn btn-danger"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td> 
 
@@ -59,7 +59,7 @@
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
             <fieldset><legend><f:message key="bottle.list.newbottle"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="add"><f:message key="bottle.add.button"/></s:submit>
+                <s:submit name="add" class="btn btn-primary"><f:message key="bottle.add.button"/></s:submit>
                 </fieldset>
         </s:form>
 

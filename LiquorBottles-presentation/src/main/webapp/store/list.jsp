@@ -7,20 +7,21 @@
     <s:layout-component name="body">
         <s:useActionBean beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean" var="actionBean"/>
 
-        <p><f:message key="store.list.allstores"/></p>
+        
 
-        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
+        <s:form  class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
                 <fieldset><legend><f:message key="filter.list"/></legend>
                     <%@include file="filter.jsp"%>
-                    <s:submit name="filter"><f:message key="filter.submit"/></s:submit>
+                    <s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit>
                 </fieldset>
         </s:form>
         
-        <table class="basic">
+        <p><f:message key="store.list.allstores"/></p>
+        <table class="table table-hover">
             <tr> 
-                <th class="info">id</th>
-                <th class="info"><f:message key="common.name"/></th>
-                <th class="info"><f:message key="common.address"/></th>
+                <th >id</th>
+                <th ><f:message key="common.name"/></th>
+                <th ><f:message key="common.address"/></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -33,7 +34,7 @@
             
                     <%--   edit  --%>
                     <td>
-                     <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean" event="edit">
+                     <s:link class="btn btn-success" beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean" event="edit">
                          <s:param name="store.id" value="${store.id}"/>
                          <f:message key="common.edit"/>
                      </s:link>
@@ -44,7 +45,7 @@
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
                             <s:hidden name="store.id" value="${store.id}"/>
-                            <s:submit name="delete"><f:message key="common.delete"/></s:submit>
+                            <s:submit name="delete" class="btn btn-danger"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td> 
                     
@@ -58,7 +59,7 @@
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
             <fieldset><legend><f:message key="store.list.newstore"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="add"><f:message key="store.button.add"/></s:submit>
+                <s:submit name="add" class="btn btn-default"><f:message key="store.button.add"/></s:submit>
             </fieldset>
         </s:form>
         
