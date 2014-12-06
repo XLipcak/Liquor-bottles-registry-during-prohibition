@@ -9,6 +9,13 @@
 
         <p><f:message key="producer.list.allproducers"/></p>
 
+        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
+            <fieldset><legend><f:message key="filter.list"/></legend>
+                <%@include file="filter.jsp"%>
+                <s:submit name="filter"><f:message key="filter.submit"/></s:submit>
+                </fieldset>
+        </s:form>
+
         <table class="basic">
             <tr>
                 <th class="info">id</th>
@@ -23,15 +30,15 @@
                     <td>${producer.id}</td>
                     <td><c:out value="${producer.name}"/> </td>
                     <td><c:out value="${producer.address}"/></td>
-                    
+
                     <td>
-                     <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean" event="edit">
-                         <s:param name="producer.id" value="${producer.id}"/>
-                         <f:message key="common.edit"/>
-                     </s:link>
+                        <s:link beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean" event="edit">
+                            <s:param name="producer.id" value="${producer.id}"/>
+                            <f:message key="common.edit"/>
+                        </s:link>
                     </td>
-                    
-                    
+
+
                     <%--   delete TODO  --%>
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
@@ -39,21 +46,21 @@
                             <s:submit name="delete"><f:message key="common.delete"/></s:submit>
                         </s:form>
                     </td>
-                    
+
                 </tr>
 
             </c:forEach>
 
         </table>
 
-                    <%--   add new TODO --%>
+        <%--   add new TODO --%>
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
             <fieldset><legend><f:message key="producer.list.newproducer"/></legend>
                 <%@include file="form.jsp"%>
                 <s:submit name="add"><f:message key="producer.add.button"/></s:submit>
-            </fieldset>
+                </fieldset>
         </s:form>
 
-            
+
     </s:layout-component>
 </s:layout-render>

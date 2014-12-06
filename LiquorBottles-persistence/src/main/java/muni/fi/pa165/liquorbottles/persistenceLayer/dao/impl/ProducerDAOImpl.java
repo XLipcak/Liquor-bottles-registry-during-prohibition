@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Required;
  * @author Michal Štora, Masaryk University
  */
 public class ProducerDAOImpl implements ProducerDAO {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(BottleDAOImpl.class);
 
     @PersistenceContext
@@ -115,6 +115,40 @@ public class ProducerDAOImpl implements ProducerDAO {
     }
 
     @Override
+    public List<Producer> findByFilter(String name, String address) {
+        LOGGER.info("Finding Store by filter.");
+        try {
+            TypedQuery<Producer> producerByFilterQuerry;
+
+            String query = "SELECT p FROM Producer p WHERE ";
+            if (!name.equals("")) {
+                query += "p.name LIKE :name AND ";
+            }
+            if (!address.equals("")) {
+                query += "p.address LIKE :address AND ";
+            }
+
+            query += "1=1";
+
+            producerByFilterQuerry = em.createQuery(query, Producer.class);
+
+            if (!name.equals("")) {
+                producerByFilterQuerry.setParameter("name", '%' + name + '%');
+            }
+            if (!address.equals("")) {
+                producerByFilterQuerry.setParameter("address", '%' + address + '%');
+            }
+
+            List<Producer> filterProducer = producerByFilterQuerry.getResultList();
+
+            return filterProducer;
+        } catch (Exception ex) {
+            LOGGER.error(ex.getMessage());
+            throw new PersistenceException("Transaction failed. \n" + ex.getMessage(), ex);
+        }
+    }
+
+    @Override
     public void insertProducer(Producer producer) {
         userDAO.insertUser(producer);
     }
@@ -138,5 +172,4 @@ public class ProducerDAOImpl implements ProducerDAO {
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
-
 }

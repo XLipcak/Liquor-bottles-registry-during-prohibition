@@ -18,6 +18,8 @@ public interface ProducerService {
     ProducerDTO findByName(String name);
 
     ProducerDTO findByAddress(String address);
+    
+    List<ProducerDTO> findByFilter(String name, String address);
 
     void insertProducer(ProducerDTO producerDto);
 

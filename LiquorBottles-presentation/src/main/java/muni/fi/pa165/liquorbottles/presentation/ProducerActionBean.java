@@ -41,6 +41,8 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
     protected BottleTypeService bottleTypeService;
 
     private List<ProducerDTO> producerList;
+    private String name;
+    private String address;
 
     public List<ProducerDTO> getProducerList() {
         return producerList;
@@ -89,7 +91,7 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(producer.getUsername())));
         }
-        
+
         return new RedirectResolution(this.getClass(), "list");
     }
 
@@ -109,24 +111,24 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
 
     public Resolution save() {
         LOGGER.debug("save() producer={}", producer);
-        
+
         try {
             producerService.updateProducer(producer);
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(producer.getUsername())));
         }
-        
+
         return new RedirectResolution(this.getClass(), "list");
     }
 
     public Resolution delete() {
         LOGGER.debug("delete({})", producer.getId());
-        
+
         producer = producerService.findById(producer.getId());
 
         String producerAddress = producer.getAddress();
         String producerName = producer.getName();
-        
+
         try {
             producerService.deleteProducer(producer);
             getContext().getMessages().add(new LocalizableMessage("producer.delete.message", escapeHTML(producerName), escapeHTML(producerAddress)));
@@ -136,4 +138,49 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
 
         return new RedirectResolution(this.getClass(), "list");
     }
+    
+    public Resolution filter() {
+        LOGGER.debug("filter() producer={}", producer);
+        if (name == null) {
+            name = "";
+        }
+        if (address == null) {
+            address = "";
+        }
+        producerList = producerService.findByFilter(name, address);
+        return new ForwardResolution("/producer/list.jsp");
+    }
+
+    public ProducerService getProducerService() {
+        return producerService;
+    }
+
+    public void setProducerService(ProducerService producerService) {
+        this.producerService = producerService;
+    }
+
+    public BottleTypeService getBottleTypeService() {
+        return bottleTypeService;
+    }
+
+    public void setBottleTypeService(BottleTypeService bottleTypeService) {
+        this.bottleTypeService = bottleTypeService;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 }

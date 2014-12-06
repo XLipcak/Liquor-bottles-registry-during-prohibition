@@ -35,6 +35,9 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
     protected StoreService storeService;
 
     private List<StoreDTO> storeList;
+    private String name;
+    private String address;
+    private StoreDTO store;
 
     // View All part
     @DefaultHandler
@@ -55,8 +58,6 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
         @Validate(on = {"add", "save"}, field = "username", required = true),
         @Validate(on = {"add", "save"}, field = "password", required = true)
     })
-
-    private StoreDTO store;
 
     public Resolution add() {
         LOGGER.debug("add() store={}", store);
@@ -116,22 +117,21 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
         this.address = address;
     }
 
-    private String name;
-    private String address;
-
     public Resolution filter() {
         LOGGER.debug("filter() store={}", store);
-        if (name == null)
+        if (name == null) {
             name = "";
-        if (address == null)
+        }
+        if (address == null) {
             address = "";
+        }
         storeList = storeService.findByFilter(name, address);
         return new ForwardResolution("/store/list.jsp");
     }
 
     public Resolution save() {
         LOGGER.debug("save() store={}", store);
-        
+
         try {
             storeService.updateStore(store);
         } catch (Exception ex) {
@@ -144,14 +144,14 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
     public Resolution delete() {
         LOGGER.debug("delete({})", store.getId());
         store = storeService.findById(store.getId());
-        
+
         try {
             storeService.deleteStore(store);
             getContext().getMessages().add(new LocalizableMessage("store.delete.message", escapeHTML(store.getName()), escapeHTML(store.getAddress())));
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("store.delete.error.message", escapeHTML(store.getName())));
         }
-        
+
         return new RedirectResolution(this.getClass(), "list");
     }
 }

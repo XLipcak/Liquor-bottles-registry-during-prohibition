@@ -43,6 +43,15 @@ public interface ProducerDAO {
      * @return Producer with address as parameter
      */
     Producer findByAddress(String address);
+    
+    /**
+     * This method returns list of the Producers from database specified by name and address
+     * parameter
+     * @param name
+     * @param address address of Police in the database
+     * @return Police with address as parameter
+     */
+    List<Producer> findByFilter(String name, String address);
    
     /**
      * This method inserts the Producer as parameter to the database

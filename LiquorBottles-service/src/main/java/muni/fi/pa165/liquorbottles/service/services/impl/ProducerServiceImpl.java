@@ -112,9 +112,14 @@ public class ProducerServiceImpl implements ProducerService {
         }
     }
 
-    private boolean isDeletePossible(long producerID) {
-        return bottleTypeDao.findByProducer(producerID).isEmpty();
-
+    @Override
+    public List<ProducerDTO> findByFilter(String name, String address) {
+        try {
+            List<Producer> producers = producerDao.findByFilter(name, address);
+            return convertor.fromEntityToDTO(producers);
+        } catch (PersistenceException ex) {
+            throw new NonTransientDataAccessResourceException("Operation failed!", ex);
+        }
     }
 
     @Required
@@ -131,5 +136,5 @@ public class ProducerServiceImpl implements ProducerService {
     public void setConvertor(DTOConvertor<Producer, ProducerDTO> convertor) {
         this.convertor = convertor;
     }
-
+    
 }
