@@ -7,6 +7,11 @@
     <s:layout-component name="body">
         <s:useActionBean beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" var="actionBean"/>
 
+        <div>
+            <!--    Statistics image    -->
+            <img src="images/chart.jpg" alt="statistics" />
+        </div>
+        
         <p><f:message key="bottle.list.allbottles"/></p>
 
         <table class="table table-hover">

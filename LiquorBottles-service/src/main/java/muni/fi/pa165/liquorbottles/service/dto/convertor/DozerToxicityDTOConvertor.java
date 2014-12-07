@@ -4,28 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 
 /**
  *
  * @author Michal Taraj
  */
 public class DozerToxicityDTOConvertor implements DTOConvertor<Toxicity, ToxicityDTO> {
-    
+
     @Override
     public ToxicityDTO fromEntityToDTO(Toxicity entity) {
-        Mapper mapper = new DozerBeanMapper();
-        ToxicityDTO toxicityDTO = mapper.map(entity, ToxicityDTO.class);
-        return toxicityDTO;
+
+        if (entity == Toxicity.TOXIC) {
+            return ToxicityDTO.TOXIC;
+        }
+        if (entity == Toxicity.NON_TOXIC) {
+            return ToxicityDTO.NON_TOXIC;
+        }
+        if (entity == Toxicity.UNCHECKED) {
+            return ToxicityDTO.UNCHECKED;
+        }
+
+        return ToxicityDTO.TOXIC;
     }
 
     @Override
     public Toxicity fromDTOToEntity(ToxicityDTO dto) {
-        Mapper mapper = new DozerBeanMapper();
-        Toxicity toxicity = mapper.map(dto, Toxicity.class);
+        if (dto == ToxicityDTO.TOXIC) {
+            return Toxicity.TOXIC;
+        }
+        if (dto == ToxicityDTO.NON_TOXIC) {
+            return Toxicity.NON_TOXIC;
+        }
+        if (dto == ToxicityDTO.UNCHECKED) {
+            return Toxicity.UNCHECKED;
+        }
 
-        return toxicity;
+        return Toxicity.TOXIC;
     }
 
     @Override

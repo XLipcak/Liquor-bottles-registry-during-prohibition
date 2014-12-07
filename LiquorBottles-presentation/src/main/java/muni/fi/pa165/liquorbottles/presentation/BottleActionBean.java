@@ -2,6 +2,7 @@ package muni.fi.pa165.liquorbottles.presentation;
 
 import java.util.List;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
+import muni.fi.pa165.liquorbottles.presentation.utils.ChartCreator;
 import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
@@ -56,6 +57,10 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
     @DefaultHandler
     public Resolution list() {
         LOGGER.debug("list()");
+        ChartCreator.createPieChart(bottleService.findByToxicity(ToxicityDTO.TOXIC).size(), 
+                bottleService.findByToxicity(ToxicityDTO.UNCHECKED).size(), 
+                bottleService.findByToxicity(ToxicityDTO.NON_TOXIC).size());
+        
         bottleList = bottleService.findAll();
         bottleTypeList = bottleTypeService.findAll();
         storeList = storeService.findAll();
