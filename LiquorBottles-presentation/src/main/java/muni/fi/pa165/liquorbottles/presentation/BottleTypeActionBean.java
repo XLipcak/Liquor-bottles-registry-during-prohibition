@@ -99,6 +99,7 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     private long producerID;
 
     public long getProducerID() {
+        //
         return producerID;
     }
 
@@ -108,9 +109,13 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
 
     public Resolution add() {
         LOGGER.debug("add() bottleType={}", bottleType);
-        bottleType.setProducer(producerService.findById(producerID));
-        bottleTypeService.insertBottleType(bottleType);
-        getContext().getMessages().add(new LocalizableMessage("bottleType.add.message", escapeHTML(bottleType.getName())));
+        if ( getProducerID() <= 0) {
+            getContext().getMessages().add(new LocalizableMessage("bottleType.add.error.message"));
+        } else {
+            bottleType.setProducer(producerService.findById(producerID));
+            bottleTypeService.insertBottleType(bottleType);
+            getContext().getMessages().add(new LocalizableMessage("bottleType.add.message", escapeHTML(bottleType.getName())));
+        }
         return new RedirectResolution(this.getClass(), "list");
     }
 
