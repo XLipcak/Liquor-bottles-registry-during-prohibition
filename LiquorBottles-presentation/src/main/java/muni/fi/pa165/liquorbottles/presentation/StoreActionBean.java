@@ -37,6 +37,13 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
     private List<StoreDTO> storeList;
     private String name;
     private String address;
+    
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"add", "save"}, field = "name", required = true),
+        @Validate(on = {"add", "save"}, field = "address", required = true),
+        @Validate(on = {"add", "save"}, field = "username", required = true),
+        @Validate(on = {"add", "save"}, field = "password", required = true)
+    })
     private StoreDTO store;
 
     // View All part
@@ -51,13 +58,6 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
         return storeList;
     }
 
-    // ADD part
-    @ValidateNestedProperties(value = {
-        @Validate(on = {"add", "save"}, field = "name", required = true),
-        @Validate(on = {"add", "save"}, field = "address", required = true),
-        @Validate(on = {"add", "save"}, field = "username", required = true),
-        @Validate(on = {"add", "save"}, field = "password", required = true)
-    })
 
     public Resolution add() {
         LOGGER.debug("add() store={}", store);

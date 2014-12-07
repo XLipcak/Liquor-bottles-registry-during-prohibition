@@ -32,6 +32,12 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
 
     private List<PoliceDTO> policeList;
 
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"add", "save"}, field = "name", required = true),
+        @Validate(on = {"add", "save"}, field = "address", required = true),
+        @Validate(on = {"add", "save"}, field = "username", required = true),
+        @Validate(on = {"add", "save"}, field = "password", required = true)
+    })
     private PoliceDTO police;
 
     // View All part
@@ -40,14 +46,6 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
         policeList = policeService.findAll();
         return new ForwardResolution("/police/list.jsp");
     }
-
-    // ADD part
-    @ValidateNestedProperties(value = {
-        @Validate(on = {"add", "save"}, field = "name", required = true),
-        @Validate(on = {"add", "save"}, field = "address", required = true),
-        @Validate(on = {"add", "save"}, field = "username", required = true),
-        @Validate(on = {"add", "save"}, field = "password", required = true)
-    })
 
     public Resolution add() {
         try {
@@ -112,7 +110,7 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
     }
 
     public Resolution save() {
-        
+
         try {
             policeService.updatePolice(police);
         } catch (Exception ex) {
