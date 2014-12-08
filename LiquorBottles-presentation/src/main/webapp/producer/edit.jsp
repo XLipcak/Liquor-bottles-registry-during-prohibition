@@ -10,7 +10,7 @@
             <s:hidden name="producer.id"/>
             <fieldset><legend><f:message key="common.edit"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="save"><f:message key="common.save"/></s:submit>
+                <s:submit name="save" class="btn btn-primary"><f:message key="common.save"/></s:submit>
             </fieldset>
         </s:form>
 
