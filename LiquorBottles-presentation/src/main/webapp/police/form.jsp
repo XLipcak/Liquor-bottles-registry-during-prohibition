@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <s:errors/>
-<table class="table">
+<table>
     <tr>
         <th><s:label for="s1" name="common.name"/></th>
         <td><s:text class="form-control" id="s1" name="police.name"/></td>
