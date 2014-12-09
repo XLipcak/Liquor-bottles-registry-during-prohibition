@@ -11,9 +11,15 @@
             <!--    Statistics image    -->
             <img src="images/chart.jpg" alt="statistics" />
         </div>
-        
-        <p><f:message key="bottle.list.allbottles"/></p>
 
+        <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
+            <fieldset><legend><f:message key="filter.list"/></legend>
+                <%@include file="filter.jsp"%>
+                <s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit>
+                </fieldset>
+        </s:form>
+
+        <p><f:message key="bottle.list.allbottles"/></p>
         <table class="table table-hover">
             <tr>
                 <th >id</th>
@@ -37,16 +43,14 @@
                     <td><c:out value="${bottle.dateOfBirth}"/></td>
                     <td><c:out value="${bottle.toxicity}"/></td>
 
-                    <%--   edit TODO --%>
+                    <%--   edit  --%>
                     <td>
                         <s:link class="btn btn-success" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit">
                             <s:param name="bottle.id" value="${bottle.id}"/>
                             <f:message key="common.edit"/>
                         </s:link>
-                        </td>
+                    </td>
 
-
-                    <%--   delete TODO  --%>
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
                             <s:hidden name="bottle.id" value="${bottle.id}"/>
@@ -60,11 +64,10 @@
 
         </table>
 
-        <%--   add new TODO --%>
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
             <fieldset><legend><f:message key="bottle.list.newbottle"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="add" class="btn btn-primary"><f:message key="bottle.add.button"/></s:submit>
+                <s:submit name="add" class="btn btn-default"><f:message key="bottle.add.button"/></s:submit>
                 </fieldset>
         </s:form>
 

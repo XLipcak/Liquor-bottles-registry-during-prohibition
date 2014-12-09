@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <s:errors/>
-<table>
+<table class="table">
     <tr>
         <th>
             <s:label for="select" name="bottleType.common.name" />

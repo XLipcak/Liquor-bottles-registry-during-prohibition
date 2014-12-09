@@ -7,7 +7,7 @@
     <s:layout-component name="body">
         <s:useActionBean beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean" var="actionBean"/>
 
-        <p><f:message key="bottleType.list.allbottleTypes"/></p>
+        
 
         <%-- -private long id;
     private String name;
@@ -15,7 +15,15 @@
     private int power;
     private int volume;
     private ProducerDTO producer; --%>
+        
+        <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
+            <fieldset><legend><f:message key="filter.list"/></legend>
+                <%@include file="filter.jsp"%>
+                <s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit>
+                </fieldset>
+        </s:form>
 
+        <p><f:message key="bottleType.list.allbottleTypes"/></p>
         <table class="table table-hover">
             <tr>
                 <th >id</th>
@@ -43,7 +51,7 @@
                             <s:param name="bottleType.id" value="${bottleType.id}"/>
                             <f:message key="common.edit"/>
                         </s:link>
-                        </td>
+                    </td>
 
 
                     <%--   delete TODO  --%>

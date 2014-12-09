@@ -1,14 +1,18 @@
 package muni.fi.pa165.liquorbottles.presentation;
 
+import java.util.Date;
 import java.util.List;
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
 import muni.fi.pa165.liquorbottles.presentation.utils.ChartCreator;
 import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
 import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
 import muni.fi.pa165.liquorbottles.service.services.BottleService;
 import muni.fi.pa165.liquorbottles.service.services.BottleTypeService;
+import muni.fi.pa165.liquorbottles.service.services.ProducerService;
 
 import muni.fi.pa165.liquorbottles.service.services.StoreService;
 import net.sourceforge.stripes.action.Before;
@@ -45,25 +49,46 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
     @SpringBean
     protected BottleTypeService bottleTypeService;
 
+    @SpringBean
+    protected ProducerService producerService;
+
     private List<BottleDTO> bottleList;
     private long storeID;
     private long bottleTypeID;
+    private long producerID;
+
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"add", "save"}, field = "batchNumber", required = true),
+        @Validate(on = {"add", "save"}, field = "stamp", required = true),
+        @Validate(on = {"add", "save"}, field = "dateOfBirth", required = true)
+    })
     private BottleDTO bottle;
+
     private ToxicityDTO toxicitySelect = ToxicityDTO.TOXIC;
+    @ValidateNestedProperties(value = {@Validate(on = {"filter"}, field = "batchNumber")})
+    private long batchNumber;
+    @ValidateNestedProperties(value = {@Validate(on = {"filter"}, field = "stamp")})
+    private long stamp;
+    @ValidateNestedProperties(value = {@Validate(on = {"filter"}, field = "dateFrom")})
+    private Date dateFrom;
+    @ValidateNestedProperties(value = {@Validate(on = {"filter"}, field = "dateTo")})
+    private Date dateTo;
 
     private List<BottleTypeDTO> bottleTypeList;
     private List<StoreDTO> storeList;
+    private List<ProducerDTO> producerList;
 
     @DefaultHandler
     public Resolution list() {
         LOGGER.debug("list()");
-        ChartCreator.createPieChart(bottleService.findByToxicity(ToxicityDTO.TOXIC).size(), 
-                bottleService.findByToxicity(ToxicityDTO.UNCHECKED).size(), 
+        ChartCreator.createPieChart(bottleService.findByToxicity(ToxicityDTO.TOXIC).size(),
+                bottleService.findByToxicity(ToxicityDTO.UNCHECKED).size(),
                 bottleService.findByToxicity(ToxicityDTO.NON_TOXIC).size());
-        
+
         bottleList = bottleService.findAll();
         bottleTypeList = bottleTypeService.findAll();
         storeList = storeService.findAll();
+        producerList = producerService.findAll();
         return new ForwardResolution("/bottle/list.jsp");
     }
 
@@ -75,12 +100,6 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         return null;
     }
 
-    @ValidateNestedProperties(value = {
-        @Validate(on = {"add", "save"}, field = "batchNumber", required = true),
-        @Validate(on = {"add", "save"}, field = "stamp", required = true),
-        @Validate(on = {"add", "save"}, field = "dateOfBirth", required = true)
-    })
-
     public Resolution add() {
         LOGGER.debug("add() bottle={}", bottle);
         if (getStoreID() <= 0) {
@@ -89,10 +108,12 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
             if (getBottleTypeID() <= 0) {
                 getContext().getMessages().add(new LocalizableMessage("bottle.add.btype.error.message"));
             } else {
-                bottle.setStore(storeService.findById(storeID));
-                bottle.setBottleType(bottleTypeService.findById(bottleTypeID));
-                bottle.setToxicity(toxicitySelect);
+
                 try {
+                    bottle.setStore(storeService.findById(storeID));
+                    bottle.setBottleType(bottleTypeService.findById(bottleTypeID));
+                    bottle.setToxicity(toxicitySelect);
+
                     bottleService.insertBottle(bottle);
                     getContext().getMessages().add(new LocalizableMessage("bottle.add.message",
                             escapeHTML(bottleTypeService.findById(bottle.getBottleType().getId()).getName()),
@@ -120,6 +141,30 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         storeList = storeService.findAll();
         toxicitySelect = bottle.getToxicity();
         return new ForwardResolution("/bottle/edit.jsp");
+    }
+
+    public Resolution filter() {
+        if (bottleTypeID <= 0) {
+            bottleTypeID = -1;
+        }
+        if (storeID <= 0) {
+            storeID = -1;
+        }
+        if (producerID <= 0) {
+            producerID = -1;
+        }
+        if (batchNumber <= 0) {
+            batchNumber = -1;
+        }
+        if (stamp <= 0) {
+            stamp = -1;
+        }
+        bottleList = bottleService.findByFilter(bottleTypeID, producerID, storeID, toxicitySelect, dateFrom, dateTo, batchNumber, stamp);
+        //bottleList = bottleService.findAll();
+        bottleTypeList = bottleTypeService.findAll();
+        storeList = storeService.findAll();
+        producerList = producerService.findAll();
+        return new ForwardResolution("/bottle/list.jsp");
     }
 
     public Resolution save() {
@@ -220,10 +265,58 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
 
     public long getBottleTypeID() {
         return bottleTypeID;
-    } 
+    }
 
     public void setBottleTypeID(long bottleTypeID) {
         this.bottleTypeID = bottleTypeID;
+    }
+
+    public List<ProducerDTO> getProducerList() {
+        return producerList;
+    }
+
+    public void setProducerList(List<ProducerDTO> producerList) {
+        this.producerList = producerList;
+    }
+
+    public long getProducerID() {
+        return producerID;
+    }
+
+    public void setProducerID(long producerID) {
+        this.producerID = producerID;
+    }
+
+    public long getBatchNumber() {
+        return batchNumber;
+    }
+
+    public void setBatchNumber(long batchNumber) {
+        this.batchNumber = batchNumber;
+    }
+
+    public long getStamp() {
+        return stamp;
+    }
+
+    public void setStamp(long stamp) {
+        this.stamp = stamp;
+    }
+
+    public Date getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(Date dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public Date getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(Date dateTo) {
+        this.dateTo = dateTo;
     }
 
 }

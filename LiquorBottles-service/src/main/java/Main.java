@@ -1,4 +1,6 @@
 import java.util.Date;
+import java.util.List;
+import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
@@ -53,17 +55,51 @@ public class Main {
         storeService.insertStore(store);
 
         BottleDTO bottle = new BottleDTO();
-        bottle.setBatchNumber(123456);
+        bottle.setBatchNumber(1);
         bottle.setDateOfBirth(new Date(new Date().getTime()));
-        bottle.setStamp(123456);
+        bottle.setStamp(2);
         bottle.setToxicity(ToxicityDTO.TOXIC);
         bottle.setBottleType(type);
         bottle.setStore(store);
 
+        BottleDTO bottle2 = new BottleDTO();
+        bottle2.setBatchNumber(10);
+        bottle2.setDateOfBirth(new Date(new Date().getTime()));
+        bottle2.setStamp(2);
+        bottle2.setToxicity(ToxicityDTO.TOXIC);
+        bottle2.setBottleType(type);
+        bottle2.setStore(store);
+
+        BottleDTO bottle3 = new BottleDTO();
+        bottle3.setBatchNumber(1);
+        bottle3.setDateOfBirth(new Date(new Date().getTime()));
+        bottle3.setStamp(20);
+        bottle3.setToxicity(ToxicityDTO.TOXIC);
+        bottle3.setBottleType(type);
+        bottle3.setStore(store);
+
         BottleService bottleService = (BottleService) applicationContext.
                 getBean(BottleService.class);
         bottleService.insertBottle(bottle);
+     //  bottleService.insertBottle(bottle2);
 
-        System.out.println("Kubek");
+        //toxicity convert problem TODO
+        List<BottleDTO> resultList = bottleService.findByFilter(
+                1, 
+                1, 
+                2,
+                ToxicityDTO.TOXIC, 
+                new Date(2014, 11, 28, 20, 55, 0),
+                new Date(2014, 11, 28, 21, 55, 0),
+                1, 
+                2
+        );
+        
+        List<StoreDTO> resultStoreList = storeService.findByFilter("obchod", "adresa");
+
+        System.out.println("vypis");
+        //System.out.println(resultList.toString());
+        System.out.print(resultStoreList.toString());
+
     }
 }

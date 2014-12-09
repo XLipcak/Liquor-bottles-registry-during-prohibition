@@ -25,7 +25,7 @@ public interface BottleService {
     List<BottleDTO> findByToxicity(ToxicityDTO toxicDTO);
 
     List<BottleDTO> findByFilter(long bottleTypeDAO_id, long producerDAO_id, long storeDAO_id,
-            Toxicity toxic, Date startDate, Date endDate, long batch_id, long stamp
+            ToxicityDTO toxicDTO, Date startDate, Date endDate, long batch_id, long stamp
     );
 
     void insertBottle(BottleDTO bottle);

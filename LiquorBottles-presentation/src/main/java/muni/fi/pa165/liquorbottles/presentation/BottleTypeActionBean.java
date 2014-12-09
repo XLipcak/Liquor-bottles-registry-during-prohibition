@@ -23,7 +23,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *
@@ -109,7 +108,7 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
 
     public Resolution add() {
         LOGGER.debug("add() bottleType={}", bottleType);
-        if ( getProducerID() <= 0) {
+        if (getProducerID() <= 0) {
             getContext().getMessages().add(new LocalizableMessage("bottleType.add.error.message"));
         } else {
             bottleType.setProducer(producerService.findById(producerID));
@@ -132,6 +131,14 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         LOGGER.debug("edit() bottleType={}", bottleType);
         producerList = producerService.findAll();
         return new ForwardResolution("/bottleType/edit.jsp");
+    }
+
+    public Resolution filter() {
+        
+        
+        bottleTypeList = bottleTypeService.findAll();
+        producerList = producerService.findAll();
+        return new ForwardResolution("/bottleType/list.jsp");
     }
 
     public Resolution save() {
