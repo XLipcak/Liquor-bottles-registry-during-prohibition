@@ -64,7 +64,7 @@
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
             <fieldset><legend><f:message key="bottle.list.newbottle"/></legend>
                 <%@include file="form.jsp"%>
-                <s:submit name="add" class="btn btn-primary"><f:message key="bottle.add.button"/></s:submit>
+                <s:submit name="add" class="btn btn-default"><f:message key="bottle.add.button"/></s:submit>
                 </fieldset>
         </s:form>
 
