@@ -21,6 +21,8 @@ public interface BottleTypeService {
     
     List<BottleTypeDTO> findByProducer(long producerID);
 
+    List<BottleTypeDTO> findByFilter(long producerID, String name, String alcType, int power, int volume);
+
     void insertBottleType(BottleTypeDTO bottleType);
 
     void updateBottleType(BottleTypeDTO bottleType);

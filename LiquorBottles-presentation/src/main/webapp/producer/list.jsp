@@ -41,7 +41,7 @@
                     </td>
 
 
-                    <%--   delete TODO  --%>
+                    <%--   delete   --%>
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
                             <s:hidden name="producer.id" value="${producer.id}"/>
@@ -55,7 +55,7 @@
 
         </table>
 
-        <%--   add new TODO --%>
+        <%--   add new  --%>
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
             <fieldset><legend><f:message key="producer.list.newproducer"/></legend>
                 <%@include file="form.jsp"%>

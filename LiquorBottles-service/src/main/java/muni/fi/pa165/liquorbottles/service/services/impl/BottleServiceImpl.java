@@ -28,10 +28,6 @@ public class BottleServiceImpl implements BottleService {
     private BottleDAO bottleDAO;
     private DozerBottleDTOConvertor bottleDTOConvertor = new DozerBottleDTOConvertor();
 
-    /*public BottleServiceImpl(BottleDAO bottleDao) {
-     EntityManagerFactory emf = Persistence.createEntityManagerFactory("localDB");
-     bottleDAO = new BottleDAOImpl(emf);
-     }*/
     @Override
     public List<BottleDTO> findAll() {
         try {
@@ -97,7 +93,6 @@ public class BottleServiceImpl implements BottleService {
     @Override
     public List<BottleDTO> findByFilter(long bottleTypeDAO_id, long producerDAO_id, long storeDAO_id, ToxicityDTO toxicDTO, Date startDate, Date endDate, long batch_id, long stamp) {
         try {
-            // problem s konverom toxicityDTO
             DTOConvertor<Toxicity, ToxicityDTO> toxicityConvertor = new DozerToxicityDTOConvertor();
             Toxicity toxic = toxicityConvertor.fromDTOToEntity(toxicDTO);
             List<Bottle> bottlesByFilter = bottleDAO.findByFilter(bottleTypeDAO_id, producerDAO_id, storeDAO_id, toxic, startDate, endDate, batch_id, stamp);

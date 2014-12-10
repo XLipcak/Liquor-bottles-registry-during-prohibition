@@ -60,7 +60,7 @@
 
         </table>
 
-        <%--   add new TODO --%>
+        <%--   add new  --%>
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean">
             <fieldset><legend><f:message key="police.list.newpolice"/></legend>
                 <%@include file="form.jsp"%>

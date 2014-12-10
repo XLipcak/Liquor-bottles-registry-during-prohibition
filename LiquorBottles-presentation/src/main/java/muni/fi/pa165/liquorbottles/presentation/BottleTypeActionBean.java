@@ -41,6 +41,18 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     private List<BottleTypeDTO> bottleTypeList;
 
     private List<ProducerDTO> producerList;
+
+    private String name;
+    private String alcType;
+    private int volume;
+    private int power;
+
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"add", "save"}, field = "name", required = true),
+        @Validate(on = {"add", "save"}, field = "alcType", required = true),
+        @Validate(on = {"add", "save"}, field = "volume", required = true),
+        @Validate(on = {"add", "save"}, field = "power", required = true)
+    })
     private BottleTypeDTO bottleType;
 
     public List<ProducerDTO> getProducerList() {
@@ -80,13 +92,6 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         bottleTypeList = bottleTypeService.findAll();
         return null;
     }
-
-    @ValidateNestedProperties(value = {
-        @Validate(on = {"add", "save"}, field = "name", required = true),
-        @Validate(on = {"add", "save"}, field = "alcType", required = true),
-        @Validate(on = {"add", "save"}, field = "volume", required = true),
-        @Validate(on = {"add", "save"}, field = "power", required = true)
-    })
 
     public BottleTypeDTO getBottleType() {
         return bottleType;
@@ -134,9 +139,23 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     }
 
     public Resolution filter() {
-        
-        
-        bottleTypeList = bottleTypeService.findAll();
+        if (producerID <= 0) {
+            producerID = -1;
+        }
+        if (name == null) {
+            name = "";
+        }
+        if (alcType == null) {
+            alcType = "";
+        }
+        if (power <= 0) {
+            power = -1;
+        }
+        if (volume <= 0) {
+            volume = -1;
+        }
+
+        bottleTypeList = bottleTypeService.findByFilter(producerID, name, alcType, power, volume);
         producerList = producerService.findAll();
         return new ForwardResolution("/bottleType/list.jsp");
     }
@@ -162,4 +181,35 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         return new RedirectResolution(this.getClass(), "list");
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAlcType() {
+        return alcType;
+    }
+
+    public void setAlcType(String alcType) {
+        this.alcType = alcType;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
 }

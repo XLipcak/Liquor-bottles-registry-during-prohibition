@@ -121,7 +121,7 @@ public class BottleDAOImpl implements BottleDAO {
             TypedQuery<Bottle> bottleByFilterQuerry;
 
             String query = "SELECT b FROM Bottle b WHERE ";
-            // -1 may need to change
+            
             // String Query lepenie
             if (bottleTypeDAO_id != -1) {
                 query += "b.bottleType.id= :bottleTypeDAO_id AND ";
@@ -150,7 +150,6 @@ public class BottleDAOImpl implements BottleDAO {
             // naviazanie stringu 
             bottleByFilterQuerry = em.createQuery(query, Bottle.class);
             
-            // -1 may need to change
             // nastavenie parametrov
             if (bottleTypeDAO_id != -1) {
                 bottleByFilterQuerry.setParameter("bottleTypeDAO_id", bottleTypeDAO_id);

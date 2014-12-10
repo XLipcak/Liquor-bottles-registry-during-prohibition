@@ -2,7 +2,6 @@ package muni.fi.pa165.liquorbottles.presentation;
 
 import java.util.Date;
 import java.util.List;
-import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
 import muni.fi.pa165.liquorbottles.presentation.utils.ChartCreator;
 import muni.fi.pa165.liquorbottles.service.dto.BottleDTO;
@@ -65,13 +64,17 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
     private BottleDTO bottle;
 
     private ToxicityDTO toxicitySelect = ToxicityDTO.TOXIC;
-    @ValidateNestedProperties(value = {@Validate(on = {"filter"}, field = "batchNumber")})
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"filter"}, field = "batchNumber")})
     private long batchNumber;
-    @ValidateNestedProperties(value = {@Validate(on = {"filter"}, field = "stamp")})
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"filter"}, field = "stamp")})
     private long stamp;
-    @ValidateNestedProperties(value = {@Validate(on = {"filter"}, field = "dateFrom")})
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"filter"}, field = "dateFrom")})
     private Date dateFrom;
-    @ValidateNestedProperties(value = {@Validate(on = {"filter"}, field = "dateTo")})
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"filter"}, field = "dateTo")})
     private Date dateTo;
 
     private List<BottleTypeDTO> bottleTypeList;
@@ -160,7 +163,6 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
             stamp = -1;
         }
         bottleList = bottleService.findByFilter(bottleTypeID, producerID, storeID, toxicitySelect, dateFrom, dateTo, batchNumber, stamp);
-        //bottleList = bottleService.findAll();
         bottleTypeList = bottleTypeService.findAll();
         storeList = storeService.findAll();
         producerList = producerService.findAll();

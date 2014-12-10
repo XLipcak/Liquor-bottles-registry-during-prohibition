@@ -6,15 +6,6 @@
 <s:layout-render name="/layout.jsp" titlekey="bottleType.list.title">
     <s:layout-component name="body">
         <s:useActionBean beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean" var="actionBean"/>
-
-        
-
-        <%-- -private long id;
-    private String name;
-    private String alcType;
-    private int power;
-    private int volume;
-    private ProducerDTO producer; --%>
         
         <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
             <fieldset><legend><f:message key="filter.list"/></legend>
@@ -45,7 +36,7 @@
                     <td><c:out value="${bottleType.volume}"/></td>
                     <td><c:out value="${bottleType.producer.name}"/></td>
 
-                    <%--   edit TODO --%>
+                    <%--   edit  --%>
                     <td>
                         <s:link class="btn btn-success" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean" event="edit">
                             <s:param name="bottleType.id" value="${bottleType.id}"/>
@@ -54,7 +45,7 @@
                     </td>
 
 
-                    <%--   delete TODO  --%>
+                    <%--   delete   --%>
                     <td>
                         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
                             <s:hidden name="bottleType.id" value="${bottleType.id}"/>
@@ -68,7 +59,7 @@
 
         </table>
 
-        <%--   add new TODO --%>
+        <%--   add new  --%>
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
             <fieldset><legend><f:message key="bottleType.list.newbottleType"/></legend>
                 <%@include file="form.jsp"%>

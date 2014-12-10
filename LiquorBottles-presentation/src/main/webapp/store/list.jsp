@@ -55,7 +55,7 @@
             
         </table>
         
-        <%--   add new TODO --%>
+        <%--   add new  --%>
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
             <fieldset><legend><f:message key="store.list.newstore"/></legend>
                 <%@include file="form.jsp"%>
