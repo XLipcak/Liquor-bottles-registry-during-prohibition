@@ -7,7 +7,7 @@ package muni.fi.pa165.liquorbootles.serviceTests;
 
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.PoliceDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Police;
-import muni.fi.pa165.liquorbottles.service.dto.PoliceDTO;
+import muni.fi.pa165.liquorbottles.api.dto.PoliceDTO;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerPoliceDTOConvertor;
 import muni.fi.pa165.liquorbottles.service.services.impl.PoliceServiceImpl;
 import org.junit.After;

@@ -1,13 +1,12 @@
 package muni.fi.pa165.liquorbottles.service.services.impl;
 
 import java.util.List;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
-import muni.fi.pa165.liquorbottles.service.dto.UserDTO;
+import muni.fi.pa165.liquorbottles.api.dto.UserDTO;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerUserDTOConvertor;
-import muni.fi.pa165.liquorbottles.service.services.UserService;
+import muni.fi.pa165.liquorbottles.api.services.UserService;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
 import org.springframework.stereotype.Service;

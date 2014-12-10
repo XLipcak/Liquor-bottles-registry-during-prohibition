@@ -3,7 +3,7 @@ package muni.fi.pa165.liquorbottles.service.dto.convertor;
 import java.util.ArrayList;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Toxicity;
-import muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO;
+import muni.fi.pa165.liquorbottles.api.dto.ToxicityDTO;
 
 /**
  *

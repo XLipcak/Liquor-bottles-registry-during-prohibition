@@ -2,10 +2,8 @@ package muni.fi.pa165.liquorbottles.presentation;
 
 import java.util.List;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
-import muni.fi.pa165.liquorbottles.service.dto.PoliceDTO;
-import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
-import muni.fi.pa165.liquorbottles.service.services.PoliceService;
-import muni.fi.pa165.liquorbottles.service.services.StoreService;
+import muni.fi.pa165.liquorbottles.api.dto.PoliceDTO;
+import muni.fi.pa165.liquorbottles.api.services.PoliceService;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;

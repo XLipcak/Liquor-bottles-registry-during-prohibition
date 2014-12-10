@@ -8,7 +8,7 @@ package muni.fi.pa165.liquorbootles.serviceTests;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.BottleTypeDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl.ProducerDAOImpl;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Producer;
-import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
+import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerProducerDTOConvertor;
 import muni.fi.pa165.liquorbottles.service.services.impl.ProducerServiceImpl;
 import org.junit.After;

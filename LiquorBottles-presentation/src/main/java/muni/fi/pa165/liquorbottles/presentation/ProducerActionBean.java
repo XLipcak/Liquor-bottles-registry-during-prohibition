@@ -1,11 +1,13 @@
 package muni.fi.pa165.liquorbottles.presentation;
 
 import java.util.List;
+import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
+import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
+import muni.fi.pa165.liquorbottles.api.services.ProducerService;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
-import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
-import muni.fi.pa165.liquorbottles.service.dto.ProducerDTO;
-import muni.fi.pa165.liquorbottles.service.services.BottleTypeService;
-import muni.fi.pa165.liquorbottles.service.services.ProducerService;
+import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
+import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
+import muni.fi.pa165.liquorbottles.api.services.ProducerService;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -23,7 +25,6 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.NonTransientDataAccessResourceException;
 
 /**
  *

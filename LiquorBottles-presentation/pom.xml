@@ -20,6 +20,11 @@
     </properties>
     
     <dependencies>
+        <dependency>
+            <groupId>muni.fi.pa165</groupId>
+            <artifactId>LiquorBottles-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         
         <!-- Spring - version may need to change TODO -->
         <dependency>

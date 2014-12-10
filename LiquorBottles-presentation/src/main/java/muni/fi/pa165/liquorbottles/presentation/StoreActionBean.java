@@ -1,8 +1,8 @@
 package muni.fi.pa165.liquorbottles.presentation;
 
 import java.util.List;
-import muni.fi.pa165.liquorbottles.service.dto.StoreDTO;
-import muni.fi.pa165.liquorbottles.service.services.StoreService;
+import muni.fi.pa165.liquorbottles.api.dto.StoreDTO;
+import muni.fi.pa165.liquorbottles.api.services.StoreService;
 import net.sourceforge.stripes.action.Before;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -16,8 +16,6 @@ import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

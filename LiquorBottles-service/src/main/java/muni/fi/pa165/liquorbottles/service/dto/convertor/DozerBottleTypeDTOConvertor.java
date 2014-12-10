@@ -3,7 +3,7 @@ package muni.fi.pa165.liquorbottles.service.dto.convertor;
 import java.util.ArrayList;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.BottleType;
-import muni.fi.pa165.liquorbottles.service.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
