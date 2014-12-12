@@ -16,3 +16,6 @@ pa165-persistence-tut1/persistence-jpql/.classpath
 pa165-persistence-tut1/persistence-jpql/.project
 pa165-persistence-tut1/persistence-jpql/.settings/org.eclipse.wst.common.project.facet.core.xml
 pa165-persistence-tut1/README.md
+/LiquorBottles-Client/target/
+/LiquorBottles-clientc/target/
+/LiquorBottles-client/target/

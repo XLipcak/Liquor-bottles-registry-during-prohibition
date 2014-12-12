@@ -10,6 +10,7 @@
         <module>LiquorBottles-service</module>
         <module>LiquorBottles-presentation</module>
         <module>LiquorBottles-api</module>
+        <module>LiquorBottles-client</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
