@@ -48,7 +48,7 @@
         <th><s:label for="toxicitySelect" name="bottle.toxicity"/></th>
         <td>
             <s:select class="btn btn-default dropdown-toggle" name="toxicitySelect" id="select" value="${actionBean.toxicitySelect}">  
-                <s:options-enumeration enum="muni.fi.pa165.liquorbottles.service.dto.ToxicityDTO" />   
+                <s:options-enumeration enum="muni.fi.pa165.liquorbottles.api.dto.ToxicityDTO" />   
         </s:select>
         </td>
     </tr>

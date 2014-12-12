@@ -10,3 +10,9 @@ pa165-persistence-tut1/answ-q1.md
 pa165-persistence-tut1/persistence-app/.classpath
 pa165-persistence-tut1/persistence-app/.project
 /LiquorBottles-api/target/
+*.prefs
+pa165-persistence-tut1/persistence-app/.settings/org.eclipse.wst.common.project.facet.core.xml
+pa165-persistence-tut1/persistence-jpql/.classpath
+pa165-persistence-tut1/persistence-jpql/.project
+pa165-persistence-tut1/persistence-jpql/.settings/org.eclipse.wst.common.project.facet.core.xml
+pa165-persistence-tut1/README.md
