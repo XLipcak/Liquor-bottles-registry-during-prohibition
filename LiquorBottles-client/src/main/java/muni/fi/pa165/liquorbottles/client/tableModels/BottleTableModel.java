@@ -79,8 +79,14 @@ public class BottleTableModel extends AbstractTableModel {
         fireTableRowsInserted(lastRow, lastRow);
     }
 
-    public void deleteBottle(int row) {
-        bottles.remove(row);
+    public void deleteBottle(BottleDTO bottle) {
+        Long id = bottles.get(0).getId();
+        int row = 0;
+        while (bottle.getId() != id) {
+            row++;
+            id = bottles.get(row).getId();
+        }
+        bottles.set(row, bottle);
         fireTableRowsDeleted(row, row);
     }
 

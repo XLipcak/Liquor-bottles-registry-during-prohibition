@@ -8,7 +8,9 @@ package muni.fi.pa165.liquorbottles.client.swingForms;
 import java.util.ArrayList;
 import java.util.List;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
+import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
+import muni.fi.pa165.liquorbottles.client.tableModels.BottleTypeTableModel;
 
 /**
  *
@@ -17,14 +19,18 @@ import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
 public class MainForm extends javax.swing.JFrame {
 
     List<BottleDTO> allBottles;
+    List<BottleTypeDTO> allBottleTypes;
     BottleTableModel bottleTableModel;
+    BottleTypeTableModel bottleTypeTableModel;
 
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         allBottles = new ArrayList<>();
+        allBottleTypes = new ArrayList<>();
         bottleTableModel = new BottleTableModel(allBottles);
+        bottleTypeTableModel = new BottleTypeTableModel(allBottleTypes);
 
         initComponents();
     }
@@ -39,12 +45,17 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        bottleTypeTable = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
         bottlesTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        bottleTypeTable.setModel(new BottleTypeTableModel(allBottleTypes));
+        jScrollPane1.setViewportView(bottleTypeTable);
+
         bottlesTable.setModel(new BottleTableModel(allBottles));
-        jScrollPane1.setViewportView(bottlesTable);
+        jScrollPane2.setViewportView(bottlesTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,15 +63,19 @@ public class MainForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -102,7 +117,9 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable bottleTypeTable;
     private javax.swing.JTable bottlesTable;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
