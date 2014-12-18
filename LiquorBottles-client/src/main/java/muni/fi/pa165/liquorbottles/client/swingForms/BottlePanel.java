@@ -1,25 +1,123 @@
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
+import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.api.dto.StoreDTO;
+import muni.fi.pa165.liquorbottles.api.dto.ToxicityDTO;
 
 /**
  *
  * @author Jakub Lipcak, Masaryk University
  */
 public class BottlePanel extends javax.swing.JPanel {
-    
-    List<String> stores;
-    List<String> bottleTypes;
+
+    List<StoreDTO> stores;
+    List<BottleTypeDTO> bottleTypes;
 
     /**
      * Creates new form BottlePanel
      */
-    public BottlePanel(List<String> stores, List<String> bottleTypes) {
+    public BottlePanel(List<StoreDTO> stores, List<BottleTypeDTO> bottleTypes) {
         this.stores = stores;
         this.bottleTypes = bottleTypes;
         initComponents();
-        storeComboBox.setModel(new javax.swing.DefaultComboBoxModel(stores.toArray()));
-        bottleTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(bottleTypes.toArray()));
+
+        fillStoreCombobox();
+        fillBottleTypeCombobox();
+    }
+
+    private void fillStoreCombobox() {
+        Vector model = new Vector();
+        for (StoreDTO s : stores) {
+            model.addElement(new StoreItem(s));
+        }
+        storeComboBox.setModel(new javax.swing.DefaultComboBoxModel(model));
+    }
+
+    private void fillBottleTypeCombobox() {
+        Vector model = new Vector();
+        for (BottleTypeDTO bt : bottleTypes) {
+            model.addElement(new BottleTypeItem(bt));
+        }
+        bottleTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(model));
+    }
+
+    class StoreItem {
+
+        private String name;
+        private StoreDTO storeDTO;
+
+        public StoreItem(StoreDTO storeDTO) {
+            this.name = storeDTO.getName();
+            this.storeDTO = storeDTO;
+        }
+
+        public StoreDTO getStoreDTO() {
+            return storeDTO;
+        }
+
+        public String toString() {
+            return name;
+        }
+    }
+
+    class BottleTypeItem {
+
+        private String name;
+        private BottleTypeDTO bottleTypeDTO;
+
+        public BottleTypeItem(BottleTypeDTO bottleTypeDTO) {
+            this.name = bottleTypeDTO.getName();
+            this.bottleTypeDTO = bottleTypeDTO;
+        }
+
+        public BottleTypeDTO getBottleTypeDTO() {
+            return bottleTypeDTO;
+        }
+
+        public String toString() {
+            return name;
+        }
+    }
+
+    public BottleDTO returnBottle() {
+        BottleDTO result = new BottleDTO();       
+        result.setBatchNumber(Long.valueOf(batchNumberTextField.getText()));
+        BottleTypeItem bottleTypeItem = (BottleTypeItem) bottleTypeComboBox.getSelectedItem();
+        
+        DateFormat dateFormat = new SimpleDateFormat("DD.MM.YYYY");
+        result.setBottleType(bottleTypeItem.getBottleTypeDTO());
+        try {
+            result.setDateOfBirth(dateFormat.parse(dateTextField.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(BottlePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        result.setStamp(Long.valueOf(stampNumberTextField.getText()));
+        
+        StoreItem storeItem = (StoreItem) storeComboBox.getSelectedItem();
+        result.setStore(storeItem.getStoreDTO());
+        
+        result.setToxicity(getToxicity());
+        return result;
+    }
+    
+    private ToxicityDTO getToxicity(){
+        if (toxicityComboBox.getSelectedItem().toString().equalsIgnoreCase("TOXIC")){
+            return ToxicityDTO.TOXIC;
+        } else if (toxicityComboBox.getSelectedItem().toString().equalsIgnoreCase("NON_TOXIC")){
+            return ToxicityDTO.NON_TOXIC;
+        } else{
+            return ToxicityDTO.UNCHECKED;
+        }
+    
     }
 
     /**
@@ -128,9 +226,12 @@ public class BottlePanel extends javax.swing.JPanel {
 
     private void storeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeComboBoxActionPerformed
         // TODO add your handling code here:
+        // storeComboBox.getSelectedItem().getID();
+        StoreItem item = (StoreItem) storeComboBox.getSelectedItem();
+        System.out.println(item.getStoreDTO().getId());
     }//GEN-LAST:event_storeComboBoxActionPerformed
 
-    public void setPanelParameters(String storeName, String bottleTypeName, String batchNumber, String stampNumber, String date, String toxicity){
+    public void setPanelParameters(String storeName, String bottleTypeName, String batchNumber, String stampNumber, String date, String toxicity) {
         storeComboBox.setSelectedItem(storeName);
         bottleTypeComboBox.setSelectedItem(bottleTypeName);
         batchNumberTextField.setText(batchNumber);

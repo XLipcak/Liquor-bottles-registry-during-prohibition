@@ -19,11 +19,12 @@ public class DeleteBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Inte
     BottleTypeService bottleTypeService;
     BottleTypeTableModel bottleTypeTableModel;
     BottleTypeDTO bottleType;
+    Long bottleTypeID;
 
-    public DeleteBottleTypeSwingWorker(BottleTypeService bottleTypeService, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType) {
+    public DeleteBottleTypeSwingWorker(BottleTypeService bottleTypeService, BottleTypeTableModel bottleTypeTableModel, Long bottleTypeID) {
         this.bottleTypeService = bottleTypeService;
         this.bottleTypeTableModel = bottleTypeTableModel;
-        this.bottleType = bottleType;
+        this.bottleTypeID = bottleTypeID;
     }
 
     @Override

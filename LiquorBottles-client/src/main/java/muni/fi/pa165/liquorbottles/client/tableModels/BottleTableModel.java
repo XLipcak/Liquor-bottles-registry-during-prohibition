@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
+import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.api.dto.StoreDTO;
 
 /**
  *
@@ -78,6 +80,7 @@ public class BottleTableModel extends AbstractTableModel {
         bottles.add(bottle);
         int lastRow = bottles.size() - 1;
         fireTableRowsInserted(lastRow, lastRow);
+        
     }
 
     public void deleteBottle(BottleDTO bottle) {
@@ -102,31 +105,27 @@ public class BottleTableModel extends AbstractTableModel {
         fireTableRowsUpdated(row, row);
     }
     
-    
-    /*
-    Temporary solution
-    */
-    public List<String> getStoreNames(){
-        List<String> result = new ArrayList<>();
-        Set<String> storeNames = new HashSet();
+    public List<StoreDTO> getStores(){
+        List<StoreDTO> result = new ArrayList<>();
+        Set<StoreDTO> stores = new HashSet<>();
         
         for(BottleDTO b : bottles){
-            storeNames.add(b.getStore().getName());
+                stores.add(b.getStore());
         }
         
-        result.addAll(storeNames);
+        result.addAll(stores);
         return result;
     }
     
-    public List<String> getBottleTypes(){
-        List<String> result = new ArrayList<>();
-        Set bottleTypeNames = new HashSet();
+    public List<BottleTypeDTO> getBottleTypes(){
+        List<BottleTypeDTO> result = new ArrayList<>();
+        Set bottleTypes = new HashSet();
         
         for(BottleDTO b : bottles){
-            bottleTypeNames.add(b.getBottleType().getName());
+            bottleTypes.add(b.getBottleType());
         }
         
-        result.addAll(bottleTypeNames);
+        result.addAll(bottleTypes);
         return result;
     }
 
