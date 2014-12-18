@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Michal Taraj, Masaryk University
  */
+
 @Service
 @Transactional
 public class BottleServiceImpl implements BottleService {

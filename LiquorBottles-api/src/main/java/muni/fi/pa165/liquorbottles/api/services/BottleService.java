@@ -9,6 +9,7 @@ import muni.fi.pa165.liquorbottles.api.dto.ToxicityDTO;
  *
  * @author Jakub Lipcak, Masaryk University
  */
+
 public interface BottleService {
 
     List<BottleDTO> findAll();
