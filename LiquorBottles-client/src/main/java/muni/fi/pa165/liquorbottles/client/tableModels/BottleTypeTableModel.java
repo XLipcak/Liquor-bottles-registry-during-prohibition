@@ -1,9 +1,12 @@
 package muni.fi.pa165.liquorbottles.client.tableModels;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
 
 /**
  *
@@ -96,4 +99,15 @@ public class BottleTypeTableModel extends AbstractTableModel {
         fireTableRowsUpdated(row, row);
     }
 
+    public List<String> getProducerNames(){
+        List<String> result = new ArrayList<>();
+        Set producerNames = new HashSet();
+        
+        for(BottleTypeDTO bt : bottleTypes){
+            producerNames.add(bt.getProducer().getName());
+        }
+        
+        result.addAll(producerNames);
+        return result;
+    }
 }
