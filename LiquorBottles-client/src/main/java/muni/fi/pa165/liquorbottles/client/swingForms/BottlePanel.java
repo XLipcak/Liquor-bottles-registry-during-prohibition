@@ -1,16 +1,25 @@
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
+import java.util.List;
+
 /**
  *
  * @author Jakub Lipcak, Masaryk University
  */
 public class BottlePanel extends javax.swing.JPanel {
+    
+    List<String> stores;
+    List<String> bottleTypes;
 
     /**
      * Creates new form BottlePanel
      */
-    public BottlePanel() {
+    public BottlePanel(List<String> stores, List<String> bottleTypes) {
+        this.stores = stores;
+        this.bottleTypes = bottleTypes;
         initComponents();
+        storeComboBox.setModel(new javax.swing.DefaultComboBoxModel(stores.toArray()));
+        bottleTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(bottleTypes.toArray()));
     }
 
     /**
@@ -121,6 +130,14 @@ public class BottlePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_storeComboBoxActionPerformed
 
+    public void setPanelParameters(String storeName, String bottleTypeName, String batchNumber, String stampNumber, String date, String toxicity){
+        storeComboBox.setSelectedItem(storeName);
+        bottleTypeComboBox.setSelectedItem(bottleTypeName);
+        batchNumberTextField.setText(batchNumber);
+        stampNumberTextField.setText(stampNumber);
+        dateTextField.setText(date);
+        toxicityComboBox.setSelectedItem(toxicity);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField batchNumberTextField;
