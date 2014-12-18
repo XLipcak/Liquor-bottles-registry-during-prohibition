@@ -15,6 +15,9 @@ import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleService;
 import net.sourceforge.stripes.integration.spring.SpringBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -23,15 +26,21 @@ import net.sourceforge.stripes.integration.spring.SpringBean;
 @Path("/bottle")
 public class BottleRestService {
 
-    @SpringBean
     private BottleService bottleService;
 
     private BottleDTO bottle;
+    
+    private void initBeforeRequest() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        bottleService = (BottleService) applicationContext.getBean(BottleService.class);
+    }
+
 
     @GET
     @Path("/id/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottleById(@PathParam("param") long id) {
+        initBeforeRequest();
         bottle = bottleService.findById(id);
         if (bottle != null) {
             return Response.status(Response.Status.OK).entity(bottle).build();
@@ -44,6 +53,7 @@ public class BottleRestService {
     @Path("/stamp/(param)")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottleByStamp(@PathParam("param") long stamp) {
+        initBeforeRequest();
         bottle = bottleService.findByStamp(stamp);
         if (bottle != null) {
             return Response.status(Response.Status.OK).entity(bottle).build();
@@ -57,6 +67,7 @@ public class BottleRestService {
     @Path("/sm")
     @Produces(MediaType.APPLICATION_JSON)
     public Response nieco() {
+        initBeforeRequest();
         ProducerDTO producer = new ProducerDTO();
         producer.setId(1);
         producer.setName("Jeldo");
@@ -65,4 +76,22 @@ public class BottleRestService {
         producer.setPassword("123");
         return Response.status(Response.Status.OK).entity(producer).build();
     }
+
+    public BottleService getBottleService() {
+        return bottleService;
+    }
+
+    public void setBottleService(BottleService bottleService) {
+        this.bottleService = bottleService;
+    }
+
+    public BottleDTO getBottle() {
+        return bottle;
+    }
+
+    public void setBottle(BottleDTO bottle) {
+        this.bottle = bottle;
+    }
+    
+    
 }
