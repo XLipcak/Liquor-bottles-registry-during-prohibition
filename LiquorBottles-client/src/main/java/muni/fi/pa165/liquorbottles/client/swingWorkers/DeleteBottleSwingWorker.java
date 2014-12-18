@@ -13,16 +13,19 @@ public class DeleteBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
 
     BottleService bottleService;
     BottleTableModel bottleTableModel;
+    Long bottleId;
     BottleDTO bottle;
 
-    public DeleteBottleSwingWorker(BottleService bottleService, BottleTableModel bottleTableModel, BottleDTO bottle) {
+    public DeleteBottleSwingWorker(BottleService bottleService, BottleTableModel bottleTableModel, Long bottleId) {
         this.bottleService = bottleService;
         this.bottleTableModel = bottleTableModel;
-        this.bottle = bottle;
+        this.bottleId = bottleId;
     }
 
     @Override
     protected BottleDTO doInBackground() throws Exception {
+        BottleDTO bottle = bottleService.findById(bottleId);
+        this.bottle = bottle;
         bottleService.deleteBottle(bottle);
         return bottle;
     }

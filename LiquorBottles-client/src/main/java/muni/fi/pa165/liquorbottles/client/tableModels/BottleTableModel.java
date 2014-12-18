@@ -1,8 +1,9 @@
 package muni.fi.pa165.liquorbottles.client.tableModels;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 
@@ -99,6 +100,34 @@ public class BottleTableModel extends AbstractTableModel {
         }
         bottles.set(row, bottle);
         fireTableRowsUpdated(row, row);
+    }
+    
+    
+    /*
+    Temporary solution
+    */
+    public List<String> getStoreNames(){
+        List<String> result = new ArrayList<>();
+        Set<String> storeNames = new HashSet();
+        
+        for(BottleDTO b : bottles){
+            storeNames.add(b.getStore().getName());
+        }
+        
+        result.addAll(storeNames);
+        return result;
+    }
+    
+    public List<String> getBottleTypes(){
+        List<String> result = new ArrayList<>();
+        Set bottleTypeNames = new HashSet();
+        
+        for(BottleDTO b : bottles){
+            bottleTypeNames.add(b.getBottleType().getName());
+        }
+        
+        result.addAll(bottleTypeNames);
+        return result;
     }
 
 }
