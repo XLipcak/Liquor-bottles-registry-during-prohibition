@@ -6,21 +6,84 @@
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
 import java.util.List;
+import java.util.Vector;
+import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
 
 /**
  *
- * @author Michal
+ * @author Michal Taraj
  */
 public class BottleTypePanel extends javax.swing.JPanel {
-    List<String> producers;
+
+    List<ProducerDTO> producers;
+    Vector<ProducerItem> producerItemsModel;
 
     /**
      * Creates new form BottleTypePanel
      */
-    public BottleTypePanel(List<String> producers) {
+    public BottleTypePanel(List<ProducerDTO> producers) {
         this.producers = producers;
         initComponents();
-        producerComboBox.setModel(new javax.swing.DefaultComboBoxModel(producers.toArray()));
+        fillProducerCombobox();
+    }
+
+    private void fillProducerCombobox() {
+        producerItemsModel = new Vector();
+        for (ProducerDTO p : producers) {
+            producerItemsModel.addElement(new ProducerItem(p));
+        }
+        producerComboBox.setModel(new javax.swing.DefaultComboBoxModel(producerItemsModel));
+    }
+    
+    private ProducerItem findProducerItemByDTO(ProducerDTO producerDTO){
+        for(ProducerItem p: producerItemsModel){
+            if (p.getProducerDTO().equals(producerDTO)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    class ProducerItem {
+
+        private final String name;
+        private final ProducerDTO producerDTO;
+
+        public ProducerItem(ProducerDTO producerDTO) {
+            this.name = producerDTO.getName();
+            this.producerDTO = producerDTO;
+        }
+
+        public ProducerDTO getProducerDTO() {
+            return producerDTO;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+
+    public BottleTypeDTO returnBottleType() {
+        BottleTypeDTO result = new BottleTypeDTO();
+        ProducerItem producerItem = (ProducerItem) producerComboBox.getSelectedItem();
+        result.setProducer(producerItem.getProducerDTO());
+
+        result.setAlcType(alcoholTypeTextField.getText());
+        result.setName(bottleNameTextField.getText());
+        result.setPower(Integer.valueOf(powerTextField.getText()));
+        result.setVolume(Integer.valueOf(volumeTextField.getText()));
+        return result;
+    }
+    
+    public void setBottleType(BottleTypeDTO bottleType){
+        producerComboBox.setSelectedItem(findProducerItemByDTO(bottleType.getProducer()));
+        alcoholTypeTextField.setText(bottleType.getAlcType());
+        bottleNameTextField.setText(bottleType.getName());
+        powerTextField.setText(String.valueOf(bottleType.getPower()));
+        volumeTextField.setText(String.valueOf(bottleType.getVolume()));
+        
     }
 
     /**
@@ -130,13 +193,6 @@ public class BottleTypePanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_producerComboBoxActionPerformed
 
-    public void setPanelParameters(String producerName, String bottleName, String volume, String alcoholType, String power){
-        producerComboBox.setSelectedItem(producerName);
-        bottleNameTextField.setText(bottleName);
-        volumeTextField.setText(volume);
-        alcoholTypeTextField.setText(alcoholType);
-        powerTextField.setText(power);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alcoholTypeLabel;

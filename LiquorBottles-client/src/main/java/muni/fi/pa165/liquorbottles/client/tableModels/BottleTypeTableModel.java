@@ -10,7 +10,7 @@ import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
 
 /**
  *
- * @author Matus Novak, Masaryk University
+ * @author Matus Novak,Michal Taraj Masaryk University
  */
 public class BottleTypeTableModel extends AbstractTableModel {
 
@@ -28,6 +28,10 @@ public class BottleTypeTableModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
         return 6;
+    }
+    
+    public BottleTypeDTO getBottleAt(int rowIndex){
+        return bottleTypes.get(rowIndex);
     }
 
     @Override
@@ -89,25 +93,27 @@ public class BottleTypeTableModel extends AbstractTableModel {
     }
 
     public void updateBottleType(BottleTypeDTO bottleType) {
-        Long id = bottleTypes.get(0).getId();
+        Long id = bottleType.getId();
         int row = 0;
-        while (bottleType.getId() != id) {
+        Long tableID = bottleTypes.get(row).getId();
+        while (!id.equals(tableID)) {
             row++;
-            id = bottleTypes.get(row).getId();
+            tableID = bottleTypes.get(row).getId();
         }
         bottleTypes.set(row, bottleType);
         fireTableRowsUpdated(row, row);
     }
-
-    public List<String> getProducerNames(){
-        List<String> result = new ArrayList<>();
-        Set producerNames = new HashSet();
+    // TU treba dorobit nacitavanie vsetkych producers nie len tych co su pre vytvorene flasky
+  
+    public List<ProducerDTO> getProducers(){
+        List<ProducerDTO> result = new ArrayList<>();
+        Set<ProducerDTO> producers = new HashSet();
         
         for(BottleTypeDTO bt : bottleTypes){
-            producerNames.add(bt.getProducer().getName());
+            producers.add(bt.getProducer());
         }
         
-        result.addAll(producerNames);
+        result.addAll(producers);
         return result;
     }
 }

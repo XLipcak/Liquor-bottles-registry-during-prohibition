@@ -13,7 +13,7 @@ import muni.fi.pa165.liquorbottles.api.dto.StoreDTO;
 
 /**
  *
- * @author Jakub Lipcak, Masaryk University
+ * @author Jakub Lipcak,Michal Taraj Masaryk University
  */
 public class BottleTableModel extends AbstractTableModel {
 
@@ -130,7 +130,7 @@ public class BottleTableModel extends AbstractTableModel {
     
     public List<BottleTypeDTO> getBottleTypes(){
         List<BottleTypeDTO> result = new ArrayList<>();
-        Set bottleTypes = new HashSet();
+        Set<BottleTypeDTO> bottleTypes = new HashSet();
         
         for(BottleDTO b : bottles){
             bottleTypes.add(b.getBottleType());
