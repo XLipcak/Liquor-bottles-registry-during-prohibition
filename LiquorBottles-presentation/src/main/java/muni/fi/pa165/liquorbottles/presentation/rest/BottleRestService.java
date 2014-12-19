@@ -26,7 +26,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
- * @author Michal Štora, Masaryk University
+ * @author Michal Ĺ tora, Masaryk University
  */
 @Path("/bottle")
 public class BottleRestService {
@@ -40,16 +40,6 @@ public class BottleRestService {
         bottleService = (BottleService) applicationContext.getBean(BottleService.class);
     }
 
-    /**
-     *
-     *
-     * void insertBottle(BottleDTO bottle);
-     *
-     * void updateBottle(BottleDTO bottle);
-     *
-     * void deleteBottle(BottleDTO bottle);
-     *
-     */
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)

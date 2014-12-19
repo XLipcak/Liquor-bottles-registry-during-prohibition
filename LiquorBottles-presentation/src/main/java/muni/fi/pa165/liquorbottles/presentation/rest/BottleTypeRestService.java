@@ -19,6 +19,8 @@ import javax.ws.rs.core.Response;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
 import net.sourceforge.stripes.integration.spring.SpringBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -27,10 +29,31 @@ import net.sourceforge.stripes.integration.spring.SpringBean;
 @Path("/bottleType")
 public class BottleTypeRestService {
     
-    @SpringBean
     private BottleTypeService bottleTypeService;
+
+    public BottleTypeService getBottleTypeService() {
+        return bottleTypeService;
+    }
+
+    public void setBottleTypeService(BottleTypeService bottleTypeService) {
+        this.bottleTypeService = bottleTypeService;
+    }
+
+    public BottleTypeDTO getBottleType() {
+        return bottleType;
+    }
+
+    public void setBottleType(BottleTypeDTO bottleType) {
+        this.bottleType = bottleType;
+    }
     
     private BottleTypeDTO bottleType;
+    
+    private void initBeforeRequest() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        bottleTypeService = (BottleTypeService) applicationContext.getBean(BottleTypeService.class);
+    }
+    
     
     @GET
     @Path("/id/{param}")
@@ -121,4 +144,6 @@ public class BottleTypeRestService {
     public void remove(BottleTypeDTO toDelete) {
         bottleTypeService.deleteBottleType(bottleType);
     }
+    
+    
 }
