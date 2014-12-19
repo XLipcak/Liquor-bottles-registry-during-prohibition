@@ -1,5 +1,7 @@
 package muni.fi.pa165.liquorbottles.client.tableModels;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -45,13 +47,19 @@ public class BottleTableModel extends AbstractTableModel {
                 return bottle.getBatchNumber();
             case 4:
                 return bottle.getStamp();
-            case 5:
-                return bottle.getDateOfBirth();
+            case 5:{
+                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");               
+                return dateFormat.format(bottle.getDateOfBirth());
+            }
             case 6:
                 return bottle.getToxicity();
             default:
                 throw new IllegalArgumentException("Wrong column index!");
         }
+    }
+    
+    public BottleDTO getBottleAt(int rowIndex){
+        return bottles.get(rowIndex);
     }
 
     @Override
@@ -95,15 +103,18 @@ public class BottleTableModel extends AbstractTableModel {
     }
 
     public void updateBottle(BottleDTO bottle) {
-        Long id = bottles.get(0).getId();
+        Long id = bottle.getId();
         int row = 0;
-        while (bottle.getId() != id) {
+        Long tableID = bottles.get(row).getId();
+        while (!id.equals(tableID)) {
             row++;
-            id = bottles.get(row).getId();
+            tableID = bottles.get(row).getId();
         }
         bottles.set(row, bottle);
         fireTableRowsUpdated(row, row);
     }
+    
+    // TU treba dorobit nacitavanie vsetkych stores a bottletypes nie len tych co su pre vytvorene flasky
     
     public List<StoreDTO> getStores(){
         List<StoreDTO> result = new ArrayList<>();

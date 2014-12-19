@@ -62,6 +62,7 @@ public class MainForm extends javax.swing.JFrame {
         bottle.setStamp(444);
         bottle.setToxicity(ToxicityDTO.UNCHECKED);
         bottle.setStore(store);
+        bottle.setId(0);
 
         BottleDTO bottle1 = new BottleDTO();
         bottle1.setBatchNumber(123);
@@ -71,7 +72,8 @@ public class MainForm extends javax.swing.JFrame {
         bottle1.setStamp(444);
         bottle1.setToxicity(ToxicityDTO.TOXIC);
         bottle1.setStore(store2);
-
+        bottle1.setId(1);
+        
         bottleTableModel.addBottle(bottle);
         bottleTableModel.addBottle(bottle1);
 
@@ -262,17 +264,20 @@ public class MainForm extends javax.swing.JFrame {
         } else {
 
             BottlePanel bottlePanel = new BottlePanel(bottleTableModel.getStores(), bottleTableModel.getBottleTypes());
-            bottlePanel.setPanelParameters(bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 1).toString(),
+            /*bottlePanel.setPanelParameters(bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 1).toString(),
                     bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 2).toString(),
                     bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 3).toString(),
                     bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 4).toString(),
                     bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 5).toString(),
-                    bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 6).toString());
+                    bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 6).toString());*/
+            bottlePanel.setBottle(bottleTableModel.getBottleAt(bottlesTable.getSelectedRow()));
 
             int result = JOptionPane.showConfirmDialog(this, bottlePanel, "Edit Bottle", JOptionPane.OK_CANCEL_OPTION);
 
             if (result == JOptionPane.OK_OPTION) {
-                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleService, bottleTableModel, bottlePanel.returnBottle());
+                BottleDTO bottle = bottlePanel.returnBottle();
+                bottle.setId(Long.valueOf(bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0).toString()));
+                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleService, bottleTableModel, bottle);
                 editBottleSwingWorker.execute();
                 //
                 //

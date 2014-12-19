@@ -93,7 +93,7 @@ public class BottlePanel extends javax.swing.JPanel {
         result.setBatchNumber(Long.valueOf(batchNumberTextField.getText()));
         BottleTypeItem bottleTypeItem = (BottleTypeItem) bottleTypeComboBox.getSelectedItem();
         
-        DateFormat dateFormat = new SimpleDateFormat("DD.MM.YYYY");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         result.setBottleType(bottleTypeItem.getBottleTypeDTO());
         try {
             result.setDateOfBirth(dateFormat.parse(dateTextField.getText()));
@@ -226,9 +226,6 @@ public class BottlePanel extends javax.swing.JPanel {
 
     private void storeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeComboBoxActionPerformed
         // TODO add your handling code here:
-        // storeComboBox.getSelectedItem().getID();
-        StoreItem item = (StoreItem) storeComboBox.getSelectedItem();
-        System.out.println(item.getStoreDTO().getId());
     }//GEN-LAST:event_storeComboBoxActionPerformed
 
     public void setPanelParameters(String storeName, String bottleTypeName, String batchNumber, String stampNumber, String date, String toxicity) {
@@ -238,6 +235,17 @@ public class BottlePanel extends javax.swing.JPanel {
         stampNumberTextField.setText(stampNumber);
         dateTextField.setText(date);
         toxicityComboBox.setSelectedItem(toxicity);
+    }
+    
+    public void setBottle(BottleDTO bottle){
+        storeComboBox.setSelectedItem(new StoreItem(bottle.getStore()));
+        bottleTypeComboBox.setSelectedItem(new BottleTypeItem(bottle.getBottleType()));
+        batchNumberTextField.setText(String.valueOf(bottle.getBatchNumber()));
+        stampNumberTextField.setText(String.valueOf(bottle.getStamp()));
+        
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        dateTextField.setText(dateFormat.format(bottle.getDateOfBirth()));
+        toxicityComboBox.setSelectedItem(bottle.getToxicity());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
