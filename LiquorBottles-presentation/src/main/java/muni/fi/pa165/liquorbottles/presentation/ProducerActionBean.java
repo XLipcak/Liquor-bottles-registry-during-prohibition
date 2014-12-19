@@ -1,9 +1,6 @@
 package muni.fi.pa165.liquorbottles.presentation;
 
 import java.util.List;
-import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
-import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
-import muni.fi.pa165.liquorbottles.api.services.ProducerService;
 import static muni.fi.pa165.liquorbottles.presentation.BaseActionBean.escapeHTML;
 import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;

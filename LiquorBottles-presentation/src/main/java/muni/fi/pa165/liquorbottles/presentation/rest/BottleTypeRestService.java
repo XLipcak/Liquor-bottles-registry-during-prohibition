@@ -26,12 +26,12 @@ import net.sourceforge.stripes.integration.spring.SpringBean;
  */
 @Path("/bottleType")
 public class BottleTypeRestService {
-    
+
     @SpringBean
     private BottleTypeService bottleTypeService;
-    
+
     private BottleTypeDTO bottleType;
-    
+
     @GET
     @Path("/id/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,7 +43,7 @@ public class BottleTypeRestService {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
@@ -55,7 +55,7 @@ public class BottleTypeRestService {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @GET
     @Path("/alcType/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -67,7 +67,7 @@ public class BottleTypeRestService {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @GET
     @Path("/power/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -79,7 +79,7 @@ public class BottleTypeRestService {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @GET
     @Path("/volume/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -91,7 +91,7 @@ public class BottleTypeRestService {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @GET
     @Path("/producer/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -103,19 +103,19 @@ public class BottleTypeRestService {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void update(BottleTypeDTO toUpdate) {
         bottleTypeService.updateBottleType(bottleType);
     }
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(BottleTypeDTO toAdd) {
         bottleTypeService.insertBottleType(bottleType);
     }
-    
+
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     public void remove(BottleTypeDTO toDelete) {
