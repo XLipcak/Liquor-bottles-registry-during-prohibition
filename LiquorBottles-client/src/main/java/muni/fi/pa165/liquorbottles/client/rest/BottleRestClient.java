@@ -18,7 +18,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author Michal Štora, Masaryk University
+ * @author Michal Stora, Masaryk University
  */
 public class BottleRestClient {
     private javax.ws.rs.client.WebTarget webTarget;
