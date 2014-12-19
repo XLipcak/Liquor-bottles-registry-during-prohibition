@@ -44,6 +44,7 @@ public class BottleRestService {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllBottles() {
+        initBeforeRequest();
         List<BottleDTO> list = bottleService.findAll();
         if (list.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -82,6 +83,7 @@ public class BottleRestService {
     @Path("/batchId/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottlesByBatchId(@PathParam("param") long btach) {
+        initBeforeRequest();
         List<BottleDTO> list = bottleService.findByBatchId(btach);
         if (list.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -94,6 +96,7 @@ public class BottleRestService {
     @Path("/date/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottlesByDate(@PathParam("param") Date date) {
+        initBeforeRequest();
         List<BottleDTO> list = bottleService.findByDate(date);
         if (list.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -106,6 +109,7 @@ public class BottleRestService {
     @Path("/toxicity/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottlesByToxicity(@PathParam("param") ToxicityDTO toxic) {
+        initBeforeRequest();
         List<BottleDTO> list = bottleService.findByToxicity(toxic);
         if (list.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND).build();
