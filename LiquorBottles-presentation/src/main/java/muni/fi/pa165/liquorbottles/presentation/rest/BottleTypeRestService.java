@@ -59,6 +59,7 @@ public class BottleTypeRestService {
     @Path("/id/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottleTypeById(@PathParam("param") long id) {
+        initBeforeRequest();
         bottleType = bottleTypeService.findById(id);
         if (bottleType != null) {
             return Response.status(Response.Status.OK).entity(bottleType).build();
@@ -71,6 +72,7 @@ public class BottleTypeRestService {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllBottleTypes() {
+        initBeforeRequest();
         List<BottleTypeDTO> bottles = bottleTypeService.findAll();
         if (bottles != null) {
             return Response.status(Response.Status.OK).entity(bottles).build();
@@ -83,6 +85,7 @@ public class BottleTypeRestService {
     @Path("/alcType/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottleTypeByAlcType(@PathParam("param") String AlcType) {
+        initBeforeRequest();
         List<BottleTypeDTO> bottles = bottleTypeService.findByAlcType(AlcType);
         if (bottles != null) {
             return Response.status(Response.Status.OK).entity(bottles).build();
@@ -95,6 +98,7 @@ public class BottleTypeRestService {
     @Path("/power/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottleTypeByPower(@PathParam("param") int power) {
+        initBeforeRequest();
         List<BottleTypeDTO> bottles = bottleTypeService.findByPower(power);
         if (bottles != null) {
             return Response.status(Response.Status.OK).entity(bottles).build();
@@ -107,6 +111,7 @@ public class BottleTypeRestService {
     @Path("/volume/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottleTypeByVolume(@PathParam("param") int volume) {
+        initBeforeRequest();
         List<BottleTypeDTO> bottles = bottleTypeService.findByVolume(volume);
         if (bottles != null) {
             return Response.status(Response.Status.OK).entity(bottles).build();
@@ -119,6 +124,7 @@ public class BottleTypeRestService {
     @Path("/producer/{param}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBottleTypeByAlcType(@PathParam("param") long producerId) {
+        initBeforeRequest();
         List<BottleTypeDTO> bottles = bottleTypeService.findByProducer(producerId);
         if (bottles != null) {
             return Response.status(Response.Status.OK).entity(bottles).build();
@@ -130,18 +136,21 @@ public class BottleTypeRestService {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void update(BottleTypeDTO toUpdate) {
+        initBeforeRequest();
         bottleTypeService.updateBottleType(bottleType);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(BottleTypeDTO toAdd) {
+        initBeforeRequest();
         bottleTypeService.insertBottleType(bottleType);
     }
 
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     public void remove(BottleTypeDTO toDelete) {
+        initBeforeRequest();
         bottleTypeService.deleteBottleType(bottleType);
     }
     
