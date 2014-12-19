@@ -5,6 +5,7 @@
  */
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
+import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
@@ -20,11 +21,13 @@ public class DeleteBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Inte
     BottleTypeTableModel bottleTypeTableModel;
     BottleTypeDTO bottleType;
     Long bottleTypeID;
+    JTable bottleTypeTable;
 
-    public DeleteBottleTypeSwingWorker(BottleTypeService bottleTypeService, BottleTypeTableModel bottleTypeTableModel, Long bottleTypeID) {
+    public DeleteBottleTypeSwingWorker(BottleTypeService bottleTypeService, BottleTypeTableModel bottleTypeTableModel, Long bottleTypeID, JTable bottleTypeTable) {
         this.bottleTypeService = bottleTypeService;
         this.bottleTypeTableModel = bottleTypeTableModel;
         this.bottleTypeID = bottleTypeID;
+        this.bottleTypeTable = bottleTypeTable;
     }
 
     @Override
@@ -36,6 +39,8 @@ public class DeleteBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Inte
     @Override
     protected void done() {
         bottleTypeTableModel.deleteBottleType(bottleType);
+        bottleTypeTable.revalidate();
+        bottleTypeTable.repaint();
     }
 
 }

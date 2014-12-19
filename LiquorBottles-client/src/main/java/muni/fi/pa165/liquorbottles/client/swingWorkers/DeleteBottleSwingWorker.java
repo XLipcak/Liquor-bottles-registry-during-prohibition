@@ -1,5 +1,6 @@
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
+import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleService;
@@ -15,11 +16,13 @@ public class DeleteBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
     BottleTableModel bottleTableModel;
     Long bottleId;
     BottleDTO bottle;
+    JTable bottleTable;
 
-    public DeleteBottleSwingWorker(BottleService bottleService, BottleTableModel bottleTableModel, Long bottleId) {
+    public DeleteBottleSwingWorker(BottleService bottleService, BottleTableModel bottleTableModel, Long bottleId, JTable bottleTable) {
         this.bottleService = bottleService;
         this.bottleTableModel = bottleTableModel;
         this.bottleId = bottleId;
+        this.bottleTable = bottleTable;
     }
 
     @Override
@@ -33,6 +36,8 @@ public class DeleteBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
     @Override
     protected void done() {
         bottleTableModel.deleteBottle(bottle);
+        bottleTable.revalidate();
+        bottleTable.repaint();
     }
 
 }

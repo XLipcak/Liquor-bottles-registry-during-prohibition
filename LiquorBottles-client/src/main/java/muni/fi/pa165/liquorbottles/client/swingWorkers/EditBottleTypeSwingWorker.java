@@ -5,6 +5,7 @@
  */
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
+import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
@@ -19,11 +20,13 @@ public class EditBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Intege
     BottleTypeService bottleTypeService;
     BottleTypeTableModel bottleTypeTableModel;
     BottleTypeDTO bottleType;
+    JTable bottleTypeTable;
 
-    public EditBottleTypeSwingWorker(BottleTypeService bottleTypeService, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType) {
+    public EditBottleTypeSwingWorker(BottleTypeService bottleTypeService, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType, JTable bottleTypeTable) {
         this.bottleTypeService = bottleTypeService;
         this.bottleTypeTableModel = bottleTypeTableModel;
         this.bottleType = bottleType;
+        this.bottleTypeTable = bottleTypeTable;
     }
 
     @Override
@@ -35,6 +38,8 @@ public class EditBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Intege
     @Override
     protected void done() {
         bottleTypeTableModel.updateBottleType(bottleType);
+        bottleTypeTable.revalidate();
+        bottleTypeTable.repaint();
     }
 
 }

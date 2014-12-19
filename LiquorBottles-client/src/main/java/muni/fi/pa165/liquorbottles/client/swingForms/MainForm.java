@@ -3,7 +3,10 @@ package muni.fi.pa165.liquorbottles.client.swingForms;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
@@ -244,17 +247,9 @@ public class MainForm extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleService, bottleTableModel, bottlePanel.returnBottle());
+            NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleService, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
             newBottleSwingWorker.execute();
 
-            //
-            //
-            //TODO REFRESHNUT TABULKU - tu som sa zasekol flaska sa vlozi ale refreshne sa az po vlozeni dalsej flasky (predosla)
-            //
-            //
-            //
-            bottlesTable.revalidate();
-            bottlesTable.repaint();
         }
 
     }//GEN-LAST:event_createBottleButtonActionPerformed
@@ -274,17 +269,8 @@ public class MainForm extends javax.swing.JFrame {
             if (result == JOptionPane.OK_OPTION) {
                 BottleDTO bottle = bottlePanel.returnBottle();
                 bottle.setId(Long.valueOf(bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0).toString()));
-                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleService, bottleTableModel, bottle);
+                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleService, bottleTableModel, bottle, bottlesTable);
                 editBottleSwingWorker.execute();
-
-                //
-                //
-                //TODO REFRESHNUT TABULKU - tu som sa zasekol flaska sa vlozi ale refreshne sa az po vlozeni dalsej flasky (predosla)
-                //
-                //
-                //
-                bottlesTable.revalidate();
-                bottlesTable.repaint();
             }
         }
     }//GEN-LAST:event_updateBottleButtonActionPerformed
@@ -300,7 +286,7 @@ public class MainForm extends javax.swing.JFrame {
         } else {
             DeleteBottleSwingWorker deleteBottleSwingWorker;
             deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleService, bottleTableModel,
-                    (Long) bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0));
+                    (Long) bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0), bottlesTable);
 
             deleteBottleSwingWorker.execute();
         }
@@ -311,17 +297,8 @@ public class MainForm extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "New BottleType", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeService, bottleTypeTableModel, bottleTypePanel.returnBottleType());
+            NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeService, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
             newBottleTypeSwingWorker.execute();
-            bottleTypeTable.revalidate();
-            bottleTypeTable.repaint();
-
-            //
-            //
-            //TODO REFRESHNUT TABULKU - tu som sa zasekol flaska sa vlozi ale refreshne sa az po vlozeni dalsej flasky (predosla)
-            //
-            //
-            //
         }
     }//GEN-LAST:event_createBottleTypeButtonActionPerformed
 
@@ -343,16 +320,9 @@ public class MainForm extends javax.swing.JFrame {
             if (result == JOptionPane.OK_OPTION) {
                 BottleTypeDTO bottleTypeDTO = bottleTypePanel.returnBottleType();
                 bottleTypeDTO.setId(Long.valueOf(bottleTypeTable.getValueAt(bottleTypeTable.getSelectedRow(), 0).toString()));
-                EditBottleTypeSwingWorker editBottleTypeSwingWorker = new EditBottleTypeSwingWorker(bottleTypeService, bottleTypeTableModel, bottleTypeDTO);
+                EditBottleTypeSwingWorker editBottleTypeSwingWorker = new EditBottleTypeSwingWorker(bottleTypeService, bottleTypeTableModel, bottleTypeDTO, bottleTypeTable);
                 editBottleTypeSwingWorker.execute();
-                bottleTypeTable.revalidate();
-                bottleTypeTable.repaint();
-                 //
-                //
-                //TODO REFRESHNUT TABULKU - tu som sa zasekol flaska sa vlozi ale refreshne sa az po vlozeni dalsej flasky (predosla)
-                //
-                //
-                //
+
             }
         }
     }//GEN-LAST:event_updateBottleTypeButtonActionPerformed
@@ -368,7 +338,7 @@ public class MainForm extends javax.swing.JFrame {
         } else {
             DeleteBottleTypeSwingWorker deleteBottleTypeSwingWorker;
             deleteBottleTypeSwingWorker = new DeleteBottleTypeSwingWorker(bottleTypeService, bottleTypeTableModel,
-                    (Long) bottleTypeTable.getValueAt(bottleTypeTable.getSelectedRow(), 0));
+                    (Long) bottleTypeTable.getValueAt(bottleTypeTable.getSelectedRow(), 0), bottleTypeTable);
 
             deleteBottleTypeSwingWorker.execute();
         }
