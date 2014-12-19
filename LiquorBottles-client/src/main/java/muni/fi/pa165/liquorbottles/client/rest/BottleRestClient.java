@@ -18,7 +18,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author Michal Å tora, Masaryk University
+ * @author Michal Štora, Masaryk University
  */
 public class BottleRestClient {
     private javax.ws.rs.client.WebTarget webTarget;
@@ -41,7 +41,7 @@ public class BottleRestClient {
     }
 
     public void remove(Object requestEntity) throws javax.ws.rs.ClientErrorException {
-        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+        //webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public <T> T getBottlesByBatchId(Class<T> responseType, String param) throws javax.ws.rs.ClientErrorException {

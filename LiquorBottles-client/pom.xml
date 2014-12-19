@@ -26,6 +26,7 @@
             <artifactId>LiquorBottles-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>javax.ws.rs-api-2.0</artifactId>
@@ -45,6 +46,33 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
             <version>2.5.1</version>
+=======
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>3.1.1.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>3.2.5.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>3.2.5.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.3.0</version>
+>>>>>>> b37ad57239e9a782dc0fb6ba54d1d228b9aa30f1
         </dependency>
     </dependencies>
 </project>

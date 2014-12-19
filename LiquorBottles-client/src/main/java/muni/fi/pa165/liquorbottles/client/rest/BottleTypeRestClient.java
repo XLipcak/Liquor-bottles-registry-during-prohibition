@@ -20,7 +20,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author Michal Å tora, Masaryk University
+ * @author Michal Štora, Masaryk University
  */
 public class BottleTypeRestClient {
     private WebTarget webTarget;
@@ -43,7 +43,7 @@ public class BottleTypeRestClient {
     }
 
     public void remove(Object requestEntity) throws ClientErrorException {
-        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+        //webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public <T> T getBottleTypeByAlcType(Class<T> responseType, String param) throws ClientErrorException {
