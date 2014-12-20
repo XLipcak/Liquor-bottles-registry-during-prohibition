@@ -5,6 +5,7 @@
  */
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
+import java.util.List;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 
@@ -15,8 +16,9 @@ import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 public class Main {
 
     public static void main(String args[]) {
-        BottleRestClient bottleRestClient = new BottleRestClient();
-        BottleDTO bottle = bottleRestClient.getBottleById(BottleDTO.class, "1");
-        System.out.println(bottle);
+        BottleRestClient client = new BottleRestClient();
+
+        List<BottleDTO> bottles = client.getAllBottles(List.class);
+        System.out.println(bottles);
     }
 }

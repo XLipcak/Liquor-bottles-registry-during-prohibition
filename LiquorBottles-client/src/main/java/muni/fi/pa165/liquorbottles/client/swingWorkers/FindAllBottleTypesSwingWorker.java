@@ -28,6 +28,7 @@ public class FindAllBottleTypesSwingWorker extends SwingWorker<Integer, Integer>
 
     @Override
     protected Integer doInBackground() throws Exception {
+        
         bottleTypes = bottleTypeService.findAll();
         return bottleTypes.size();
     }

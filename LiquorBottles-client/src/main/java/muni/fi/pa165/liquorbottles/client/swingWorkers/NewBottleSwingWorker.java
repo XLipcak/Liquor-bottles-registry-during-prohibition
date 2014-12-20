@@ -5,6 +5,7 @@ import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleService;
+import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
 
 /**
@@ -28,7 +29,9 @@ public class NewBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
 
     @Override
     protected BottleDTO doInBackground() throws Exception {
-        bottleService.insertBottle(bottle);
+        BottleRestClient client = new BottleRestClient();
+        client.add(bottle);
+        client.close();
         return bottle;
     }
 
