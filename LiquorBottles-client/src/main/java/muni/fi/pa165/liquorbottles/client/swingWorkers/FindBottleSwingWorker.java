@@ -2,7 +2,6 @@ package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
-import muni.fi.pa165.liquorbottles.api.services.BottleService;
 import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
 
@@ -26,7 +25,6 @@ public class FindBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
 
     @Override
     protected BottleDTO doInBackground() throws Exception {
-   
         bottle = bottleRest.getBottleById(BottleDTO.class, bottleId.toString());
         bottleRest.close();
         return bottle;

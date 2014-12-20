@@ -8,7 +8,7 @@ package muni.fi.pa165.liquorbottles.client.swingWorkers;
 import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
-import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
+import muni.fi.pa165.liquorbottles.client.rest.BottleTypeRestClient;
 import muni.fi.pa165.liquorbottles.client.tableModels.BottleTypeTableModel;
 
 /**
@@ -17,13 +17,13 @@ import muni.fi.pa165.liquorbottles.client.tableModels.BottleTypeTableModel;
  */
 public class NewBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Integer> {
 
-    BottleTypeService bottleTypeService;
+    BottleTypeRestClient bottleTypeRestClient;
     BottleTypeTableModel bottleTypeTableModel;
     BottleTypeDTO bottleType;
     JTable bottleTypeTable;
 
-    public NewBottleTypeSwingWorker(BottleTypeService bottleTypeService, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType, JTable bottleTypeTable) {
-        this.bottleTypeService = bottleTypeService;
+    public NewBottleTypeSwingWorker(BottleTypeRestClient bottleTypeRestClient, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType, JTable bottleTypeTable) {
+        this.bottleTypeRestClient = bottleTypeRestClient;
         this.bottleTypeTableModel = bottleTypeTableModel;
         this.bottleType = bottleType;
         this.bottleTypeTable = bottleTypeTable;
@@ -31,7 +31,8 @@ public class NewBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Integer
 
     @Override
     protected BottleTypeDTO doInBackground() throws Exception {
-        bottleTypeService.insertBottleType(bottleType);
+        bottleTypeRestClient.add(bottleType);
+        bottleTypeRestClient.close();
         return bottleType;
     }
 

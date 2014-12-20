@@ -4,7 +4,6 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
-import muni.fi.pa165.liquorbottles.api.services.BottleService;
 import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
 
@@ -16,8 +15,8 @@ public class FindAllBottlesSwingWorker extends SwingWorker<Integer, Integer> {
 
     BottleRestClient bottleRest;
     BottleTableModel bottleTableModel;
-    JTable bottleTable;
     List<BottleDTO> bottles;
+    JTable bottleTable;
 
     public FindAllBottlesSwingWorker(BottleRestClient bottleRest, BottleTableModel bottleTableModel, JTable bottleTable) {
         this.bottleRest = bottleRest;

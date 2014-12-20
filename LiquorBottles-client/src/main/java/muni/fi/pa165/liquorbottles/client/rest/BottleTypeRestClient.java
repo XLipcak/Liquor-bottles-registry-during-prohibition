@@ -5,9 +5,12 @@
  */
 package muni.fi.pa165.liquorbottles.client.rest;
 
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
 
 /**
  * Jersey REST client generated for REST resource:BottleTypeRestService
@@ -23,6 +26,7 @@ import javax.ws.rs.client.WebTarget;
  * @author Michal Stora, Masaryk University
  */
 public class BottleTypeRestClient {
+
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/pa165/rest";
@@ -32,34 +36,11 @@ public class BottleTypeRestClient {
         webTarget = client.target(BASE_URI).path("bottleType");
     }
 
-    public void update(Object requestEntity) throws ClientErrorException {
-        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public <T> T getAllBottleTypes(Class<T> responseType) throws ClientErrorException {
+    public List<BottleTypeDTO> getAllBottleTypes() throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("all");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public void remove(Object requestEntity) throws ClientErrorException {
-        //webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-    }
-
-    public <T> T getBottleTypeByAlcType(Class<T> responseType, String param) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("producer/{0}", new Object[]{param}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public <T> T getBottleTypeByPower(Class<T> responseType, String param) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("power/{0}", new Object[]{param}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-
-    public void add(Object requestEntity) throws ClientErrorException {
-        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BottleTypeDTO>>() {
+        });
     }
 
     public <T> T getBottleTypeById(Class<T> responseType, String param) throws ClientErrorException {
@@ -68,14 +49,48 @@ public class BottleTypeRestClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T getBottleTypeByVolume(Class<T> responseType, String param) throws ClientErrorException {
+    public List<BottleTypeDTO> getBottleTypeByAlcType(String param) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("alcType/{0}", new Object[]{param}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BottleTypeDTO>>() {
+        });
+    }
+
+    public List<BottleTypeDTO> getBottleTypeByPower(String param) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("power/{0}", new Object[]{param}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BottleTypeDTO>>() {
+        });
+    }
+
+    public List<BottleTypeDTO> getBottleTypeByVolume(String param) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("volume/{0}", new Object[]{param}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BottleTypeDTO>>() {
+        });
+    }
+
+    public List<BottleTypeDTO> getBottleTypeByProducer(String param) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("producer/{0}", new Object[]{param}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BottleTypeDTO>>() {
+        });
+    }
+
+    public void add(Object requestEntity) throws ClientErrorException {
+        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void update(Object requestEntity) throws ClientErrorException {
+        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    }
+
+    public void remove(Object requestEntity) throws ClientErrorException {
+        //webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
     public void close() {
         client.close();
     }
-    
+
 }

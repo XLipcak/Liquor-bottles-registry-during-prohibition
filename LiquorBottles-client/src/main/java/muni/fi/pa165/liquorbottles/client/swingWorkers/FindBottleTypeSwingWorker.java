@@ -7,7 +7,7 @@ package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
-import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
+import muni.fi.pa165.liquorbottles.client.rest.BottleTypeRestClient;
 import muni.fi.pa165.liquorbottles.client.tableModels.BottleTypeTableModel;
 
 /**
@@ -16,19 +16,23 @@ import muni.fi.pa165.liquorbottles.client.tableModels.BottleTypeTableModel;
  */
 public class FindBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Integer> {
 
-    BottleTypeService bottleTypeService;
+    BottleTypeRestClient bottleTypeRestClient;
     BottleTypeTableModel bottleTypeTableModel;
     BottleTypeDTO bottleType;
+    Long bottleTypeId;
 
-    public FindBottleTypeSwingWorker(BottleTypeService bottleTypeService, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType) {
-        this.bottleTypeService = bottleTypeService;
+    public FindBottleTypeSwingWorker(BottleTypeRestClient bottleTypeRestClient, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType, long bottleTypeId) {
+        this.bottleTypeRestClient = bottleTypeRestClient;
         this.bottleTypeTableModel = bottleTypeTableModel;
         this.bottleType = bottleType;
+        this.bottleTypeId = bottleTypeId;
     }
 
     @Override
     protected BottleTypeDTO doInBackground() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        bottleType = bottleTypeRestClient.getBottleTypeById(BottleTypeDTO.class, bottleTypeId.toString());
+        bottleTypeRestClient.close();
+        return bottleType;
     }
 
 }

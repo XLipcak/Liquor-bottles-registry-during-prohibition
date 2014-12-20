@@ -18,7 +18,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
-import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.api.dto.ToxicityDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleService;
 import org.springframework.context.ApplicationContext;
@@ -116,20 +115,6 @@ public class BottleRestService {
         } else {
             return Response.status(Response.Status.OK).entity(list).build();
         }
-    }
-    
-    @GET
-    @Path("/sm")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response nieco() {
-        initBeforeRequest();
-        ProducerDTO producer = new ProducerDTO();
-        producer.setId(1);
-        producer.setName("Jeldo");
-        producer.setUsername("nn");
-        producer.setAddress("bojnice");
-        producer.setPassword("123");
-        return Response.status(Response.Status.OK).entity(producer).build();
     }
     
     @PUT

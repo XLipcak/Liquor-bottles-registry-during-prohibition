@@ -3,7 +3,6 @@ package muni.fi.pa165.liquorbottles.client.swingWorkers;
 import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
-import muni.fi.pa165.liquorbottles.api.services.BottleService;
 import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
 
@@ -28,9 +27,8 @@ public class DeleteBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
 
     @Override
     protected BottleDTO doInBackground() throws Exception {
-        BottleDTO bottle = bottleRest.getBottleById(BottleDTO.class, bottleId.toString());
-        this.bottle = bottle;
-
+        BottleDTO bottleDTO = bottleRest.getBottleById(BottleDTO.class, bottleId.toString());
+        this.bottle = bottleDTO;
         bottleRest.remove(bottle);
         bottleRest.close();
         return bottle;

@@ -1,24 +1,17 @@
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
-import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
-import muni.fi.pa165.liquorbottles.api.dto.StoreDTO;
-import muni.fi.pa165.liquorbottles.api.dto.ToxicityDTO;
-import muni.fi.pa165.liquorbottles.api.services.BottleService;
-import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
 import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
+import muni.fi.pa165.liquorbottles.client.rest.BottleTypeRestClient;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.DeleteBottleSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.DeleteBottleTypeSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.EditBottleSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.EditBottleTypeSwingWorker;
+import muni.fi.pa165.liquorbottles.client.swingWorkers.FindAllBottleTypesSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.FindAllBottlesSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.NewBottleSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.NewBottleTypeSwingWorker;
@@ -35,8 +28,8 @@ public class MainForm extends javax.swing.JFrame {
     List<BottleTypeDTO> allBottleTypes;
     BottleTableModel bottleTableModel;
     BottleTypeTableModel bottleTypeTableModel;
-    BottleRestClient bottleRest;
-    BottleTypeService bottleTypeService;
+    BottleRestClient bottleRestClient;
+    BottleTypeRestClient bottleTypeRestClient;
 
     /**
      * Creates new form MainForm
@@ -47,83 +40,14 @@ public class MainForm extends javax.swing.JFrame {
         bottleTableModel = new BottleTableModel(allBottles);
         bottleTypeTableModel = new BottleTypeTableModel(allBottleTypes);
 
-        /*
-         Testing data, delete later...
-         */
-       /* BottleTypeDTO bottleType = new BottleTypeDTO();
-        bottleType.setName("Vodka");
-        bottleType.setId(1);
-        BottleTypeDTO bottleType2 = new BottleTypeDTO();
-        bottleType2.setName("Rum");
-        bottleType2.setId(2);
-
-        StoreDTO store = new StoreDTO();
-        store.setName("Liehoviny Peter");
-        store.setId(1);
-
-        StoreDTO store2 = new StoreDTO();
-        store2.setName("Liehoviny Fero");
-        store2.setId(2);
-
-        BottleDTO bottle = new BottleDTO();
-        bottle.setBatchNumber(123);
-        bottle.setBottleType(bottleType);
-        bottle.setDateOfBirth(new Date(new Date().getTime()));
-        bottle.setId(1);
-        bottle.setStamp(444);
-        bottle.setToxicity(ToxicityDTO.UNCHECKED);
-        bottle.setStore(store);
-        bottle.setId(0);
-
-        BottleDTO bottle1 = new BottleDTO();
-        bottle1.setBatchNumber(123);
-        bottle1.setBottleType(bottleType2);
-        bottle1.setDateOfBirth(new Date(new Date().getTime()));
-        bottle1.setId(1);
-        bottle1.setStamp(444);
-        bottle1.setToxicity(ToxicityDTO.TOXIC);
-        bottle1.setStore(store2);
-        bottle1.setId(1);
-
-        bottleTableModel.addBottle(bottle);
-        bottleTableModel.addBottle(bottle1);
-
-        ProducerDTO producer = new ProducerDTO();
-        producer.setName("Modry strom");
-        producer.setAddress("tralalatralala");
-        producer.setId(1);
-
-        ProducerDTO producer1 = new ProducerDTO();
-        producer1.setName("Bozkov");
-        producer1.setAddress("ututudhsdhs");
-        producer1.setId(2);
-
-        BottleTypeDTO bottleType1 = new BottleTypeDTO();
-        bottleType1.setAlcType("Rum");
-        bottleType1.setId(1);
-        bottleType1.setName("Modry Strom Rum");
-        bottleType1.setPower(40);
-        bottleType1.setProducer(producer);
-        bottleType1.setVolume(70);
-
-        BottleTypeDTO bottleType3 = new BottleTypeDTO();
-        bottleType3.setAlcType("Vodka");
-        bottleType3.setId(2);
-        bottleType3.setName("Bozkov vodka");
-        bottleType3.setPower(38);
-        bottleType3.setProducer(producer1);
-        bottleType3.setVolume(50);
-
-        bottleTypeTableModel.addBottleType(bottleType1);
-        bottleTypeTableModel.addBottleType(bottleType3);*/
-        /*
-         end of testing data
-         */
-
         initComponents();
-        bottleRest = new BottleRestClient();
-        FindAllBottlesSwingWorker findAllBottlesSwingWorker = new FindAllBottlesSwingWorker(bottleRest, bottleTableModel, bottlesTable);
+        bottleRestClient = new BottleRestClient();
+        FindAllBottlesSwingWorker findAllBottlesSwingWorker = new FindAllBottlesSwingWorker(bottleRestClient, bottleTableModel, bottlesTable);
         findAllBottlesSwingWorker.execute();
+        bottleTypeRestClient = new BottleTypeRestClient();
+        FindAllBottleTypesSwingWorker findAllBottleTypesSwingWorker = new FindAllBottleTypesSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypeTable);
+        findAllBottleTypesSwingWorker.execute();
+
     }
 
     /**
@@ -252,7 +176,7 @@ public class MainForm extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRest, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
+            NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRestClient, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
             newBottleSwingWorker.execute();
 
         }
@@ -274,7 +198,7 @@ public class MainForm extends javax.swing.JFrame {
             if (result == JOptionPane.OK_OPTION) {
                 BottleDTO bottle = bottlePanel.returnBottle();
                 bottle.setId(Long.valueOf(bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0).toString()));
-                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleRest, bottleTableModel, bottle, bottlesTable);
+                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleRestClient, bottleTableModel, bottle, bottlesTable);
                 editBottleSwingWorker.execute();
             }
         }
@@ -290,7 +214,7 @@ public class MainForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No bottle selected!");
         } else {
             DeleteBottleSwingWorker deleteBottleSwingWorker;
-            deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleRest, bottleTableModel,
+            deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleRestClient, bottleTableModel,
                     (Long) bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0), bottlesTable);
 
             deleteBottleSwingWorker.execute();
@@ -302,7 +226,7 @@ public class MainForm extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "New BottleType", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeService, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
+            NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
             newBottleTypeSwingWorker.execute();
         }
     }//GEN-LAST:event_createBottleTypeButtonActionPerformed
@@ -325,7 +249,7 @@ public class MainForm extends javax.swing.JFrame {
             if (result == JOptionPane.OK_OPTION) {
                 BottleTypeDTO bottleTypeDTO = bottleTypePanel.returnBottleType();
                 bottleTypeDTO.setId(Long.valueOf(bottleTypeTable.getValueAt(bottleTypeTable.getSelectedRow(), 0).toString()));
-                EditBottleTypeSwingWorker editBottleTypeSwingWorker = new EditBottleTypeSwingWorker(bottleTypeService, bottleTypeTableModel, bottleTypeDTO, bottleTypeTable);
+                EditBottleTypeSwingWorker editBottleTypeSwingWorker = new EditBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypeDTO, bottleTypeTable);
                 editBottleTypeSwingWorker.execute();
 
             }
@@ -342,7 +266,7 @@ public class MainForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No bottle type selected!");
         } else {
             DeleteBottleTypeSwingWorker deleteBottleTypeSwingWorker;
-            deleteBottleTypeSwingWorker = new DeleteBottleTypeSwingWorker(bottleTypeService, bottleTypeTableModel,
+            deleteBottleTypeSwingWorker = new DeleteBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel,
                     (Long) bottleTypeTable.getValueAt(bottleTypeTable.getSelectedRow(), 0), bottleTypeTable);
 
             deleteBottleTypeSwingWorker.execute();
