@@ -5,7 +5,10 @@
  */
 package muni.fi.pa165.liquorbottles.client.rest;
 
+import java.util.List;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 
 /**
  * Jersey REST client generated for REST resource:BottleRestService
@@ -78,10 +81,10 @@ public class BottleRestClient {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public <T> T getAllBottles(Class<T> responseType) throws javax.ws.rs.ClientErrorException {
+    public List<BottleDTO> getAllBottles() throws javax.ws.rs.ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("all");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get( new GenericType<List<BottleDTO>>() {} );
     }
 
     public void close() {

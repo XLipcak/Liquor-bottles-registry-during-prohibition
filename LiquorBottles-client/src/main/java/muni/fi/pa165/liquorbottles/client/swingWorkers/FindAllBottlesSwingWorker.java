@@ -1,6 +1,7 @@
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleService;
@@ -13,21 +14,21 @@ import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
  */
 public class FindAllBottlesSwingWorker extends SwingWorker<Integer, Integer> {
 
-    BottleService bottleService;
+    BottleRestClient bottleRest;
     BottleTableModel bottleTableModel;
+    JTable bottleTable;
     List<BottleDTO> bottles;
 
-    public FindAllBottlesSwingWorker(BottleService bottleService, BottleTableModel bottleTableModel) {
-        this.bottleService = bottleService;
+    public FindAllBottlesSwingWorker(BottleRestClient bottleRest, BottleTableModel bottleTableModel, JTable bottleTable) {
+        this.bottleRest = bottleRest;
         this.bottleTableModel = bottleTableModel;
+        this.bottleTable = bottleTable;
     }
 
     @Override
     protected Integer doInBackground() throws Exception {
-        BottleRestClient client = new BottleRestClient();
-
-        bottles = client.getAllBottles(List.class);
-        client.close();
+        bottles = bottleRest.getAllBottles();
+        bottleRest.close();
         return bottles.size();
     }
 
@@ -36,6 +37,8 @@ public class FindAllBottlesSwingWorker extends SwingWorker<Integer, Integer> {
         for (BottleDTO bottle : bottles) {
             bottleTableModel.addBottle(bottle);
         }
+        bottleTable.revalidate();
+        bottleTable.repaint();
     }
 
 }

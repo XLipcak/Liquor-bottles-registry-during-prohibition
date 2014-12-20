@@ -13,14 +13,14 @@ import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
  */
 public class DeleteBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
 
-    BottleService bottleService;
+    BottleRestClient bottleRest;
     BottleTableModel bottleTableModel;
     Long bottleId;
     BottleDTO bottle;
     JTable bottleTable;
 
-    public DeleteBottleSwingWorker(BottleService bottleService, BottleTableModel bottleTableModel, Long bottleId, JTable bottleTable) {
-        this.bottleService = bottleService;
+    public DeleteBottleSwingWorker(BottleRestClient bottleRest, BottleTableModel bottleTableModel, Long bottleId, JTable bottleTable) {
+        this.bottleRest = bottleRest;
         this.bottleTableModel = bottleTableModel;
         this.bottleId = bottleId;
         this.bottleTable = bottleTable;
@@ -28,13 +28,11 @@ public class DeleteBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
 
     @Override
     protected BottleDTO doInBackground() throws Exception {
-        BottleRestClient client = new BottleRestClient();
-
-        BottleDTO bottle = client.getBottleById(BottleDTO.class, bottleId.toString());
+        BottleDTO bottle = bottleRest.getBottleById(BottleDTO.class, bottleId.toString());
         this.bottle = bottle;
 
-        client.remove(bottle);
-        client.close();
+        bottleRest.remove(bottle);
+        bottleRest.close();
         return bottle;
     }
 

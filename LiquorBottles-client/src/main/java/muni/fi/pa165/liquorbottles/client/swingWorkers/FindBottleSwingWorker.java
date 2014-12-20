@@ -12,13 +12,13 @@ import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
  */
 public class FindBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
 
-    BottleService bottleService;
+    BottleRestClient bottleRest;
     BottleTableModel bottleTableModel;
     BottleDTO bottle;
     Long bottleId;
 
-    public FindBottleSwingWorker(BottleService bottleService,Long bottleId, BottleTableModel bottleTableModel, BottleDTO bottle) {
-        this.bottleService = bottleService;
+    public FindBottleSwingWorker(BottleRestClient bottleRest,Long bottleId, BottleTableModel bottleTableModel, BottleDTO bottle) {
+        this.bottleRest = bottleRest;
         this.bottleTableModel = bottleTableModel;
         this.bottle = bottle;
         this.bottleId = bottleId;
@@ -26,10 +26,9 @@ public class FindBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
 
     @Override
     protected BottleDTO doInBackground() throws Exception {
-         BottleRestClient client = new BottleRestClient();
-
-        bottle = client.getBottleById(BottleDTO.class, bottleId.toString());
-        client.close();
+   
+        bottle = bottleRest.getBottleById(BottleDTO.class, bottleId.toString());
+        bottleRest.close();
         return bottle;
     }
 

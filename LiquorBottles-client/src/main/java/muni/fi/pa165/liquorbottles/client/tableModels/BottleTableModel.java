@@ -47,10 +47,8 @@ public class BottleTableModel extends AbstractTableModel {
                 return bottle.getBatchNumber();
             case 4:
                 return bottle.getStamp();
-            case 5:{
-                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");               
-                return dateFormat.format(bottle.getDateOfBirth());
-            }
+            case 5:
+                return bottle.getDateOfBirth();
             case 6:
                 return bottle.getToxicity();
             default:

@@ -5,7 +5,11 @@
  */
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
+import javax.ws.rs.core.GenericType;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 
@@ -18,7 +22,7 @@ public class Main {
     public static void main(String args[]) {
         BottleRestClient client = new BottleRestClient();
 
-        List<BottleDTO> bottles = client.getAllBottles(List.class);
-        System.out.println(bottles);
+        List<BottleDTO> bottles = client.getAllBottles();
+       // System.out.println(bottles);
     }
 }

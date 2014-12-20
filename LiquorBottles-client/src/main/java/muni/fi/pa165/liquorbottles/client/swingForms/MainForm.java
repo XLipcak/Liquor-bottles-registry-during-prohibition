@@ -14,10 +14,12 @@ import muni.fi.pa165.liquorbottles.api.dto.StoreDTO;
 import muni.fi.pa165.liquorbottles.api.dto.ToxicityDTO;
 import muni.fi.pa165.liquorbottles.api.services.BottleService;
 import muni.fi.pa165.liquorbottles.api.services.BottleTypeService;
+import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.DeleteBottleSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.DeleteBottleTypeSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.EditBottleSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.EditBottleTypeSwingWorker;
+import muni.fi.pa165.liquorbottles.client.swingWorkers.FindAllBottlesSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.NewBottleSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.NewBottleTypeSwingWorker;
 import muni.fi.pa165.liquorbottles.client.tableModels.BottleTableModel;
@@ -33,7 +35,7 @@ public class MainForm extends javax.swing.JFrame {
     List<BottleTypeDTO> allBottleTypes;
     BottleTableModel bottleTableModel;
     BottleTypeTableModel bottleTypeTableModel;
-    BottleService bottleService;
+    BottleRestClient bottleRest;
     BottleTypeService bottleTypeService;
 
     /**
@@ -48,7 +50,7 @@ public class MainForm extends javax.swing.JFrame {
         /*
          Testing data, delete later...
          */
-        BottleTypeDTO bottleType = new BottleTypeDTO();
+       /* BottleTypeDTO bottleType = new BottleTypeDTO();
         bottleType.setName("Vodka");
         bottleType.setId(1);
         BottleTypeDTO bottleType2 = new BottleTypeDTO();
@@ -113,12 +115,15 @@ public class MainForm extends javax.swing.JFrame {
         bottleType3.setVolume(50);
 
         bottleTypeTableModel.addBottleType(bottleType1);
-        bottleTypeTableModel.addBottleType(bottleType3);
+        bottleTypeTableModel.addBottleType(bottleType3);*/
         /*
          end of testing data
          */
 
         initComponents();
+        bottleRest = new BottleRestClient();
+        FindAllBottlesSwingWorker findAllBottlesSwingWorker = new FindAllBottlesSwingWorker(bottleRest, bottleTableModel, bottlesTable);
+        findAllBottlesSwingWorker.execute();
     }
 
     /**
@@ -247,7 +252,7 @@ public class MainForm extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleService, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
+            NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRest, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
             newBottleSwingWorker.execute();
 
         }
@@ -269,7 +274,7 @@ public class MainForm extends javax.swing.JFrame {
             if (result == JOptionPane.OK_OPTION) {
                 BottleDTO bottle = bottlePanel.returnBottle();
                 bottle.setId(Long.valueOf(bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0).toString()));
-                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleService, bottleTableModel, bottle, bottlesTable);
+                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleRest, bottleTableModel, bottle, bottlesTable);
                 editBottleSwingWorker.execute();
             }
         }
@@ -285,7 +290,7 @@ public class MainForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No bottle selected!");
         } else {
             DeleteBottleSwingWorker deleteBottleSwingWorker;
-            deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleService, bottleTableModel,
+            deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleRest, bottleTableModel,
                     (Long) bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0), bottlesTable);
 
             deleteBottleSwingWorker.execute();
