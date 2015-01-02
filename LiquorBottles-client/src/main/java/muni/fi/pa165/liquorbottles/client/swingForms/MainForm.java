@@ -5,8 +5,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
+import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
+import muni.fi.pa165.liquorbottles.api.dto.StoreDTO;
 import muni.fi.pa165.liquorbottles.client.rest.BottleRestClient;
 import muni.fi.pa165.liquorbottles.client.rest.BottleTypeRestClient;
+import muni.fi.pa165.liquorbottles.client.rest.ProducerRestClient;
+import muni.fi.pa165.liquorbottles.client.rest.StoreRestClient;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.DeleteBottleSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.DeleteBottleTypeSwingWorker;
 import muni.fi.pa165.liquorbottles.client.swingWorkers.EditBottleSwingWorker;
@@ -30,6 +34,10 @@ public class MainForm extends javax.swing.JFrame {
     BottleTypeTableModel bottleTypeTableModel;
     BottleRestClient bottleRestClient;
     BottleTypeRestClient bottleTypeRestClient;
+    List<ProducerDTO> allProducers;
+    List<StoreDTO> allStores;
+    ProducerRestClient producerRestClient;
+    StoreRestClient storeRestClient;
 
     /**
      * Creates new form MainForm
@@ -39,7 +47,18 @@ public class MainForm extends javax.swing.JFrame {
         allBottleTypes = new ArrayList<>();
         bottleTableModel = new BottleTableModel(allBottles);
         bottleTypeTableModel = new BottleTypeTableModel(allBottleTypes);
-
+        
+        allProducers = new ArrayList<>();
+        allStores = new ArrayList<>();
+        producerRestClient = new ProducerRestClient();
+        storeRestClient = new StoreRestClient();
+        allProducers = producerRestClient.getProducers();
+        allStores = storeRestClient.getAllStores();
+        
+        System.out.println("All Producers: "+allProducers.toString());
+        System.out.println("All stores: "+allStores.toString());
+        
+        
         initComponents();
         bottleRestClient = new BottleRestClient();
         FindAllBottlesSwingWorker findAllBottlesSwingWorker = new FindAllBottlesSwingWorker(bottleRestClient, bottleTableModel, bottlesTable);
@@ -172,7 +191,7 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBottleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBottleButtonActionPerformed
-        BottlePanel bottlePanel = new BottlePanel(bottleTableModel.getStores(), bottleTableModel.getBottleTypes());
+        BottlePanel bottlePanel = new BottlePanel(allStores, bottleTableModel.getBottleTypes());
         int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
@@ -192,7 +211,7 @@ public class MainForm extends javax.swing.JFrame {
         if (!isRowSelected) {
             JOptionPane.showMessageDialog(this, "No bottle selected!");
         } else {
-            BottlePanel bottlePanel = new BottlePanel(bottleTableModel.getStores(), bottleTableModel.getBottleTypes());
+            BottlePanel bottlePanel = new BottlePanel(allStores, bottleTableModel.getBottleTypes());
             bottlePanel.setBottle(bottleTableModel.getBottleAt(bottlesTable.getSelectedRow()));
             int result = JOptionPane.showConfirmDialog(this, bottlePanel, "Edit Bottle", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
@@ -222,7 +241,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBottleButtonActionPerformed
 
     private void createBottleTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBottleTypeButtonActionPerformed
-        BottleTypePanel bottleTypePanel = new BottleTypePanel(bottleTypeTableModel.getProducers());
+        BottleTypePanel bottleTypePanel = new BottleTypePanel(allProducers);
         int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "New BottleType", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
@@ -241,7 +260,7 @@ public class MainForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No bottleType selected!");
         } else {
 
-            BottleTypePanel bottleTypePanel = new BottleTypePanel(bottleTypeTableModel.getProducers());
+            BottleTypePanel bottleTypePanel = new BottleTypePanel(allProducers);
 
             bottleTypePanel.setBottleType(bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()));
             int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "Edit Bottle Type", JOptionPane.OK_CANCEL_OPTION);

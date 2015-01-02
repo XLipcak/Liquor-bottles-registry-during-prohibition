@@ -35,7 +35,7 @@ public class ProducerRestClient {
         webTarget = client.target(BASE_URI).path("producer");
     }
 
-    public List<ProducerDTO> getProducers(String param) throws ClientErrorException {
+    public List<ProducerDTO> getProducers() throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("all");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<ProducerDTO>>(){});

@@ -34,7 +34,7 @@ public class StoreRestClient {
         webTarget = client.target(BASE_URI).path("store");
     }
 
-    public List<StoreDTO> getAllStores(String param) throws ClientErrorException {
+    public List<StoreDTO> getAllStores() throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("all");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<StoreDTO>>(){});
