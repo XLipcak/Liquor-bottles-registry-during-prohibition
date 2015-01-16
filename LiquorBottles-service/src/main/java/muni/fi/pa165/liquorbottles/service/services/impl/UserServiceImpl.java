@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.annotation.Secured;
 
 /**
  *
@@ -23,12 +24,8 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
     private DozerUserDTOConvertor userDTOConvertor = new DozerUserDTOConvertor();
 
-    /*public UserServiceImpl(){
-     emf = Persistence.createEntityManagerFactory(
-     "localDB");
-     userDAOimpl = new UserDAOImpl(emf);
-     }*/
     @Override
+    @Secured({"ROLE_ADMIN"})
     public List<UserDTO> findAll() {
         try {
             List<User> user = userDAO.findAll();
@@ -39,6 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public UserDTO findById(long id) {
         try {
             User user = userDAO.findById(id);
@@ -49,6 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public UserDTO findByUsername(String userName) {
         try {
             User user = userDAO.findByUsername(userName);
@@ -59,6 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public String findPassByUsername(String userName) {
         try {
             return userDAO.findPassByUsername(userName);
@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void insertUser(UserDTO userDTO) {
         try {
             User user = userDTOConvertor.fromDTOToEntity(userDTO);
@@ -79,6 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void deleteUser(UserDTO userDTO) {
         try {
             User user = userDTOConvertor.fromDTOToEntity(userDTO);
@@ -89,6 +91,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void updateUser(UserDTO userDTO) {
         try {
             User user = userDTOConvertor.fromDTOToEntity(userDTO);
@@ -99,6 +102,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Required
+    @Secured({"ROLE_ADMIN"})
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }

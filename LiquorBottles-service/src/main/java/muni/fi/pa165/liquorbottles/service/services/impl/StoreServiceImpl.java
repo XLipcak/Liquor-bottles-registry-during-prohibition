@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.annotation.Secured;
 
 /**
  *
@@ -23,12 +24,8 @@ public class StoreServiceImpl implements StoreService {
     StoreDAO storeDAO;
     DozerStoreDTOConvertor dozerStoreDTOConvertor = new DozerStoreDTOConvertor();
 
-    /*public StoreServiceImpl() {
-     emf = Persistence.createEntityManagerFactory(
-     "localDB");
-     storeDAOImpl = new StoreDAOImpl(emf);
-     }*/
     @Override
+    @Secured({"ROLE_ADMIN"})
     public List<StoreDTO> findAll() {
         try {
             List<Store> store = storeDAO.findAll();
@@ -39,6 +36,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public StoreDTO findById(long id) {
         try {
             Store store = storeDAO.findById(id);
@@ -49,6 +47,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public StoreDTO findByAddress(String address) {
         try {
             Store store = storeDAO.findByAddress(address);
@@ -59,6 +58,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public List<StoreDTO> findByFilter(String name, String address) {
         try {
             List<Store> store = storeDAO.findByFilter(name, address);
@@ -69,6 +69,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void insertStore(StoreDTO storeDTO) {
         try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
@@ -80,6 +81,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void updateStore(StoreDTO storeDTO) {
         try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
@@ -90,6 +92,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void deleteStore(StoreDTO storeDTO) {
         try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
@@ -100,6 +103,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Required
+    @Secured({"ROLE_ADMIN"})
     public void setStoreDAO(StoreDAO storeDAO) {
         this.storeDAO = storeDAO;
     }

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.annotation.Secured;
 
 /**
  *
@@ -104,6 +105,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void insertBottle(BottleDTO bottleDTO) {
         try {
             Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);
@@ -115,6 +117,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void updateBottle(BottleDTO bottleDTO) {
         try {
             Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);
@@ -125,6 +128,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void deleteBottle(BottleDTO bottleDTO) {
         try {
             Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);
@@ -135,6 +139,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Required
+    @Secured({"ROLE_ADMIN"})
     public void setBottleDAO(BottleDAO bottleDAO) {
         this.bottleDAO = bottleDAO;
     }

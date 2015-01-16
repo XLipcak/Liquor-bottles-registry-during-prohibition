@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.security.access.annotation.Secured;
 
 /**
  *
@@ -26,12 +27,8 @@ public class ProducerServiceImpl implements ProducerService {
     private BottleTypeDAO bottleTypeDao;
     private DTOConvertor<Producer, ProducerDTO> convertor = new DozerProducerDTOConvertor();
 
-    /*public ProducerServiceImpl() {
-     EntityManagerFactory emf = Persistence.createEntityManagerFactory(
-     "localDB");
-     producerDao = new ProducerDAOImpl(emf);
-     }*/
     @Override
+    @Secured({"ROLE_ADMIN"})
     public List<ProducerDTO> findAll() {
         try {
             List<Producer> allProducers = producerDao.findAll();
@@ -42,6 +39,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public ProducerDTO findById(long id) {
         try {
             Producer producerDto = producerDao.findById(id);
@@ -52,6 +50,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public ProducerDTO findByUsername(String userName) {
         try {
             Producer producerDto = producerDao.findByUsername(userName);
@@ -62,6 +61,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public ProducerDTO findByName(String name) {
         try {
             Producer producerDto = producerDao.findByName(name);
@@ -72,6 +72,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public ProducerDTO findByAddress(String address) {
         try {
             Producer producerDto = producerDao.findByAddress(address);
@@ -82,6 +83,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void insertProducer(ProducerDTO producerDto) {
         try {
             Producer producer = convertor.fromDTOToEntity(producerDto);
@@ -93,6 +95,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void updateProducer(ProducerDTO producerDto) {
         try {
             Producer producer = convertor.fromDTOToEntity(producerDto);
@@ -103,6 +106,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void deleteProducer(ProducerDTO producerDto) {
         try {
             Producer producer = convertor.fromDTOToEntity(producerDto);
@@ -113,6 +117,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public List<ProducerDTO> findByFilter(String name, String address) {
         try {
             List<Producer> producers = producerDao.findByFilter(name, address);
@@ -123,16 +128,19 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Required
+    @Secured({"ROLE_ADMIN"})
     public void setProducerDao(ProducerDAO producerDao) {
         this.producerDao = producerDao;
     }
 
     @Required
+    @Secured({"ROLE_ADMIN"})
     public void setBottleTypeDao(BottleTypeDAO bottleTypeDao) {
         this.bottleTypeDao = bottleTypeDao;
     }
 
     //@Required
+    @Secured({"ROLE_ADMIN"})
     public void setConvertor(DTOConvertor<Producer, ProducerDTO> convertor) {
         this.convertor = convertor;
     }

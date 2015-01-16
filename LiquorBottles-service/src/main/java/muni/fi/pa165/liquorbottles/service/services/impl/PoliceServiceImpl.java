@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.annotation.Secured;
 
 /**
  *
@@ -29,6 +30,7 @@ public class PoliceServiceImpl implements PoliceService {
      policeDAOImpl = new PoliceDAOImpl(emf);
      }*/
     @Override
+    @Secured({"ROLE_ADMIN"})
     public List<PoliceDTO> findAll() {
         try {
             List<Police> police = policeDAO.findAll();
@@ -39,6 +41,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public PoliceDTO findById(long id) {
         try {
             Police police = policeDAO.findById(id);
@@ -49,6 +52,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public PoliceDTO findByUsername(String userName) {
         try {
             Police police = policeDAO.findByUsername(userName);
@@ -59,6 +63,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public PoliceDTO findByName(String name) {
         try {
             Police police = policeDAO.findByName(name);
@@ -69,6 +74,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public PoliceDTO findByAddress(String address) {
         try {
             Police police = policeDAO.findByAddress(address);
@@ -79,6 +85,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public List<PoliceDTO> findByFilter(String name, String address) {
         try {
             List<Police> police = policeDAO.findByFilter(name, address);
@@ -89,6 +96,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void insertPolice(PoliceDTO policeDTO) {
         try {
             Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
@@ -100,6 +108,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void updatePolice(PoliceDTO policeDTO) {
         try {
             Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
@@ -110,6 +119,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN"})
     public void deletePolice(PoliceDTO policeDTO) {
         try {
             Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
@@ -120,6 +130,7 @@ public class PoliceServiceImpl implements PoliceService {
     }
 
     @Required
+    @Secured({"ROLE_ADMIN"})
     public void setPoliceDAO(PoliceDAO policeDAO) {
         this.policeDAO = policeDAO;
     }

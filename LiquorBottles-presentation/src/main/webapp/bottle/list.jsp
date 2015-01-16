@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <s:layout-render name="/layout.jsp" titlekey="bottle.list.title">
     <s:layout-component name="body">
@@ -44,32 +45,38 @@
                     <td><c:out value="${bottle.toxicity}"/></td>
 
                     <%--   edit  --%>
-                    <td>
-                        <s:link class="btn btn-success" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit">
-                            <s:param name="bottle.id" value="${bottle.id}"/>
-                            <f:message key="common.edit"/>
-                        </s:link>
-                    </td>
+                    <sec:authorize access="isAuthenticated()">
+                        <td>
+                            <s:link class="btn btn-success" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit">
+                                <s:param name="bottle.id" value="${bottle.id}"/>
+                                <f:message key="common.edit"/>
+                            </s:link>
+                        </td>
+                    </sec:authorize>
 
-                    <td>
-                        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
-                            <s:hidden name="bottle.id" value="${bottle.id}"/>
-                            <s:submit name="delete" class="btn btn-danger"><f:message key="common.delete"/></s:submit>
-                        </s:form>
-                    </td> 
-
+                    <%--   delete  --%>   
+                    <sec:authorize access="isAuthenticated()">
+                        <td>
+                            <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
+                                <s:hidden name="bottle.id" value="${bottle.id}"/>
+                                <s:submit name="delete" class="btn btn-danger"><f:message key="common.delete"/></s:submit>
+                            </s:form>
+                        </td> 
+                    </sec:authorize>
                     <%--  end vypis --%>
                 </tr>
             </c:forEach>
 
         </table>
 
-        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
-            <fieldset><legend><f:message key="bottle.list.newbottle"/></legend>
-                <%@include file="form.jsp"%>
-                <s:submit name="add" class="btn btn-default"><f:message key="bottle.add.button"/></s:submit>
-                </fieldset>
-        </s:form>
-
+        <%--   add  --%>
+        <sec:authorize access="isAuthenticated()">
+            <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
+                <fieldset><legend><f:message key="bottle.list.newbottle"/></legend>
+                    <%@include file="form.jsp"%>
+                    <s:submit name="add" class="btn btn-default"><f:message key="bottle.add.button"/></s:submit>
+                    </fieldset>
+            </s:form>
+        </sec:authorize>
     </s:layout-component>
 </s:layout-render>

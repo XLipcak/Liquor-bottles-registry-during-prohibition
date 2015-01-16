@@ -1,0 +1,33 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+    <global-method-security secured-annotations="enabled" />
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder hash="sha" />
+            <user-service>
+                <user name="admin" password="d033e22ae348aeb5660fc2140aec35850c4da997" authorities="ROLE_ADMIN" />
+                <user name="rest" password="27ad1672d8c97d748c9f1d8d465abfbf6bffeb72" authorities="ROLE_ADMIN" />
+            </user-service>
+        </authentication-provider>
+        
+    </authentication-manager>
+    <http use-expressions="true">
+        <intercept-url pattern="/bottle/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/bottle.action/**" access="hasRole('ROLE_ADMIN')" /> 
+        <intercept-url pattern="/bottleType/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/bottleType.action/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/police/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/police.action/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/producer/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/producer.action/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/store/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/store.action/**" access="hasRole('ROLE_ADMIN')" />
+        <form-login login-page="/login.jsp" default-target-url="/" authentication-failure-url="/login.jsp?badpw=1" />
+        <logout logout-success-url="/index.jsp" />
+    </http>
+</beans:beans>
