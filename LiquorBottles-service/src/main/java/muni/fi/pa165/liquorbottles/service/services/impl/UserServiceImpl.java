@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_STORE", "ROLE_PRODUCER"})
     public UserDTO findById(long id) {
         try {
             User user = userDAO.findById(id);

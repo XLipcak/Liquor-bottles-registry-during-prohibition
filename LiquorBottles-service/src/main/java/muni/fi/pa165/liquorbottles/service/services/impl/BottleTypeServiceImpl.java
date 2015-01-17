@@ -25,7 +25,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     private DozerBottleTypeDTOConvertor bottleTypeDTOConvertor = new DozerBottleTypeDTOConvertor();
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_PRODUCER", "ROLE_STORE"})
     public List<BottleTypeDTO> findAll() {
         try {
             List<BottleType> allBottleTypes = bottleTypeDAO.findAll();
@@ -36,7 +36,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_PRODUCER", "ROLE_STORE"})
     public BottleTypeDTO findById(long id) {
         try {
             BottleType bottleTypeDTO = bottleTypeDAO.findById(id);
@@ -47,7 +47,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_PRODUCER"})
     public List<BottleTypeDTO> findByAlcType(String alcType) {
         try {
             List<BottleType> bottleTypesByAlcType = bottleTypeDAO.findByAlcType(alcType);
@@ -58,7 +58,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_PRODUCER"})
     public List<BottleTypeDTO> findByPower(int power) {
         try {
             List<BottleType> bottleTypesByPower = bottleTypeDAO.findByPower(power);
@@ -69,7 +69,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_PRODUCER"})
     public List<BottleTypeDTO> findByVolume(int volume) {
         try {
             List<BottleType> bottleTypesByVolume = bottleTypeDAO.findByVolume(volume);
@@ -80,7 +80,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_PRODUCER"})
     public List<BottleTypeDTO> findByProducer(long producerID) {
         try {
             List<BottleType> bottleTypesByProducer = bottleTypeDAO.findByProducer(producerID);
@@ -91,7 +91,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_PRODUCER"})
     public List<BottleTypeDTO> findByFilter(long producerID, String name, String alcType, int power, int volume) {
         try {
             List<BottleType> bottleTypesByFilter = bottleTypeDAO.findByFilter(producerID, name, alcType, power, volume);
@@ -102,7 +102,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_PRODUCER"})
     public void insertBottleType(BottleTypeDTO bottleTypeDTO) {
         try {
             BottleType bottleType = bottleTypeDTOConvertor.fromDTOToEntity(bottleTypeDTO);
@@ -114,7 +114,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_PRODUCER"})
     public void updateBottleType(BottleTypeDTO bottleTypeDTO) {
         try {
             BottleType bottleType = bottleTypeDTOConvertor.fromDTOToEntity(bottleTypeDTO);
@@ -136,7 +136,7 @@ public class BottleTypeServiceImpl implements BottleTypeService {
     }
 
     @Required
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_PRODUCER"})
     public void setBottleTypeDAO(BottleTypeDAO bottleTypeDAO) {
         this.bottleTypeDAO = bottleTypeDAO;
     }

@@ -25,7 +25,7 @@ public class StoreServiceImpl implements StoreService {
     DozerStoreDTOConvertor dozerStoreDTOConvertor = new DozerStoreDTOConvertor();
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE", "ROLE_PRODUCER"})
     public List<StoreDTO> findAll() {
         try {
             List<Store> store = storeDAO.findAll();
@@ -36,7 +36,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE", "ROLE_PRODUCER"})
     public StoreDTO findById(long id) {
         try {
             Store store = storeDAO.findById(id);
@@ -47,7 +47,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE"})
     public StoreDTO findByAddress(String address) {
         try {
             Store store = storeDAO.findByAddress(address);
@@ -58,7 +58,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE"})
     public List<StoreDTO> findByFilter(String name, String address) {
         try {
             List<Store> store = storeDAO.findByFilter(name, address);

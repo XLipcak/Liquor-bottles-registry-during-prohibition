@@ -30,6 +30,9 @@ public class User {
     @Column(nullable = false)
     protected String password;
 
+    @Column(nullable = false)
+    protected String authority;
+        
     public String getUsername() {
         return username;
     }
@@ -52,6 +55,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 
     @Override

@@ -154,6 +154,7 @@ public class PoliceDAOImpl implements PoliceDAO {
 
     @Override
     public void insertPolice(Police police) {
+        police.setAuthority("ROLE_POLICE");
         userDAO.insertUser(police);
     }
 

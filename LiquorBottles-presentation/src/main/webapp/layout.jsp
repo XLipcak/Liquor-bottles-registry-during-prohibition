@@ -21,23 +21,23 @@
             <ul class="nav nav-pills" role="navigation">
                 <li role="presentation"><s:link href="/index.jsp"><f:message key="navigation.index" /></s:link></li>
                 <!-- store -->
-                <sec:authorize access="isAuthenticated()">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_POLICE')">
                 <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean"><f:message key="index.store.link"/></s:link></li> 
                 </sec:authorize>
                 <!-- producer -->
-                <sec:authorize access="isAuthenticated()">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_POLICE')">
                     <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean"><f:message key="index.producer.link"/></s:link></li>
                 </sec:authorize>
-                <!-- bottleType -->
-                <sec:authorize access="isAuthenticated()">
-                    <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean"><f:message key="index.bottleType.link"/></s:link></li>
-                </sec:authorize>    
                 <!-- bottle -->
-                <sec:authorize access="isAuthenticated()">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_POLICE', 'ROLE_STORE')">
                 <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean"><f:message key="index.bottle.link"/></s:link></li>
                 </sec:authorize>
+                <!-- bottleType -->
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_POLICE', 'ROLE_PRODUCER')">
+                    <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean"><f:message key="index.bottleType.link"/></s:link></li>
+                </sec:authorize>   
                 <!-- police -->
-                <sec:authorize access="isAuthenticated()">
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li><s:link beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean"><f:message key="index.police.link"/></s:link></li>
                 </sec:authorize>
                     

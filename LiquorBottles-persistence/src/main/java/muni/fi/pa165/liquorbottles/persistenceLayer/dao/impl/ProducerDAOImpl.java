@@ -150,6 +150,7 @@ public class ProducerDAOImpl implements ProducerDAO {
 
     @Override
     public void insertProducer(Producer producer) {
+        producer.setAuthority("ROLE_PRODUCER");
         userDAO.insertUser(producer);
     }
 

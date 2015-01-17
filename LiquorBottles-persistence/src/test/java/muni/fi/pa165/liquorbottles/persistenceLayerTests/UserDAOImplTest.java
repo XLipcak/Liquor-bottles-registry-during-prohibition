@@ -55,18 +55,22 @@ public class UserDAOImplTest {
         User user1 = new User();
         user1.setUsername("prvy");
         user1.setPassword("prveheslo");
+        user1.setAuthority("ROLE_ADMIN");
 
         User user2 = new User();
         user2.setPassword("druheheslo");
         user2.setUsername("druhy");
+        user2.setAuthority("ROLE_ADMIN");
 
         User user3 = new User();
         user3.setUsername("tri");
         user3.setPassword("pass");
+        user3.setAuthority("ROLE_ADMIN");
 
         User user4 = new User();
         user4.setUsername("4");
         user4.setPassword("word");
+        user4.setAuthority("ROLE_ADMIN");
 
         expectedResultList.add(user1);
         expectedResultList.add(user2);
@@ -153,6 +157,7 @@ public class UserDAOImplTest {
         User toAdd = new User();
         toAdd.setUsername("last");
         toAdd.setPassword("lastpass");
+        toAdd.setAuthority("ROLE_ADMIN");
         expectedResultList.add(toAdd);
         
         em.getTransaction().begin();

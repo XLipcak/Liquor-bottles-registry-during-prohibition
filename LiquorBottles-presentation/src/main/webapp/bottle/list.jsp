@@ -45,7 +45,7 @@
                     <td><c:out value="${bottle.toxicity}"/></td>
 
                     <%--   edit  --%>
-                    <sec:authorize access="isAuthenticated()">
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_POLICE', 'ROLE_STORE')">
                         <td>
                             <s:link class="btn btn-success" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean" event="edit">
                                 <s:param name="bottle.id" value="${bottle.id}"/>
@@ -55,7 +55,7 @@
                     </sec:authorize>
 
                     <%--   delete  --%>   
-                    <sec:authorize access="isAuthenticated()">
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <td>
                             <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
                                 <s:hidden name="bottle.id" value="${bottle.id}"/>
@@ -70,7 +70,7 @@
         </table>
 
         <%--   add  --%>
-        <sec:authorize access="isAuthenticated()">
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_STORE')">
             <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
                 <fieldset><legend><f:message key="bottle.list.newbottle"/></legend>
                     <%@include file="form.jsp"%>

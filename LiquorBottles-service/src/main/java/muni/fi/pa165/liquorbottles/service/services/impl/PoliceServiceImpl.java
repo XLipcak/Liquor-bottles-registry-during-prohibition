@@ -24,11 +24,6 @@ public class PoliceServiceImpl implements PoliceService {
     PoliceDAO policeDAO;
     DozerPoliceDTOConvertor dozerPoliceDTOConvertor = new DozerPoliceDTOConvertor();
 
-    /*public PoliceServiceImpl() {
-     emf = Persistence.createEntityManagerFactory(
-     "localDB");
-     policeDAOImpl = new PoliceDAOImpl(emf);
-     }*/
     @Override
     @Secured({"ROLE_ADMIN"})
     public List<PoliceDTO> findAll() {

@@ -28,7 +28,7 @@ public class ProducerServiceImpl implements ProducerService {
     private DTOConvertor<Producer, ProducerDTO> convertor = new DozerProducerDTOConvertor();
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE", "ROLE_PRODUCER"})
     public List<ProducerDTO> findAll() {
         try {
             List<Producer> allProducers = producerDao.findAll();
@@ -39,7 +39,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE", "ROLE_PRODUCER"})
     public ProducerDTO findById(long id) {
         try {
             Producer producerDto = producerDao.findById(id);
@@ -50,7 +50,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE"})
     public ProducerDTO findByUsername(String userName) {
         try {
             Producer producerDto = producerDao.findByUsername(userName);
@@ -61,7 +61,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE"})
     public ProducerDTO findByName(String name) {
         try {
             Producer producerDto = producerDao.findByName(name);
@@ -72,7 +72,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE"})
     public ProducerDTO findByAddress(String address) {
         try {
             Producer producerDto = producerDao.findByAddress(address);
@@ -117,7 +117,7 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE"})
     public List<ProducerDTO> findByFilter(String name, String address) {
         try {
             List<Producer> producers = producerDao.findByFilter(name, address);

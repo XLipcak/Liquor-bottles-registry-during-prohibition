@@ -31,6 +31,7 @@ public class BottleServiceImpl implements BottleService {
     private DozerBottleDTOConvertor bottleDTOConvertor = new DozerBottleDTOConvertor();
 
     @Override
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE", "ROLE_PRODUCER"})
     public List<BottleDTO> findAll() {
         try {
             List<Bottle> allBottles = bottleDAO.findAll();
@@ -41,6 +42,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE", "ROLE_PRODUCER"})
     public BottleDTO findById(long id) {
         try {
             Bottle bottleDTO = bottleDAO.findById(id);
@@ -51,6 +53,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE"})
     public List<BottleDTO> findByBatchId(long id) {
         try {
             List<Bottle> bottlesByBatchId = bottleDAO.findByBatchId(id);
@@ -61,6 +64,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE"})
     public BottleDTO findByStamp(long stamp) {
         try {
             Bottle bottleDTO = bottleDAO.findByStamp(stamp);
@@ -71,6 +75,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE"})
     public List<BottleDTO> findByDate(Date date) {
         try {
             List<Bottle> bottlesByDate = bottleDAO.findByDate(date);
@@ -81,6 +86,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE"})
     public List<BottleDTO> findByToxicity(ToxicityDTO toxicDTO) {
         try {
             DTOConvertor<Toxicity, ToxicityDTO> toxicityConvertor = new DozerToxicityDTOConvertor();
@@ -93,6 +99,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE"})
     public List<BottleDTO> findByFilter(long bottleTypeDAO_id, long producerDAO_id, long storeDAO_id, ToxicityDTO toxicDTO, Date startDate, Date endDate, long batch_id, long stamp) {
         try {
             DTOConvertor<Toxicity, ToxicityDTO> toxicityConvertor = new DozerToxicityDTOConvertor();
@@ -105,7 +112,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN","ROLE_STORE"})
     public void insertBottle(BottleDTO bottleDTO) {
         try {
             Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);
@@ -117,7 +124,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Override
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_POLICE", "ROLE_STORE"})
     public void updateBottle(BottleDTO bottleDTO) {
         try {
             Bottle bottle = bottleDTOConvertor.fromDTOToEntity(bottleDTO);
@@ -139,7 +146,7 @@ public class BottleServiceImpl implements BottleService {
     }
 
     @Required
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_STORE"})
     public void setBottleDAO(BottleDAO bottleDAO) {
         this.bottleDAO = bottleDAO;
     }
