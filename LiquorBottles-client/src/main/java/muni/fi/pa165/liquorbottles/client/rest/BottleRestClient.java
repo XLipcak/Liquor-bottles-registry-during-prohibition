@@ -31,9 +31,8 @@ public class BottleRestClient {
     private static final String BASE_URI = "http://localhost:8080/pa165/rest";
 
     public BottleRestClient() {
-        client = javax.ws.rs.client.ClientBuilder.newClient();
+        client = javax.ws.rs.client.ClientBuilder.newClient().register((new Authenticator("admin", "d033e22ae348aeb5660fc2140aec35850c4da997")));
         webTarget = client.target(BASE_URI).path("bottle");
-        setUsernamePassword("rest", "rest");
     }
 
     public <T> T getBottleById(Class<T> responseType, String param) throws javax.ws.rs.ClientErrorException {
@@ -72,7 +71,7 @@ public class BottleRestClient {
     public List<BottleDTO> getAllBottles() throws javax.ws.rs.ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("all");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header("username", "rest").header("username", "rest").get(new GenericType<List<BottleDTO>>() {
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BottleDTO>>() {
         });
     }
 
@@ -90,9 +89,5 @@ public class BottleRestClient {
 
     public void close() {
         client.close();
-    }
-
-    public final void setUsernamePassword(String username, String password) {
-        webTarget.register(new org.glassfish.jersey.client.filter.HttpBasicAuthFilter(username, password));
     }
 }
