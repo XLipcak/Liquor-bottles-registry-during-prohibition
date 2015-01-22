@@ -17,6 +17,7 @@ import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 /**
  *
@@ -47,6 +48,8 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
 
     public Resolution add() {
         try {
+            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+            police.setPassword(encoder.encodePassword(police.getPassword(), null));
             policeService.insertPolice(police);
             getContext().getMessages().add(new LocalizableMessage("police.add.message", escapeHTML(police.getName()), escapeHTML(police.getAddress())));
         } catch (Exception ex) {
@@ -110,6 +113,8 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
     public Resolution save() {
 
         try {
+            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+            police.setPassword(encoder.encodePassword(police.getPassword(), null));
             policeService.updatePolice(police);
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(police.getUsername())));

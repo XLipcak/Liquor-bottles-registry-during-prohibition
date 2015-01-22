@@ -18,6 +18,7 @@ import net.sourceforge.stripes.validation.ValidationErrorHandler;
 import net.sourceforge.stripes.validation.ValidationErrors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 /**
  *
@@ -60,6 +61,8 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
     public Resolution add() {
         LOGGER.debug("add() store={}", store);
         try {
+            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+            store.setPassword(encoder.encodePassword(store.getPassword(), null));
             storeService.insertStore(store);
             getContext().getMessages().add(new LocalizableMessage("store.add.message", escapeHTML(store.getName()), escapeHTML(store.getAddress())));
         } catch (Exception ex) {
@@ -131,6 +134,8 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
         LOGGER.debug("save() store={}", store);
 
         try {
+            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+            store.setPassword(encoder.encodePassword(store.getPassword(), null));
             storeService.updateStore(store);
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(store.getUsername())));

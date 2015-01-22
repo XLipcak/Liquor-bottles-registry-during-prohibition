@@ -22,6 +22,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 /**
  *
@@ -84,6 +85,8 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
     public Resolution add() {
         LOGGER.debug("add() producer={}", producer);
         try {
+            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+            producer.setPassword(encoder.encodePassword(producer.getPassword(), null));
             producerService.insertProducer(producer);
             getContext().getMessages().add(new LocalizableMessage("producer.add.message", escapeHTML(producer.getName()), escapeHTML(producer.getAddress())));
         } catch (Exception ex) {
@@ -111,6 +114,8 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
         LOGGER.debug("save() producer={}", producer);
 
         try {
+            ShaPasswordEncoder encoder = new ShaPasswordEncoder();
+            producer.setPassword(encoder.encodePassword(producer.getPassword(), null));
             producerService.updateProducer(producer);
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(producer.getUsername())));

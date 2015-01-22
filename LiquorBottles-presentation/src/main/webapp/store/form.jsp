@@ -15,6 +15,6 @@
     </tr>
     <tr>
         <th><s:label for="s4" name="common.password"/></th>
-        <td><s:text class="form-control" id="s4" name="store.password"/></td>
+        <td><s:password class="form-control" id="s4" name="store.password"/></td>
     </tr>
 </table>
