@@ -29,10 +29,11 @@ public class ProducerRestClient {
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/pa165/rest";
-
+   
     public ProducerRestClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("producer");
+        setUsernamePassword("rest", "rest");
     }
 
     public List<ProducerDTO> getProducers() throws ClientErrorException {
@@ -43,6 +44,10 @@ public class ProducerRestClient {
 
     public void close() {
         client.close();
+    }
+    
+    public final void setUsernamePassword(String username, String password) {
+        webTarget.register(new org.glassfish.jersey.client.filter.HttpBasicAuthFilter(username, password));
     }
     
 }

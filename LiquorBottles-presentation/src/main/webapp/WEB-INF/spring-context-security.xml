@@ -36,6 +36,7 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
         <intercept-url pattern="/producer.action/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_POLICE')" />
         <intercept-url pattern="/store/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_POLICE')" />
         <intercept-url pattern="/store.action/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_POLICE')" />
+        <intercept-url pattern="/rest/**" access="hasAnyRole('ROLE_ADMIN')" />
         <form-login login-page="/login.jsp" default-target-url="/" authentication-failure-url="/login.jsp?badpw=1" />
         <logout logout-success-url="/index.jsp" />
     </http>

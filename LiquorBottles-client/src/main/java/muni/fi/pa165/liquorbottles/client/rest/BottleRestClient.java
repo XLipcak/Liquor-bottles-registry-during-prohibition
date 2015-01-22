@@ -6,6 +6,7 @@
 package muni.fi.pa165.liquorbottles.client.rest;
 
 import java.util.List;
+
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
@@ -25,12 +26,12 @@ import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
  */
 public class BottleRestClient {
 
-    private javax.ws.rs.client.WebTarget webTarget;
+    private WebTarget webTarget;
     private javax.ws.rs.client.Client client;
     private static final String BASE_URI = "http://localhost:8080/pa165/rest";
 
     public BottleRestClient() {
-        client = javax.ws.rs.client.ClientBuilder.newClient();
+        client = javax.ws.rs.client.ClientBuilder.newClient().register((new Authenticator("admin", "d033e22ae348aeb5660fc2140aec35850c4da997")));
         webTarget = client.target(BASE_URI).path("bottle");
     }
 
@@ -89,5 +90,4 @@ public class BottleRestClient {
     public void close() {
         client.close();
     }
-
 }

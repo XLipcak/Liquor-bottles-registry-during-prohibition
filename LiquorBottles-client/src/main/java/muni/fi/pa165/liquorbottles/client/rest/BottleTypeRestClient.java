@@ -32,7 +32,7 @@ public class BottleTypeRestClient {
     private static final String BASE_URI = "http://localhost:8080/pa165/rest";
 
     public BottleTypeRestClient() {
-        client = javax.ws.rs.client.ClientBuilder.newClient();
+        client = javax.ws.rs.client.ClientBuilder.newClient().register((new Authenticator("admin", "admin")));
         webTarget = client.target(BASE_URI).path("bottleType");
     }
 

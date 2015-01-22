@@ -25,7 +25,7 @@ public class ProducerRestService {
     private ProducerService producerService;
 
     private List<ProducerDTO> listProducer;
-    
+
     private void initBeforeRequest() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         producerService = (ProducerService) applicationContext.getBean(ProducerService.class);
@@ -36,11 +36,7 @@ public class ProducerRestService {
     @Produces(MediaType.APPLICATION_JSON)
     public List<ProducerDTO> getProducers() {
         initBeforeRequest();
-        listProducer=producerService.findAll();
-        if (listProducer.isEmpty()){
-            return null;
-        }else{
+        listProducer = producerService.findAll();
         return listProducer;
-        }
     }
 }

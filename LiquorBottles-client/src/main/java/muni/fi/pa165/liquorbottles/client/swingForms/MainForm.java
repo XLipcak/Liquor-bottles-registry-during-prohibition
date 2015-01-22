@@ -52,11 +52,11 @@ public class MainForm extends javax.swing.JFrame {
         allStores = new ArrayList<>();
         producerRestClient = new ProducerRestClient();
         storeRestClient = new StoreRestClient();
-        allProducers = producerRestClient.getProducers();
+        /*allProducers = producerRestClient.getProducers();
         allStores = storeRestClient.getAllStores();
         
         System.out.println("All Producers: "+allProducers.toString());
-        System.out.println("All stores: "+allStores.toString());
+        System.out.println("All stores: "+allStores.toString());*/
         
         
         initComponents();
