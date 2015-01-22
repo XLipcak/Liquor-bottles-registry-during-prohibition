@@ -6,6 +6,7 @@
 package muni.fi.pa165.liquorbottles.client.rest;
 
 import java.util.List;
+
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
@@ -25,13 +26,14 @@ import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
  */
 public class BottleRestClient {
 
-    private javax.ws.rs.client.WebTarget webTarget;
+    private WebTarget webTarget;
     private javax.ws.rs.client.Client client;
     private static final String BASE_URI = "http://localhost:8080/pa165/rest";
 
     public BottleRestClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("bottle");
+        setUsernamePassword("rest", "rest");
     }
 
     public <T> T getBottleById(Class<T> responseType, String param) throws javax.ws.rs.ClientErrorException {
@@ -70,7 +72,7 @@ public class BottleRestClient {
     public List<BottleDTO> getAllBottles() throws javax.ws.rs.ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path("all");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BottleDTO>>() {
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).header("username", "rest").header("username", "rest").get(new GenericType<List<BottleDTO>>() {
         });
     }
 
@@ -90,4 +92,7 @@ public class BottleRestClient {
         client.close();
     }
 
+    public final void setUsernamePassword(String username, String password) {
+        webTarget.register(new org.glassfish.jersey.client.filter.HttpBasicAuthFilter(username, password));
+    }
 }
