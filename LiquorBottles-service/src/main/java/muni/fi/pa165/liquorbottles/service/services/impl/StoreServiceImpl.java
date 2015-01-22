@@ -5,8 +5,11 @@ import javax.persistence.PersistenceException;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.StoreDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.Store;
 import muni.fi.pa165.liquorbottles.api.dto.StoreDTO;
+import muni.fi.pa165.liquorbottles.api.dto.UserDTO;
 import muni.fi.pa165.liquorbottles.service.dto.convertor.DozerStoreDTOConvertor;
 import muni.fi.pa165.liquorbottles.api.services.StoreService;
+import muni.fi.pa165.liquorbottles.api.services.UserService;
+import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.dao.NonTransientDataAccessResourceException;
 import org.springframework.stereotype.Service;
@@ -85,6 +88,9 @@ public class StoreServiceImpl implements StoreService {
     public void updateStore(StoreDTO storeDTO) {
         try {
             Store store = dozerStoreDTOConvertor.fromDTOToEntity(storeDTO);
+            if(store.getPassword().equals("")){
+                store.setPassword(storeDAO.findById(store.getId()).getPassword());
+            }
             storeDAO.updateStore(store);
         } catch (PersistenceException ex) {
             throw new IllegalMonitorStateException(ex.getMessage());

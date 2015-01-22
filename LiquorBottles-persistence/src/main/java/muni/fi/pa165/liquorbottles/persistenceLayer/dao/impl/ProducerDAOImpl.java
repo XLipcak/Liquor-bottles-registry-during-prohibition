@@ -156,6 +156,7 @@ public class ProducerDAOImpl implements ProducerDAO {
 
     @Override
     public void updateProducer(Producer producer) {
+        producer.setAuthority("ROLE_PRODUCER");
         userDAO.updateUser(producer);
     }
 

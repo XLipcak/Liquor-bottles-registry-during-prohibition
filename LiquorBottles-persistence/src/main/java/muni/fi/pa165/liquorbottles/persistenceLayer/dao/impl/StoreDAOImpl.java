@@ -128,6 +128,7 @@ public class StoreDAOImpl implements StoreDAO {
 
     @Override
     public void updateStore(Store store) {
+        store.setAuthority("ROLE_STORE");
         userDAO.updateUser(store);
     }
 

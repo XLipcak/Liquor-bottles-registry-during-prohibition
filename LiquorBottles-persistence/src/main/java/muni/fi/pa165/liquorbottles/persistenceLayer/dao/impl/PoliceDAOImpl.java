@@ -160,6 +160,7 @@ public class PoliceDAOImpl implements PoliceDAO {
 
     @Override
     public void updatePolice(Police police) {
+        police.setAuthority("ROLE_POLICE");
         userDAO.updateUser(police);
     }
 

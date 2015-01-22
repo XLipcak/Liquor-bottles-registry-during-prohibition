@@ -2,17 +2,14 @@ package muni.fi.pa165.liquorbottles.persistenceLayer.dao.impl;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
-import javax.persistence.metamodel.StaticMetamodel;
 import muni.fi.pa165.liquorbottles.persistenceLayer.dao.UserDAO;
 import muni.fi.pa165.liquorbottles.persistenceLayer.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *

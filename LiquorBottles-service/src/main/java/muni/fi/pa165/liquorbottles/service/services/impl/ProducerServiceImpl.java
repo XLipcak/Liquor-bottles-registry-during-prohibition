@@ -99,6 +99,9 @@ public class ProducerServiceImpl implements ProducerService {
     public void updateProducer(ProducerDTO producerDto) {
         try {
             Producer producer = convertor.fromDTOToEntity(producerDto);
+            if(producer.getPassword().equals("")){
+                producer.setPassword(producerDao.findById(producer.getId()).getPassword());
+            }
             producerDao.updateProducer(producer);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!", ex);

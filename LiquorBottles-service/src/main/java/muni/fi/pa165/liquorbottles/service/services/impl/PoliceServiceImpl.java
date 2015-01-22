@@ -107,6 +107,9 @@ public class PoliceServiceImpl implements PoliceService {
     public void updatePolice(PoliceDTO policeDTO) {
         try {
             Police police = dozerPoliceDTOConvertor.fromDTOToEntity(policeDTO);
+            if(police.getPassword().equals("")){
+                police.setPassword(policeDAO.findById(police.getId()).getPassword());
+            }
             policeDAO.updatePolice(police);
         } catch (PersistenceException ex) {
             throw new NonTransientDataAccessResourceException("Operation failed!", ex);

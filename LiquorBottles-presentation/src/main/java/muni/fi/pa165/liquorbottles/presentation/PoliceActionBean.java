@@ -35,7 +35,7 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
         @Validate(on = {"add", "save"}, field = "name", required = true),
         @Validate(on = {"add", "save"}, field = "address", required = true),
         @Validate(on = {"add", "save"}, field = "username", required = true),
-        @Validate(on = {"add", "save"}, field = "password", required = true)
+        @Validate(on = {"add"}, field = "password", required = true)
     })
     private PoliceDTO police;
 
@@ -114,10 +114,15 @@ public class PoliceActionBean extends BaseActionBean implements ValidationErrorH
 
         try {
             ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-            police.setPassword(encoder.encodePassword(police.getPassword(), null));
+            if(police.getPassword() != null){
+                police.setPassword(encoder.encodePassword(police.getPassword(), null));
+            } else {
+                police.setPassword("");
+            }
             policeService.updatePolice(police);
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(police.getUsername())));
+            return new ForwardResolution("/police/edit.jsp");
         }
         return new RedirectResolution(this.getClass(), "list");
     }

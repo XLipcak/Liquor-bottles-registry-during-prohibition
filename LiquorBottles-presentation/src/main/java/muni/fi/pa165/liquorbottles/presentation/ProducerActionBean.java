@@ -69,7 +69,7 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
         @Validate(on = {"add", "save"}, field = "name", required = true),
         @Validate(on = {"add", "save"}, field = "address", required = true),
         @Validate(on = {"add", "save"}, field = "username", required = true),
-        @Validate(on = {"add", "save"}, field = "password", required = true)
+        @Validate(on = {"add"}, field = "password", required = true)
     })
 
     private ProducerDTO producer;
@@ -115,10 +115,15 @@ public class ProducerActionBean extends BaseActionBean implements ValidationErro
 
         try {
             ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-            producer.setPassword(encoder.encodePassword(producer.getPassword(), null));
+            if(producer.getPassword() != null){
+                producer.setPassword(encoder.encodePassword(producer.getPassword(), null));
+            } else {
+                producer.setPassword("");
+            }
             producerService.updateProducer(producer);
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(producer.getUsername())));
+            return new ForwardResolution("/producer/edit.jsp");
         }
 
         return new RedirectResolution(this.getClass(), "list");

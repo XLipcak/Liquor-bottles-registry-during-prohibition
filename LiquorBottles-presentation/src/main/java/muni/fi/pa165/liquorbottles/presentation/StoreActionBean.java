@@ -36,12 +36,12 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
     private List<StoreDTO> storeList;
     private String name;
     private String address;
-    
+
     @ValidateNestedProperties(value = {
         @Validate(on = {"add", "save"}, field = "name", required = true),
         @Validate(on = {"add", "save"}, field = "address", required = true),
         @Validate(on = {"add", "save"}, field = "username", required = true),
-        @Validate(on = {"add", "save"}, field = "password", required = true)
+        @Validate(on = {"add"}, field = "password", required = true)
     })
     private StoreDTO store;
 
@@ -56,7 +56,6 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
     public List<StoreDTO> getStoreList() {
         return storeList;
     }
-
 
     public Resolution add() {
         LOGGER.debug("add() store={}", store);
@@ -135,14 +134,19 @@ public class StoreActionBean extends BaseActionBean implements ValidationErrorHa
 
         try {
             ShaPasswordEncoder encoder = new ShaPasswordEncoder();
-            store.setPassword(encoder.encodePassword(store.getPassword(), null));
+            if(store.getPassword() != null){
+                store.setPassword(encoder.encodePassword(store.getPassword(), null));
+            } else {
+                store.setPassword("");
+            }
             storeService.updateStore(store);
+            
         } catch (Exception ex) {
             getContext().getMessages().add(new LocalizableMessage("common.userExists.error.message", escapeHTML(store.getUsername())));
+            return new ForwardResolution("/store/edit.jsp");
         }
         return new RedirectResolution(this.getClass(), "list");
     }
-    // DELETE part
 
     public Resolution delete() {
         LOGGER.debug("delete({})", store.getId());
