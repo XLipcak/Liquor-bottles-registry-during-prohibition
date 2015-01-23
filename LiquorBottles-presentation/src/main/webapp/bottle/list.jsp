@@ -10,17 +10,25 @@
 
         <div>
             <!--    Statistics image    -->
-            <img src="images/chart.jpg" alt="statistics" />
+            <img src="images/chart.jpg" alt="statistics" class="chart" />
         </div>
 
         <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
-            <fieldset><legend><f:message key="filter.list"/></legend>
-                <%@include file="filter.jsp"%>
-                <s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit>
-                </fieldset>
+            
+            <fieldset class="filter">
+                <legend><f:message key="filter.list"/></legend>
+                <table class="table">
+                    <%@include file="filter.jsp"%>
+                    <tr>
+                        <td></td>
+                        <td><s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit></td>
+                    </tr>
+                </table>
+            </fieldset>
+            
         </s:form>
 
-        <p><f:message key="bottle.list.allbottles"/></p>
+        <h2><f:message key="bottle.list.allbottles"/></h2>
         <table class="table table-hover">
             <tr>
                 <th >id</th>
@@ -73,9 +81,14 @@
         <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_STORE')">
             <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
                 <fieldset><legend><f:message key="bottle.list.newbottle"/></legend>
-                    <%@include file="form.jsp"%>
-                    <s:submit name="add" class="btn btn-default"><f:message key="bottle.add.button"/></s:submit>
-                    </fieldset>
+                    <table class="table">
+                        <%@include file="form.jsp"%>
+                        <tr>
+                            <td></td>
+                            <td><s:submit name="add" class="btn btn-primary"><f:message key="bottle.add.button"/></s:submit></td>
+                        </tr>
+                    </table>
+                </fieldset>
             </s:form>
         </sec:authorize>
     </s:layout-component>
