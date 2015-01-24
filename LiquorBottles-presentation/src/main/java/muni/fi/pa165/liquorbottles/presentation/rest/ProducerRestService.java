@@ -10,6 +10,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
 import muni.fi.pa165.liquorbottles.api.services.ProducerService;
 import org.springframework.context.ApplicationContext;
@@ -24,8 +25,6 @@ public class ProducerRestService {
 
     private ProducerService producerService;
 
-    private List<ProducerDTO> listProducer;
-
     private void initBeforeRequest() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         producerService = (ProducerService) applicationContext.getBean(ProducerService.class);
@@ -34,9 +33,13 @@ public class ProducerRestService {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ProducerDTO> getProducers() {
+    public Response getProducers() {
         initBeforeRequest();
-        listProducer = producerService.findAll();
-        return listProducer;
+        List<ProducerDTO> listProducer = producerService.findAll();
+        if (listProducer.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            return Response.status(Response.Status.OK).entity(listProducer).build();
+        }
     }
 }

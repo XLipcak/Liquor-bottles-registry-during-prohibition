@@ -33,6 +33,7 @@ public class FindAllBottlesSwingWorker extends SwingWorker<Integer, Integer> {
 
     @Override
     protected void done() {
+        bottleTableModel.removeRows();
         for (BottleDTO bottle : bottles) {
             bottleTableModel.addBottle(bottle);
         }

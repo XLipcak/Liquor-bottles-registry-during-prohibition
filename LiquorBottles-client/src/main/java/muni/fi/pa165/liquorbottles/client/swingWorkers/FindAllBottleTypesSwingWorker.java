@@ -38,6 +38,7 @@ public class FindAllBottleTypesSwingWorker extends SwingWorker<Integer, Integer>
 
     @Override
     protected void done() {
+        bottleTypeTableModel.removeRows();
         for (BottleTypeDTO bottleType : bottleTypes) {
             bottleTypeTableModel.addBottleType(bottleType);
         }

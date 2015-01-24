@@ -116,4 +116,8 @@ public class BottleTypeTableModel extends AbstractTableModel {
         result.addAll(producers);
         return result;
     }
+    
+    public void removeRows(){
+        bottleTypes = new ArrayList<BottleTypeDTO>();
+    }
 }

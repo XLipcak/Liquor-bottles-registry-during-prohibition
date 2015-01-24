@@ -28,45 +28,59 @@ import muni.fi.pa165.liquorbottles.client.tableModels.BottleTypeTableModel;
  */
 public class MainForm extends javax.swing.JFrame {
 
+    //data
     List<BottleDTO> allBottles;
     List<BottleTypeDTO> allBottleTypes;
-    BottleTableModel bottleTableModel;
-    BottleTypeTableModel bottleTypeTableModel;
-    BottleRestClient bottleRestClient;
-    BottleTypeRestClient bottleTypeRestClient;
     List<ProducerDTO> allProducers;
     List<StoreDTO> allStores;
+
+    //table models
+    BottleTableModel bottleTableModel;
+    BottleTypeTableModel bottleTypeTableModel;
+
+    //rest clients
+    BottleTypeRestClient bottleTypeRestClient;
+    BottleRestClient bottleRestClient;
     ProducerRestClient producerRestClient;
     StoreRestClient storeRestClient;
-
+    //swing workers
+    private FindAllBottlesSwingWorker findAllBottlesSwingWorker;
+    private FindAllBottleTypesSwingWorker findAllBottleTypesSwingWorker;
+    
     /**
      * Creates new form MainForm
      */
     public MainForm() {
+        bottleTypeRestClient = new BottleTypeRestClient();
+        bottleRestClient = new BottleRestClient();
+        producerRestClient = new ProducerRestClient();
+        storeRestClient = new StoreRestClient();
+
         allBottles = new ArrayList<>();
         allBottleTypes = new ArrayList<>();
+        allProducers = new ArrayList<>();
+        allStores = new ArrayList<>();
+
         bottleTableModel = new BottleTableModel(allBottles);
         bottleTypeTableModel = new BottleTypeTableModel(allBottleTypes);
         
-        allProducers = new ArrayList<>();
-        allStores = new ArrayList<>();
+
+        initComponents();
+        
+        refreshData();
+        
+    }
+
+    private void refreshData() {
+        bottleTypeRestClient = new BottleTypeRestClient();
+        bottleRestClient = new BottleRestClient();
         producerRestClient = new ProducerRestClient();
         storeRestClient = new StoreRestClient();
-        /*allProducers = producerRestClient.getProducers();
-        allStores = storeRestClient.getAllStores();
-        
-        System.out.println("All Producers: "+allProducers.toString());
-        System.out.println("All stores: "+allStores.toString());*/
-        
-        
-        initComponents();
-        bottleRestClient = new BottleRestClient();
-        FindAllBottlesSwingWorker findAllBottlesSwingWorker = new FindAllBottlesSwingWorker(bottleRestClient, bottleTableModel, bottlesTable);
+        findAllBottlesSwingWorker = new FindAllBottlesSwingWorker(bottleRestClient, bottleTableModel, bottlesTable);
+        findAllBottleTypesSwingWorker = new FindAllBottleTypesSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypeTable);
+       
         findAllBottlesSwingWorker.execute();
-        bottleTypeRestClient = new BottleTypeRestClient();
-        FindAllBottleTypesSwingWorker findAllBottleTypesSwingWorker = new FindAllBottleTypesSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypeTable);
         findAllBottleTypesSwingWorker.execute();
-
     }
 
     /**
@@ -88,13 +102,14 @@ public class MainForm extends javax.swing.JFrame {
         createBottleTypeButton = new javax.swing.JButton();
         updateBottleTypeButton = new javax.swing.JButton();
         deleteBottleTypeButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bottleTypeTable.setModel(new BottleTypeTableModel(allBottleTypes));
+        bottleTypeTable.setModel(bottleTypeTableModel);
         jScrollPane1.setViewportView(bottleTypeTable);
 
-        bottlesTable.setModel(new BottleTableModel(allBottles));
+        bottlesTable.setModel(bottleTableModel);
         jScrollPane2.setViewportView(bottlesTable);
 
         createBottleButton.setText("Create Bottle");
@@ -139,6 +154,13 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Refresh data");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,24 +168,27 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(createBottleTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(updateBottleTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteBottleTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(createBottleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(updateBottleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(deleteBottleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(deleteBottleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(createBottleTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateBottleTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteBottleTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(98, 98, 98))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,8 +206,9 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBottleTypeButton)
                     .addComponent(updateBottleTypeButton)
-                    .addComponent(deleteBottleTypeButton))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(deleteBottleTypeButton)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         createBottleButton.getAccessibleContext().setAccessibleName("createBottleButton");
@@ -292,6 +318,10 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteBottleTypeButtonActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        refreshData();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -334,6 +364,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton createBottleTypeButton;
     private javax.swing.JButton deleteBottleButton;
     private javax.swing.JButton deleteBottleTypeButton;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton updateBottleButton;
