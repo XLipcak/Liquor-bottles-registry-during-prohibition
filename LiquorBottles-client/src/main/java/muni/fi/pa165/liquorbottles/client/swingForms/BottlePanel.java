@@ -109,6 +109,33 @@ public class BottlePanel extends javax.swing.JPanel {
             return name;
         }
     }
+    
+    public boolean validatePanel(){
+        // null values
+        if (batchNumberTextField.getText() == null || stampNumberTextField.getText()== null 
+                || dateTextField.getText() == null || bottleTypeComboBox.getSelectedItem() == null
+                || storeComboBox.getSelectedItem() == null)
+        {
+            return false;
+        }
+        // integer values
+        try{
+            Integer.parseInt(batchNumberTextField.getText());
+            Integer.parseInt(stampNumberTextField.getText());
+        } catch (NumberFormatException e){
+            return false;
+        }
+        // correct date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        sdf.setLenient(false);
+        
+        try{
+            Date date = sdf.parse(dateTextField.getText());
+        } catch (ParseException e){
+            return false;
+        }
+        return true;
+    }
 
     public BottleDTO returnBottle() {
         BottleDTO result = new BottleDTO();       
@@ -116,7 +143,7 @@ public class BottlePanel extends javax.swing.JPanel {
         BottleTypeItem bottleTypeItem = (BottleTypeItem) bottleTypeComboBox.getSelectedItem();  
         result.setBottleType(bottleTypeItem.getBottleTypeDTO());
         
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         try {
             result.setDateOfBirth(dateFormat.parse(dateTextField.getText()));
         } catch (ParseException ex) {
@@ -196,6 +223,8 @@ public class BottlePanel extends javax.swing.JPanel {
 
         bottleTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        dateTextField.setText("yyyy.dd.mm");
+
         toxicityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TOXIC", "NON_TOXIC", "UNCHECKED" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -207,7 +236,7 @@ public class BottlePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(storeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(storeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -216,14 +245,13 @@ public class BottlePanel extends javax.swing.JPanel {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(toxicityComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(dateTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(stampNumberTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(batchNumberTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(bottleTypeComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bottleTypeComboBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(batchNumberTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(stampNumberTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dateTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                            .addComponent(toxicityComboBox, 0, 1, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -267,8 +295,9 @@ public class BottlePanel extends javax.swing.JPanel {
         batchNumberTextField.setText(String.valueOf(bottle.getBatchNumber()));
         stampNumberTextField.setText(String.valueOf(bottle.getStamp()));
         
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        dateTextField.setText(dateFormat.format(bottle.getDateOfBirth()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        //dateTextField.setText(dateFormat.format(bottle.getDateOfBirth()));
+        dateTextField.setText("yyyy.MM.dd");
         setToxicityCombobox(bottle.getToxicity());
     }
 

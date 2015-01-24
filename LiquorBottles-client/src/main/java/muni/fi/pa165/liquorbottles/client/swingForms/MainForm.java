@@ -46,7 +46,7 @@ public class MainForm extends javax.swing.JFrame {
     //swing workers
     private FindAllBottlesSwingWorker findAllBottlesSwingWorker;
     private FindAllBottleTypesSwingWorker findAllBottleTypesSwingWorker;
-    
+
     /**
      * Creates new form MainForm
      */
@@ -63,12 +63,11 @@ public class MainForm extends javax.swing.JFrame {
 
         bottleTableModel = new BottleTableModel(allBottles);
         bottleTypeTableModel = new BottleTypeTableModel(allBottleTypes);
-        
 
         initComponents();
-        
+
         refreshData();
-        
+
     }
 
     private void refreshData() {
@@ -76,11 +75,10 @@ public class MainForm extends javax.swing.JFrame {
         bottleRestClient = new BottleRestClient();
         producerRestClient = new ProducerRestClient();
         storeRestClient = new StoreRestClient();
-        
+
         findAllBottlesSwingWorker = new FindAllBottlesSwingWorker(bottleRestClient, bottleTableModel, bottlesTable);
         findAllBottleTypesSwingWorker = new FindAllBottleTypesSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypeTable);
-        
-        
+
         findAllBottlesSwingWorker.execute();
         findAllBottleTypesSwingWorker.execute();
     }
@@ -223,9 +221,15 @@ public class MainForm extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRestClient, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
-            newBottleSwingWorker.execute();
-            refreshData();
+            if (bottlePanel.validatePanel()) {
+                NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRestClient, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
+                newBottleSwingWorker.execute();
+                refreshData();
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid data");
+                createBottleButtonActionPerformed(evt);
+            }
+
         }
 
     }//GEN-LAST:event_createBottleButtonActionPerformed
@@ -239,14 +243,19 @@ public class MainForm extends javax.swing.JFrame {
         if (!isRowSelected) {
             JOptionPane.showMessageDialog(this, "No bottle selected!");
         } else {
-            BottlePanel bottlePanel = new BottlePanel(allStores, bottleTableModel.getBottleTypes());
+            BottlePanel bottlePanel = new BottlePanel(storeRestClient.getAllStores(), bottleTableModel.getBottleTypes());
             bottlePanel.setBottle(bottleTableModel.getBottleAt(bottlesTable.getSelectedRow()));
             int result = JOptionPane.showConfirmDialog(this, bottlePanel, "Edit Bottle", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
-                BottleDTO bottle = bottlePanel.returnBottle();
-                bottle.setId(Long.valueOf(bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0).toString()));
-                EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleRestClient, bottleTableModel, bottle, bottlesTable);
-                editBottleSwingWorker.execute();
+                if (bottlePanel.validatePanel()) {
+                    BottleDTO bottle = bottlePanel.returnBottle();
+                    bottle.setId(Long.valueOf(bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0).toString()));
+                    EditBottleSwingWorker editBottleSwingWorker = new EditBottleSwingWorker(bottleRestClient, bottleTableModel, bottle, bottlesTable);
+                    editBottleSwingWorker.execute();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid data");
+                    updateBottleButtonActionPerformed(evt);
+                }
             }
         }
     }//GEN-LAST:event_updateBottleButtonActionPerformed
@@ -273,9 +282,14 @@ public class MainForm extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "New BottleType", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
-            NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
-            newBottleTypeSwingWorker.execute();
-            refreshData();
+            if (bottleTypePanel.validatePanel()) {
+                NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
+                newBottleTypeSwingWorker.execute();
+                refreshData();
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid data");
+                createBottleTypeButtonActionPerformed(evt);
+            }
         }
     }//GEN-LAST:event_createBottleTypeButtonActionPerformed
 
@@ -289,16 +303,21 @@ public class MainForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No bottleType selected!");
         } else {
 
-            BottleTypePanel bottleTypePanel = new BottleTypePanel(allProducers);
+            BottleTypePanel bottleTypePanel = new BottleTypePanel(producerRestClient.getProducers());
 
             bottleTypePanel.setBottleType(bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()));
             int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "Edit Bottle Type", JOptionPane.OK_CANCEL_OPTION);
 
             if (result == JOptionPane.OK_OPTION) {
-                BottleTypeDTO bottleTypeDTO = bottleTypePanel.returnBottleType();
-                bottleTypeDTO.setId(Long.valueOf(bottleTypeTable.getValueAt(bottleTypeTable.getSelectedRow(), 0).toString()));
-                EditBottleTypeSwingWorker editBottleTypeSwingWorker = new EditBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypeDTO, bottleTypeTable);
-                editBottleTypeSwingWorker.execute();
+                if (bottleTypePanel.validatePanel()) {
+                    BottleTypeDTO bottleTypeDTO = bottleTypePanel.returnBottleType();
+                    bottleTypeDTO.setId(Long.valueOf(bottleTypeTable.getValueAt(bottleTypeTable.getSelectedRow(), 0).toString()));
+                    EditBottleTypeSwingWorker editBottleTypeSwingWorker = new EditBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypeDTO, bottleTypeTable);
+                    editBottleTypeSwingWorker.execute();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid data");
+                    updateBottleTypeButtonActionPerformed(evt);
+                }
 
             }
         }

@@ -21,7 +21,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="storeComboBox" min="-2" max="-2" attributes="0"/>
+                      <Component id="storeComboBox" min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -32,15 +32,13 @@
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="toxicityComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="dateTextField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="stampNumberTextField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="batchNumberTextField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="bottleTypeComboBox" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="bottleTypeComboBox" alignment="1" max="32767" attributes="0"/>
+                          <Component id="batchNumberTextField" alignment="1" max="32767" attributes="0"/>
+                          <Component id="stampNumberTextField" alignment="1" max="32767" attributes="0"/>
+                          <Component id="dateTextField" alignment="1" pref="75" max="32767" attributes="0"/>
+                          <Component id="toxicityComboBox" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -149,6 +147,9 @@
     <Component class="javax.swing.JTextField" name="stampNumberTextField">
     </Component>
     <Component class="javax.swing.JTextField" name="dateTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="yyyy.dd.mm"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="toxicityComboBox">
       <Properties>
