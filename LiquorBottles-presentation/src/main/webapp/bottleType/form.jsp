@@ -1,7 +1,5 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<s:errors/>
-<table class="table">
     <tr>
         <th>
             <s:label for="select" name="bottleType.common.name" />
@@ -30,5 +28,3 @@
         <th><s:label for="s4" name="bottleType.power"/></th>
         <td><s:text class="form-control" id="s4" name="bottleType.power"/></td>
     </tr>
-
-</table>

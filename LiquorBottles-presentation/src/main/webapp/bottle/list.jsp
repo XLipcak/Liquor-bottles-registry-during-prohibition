@@ -10,11 +10,11 @@
 
         <div>
             <!--    Statistics image    -->
-            <img src="images/chart.jpg" alt="statistics" class="chart" />
+            <img src="images/chart.jpg" alt="statistics" />
         </div>
 
-        <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
-            
+            <!--    Filter    -->
+        <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">            
             <fieldset class="filter">
                 <legend><f:message key="filter.list"/></legend>
                 <table class="table">
@@ -24,8 +24,7 @@
                         <td><s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit></td>
                     </tr>
                 </table>
-            </fieldset>
-            
+            </fieldset>           
         </s:form>
 
         <h2><f:message key="bottle.list.allbottles"/></h2>
@@ -80,7 +79,9 @@
         <%--   add  --%>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_STORE')">
             <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
-                <fieldset><legend><f:message key="bottle.list.newbottle"/></legend>
+                <fieldset>
+                    <legend><f:message key="bottle.list.newbottle"/></legend>
+                    <s:errors/>
                     <table class="table">
                         <%@include file="form.jsp"%>
                         <tr>

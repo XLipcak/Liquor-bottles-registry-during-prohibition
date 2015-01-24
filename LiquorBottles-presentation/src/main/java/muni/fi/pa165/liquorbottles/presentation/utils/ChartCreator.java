@@ -47,8 +47,8 @@ public class ChartCreator {
         
 
         try {
-            ChartUtilities.saveChartAsJPEG(file1, chart, 1000, 300);
-            ChartUtilities.saveChartAsJPEG(file2, chart, 1000, 300);
+            ChartUtilities.saveChartAsJPEG(file1, chart, 1140, 300);
+            ChartUtilities.saveChartAsJPEG(file2, chart, 1140, 300);
         } catch (IOException ex) {
             Logger.getLogger(ChartCreator.class.getName()).log(Level.SEVERE, null, ex);
         }

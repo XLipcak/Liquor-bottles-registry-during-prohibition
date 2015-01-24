@@ -11,13 +11,19 @@
         
 
         <s:form  class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
-                <fieldset><legend><f:message key="filter.list"/></legend>
+            <fieldset class="filter">
+                <legend><f:message key="filter.list"/></legend>
+                <table class="table">
                     <%@include file="filter.jsp"%>
-                    <s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit>
-                </fieldset>
+                    <tr>
+                        <td></td>
+                        <td><s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit></td>
+                    </tr>
+                </table>
+            </fieldset>
         </s:form>
         
-        <p><f:message key="store.list.allstores"/></p>
+        <h2><f:message key="store.list.allstores"/></h2>
         <table class="table table-hover">
             <tr> 
                 <th >id</th>
@@ -60,12 +66,19 @@
         
         <%--   add new  --%>
         <sec:authorize access="hasRole('ROLE_ADMIN')"> 
-        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
-            <fieldset><legend><f:message key="store.list.newstore"/></legend>
-                <%@include file="form.jsp"%>
-                <s:submit name="add" class="btn btn-default"><f:message key="store.button.add"/></s:submit>
-            </fieldset>
-        </s:form>
+            <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
+                <fieldset>
+                    <legend><f:message key="store.list.newstore"/></legend>
+                    <s:errors/>
+                    <table class="table">
+                        <%@include file="form.jsp"%>
+                        <tr>
+                            <td></td>
+                            <td><s:submit name="add" class="btn btn-primary"><f:message key="store.button.add"/></s:submit></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </s:form>
         </sec:authorize>
          
             

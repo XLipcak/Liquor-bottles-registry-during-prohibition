@@ -8,14 +8,21 @@
     <s:layout-component name="body">
         <s:useActionBean beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean" var="actionBean"/>
         
+        <!--    Filter    -->
         <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
-            <fieldset><legend><f:message key="filter.list"/></legend>
-                <%@include file="filter.jsp"%>
-                <s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit>
-                </fieldset>
+            <fieldset class="filter">
+                <legend><f:message key="filter.list"/></legend>
+                <table class="table">
+                    <%@include file="filter.jsp"%>
+                    <tr>
+                        <td></td>
+                        <td><s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit></td>
+                    </tr>
+                </table>
+            </fieldset>
         </s:form>
 
-        <p><f:message key="bottleType.list.allbottleTypes"/></p>
+        <h2><f:message key="bottleType.list.allbottleTypes"/></h2>
         <table class="table table-hover">
             <tr>
                 <th >id</th>
@@ -64,12 +71,19 @@
                       
         <%--   add new  --%>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_PRODUCER')">
-        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
-            <fieldset><legend><f:message key="bottleType.list.newbottleType"/></legend>
-                <%@include file="form.jsp"%>
-                <s:submit class="btn btn-default" name="add"><f:message key="bottleType.add.button"/></s:submit>
+            <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
+                <fieldset>
+                    <legend><f:message key="bottleType.list.newbottleType"/></legend>
+                    <s:errors/>
+                    <table class="table">
+                        <%@include file="form.jsp"%>
+                        <tr>
+                            <td></td>
+                            <td><s:submit class="btn btn-primary" name="add"><f:message key="bottleType.add.button"/></s:submit></td>
+                        </tr>
+                    </table>
                 </fieldset>
-        </s:form>
+            </s:form>
         </sec:authorize>
         
     </s:layout-component>

@@ -16,13 +16,19 @@
 
 
         <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean">
-            <fieldset><legend><f:message key="filter.list"/></legend>
-                <%@include file="filter.jsp"%>
-                <s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit>
-                </fieldset>
+            <fieldset class="filter">
+                <legend><f:message key="filter.list"/></legend>
+                <table class="table">
+                    <%@include file="filter.jsp"%>
+                    <tr>
+                        <td></td>
+                        <td><s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit></td>
+                    </tr>
+                </table>
+            </fieldset>
         </s:form>
         
-        <p><f:message key="police.list.allPolice"/></p>
+        <h2><f:message key="police.list.allPolice"/></h2>
         <table class="table table-hover" >
             <tr>
                 <th >id</th>
@@ -62,10 +68,17 @@
 
         <%--   add new  --%>
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.PoliceActionBean">
-            <fieldset><legend><f:message key="police.list.newpolice"/></legend>
-                <%@include file="form.jsp"%>
-                <s:submit class="btn btn-default" name="add"><f:message key="police.add.button"/></s:submit>
-                </fieldset>
+            <fieldset>
+                <legend><f:message key="police.list.newpolice"/></legend>
+                <s:errors/>
+                <table class="table">
+                    <%@include file="form.jsp"%>
+                    <tr>
+                        <td></td>
+                        <td><s:submit class="btn btn-primary" name="add"><f:message key="police.add.button"/></s:submit></td>
+                    </tr>
+                </table>
+            </fieldset>
         </s:form>
 
     </s:layout-component>

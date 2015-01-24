@@ -1,8 +1,6 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<s:errors/>
-
-    
+  
     <tr>
         <th>
             <s:label for="storeSelect" name="bottle.store.name" />

@@ -9,13 +9,19 @@
         <s:useActionBean beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean" var="actionBean"/>
 
         <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
-            <fieldset><legend><f:message key="filter.list"/></legend>
-                <%@include file="filter.jsp"%>
-                <s:submit name="filter"><f:message key="filter.submit"/></s:submit>
-                </fieldset>
+            <fieldset class="filter">
+                <legend><f:message key="filter.list"/></legend>
+                <table class="table">
+                    <%@include file="filter.jsp"%>
+                    <tr>
+                        <td></td>
+                        <td><s:submit class="btn btn-default" name="filter"><f:message key="filter.submit"/></s:submit></td>
+                    </tr>
+                </table>
+            </fieldset>
         </s:form>
         
-        <p><f:message key="producer.list.allproducers"/></p>
+        <h2><f:message key="producer.list.allproducers"/></h2>
 
         
 
@@ -61,12 +67,19 @@
  
         <%--   add new  --%>
         <sec:authorize access="hasRole('ROLE_ADMIN')">  
-        <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
-            <fieldset><legend><f:message key="producer.list.newproducer"/></legend>
-                <%@include file="form.jsp"%>
-                <s:submit name="add" class="btn btn-default"><f:message key="producer.add.button"/></s:submit>
+            <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.ProducerActionBean">
+                <fieldset>
+                    <legend><f:message key="producer.list.newproducer"/></legend>
+                    <s:errors/>
+                    <table class="table">
+                        <%@include file="form.jsp"%>
+                        <tr>
+                            <td></td>
+                            <td><s:submit name="add" class="btn btn-primary"><f:message key="producer.add.button"/></s:submit></td>
+                        </tr>
+                    </table>
                 </fieldset>
-        </s:form>
+            </s:form>
         </sec:authorize>
 
     </s:layout-component>

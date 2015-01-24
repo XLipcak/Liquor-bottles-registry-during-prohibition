@@ -8,7 +8,9 @@
 
         <s:form beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">
             <s:hidden name="bottle.id"/>
-            <fieldset><legend><f:message key="common.edit"/></legend>
+            <fieldset>
+                <legend><f:message key="common.edit"/></legend>
+                <s:errors/> 
                 <table class="table">
                     <%@include file="form.jsp"%>
                     <tr>
@@ -16,7 +18,6 @@
                         <td><s:submit class="btn btn-primary" name="save"><f:message key="common.save"/></s:submit></td>
                     </tr>
                 </table>
-
             </fieldset>
         </s:form>
 
