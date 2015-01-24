@@ -1,6 +1,5 @@
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
-import com.sun.jersey.api.client.ClientHandlerException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -195,7 +194,7 @@ public class MainForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -210,7 +209,7 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(updateBottleTypeButton)
                     .addComponent(deleteBottleTypeButton)
                     .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         createBottleButton.getAccessibleContext().setAccessibleName("createBottleButton");
@@ -283,18 +282,23 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBottleButtonActionPerformed
 
     private void createBottleTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBottleTypeButtonActionPerformed
-        BottleTypePanel bottleTypePanel = new BottleTypePanel(producerRestClient.getProducers());
-        int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "New BottleType", JOptionPane.OK_CANCEL_OPTION);
+        try {
+            BottleTypePanel bottleTypePanel = new BottleTypePanel(producerRestClient.getProducers());
+            int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "New BottleType", JOptionPane.OK_CANCEL_OPTION);
 
-        if (result == JOptionPane.OK_OPTION) {
-            if (bottleTypePanel.validatePanel()) {
-                NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
-                newBottleTypeSwingWorker.execute();
-                refreshData();
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid data");
-                createBottleTypeButtonActionPerformed(evt);
+            if (result == JOptionPane.OK_OPTION) {
+                if (bottleTypePanel.validatePanel()) {
+                    NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
+                    newBottleTypeSwingWorker.execute();
+                    refreshData();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid data");
+                    createBottleTypeButtonActionPerformed(evt);
+                }
             }
+        } catch (ProcessingException ex) {
+            JOptionPane.showMessageDialog(this, "Server connection was not established correctly. Application is closing.", "No server connection.", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
     }//GEN-LAST:event_createBottleTypeButtonActionPerformed
 
