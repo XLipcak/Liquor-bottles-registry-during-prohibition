@@ -33,7 +33,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="producerLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -45,13 +45,13 @@
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="powerTextField" alignment="1" max="32767" attributes="0"/>
                               <Component id="volumeTextField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="bottleNameTextField" alignment="1" max="32767" attributes="0"/>
+                              <Component id="bottleTypeNameTextField" alignment="1" max="32767" attributes="0"/>
                               <Component id="producerComboBox" min="-2" pref="121" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="alcoholTypeLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="alcoholTypeTextField" min="-2" pref="121" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -69,7 +69,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bottleNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bottleTypeNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bottleNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -100,7 +100,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="bottleNameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Bottle name:"/>
+            <Property name="text" type="java.lang.String" value="Bottle Type name:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="volumeLabel">
@@ -142,7 +142,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="powerTextField">
         </Component>
-        <Component class="javax.swing.JTextField" name="bottleNameTextField">
+        <Component class="javax.swing.JTextField" name="bottleTypeNameTextField">
         </Component>
       </SubComponents>
     </Container>

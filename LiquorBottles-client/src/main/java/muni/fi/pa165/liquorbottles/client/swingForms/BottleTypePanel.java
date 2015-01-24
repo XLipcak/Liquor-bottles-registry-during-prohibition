@@ -35,10 +35,10 @@ public class BottleTypePanel extends javax.swing.JPanel {
         }
         producerComboBox.setModel(new javax.swing.DefaultComboBoxModel(producerItemsModel));
     }
-    
-    private ProducerItem findProducerItemByDTO(ProducerDTO producerDTO){
-        for(ProducerItem p: producerItemsModel){
-            if (p.getProducerDTO().equals(producerDTO)){
+
+    private ProducerItem findProducerItemByDTO(ProducerDTO producerDTO) {
+        for (ProducerItem p : producerItemsModel) {
+            if (p.getProducerDTO().equals(producerDTO)) {
                 return p;
             }
         }
@@ -65,25 +65,43 @@ public class BottleTypePanel extends javax.swing.JPanel {
         }
     }
 
+    public boolean validatePanel() {
+        // null values
+        if (producerComboBox.getSelectedItem() == null || alcoholTypeTextField.getText() == null
+                || bottleTypeNameTextField.getText() == null || powerTextField.getText() == null
+                || alcoholTypeTextField.getText().equals("") || bottleTypeNameTextField.getText().equals("")
+                || volumeTextField.getText() == null) {
+            return false;
+        }
+        // integer values
+        try {
+            Integer.parseInt(powerTextField.getText());
+            Integer.parseInt(volumeTextField.getText());
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
     public BottleTypeDTO returnBottleType() {
         BottleTypeDTO result = new BottleTypeDTO();
         ProducerItem producerItem = (ProducerItem) producerComboBox.getSelectedItem();
         result.setProducer(producerItem.getProducerDTO());
 
         result.setAlcType(alcoholTypeTextField.getText());
-        result.setName(bottleNameTextField.getText());
+        result.setName(bottleTypeNameTextField.getText());
         result.setPower(Integer.valueOf(powerTextField.getText()));
         result.setVolume(Integer.valueOf(volumeTextField.getText()));
         return result;
     }
-    
-    public void setBottleType(BottleTypeDTO bottleType){
+
+    public void setBottleType(BottleTypeDTO bottleType) {
         producerComboBox.setSelectedItem(findProducerItemByDTO(bottleType.getProducer()));
         alcoholTypeTextField.setText(bottleType.getAlcType());
-        bottleNameTextField.setText(bottleType.getName());
+        bottleTypeNameTextField.setText(bottleType.getName());
         powerTextField.setText(String.valueOf(bottleType.getPower()));
         volumeTextField.setText(String.valueOf(bottleType.getVolume()));
-        
+
     }
 
     /**
@@ -105,11 +123,11 @@ public class BottleTypePanel extends javax.swing.JPanel {
         volumeTextField = new javax.swing.JTextField();
         alcoholTypeTextField = new javax.swing.JTextField();
         powerTextField = new javax.swing.JTextField();
-        bottleNameTextField = new javax.swing.JTextField();
+        bottleTypeNameTextField = new javax.swing.JTextField();
 
         producerLabel.setText("Producer: ");
 
-        bottleNameLabel.setText("Bottle name:");
+        bottleNameLabel.setText("Bottle Type name:");
 
         volumeLabel.setText("Volume:");
 
@@ -132,7 +150,7 @@ public class BottleTypePanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(producerLabel)
@@ -143,11 +161,11 @@ public class BottleTypePanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(powerTextField)
                             .addComponent(volumeTextField)
-                            .addComponent(bottleNameTextField)
+                            .addComponent(bottleTypeNameTextField)
                             .addComponent(producerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(alcoholTypeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(alcoholTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -160,7 +178,7 @@ public class BottleTypePanel extends javax.swing.JPanel {
                     .addComponent(producerLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bottleNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bottleTypeNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bottleNameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -198,7 +216,7 @@ public class BottleTypePanel extends javax.swing.JPanel {
     private javax.swing.JLabel alcoholTypeLabel;
     private javax.swing.JTextField alcoholTypeTextField;
     private javax.swing.JLabel bottleNameLabel;
-    private javax.swing.JTextField bottleNameTextField;
+    private javax.swing.JTextField bottleTypeNameTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel powerLabel;
     private javax.swing.JTextField powerTextField;
