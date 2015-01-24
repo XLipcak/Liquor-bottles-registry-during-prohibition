@@ -5,7 +5,12 @@
  */
 package muni.fi.pa165.liquorbottles.client.rest;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -69,10 +74,17 @@ public class BottleRestClient {
     }
 
     public List<BottleDTO> getAllBottles() throws javax.ws.rs.ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path("all");
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<BottleDTO>>() {
-        });
+        try {
+            WebTarget resource = webTarget;
+            resource = resource.path("all");
+            String response = resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+            ObjectMapper map = new ObjectMapper();
+            List<BottleDTO> allBottles = map.readValue(response,new TypeReference<List<BottleDTO>>(){});
+            return allBottles;
+        } catch (IOException ex) {
+            Logger.getLogger(BottleRestClient.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
     public void add(BottleDTO requestEntity) throws javax.ws.rs.ClientErrorException {
