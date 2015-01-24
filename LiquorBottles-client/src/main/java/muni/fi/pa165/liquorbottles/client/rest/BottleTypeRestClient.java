@@ -77,11 +77,11 @@ public class BottleTypeRestClient {
         });
     }
 
-    public void add(Object requestEntity) throws ClientErrorException {
+    public void add(BottleTypeDTO requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public void update(Object requestEntity) throws ClientErrorException {
+    public void update(BottleTypeDTO requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 

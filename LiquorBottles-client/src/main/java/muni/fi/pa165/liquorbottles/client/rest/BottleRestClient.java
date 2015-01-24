@@ -31,7 +31,7 @@ public class BottleRestClient {
     private static final String BASE_URI = "http://localhost:8080/pa165/rest";
 
     public BottleRestClient() {
-        client = javax.ws.rs.client.ClientBuilder.newClient().register((new Authenticator("admin", "d033e22ae348aeb5660fc2140aec35850c4da997")));
+        client = javax.ws.rs.client.ClientBuilder.newClient().register((new Authenticator("admin", "admin")));
         webTarget = client.target(BASE_URI).path("bottle");
     }
 
@@ -75,11 +75,11 @@ public class BottleRestClient {
         });
     }
 
-    public void add(Object requestEntity) throws javax.ws.rs.ClientErrorException {
+    public void add(BottleDTO requestEntity) throws javax.ws.rs.ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public void update(Object requestEntity) throws javax.ws.rs.ClientErrorException {
+    public void update(BottleDTO requestEntity) throws javax.ws.rs.ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 

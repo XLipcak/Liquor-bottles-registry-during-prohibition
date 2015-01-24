@@ -136,21 +136,21 @@ public class BottleTypeRestService {
     @Consumes(MediaType.APPLICATION_JSON)
     public void update(BottleTypeDTO toUpdate) {
         initBeforeRequest();
-        bottleTypeService.updateBottleType(bottleType);
+        bottleTypeService.updateBottleType(toUpdate);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(BottleTypeDTO toAdd) {
         initBeforeRequest();
-        bottleTypeService.insertBottleType(bottleType);
+        bottleTypeService.insertBottleType(toAdd);
     }
 
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     public void remove(BottleTypeDTO toDelete) {
         initBeforeRequest();
-        bottleTypeService.deleteBottleType(bottleType);
+        bottleTypeService.deleteBottleType(toDelete);
     }
     
     

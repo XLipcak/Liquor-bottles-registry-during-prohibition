@@ -76,9 +76,11 @@ public class MainForm extends javax.swing.JFrame {
         bottleRestClient = new BottleRestClient();
         producerRestClient = new ProducerRestClient();
         storeRestClient = new StoreRestClient();
+        
         findAllBottlesSwingWorker = new FindAllBottlesSwingWorker(bottleRestClient, bottleTableModel, bottlesTable);
         findAllBottleTypesSwingWorker = new FindAllBottleTypesSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypeTable);
-       
+        
+        
         findAllBottlesSwingWorker.execute();
         findAllBottleTypesSwingWorker.execute();
     }
@@ -217,13 +219,13 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBottleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBottleButtonActionPerformed
-        BottlePanel bottlePanel = new BottlePanel(allStores, bottleTableModel.getBottleTypes());
+        BottlePanel bottlePanel = new BottlePanel(storeRestClient.getAllStores(), bottleTableModel.getBottleTypes());
         int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
             NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRestClient, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
             newBottleSwingWorker.execute();
-
+            refreshData();
         }
 
     }//GEN-LAST:event_createBottleButtonActionPerformed
@@ -267,12 +269,13 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBottleButtonActionPerformed
 
     private void createBottleTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBottleTypeButtonActionPerformed
-        BottleTypePanel bottleTypePanel = new BottleTypePanel(allProducers);
+        BottleTypePanel bottleTypePanel = new BottleTypePanel(producerRestClient.getProducers());
         int result = JOptionPane.showConfirmDialog(this, bottleTypePanel, "New BottleType", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
             NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
             newBottleTypeSwingWorker.execute();
+            refreshData();
         }
     }//GEN-LAST:event_createBottleTypeButtonActionPerformed
 

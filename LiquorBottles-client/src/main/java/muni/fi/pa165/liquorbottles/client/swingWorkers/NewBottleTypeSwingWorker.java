@@ -23,7 +23,7 @@ public class NewBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Integer
     JTable bottleTypeTable;
 
     public NewBottleTypeSwingWorker(BottleTypeRestClient bottleTypeRestClient, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType, JTable bottleTypeTable) {
-        this.bottleTypeRestClient = bottleTypeRestClient;
+        this.bottleTypeRestClient = new BottleTypeRestClient();//bottleTypeRestClient;
         this.bottleTypeTableModel = bottleTypeTableModel;
         this.bottleType = bottleType;
         this.bottleTypeTable = bottleTypeTable;

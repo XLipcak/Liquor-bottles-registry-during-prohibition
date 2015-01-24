@@ -18,7 +18,7 @@ public class NewBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
     JTable bottleTable;
 
     public NewBottleSwingWorker(BottleRestClient bottleRest, BottleTableModel bottleTableModel, BottleDTO bottle, JTable bottleTable) {
-        this.bottleRest = bottleRest;
+        this.bottleRest = new BottleRestClient();//bottleRest;
         this.bottleTableModel = bottleTableModel;
         this.bottle = bottle;
         this.bottleTable = bottleTable;
@@ -37,7 +37,6 @@ public class NewBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
         bottleTableModel.addBottle(bottle);
         bottleTable.revalidate();
         bottleTable.repaint();
-        
     }
    
     

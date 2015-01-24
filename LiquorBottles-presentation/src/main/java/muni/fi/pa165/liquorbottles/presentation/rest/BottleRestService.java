@@ -120,18 +120,21 @@ public class BottleRestService {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void update(BottleDTO toUpdate) {
+        initBeforeRequest();
         bottleService.updateBottle(toUpdate);
     }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(BottleDTO toAdd) {
+        initBeforeRequest();
         bottleService.insertBottle(toAdd);
     }
     
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     public void remove(BottleDTO toDelete) {
+        initBeforeRequest();
         bottleService.deleteBottle(toDelete);
     }
     
