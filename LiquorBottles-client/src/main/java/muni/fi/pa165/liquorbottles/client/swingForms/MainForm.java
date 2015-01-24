@@ -1,8 +1,10 @@
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
+import com.sun.jersey.api.client.ClientHandlerException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.ws.rs.ProcessingException;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
 import muni.fi.pa165.liquorbottles.api.dto.ProducerDTO;
@@ -217,21 +219,24 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBottleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBottleButtonActionPerformed
-        BottlePanel bottlePanel = new BottlePanel(storeRestClient.getAllStores(), bottleTableModel.getBottleTypes());
-        int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
+        try {
+            BottlePanel bottlePanel = new BottlePanel(storeRestClient.getAllStores(), bottleTableModel.getBottleTypes());
+            int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
 
-        if (result == JOptionPane.OK_OPTION) {
-            if (bottlePanel.validatePanel()) {
-                NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRestClient, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
-                newBottleSwingWorker.execute();
-                refreshData();
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid data");
-                createBottleButtonActionPerformed(evt);
+            if (result == JOptionPane.OK_OPTION) {
+                if (bottlePanel.validatePanel()) {
+                    NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRestClient, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
+                    newBottleSwingWorker.execute();
+                    refreshData();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid data");
+                    createBottleButtonActionPerformed(evt);
+                }
             }
-
+        } catch (ProcessingException ex) {
+            JOptionPane.showMessageDialog(this, "Server connection was not established correctly. Application is closing.", "No server connection.", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
-
     }//GEN-LAST:event_createBottleButtonActionPerformed
 
     private void updateBottleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBottleButtonActionPerformed

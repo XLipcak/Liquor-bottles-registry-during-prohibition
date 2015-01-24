@@ -6,6 +6,10 @@
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
@@ -38,12 +42,22 @@ public class FindAllBottleTypesSwingWorker extends SwingWorker<Integer, Integer>
 
     @Override
     protected void done() {
-        bottleTypeTableModel.removeRows();
-        for (BottleTypeDTO bottleType : bottleTypes) {
-            bottleTypeTableModel.addBottleType(bottleType);
-        }
-        bottleTypeTable.revalidate();
-        bottleTypeTable.repaint();
-    }
+        try {
+            // gets the result from doInBackground and invokes exception from it if happened
+            get();
 
+            bottleTypeTableModel.removeRows();
+            for (BottleTypeDTO bottleType : bottleTypes) {
+                bottleTypeTableModel.addBottleType(bottleType);
+            }
+            bottleTypeTable.revalidate();
+            bottleTypeTable.repaint();
+
+        } catch (ExecutionException ex) {
+            JOptionPane.showMessageDialog(null, "Error while getting Bottle Types. Bottle Types dont exist!", "No Bottle Types", JOptionPane.WARNING_MESSAGE);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(FindAllBottlesSwingWorker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
