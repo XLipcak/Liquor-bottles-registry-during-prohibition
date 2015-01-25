@@ -104,8 +104,11 @@ public class MainForm extends javax.swing.JFrame {
         updateBottleTypeButton = new javax.swing.JButton();
         deleteBottleTypeButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Liquor bottles registry");
 
         bottleTypeTable.setModel(bottleTypeTableModel);
         jScrollPane1.setViewportView(bottleTypeTable);
@@ -162,6 +165,10 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Bottles:");
+
+        jLabel2.setText("Bottle types:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,21 +196,30 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(deleteBottleTypeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addGap(98, 98, 98))))
+                        .addGap(98, 98, 98))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBottleButton)
                     .addComponent(updateBottleButton)
                     .addComponent(deleteBottleButton))
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBottleTypeButton)
                     .addComponent(updateBottleTypeButton)
@@ -289,10 +305,9 @@ public class MainForm extends javax.swing.JFrame {
             DeleteBottleSwingWorker deleteBottleSwingWorker;
             deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleRestClient, bottleTableModel,
                     bottleTableModel.getBottleAt(bottlesTable.getSelectedRow()), bottlesTable);
-            
 
             deleteBottleSwingWorker.execute();
-           refreshData();
+            refreshData();
         }
     }//GEN-LAST:event_deleteBottleButtonActionPerformed
 
@@ -361,12 +376,16 @@ public class MainForm extends javax.swing.JFrame {
         if (!isRowSelected) {
             JOptionPane.showMessageDialog(this, "No bottle type selected!");
         } else {
-            DeleteBottleTypeSwingWorker deleteBottleTypeSwingWorker;
-            deleteBottleTypeSwingWorker = new DeleteBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel,
-                   bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()), bottleTypeTable);
+            if (!isDeleteOfBottleTypePossible(bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()))) {
+                  JOptionPane.showMessageDialog(this, "Selected Bottle Type has existing bottles!");
+            } else {
+                DeleteBottleTypeSwingWorker deleteBottleTypeSwingWorker;
+                deleteBottleTypeSwingWorker = new DeleteBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel,
+                        bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()), bottleTypeTable);
 
-            deleteBottleTypeSwingWorker.execute();
-            refreshData();
+                deleteBottleTypeSwingWorker.execute();
+                refreshData();
+            }
         }
     }//GEN-LAST:event_deleteBottleTypeButtonActionPerformed
 
@@ -408,6 +427,17 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean isDeleteOfBottleTypePossible(BottleTypeDTO bottleTypeDTO){
+        
+        for(int x = 0; x < bottleTableModel.getRowCount(); x++){
+            BottleDTO bottleDTO = bottleTableModel.getBottleAt(x);
+            if(bottleTypeDTO.equals(bottleDTO.getBottleType())){
+                return false;
+            }
+        }
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable bottleTypeTable;
@@ -417,6 +447,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton deleteBottleButton;
     private javax.swing.JButton deleteBottleTypeButton;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton updateBottleButton;
