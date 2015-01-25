@@ -44,8 +44,12 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
 
     private String name;
     private String alcType;
-    private int volume;
-    private int power;
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"filter"}, field = "f_volume")})
+    private int f_volume;
+    @ValidateNestedProperties(value = {
+        @Validate(on = {"filter"}, field = "f_power")})
+    private int f_power;
 
     @ValidateNestedProperties(value = {
         @Validate(on = {"add", "save"}, field = "name", required = true),
@@ -148,14 +152,14 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         if (alcType == null) {
             alcType = "";
         }
-        if (power <= 0) {
-            power = -1;
+        if (f_power <= 0) {
+            f_power = -1;
         }
-        if (volume <= 0) {
-            volume = -1;
+        if (f_volume <= 0) {
+            f_volume = -1;
         }
 
-        bottleTypeList = bottleTypeService.findByFilter(producerID, name, alcType, power, volume);
+        bottleTypeList = bottleTypeService.findByFilter(producerID, name, alcType, f_power, f_volume);
         producerList = producerService.findAll();
         return new ForwardResolution("/bottleType/list.jsp");
     }
@@ -197,19 +201,20 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
         this.alcType = alcType;
     }
 
-    public int getVolume() {
-        return volume;
+    public int getF_volume() {
+        return f_volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
+    public void setF_volume(int f_volume) {
+        this.f_volume = f_volume;
     }
 
-    public int getPower() {
-        return power;
+    public int getF_power() {
+        return f_power;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public void setF_power(int f_power) {
+        this.f_power = f_power;
     }
+
 }

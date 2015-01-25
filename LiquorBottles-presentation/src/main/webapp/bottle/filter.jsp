@@ -38,20 +38,20 @@
         </tr>
         
         <tr>
-            <td><s:label for="f3" name="bottle.batchNumber"/></td>
-            <td><s:text id="f3" class="form-control" name="batchNumber" value=""/></td>
+            <td><s:label for="f3" name="f_batchNumber"/></td>
+            <td><s:text id="f3" class="form-control" name="f_batchNumber" value=""/></td>
         </tr>
         <tr>
-            <td><s:label for="f4" name="bottle.stamp"/></td>
-            <td><s:text id="f4" class="form-control" name="stamp" value=""/></td>
+            <td><s:label for="f4" name="f_stamp"/></td>
+            <td><s:text id="f4" class="form-control" name="f_stamp" value=""/></td>
         </tr>
         <tr>
-            <td><s:label for="f5" name="common.dateFrom"/></td>
-            <td><s:text id="f5" class="form-control" name="dateFrom" value=""/></td>
+            <td><s:label for="f5" name="f_dateFrom"/></td>
+            <td><s:text id="f5" class="form-control" name="f_dateFrom" value=""/></td>
         </tr>
         <tr>
-            <td><s:label for="f6" name="common.dateTo"/></td>
-            <td><s:text id="f6" class="form-control" name="dateTo" value=""/></td>
+            <td><s:label for="f6" name="f_dateTo"/></td>
+            <td><s:text id="f6" class="form-control" name="f_dateTo" value=""/></td>
         </tr>
         <tr>
             <td><s:label for="toxicitySelect" name="bottle.toxicity"/></td>

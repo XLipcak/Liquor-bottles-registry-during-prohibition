@@ -10,6 +10,7 @@
         
         <!--    Filter    -->
         <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleTypeActionBean">
+            <s:errors/>
             <fieldset class="filter">
                 <legend><f:message key="filter.list"/></legend>
                 <table class="table">

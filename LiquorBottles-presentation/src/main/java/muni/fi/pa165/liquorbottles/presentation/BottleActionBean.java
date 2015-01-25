@@ -65,17 +65,17 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
 
     private ToxicityDTO toxicitySelect = ToxicityDTO.TOXIC;
     @ValidateNestedProperties(value = {
-        @Validate(on = {"filter"}, field = "batchNumber")})
-    private long batchNumber;
+        @Validate(on = {"filter"}, field = "f_batchNumber")})
+    private long f_batchNumber;
     @ValidateNestedProperties(value = {
-        @Validate(on = {"filter"}, field = "stamp")})
-    private long stamp;
+        @Validate(on = {"filter"}, field = "f_stamp")})
+    private long f_stamp;
     @ValidateNestedProperties(value = {
-        @Validate(on = {"filter"}, field = "dateFrom")})
-    private Date dateFrom;
+        @Validate(on = {"filter"}, field = "f_dateFrom")})
+    private Date f_dateFrom;
     @ValidateNestedProperties(value = {
-        @Validate(on = {"filter"}, field = "dateTo")})
-    private Date dateTo;
+        @Validate(on = {"filter"}, field = "f_dateTo")})
+    private Date f_dateTo;
 
     private List<BottleTypeDTO> bottleTypeList;
     private List<StoreDTO> storeList;
@@ -156,13 +156,13 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         if (producerID <= 0) {
             producerID = -1;
         }
-        if (batchNumber <= 0) {
-            batchNumber = -1;
+        if (f_batchNumber <= 0) {
+            f_batchNumber = -1;
         }
-        if (stamp <= 0) {
-            stamp = -1;
+        if (f_stamp <= 0) {
+            f_stamp = -1;
         }
-        bottleList = bottleService.findByFilter(bottleTypeID, producerID, storeID, toxicitySelect, dateFrom, dateTo, batchNumber, stamp);
+        bottleList = bottleService.findByFilter(bottleTypeID, producerID, storeID, toxicitySelect, f_dateFrom, f_dateTo, f_batchNumber, f_stamp);
         bottleTypeList = bottleTypeService.findAll();
         storeList = storeService.findAll();
         producerList = producerService.findAll();
@@ -289,36 +289,36 @@ public class BottleActionBean extends BaseActionBean implements ValidationErrorH
         this.producerID = producerID;
     }
 
-    public long getBatchNumber() {
-        return batchNumber;
+    public long getF_batchNumber() {
+        return f_batchNumber;
     }
 
-    public void setBatchNumber(long batchNumber) {
-        this.batchNumber = batchNumber;
+    public void setF_batchNumber(long f_batchNumber) {
+        this.f_batchNumber = f_batchNumber;
     }
 
-    public long getStamp() {
-        return stamp;
+    public long getF_stamp() {
+        return f_stamp;
     }
 
-    public void setStamp(long stamp) {
-        this.stamp = stamp;
+    public void setF_stamp(long f_stamp) {
+        this.f_stamp = f_stamp;
     }
 
-    public Date getDateFrom() {
-        return dateFrom;
+    public Date getF_dateFrom() {
+        return f_dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
+    public void setF_dateFrom(Date f_dateFrom) {
+        this.f_dateFrom = f_dateFrom;
     }
 
-    public Date getDateTo() {
-        return dateTo;
+    public Date getF_dateTo() {
+        return f_dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
+    public void setF_dateTo(Date f_dateTo) {
+        this.f_dateTo = f_dateTo;
     }
 
 }

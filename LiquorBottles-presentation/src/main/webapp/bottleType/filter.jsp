@@ -18,15 +18,15 @@
         <td><s:text class="form-control" id="s1" name="name"/></td>
     </tr>
     <tr>
-        <td><s:label for="s2" name="bottleType.volume"/></td>
-        <td><s:text class="form-control" id="s2" name="volume"/></td>
+        <td><s:label for="s2" name="f_volume"/></td>
+        <td><s:text class="form-control" id="s2" name="f_volume"/></td>
     </tr>
     <tr>
         <td><s:label for="s3" name="bottleType.alcType"/></td>
         <td><s:text class="form-control" id="s3" name="alcType"/></td>
     </tr>
     <tr>
-        <td><s:label for="s4" name="bottleType.power"/></td>
-        <td><s:text class="form-control" id="s4" name="power"/></td>
+        <td><s:label for="s4" name="f_power"/></td>
+        <td><s:text class="form-control" id="s4" name="f_power"/></td>
     </tr>
 </form>
