@@ -33,15 +33,7 @@
     </tx:advice>
     <!--_________________________________________________________________-->
     
-    
-    <!-- 
-   TODO: COnfigure package pointcut
-    <aop:config>
-        <aop:pointcut id="liquorRegistryServiceMethods" expression="execution(* muni.fi.pa165.liquorbottles.service.services.impl(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="liquorRegistryServiceMethods"/>
-    </aop:config>
-    -->
-    
+     
     <!--_______________________Entity Managers Beans_______________________-->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="localDB" />  
@@ -116,26 +108,5 @@
     </bean>
     <!--_________________________________________________________________-->
     
-    <!--__________________________Presentation Beans_____________________-->
-    <!--
     
-    <bean id="storePresentation" class="muni.fi.pa165.liquorbottles.presentation.StoreActionBean">
-        <property name="storeService" >
-            <bean class= "muni.fi.pa165.liquorbottles.service.services.impl.BottleService" />
-        </property>
-    </bean>
-    
-    -->
-    <!--_________________________________________________________________-->
-    
-    <!--__________________________Convertor Beans__________________________-->
-    
-    
-    <!--    TODO    -->
-    
-    
-    <!--_________________________________________________________________-->
-    
-    <!-- TODO: Split Beans into more XML files depending on logical content -->
-
 </beans>

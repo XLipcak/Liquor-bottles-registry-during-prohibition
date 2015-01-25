@@ -7,14 +7,6 @@ http://www.springframework.org/schema/security
 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     <global-method-security secured-annotations="enabled" />
     <authentication-manager>
-        <!--<authentication-provider>
-            <password-encoder hash="sha" />
-            <user-service>
-                <user name="admin" password="d033e22ae348aeb5660fc2140aec35850c4da997" authorities="ROLE_ADMIN" />
-                <user name="rest" password="27ad1672d8c97d748c9f1d8d465abfbf6bffeb72" authorities="ROLE_ADMIN" />
-            </user-service>
-        </authentication-provider>
-        -->
         <authentication-provider>
             <password-encoder hash="sha" />
 
@@ -36,7 +28,6 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
         <intercept-url pattern="/producer.action/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_POLICE')" />
         <intercept-url pattern="/store/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_POLICE')" />
         <intercept-url pattern="/store.action/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_POLICE')" />
-        <!-- <intercept-url pattern="/rest/bottle/**" access="hasAnyRole('ROLE_ADMIN')" />  -->
         <form-login login-page="/login.jsp" default-target-url="/" authentication-failure-url="/login.jsp?badpw=1" />
         <logout logout-success-url="/index.jsp" />
     </http>

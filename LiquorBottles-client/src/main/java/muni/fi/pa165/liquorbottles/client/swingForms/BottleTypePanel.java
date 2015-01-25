@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package muni.fi.pa165.liquorbottles.client.swingForms;
 
 import java.util.List;
@@ -66,14 +61,12 @@ public class BottleTypePanel extends javax.swing.JPanel {
     }
 
     public boolean validatePanel() {
-        // null values
         if (producerComboBox.getSelectedItem() == null || alcoholTypeTextField.getText() == null
                 || bottleTypeNameTextField.getText() == null || powerTextField.getText() == null
                 || alcoholTypeTextField.getText().equals("") || bottleTypeNameTextField.getText().equals("")
                 || volumeTextField.getText() == null) {
             return false;
         }
-        // integer values
         try {
             Integer.parseInt(powerTextField.getText());
             Integer.parseInt(volumeTextField.getText());

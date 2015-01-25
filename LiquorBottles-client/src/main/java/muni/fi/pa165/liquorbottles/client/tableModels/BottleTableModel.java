@@ -112,8 +112,6 @@ public class BottleTableModel extends AbstractTableModel {
         fireTableRowsUpdated(row, row);
     }
     
-    // TU treba dorobit nacitavanie vsetkych stores a bottletypes nie len tych co su pre vytvorene flasky
-    
     public List<StoreDTO> getStores(){
         List<StoreDTO> result = new ArrayList<>();
         Set<StoreDTO> stores = new HashSet<>();

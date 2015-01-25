@@ -36,7 +36,7 @@
                 <configuration>
                     <mainClass>muni.fi.pa165.liquorbottles.client.swingForms.MainForm</mainClass>
                     <arguments>
-                        <!-- <argument>argument1</argument> -->
+                       
                     </arguments>
                 </configuration>
             </plugin>

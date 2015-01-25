@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package muni.fi.pa165.liquorbottles.persistenceLayerTests;
 
 import java.util.ArrayList;
@@ -33,7 +28,6 @@ import org.testng.annotations.Test;
  */
 public class BottleTypeDAOImplTest {
 
-    //TODO: inject this values from XML
     private final int NUMBER_OF_RECORDS = 50;
     private final String NAME_OF_DB = "testDB";
 

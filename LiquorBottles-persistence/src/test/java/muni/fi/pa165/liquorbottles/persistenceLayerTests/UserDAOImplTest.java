@@ -23,7 +23,6 @@ import org.testng.annotations.Test;
  */
 public class UserDAOImplTest {
 
-    //TODO: inject this values from XML
     private final int NUMBER_OF_RECORDS = 50;
     private final String NAME_OF_DB = "testDB";
 

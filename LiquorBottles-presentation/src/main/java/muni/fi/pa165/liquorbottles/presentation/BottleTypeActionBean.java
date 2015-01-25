@@ -107,7 +107,6 @@ public class BottleTypeActionBean extends BaseActionBean implements ValidationEr
     private long producerID;
 
     public long getProducerID() {
-        //
         return producerID;
     }
 

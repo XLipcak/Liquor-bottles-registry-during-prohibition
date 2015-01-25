@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package muni.fi.pa165.liquorbottles.client.rest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.jersey.api.client.ClientResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ws.rs.client.Entity;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.MediaType;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,8 +27,8 @@ import org.springframework.web.client.RestTemplate;
  */
 public class BottleRestClient {
 
-    private WebTarget webTarget;
-    private javax.ws.rs.client.Client client;
+    private final WebTarget webTarget;
+    private final javax.ws.rs.client.Client client;
     private static final String BASE_URI = "http://localhost:8080/pa165/rest";
 
     public BottleRestClient() {
@@ -101,8 +93,6 @@ public class BottleRestClient {
     }
 
     public void remove(long requestEntity) throws javax.ws.rs.ClientErrorException {
-        //webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
-        // webTarget.request(MediaType.APPLICATION_JSON).delete(Entity.entity(requestEntity, MediaType.APPLICATION_JSON));
         RestTemplate template = new RestTemplate();
         template.delete(BASE_URI + "/bottle/delete/{id}", requestEntity);
     }

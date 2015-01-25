@@ -103,8 +103,7 @@ public class BottleTypeTableModel extends AbstractTableModel {
         bottleTypes.set(row, bottleType);
         fireTableRowsUpdated(row, row);
     }
-    // TU treba dorobit nacitavanie vsetkych producers nie len tych co su pre vytvorene flasky
-  
+   
     public List<ProducerDTO> getProducers(){
         List<ProducerDTO> result = new ArrayList<>();
         Set<ProducerDTO> producers = new HashSet();

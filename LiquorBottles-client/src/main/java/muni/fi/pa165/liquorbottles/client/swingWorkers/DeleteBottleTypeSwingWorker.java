@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
 import java.util.concurrent.ExecutionException;
@@ -36,8 +31,6 @@ public class DeleteBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Inte
 
     @Override
     protected BottleTypeDTO doInBackground() throws Exception {
-       /* BottleTypeDTO bottleTypeDTO = bottleTypeRestClient.getBottleTypeById(BottleTypeDTO.class, bottleTypeID.toString());
-        this.bottleType = bottleTypeDTO;*/
         bottleTypeRestClient.remove(bottleType.getId());
         bottleTypeRestClient.close();
         return bottleType;
