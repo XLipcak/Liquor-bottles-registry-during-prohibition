@@ -67,11 +67,16 @@ public class MainForm extends javax.swing.JFrame {
 
         initComponents();
 
-        refreshData();
+        refreshData(0);
 
     }
 
-    private void refreshData() {
+    private void refreshData(int time) {
+        try {
+            Thread.sleep(time);                 //1000 milliseconds is one second.
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
         bottleTypeRestClient = new BottleTypeRestClient();
         bottleRestClient = new BottleRestClient();
         producerRestClient = new ProducerRestClient();
@@ -240,7 +245,7 @@ public class MainForm extends javax.swing.JFrame {
 
             if (result == JOptionPane.OK_OPTION) {
                 if (bottlePanel.validatePanel()) {
-                    refreshData();
+                    refreshData(0);
                     for (int i = 0; i < bottleTableModel.getRowCount(); i++) {
                         if (bottlePanel.returnBottle().getStamp() == bottleTableModel.getBottleAt(i).getStamp()) {
                             JOptionPane.showMessageDialog(null, "Stamp must be unique!");
@@ -250,7 +255,7 @@ public class MainForm extends javax.swing.JFrame {
                     }
                     NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRestClient, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
                     newBottleSwingWorker.execute();
-                    refreshData();
+                    refreshData(500);
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid data");
                     createBottleButtonActionPerformed(evt);
@@ -294,20 +299,25 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_updateBottleButtonActionPerformed
 
     private void deleteBottleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBottleButtonActionPerformed
-        boolean isRowSelected = false;
-        for (int x = 0; x < bottlesTable.getRowCount(); x++) {
-            isRowSelected = isRowSelected || bottlesTable.isRowSelected(x);
-        }
+        try {
+            boolean isRowSelected = false;
+            for (int x = 0; x < bottlesTable.getRowCount(); x++) {
+                isRowSelected = isRowSelected || bottlesTable.isRowSelected(x);
+            }
 
-        if (!isRowSelected) {
-            JOptionPane.showMessageDialog(this, "No bottle selected!");
-        } else {
-            DeleteBottleSwingWorker deleteBottleSwingWorker;
-            deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleRestClient, bottleTableModel,
-                    bottleTableModel.getBottleAt(bottlesTable.getSelectedRow()), bottlesTable);
+            if (!isRowSelected) {
+                JOptionPane.showMessageDialog(this, "No bottle selected!");
+            } else {
+                DeleteBottleSwingWorker deleteBottleSwingWorker;
+                deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleRestClient, bottleTableModel,
+                        bottleTableModel.getBottleAt(bottlesTable.getSelectedRow()), bottlesTable);
 
-            deleteBottleSwingWorker.execute();
-            refreshData();
+                deleteBottleSwingWorker.execute();
+                refreshData(500);
+            }
+        } catch (ProcessingException ex) {
+            JOptionPane.showMessageDialog(this, "Server connection was not established correctly. Application is closing.", "No server connection.", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
     }//GEN-LAST:event_deleteBottleButtonActionPerformed
 
@@ -320,7 +330,7 @@ public class MainForm extends javax.swing.JFrame {
                 if (bottleTypePanel.validatePanel()) {
                     NewBottleTypeSwingWorker newBottleTypeSwingWorker = new NewBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel, bottleTypePanel.returnBottleType(), bottleTypeTable);
                     newBottleTypeSwingWorker.execute();
-                    refreshData();
+                    refreshData(500);
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid data");
                     createBottleTypeButtonActionPerformed(evt);
@@ -368,29 +378,34 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_updateBottleTypeButtonActionPerformed
 
     private void deleteBottleTypeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBottleTypeButtonActionPerformed
-        boolean isRowSelected = false;
-        for (int x = 0; x < bottleTypeTable.getRowCount(); x++) {
-            isRowSelected = isRowSelected || bottleTypeTable.isRowSelected(x);
-        }
-
-        if (!isRowSelected) {
-            JOptionPane.showMessageDialog(this, "No bottle type selected!");
-        } else {
-            if (!isDeleteOfBottleTypePossible(bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()))) {
-                  JOptionPane.showMessageDialog(this, "Selected Bottle Type has existing bottles!");
-            } else {
-                DeleteBottleTypeSwingWorker deleteBottleTypeSwingWorker;
-                deleteBottleTypeSwingWorker = new DeleteBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel,
-                        bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()), bottleTypeTable);
-
-                deleteBottleTypeSwingWorker.execute();
-                refreshData();
+        try {
+            boolean isRowSelected = false;
+            for (int x = 0; x < bottleTypeTable.getRowCount(); x++) {
+                isRowSelected = isRowSelected || bottleTypeTable.isRowSelected(x);
             }
+
+            if (!isRowSelected) {
+                JOptionPane.showMessageDialog(this, "No bottle type selected!");
+            } else {
+                if (!isDeleteOfBottleTypePossible(bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()))) {
+                    JOptionPane.showMessageDialog(this, "Selected Bottle Type has existing bottles!");
+                } else {
+                    DeleteBottleTypeSwingWorker deleteBottleTypeSwingWorker;
+                    deleteBottleTypeSwingWorker = new DeleteBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel,
+                            bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()), bottleTypeTable);
+
+                    deleteBottleTypeSwingWorker.execute();
+                    refreshData(500);
+                }
+            }
+        } catch (ProcessingException ex) {
+            JOptionPane.showMessageDialog(this, "Server connection was not established correctly. Application is closing.", "No server connection.", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
     }//GEN-LAST:event_deleteBottleTypeButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        refreshData();
+        refreshData(0);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -427,12 +442,12 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
     }
-    
-    private boolean isDeleteOfBottleTypePossible(BottleTypeDTO bottleTypeDTO){
-        
-        for(int x = 0; x < bottleTableModel.getRowCount(); x++){
+
+    private boolean isDeleteOfBottleTypePossible(BottleTypeDTO bottleTypeDTO) {
+
+        for (int x = 0; x < bottleTableModel.getRowCount(); x++) {
             BottleDTO bottleDTO = bottleTableModel.getBottleAt(x);
-            if(bottleTypeDTO.equals(bottleDTO.getBottleType())){
+            if (bottleTypeDTO.equals(bottleDTO.getBottleType())) {
                 return false;
             }
         }
