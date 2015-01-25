@@ -18,7 +18,7 @@ public class EditBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
     JTable bottleTable;
 
     public EditBottleSwingWorker(BottleRestClient bottleRest, BottleTableModel bottleTableModel, BottleDTO bottle, JTable bottleTable) {
-        this.bottleRest = bottleRest;
+        this.bottleRest = new BottleRestClient();
         this.bottleTableModel = bottleTableModel;
         this.bottle = bottle;
         this.bottleTable = bottleTable;
@@ -27,8 +27,7 @@ public class EditBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
     @Override
     protected BottleDTO doInBackground() throws Exception {
          bottleRest.update(bottle);
-         bottleRest.close(); 
-        //bottleService.updateBottle(bottle);
+         bottleRest.close();
         return bottle;
     }
 

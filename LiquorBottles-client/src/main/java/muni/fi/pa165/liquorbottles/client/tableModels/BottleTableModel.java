@@ -126,18 +126,6 @@ public class BottleTableModel extends AbstractTableModel {
         return result;
     }
     
-    public List<BottleTypeDTO> getBottleTypes(){
-        List<BottleTypeDTO> result = new ArrayList<>();
-        Set<BottleTypeDTO> bottleTypes = new HashSet();
-        
-        for(BottleDTO b : bottles){
-            bottleTypes.add(b.getBottleType());
-        }
-        
-        result.addAll(bottleTypes);
-        return result;
-    }
-    
     public void removeRows(){
         bottles = new ArrayList<BottleDTO>();
     }

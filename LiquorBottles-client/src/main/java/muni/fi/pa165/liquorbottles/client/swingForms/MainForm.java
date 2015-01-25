@@ -219,7 +219,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void createBottleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBottleButtonActionPerformed
         try {
-            BottlePanel bottlePanel = new BottlePanel(storeRestClient.getAllStores(), bottleTableModel.getBottleTypes());
+            BottlePanel bottlePanel = new BottlePanel(storeRestClient.getAllStores(), bottleTypeTableModel.getBottleTypes());
             int result = JOptionPane.showConfirmDialog(this, bottlePanel, "New Bottle", JOptionPane.OK_CANCEL_OPTION);
 
             if (result == JOptionPane.OK_OPTION) {
@@ -247,7 +247,7 @@ public class MainForm extends javax.swing.JFrame {
         if (!isRowSelected) {
             JOptionPane.showMessageDialog(this, "No bottle selected!");
         } else {
-            BottlePanel bottlePanel = new BottlePanel(storeRestClient.getAllStores(), bottleTableModel.getBottleTypes());
+            BottlePanel bottlePanel = new BottlePanel(storeRestClient.getAllStores(), bottleTypeTableModel.getBottleTypes());
             bottlePanel.setBottle(bottleTableModel.getBottleAt(bottlesTable.getSelectedRow()));
             int result = JOptionPane.showConfirmDialog(this, bottlePanel, "Edit Bottle", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {

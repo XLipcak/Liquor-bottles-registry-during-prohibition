@@ -120,4 +120,8 @@ public class BottleTypeTableModel extends AbstractTableModel {
     public void removeRows(){
         bottleTypes = new ArrayList<BottleTypeDTO>();
     }
+    
+    public List<BottleTypeDTO> getBottleTypes(){
+        return bottleTypes;
+    }
 }
