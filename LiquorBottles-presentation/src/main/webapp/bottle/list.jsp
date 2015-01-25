@@ -14,7 +14,8 @@
         </div>
 
             <!--    Filter    -->
-        <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean">            
+        <s:form class="form-inline" beanclass="muni.fi.pa165.liquorbottles.presentation.BottleActionBean"> 
+            <s:errors/>
             <fieldset class="filter">
                 <legend><f:message key="filter.list"/></legend>
                 <table class="table">

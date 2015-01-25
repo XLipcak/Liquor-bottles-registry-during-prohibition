@@ -224,6 +224,14 @@ public class MainForm extends javax.swing.JFrame {
 
             if (result == JOptionPane.OK_OPTION) {
                 if (bottlePanel.validatePanel()) {
+                    refreshData();
+                    for (int i = 0; i < bottleTableModel.getRowCount(); i++) {
+                        if (bottlePanel.returnBottle().getStamp() == bottleTableModel.getBottleAt(i).getStamp()) {
+                            JOptionPane.showMessageDialog(null, "Stamp must be unique!");
+                            createBottleButtonActionPerformed(evt);
+                            return;
+                        }
+                    }
                     NewBottleSwingWorker newBottleSwingWorker = new NewBottleSwingWorker(bottleRestClient, bottleTableModel, bottlePanel.returnBottle(), bottlesTable);
                     newBottleSwingWorker.execute();
                     refreshData();
