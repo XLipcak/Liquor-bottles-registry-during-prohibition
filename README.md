@@ -9,21 +9,29 @@ Technology requirements
 Server - Apache Tomcat
 
 Running database server - JavaDB
+
 Port - 1527
+
 Database name - PA165
+
 Database user - pa165
+
 Database user password - pa165
 
+
 Maven using JDK 1.7.
+
 
 
 Running web server
 ==========================================
 Change directory to: \Liquor-bottles-registry-during-prohibition\LiquorBottles-presentation
+
 Run CMD command: mvn tomcat7:run
 
 
 Running swing client
 ==========================================
 Change directory to: \Liquor-bottles-registry-during-prohibition\LiquorBottles-client
+
 Run CMD command: mvn exec:java
