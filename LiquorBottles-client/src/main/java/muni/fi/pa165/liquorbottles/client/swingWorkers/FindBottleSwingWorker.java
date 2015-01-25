@@ -32,7 +32,7 @@ public class FindBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
         try {
             // gets the result from doInBackground and invokes exception from it if happened
             get();
-            bottle = bottleRest.getBottleById(BottleDTO.class, bottleId.toString());
+            bottle = bottleRest.getBottleById(BottleDTO.class, bottleId);
             bottleRest.close();
             return bottle;
         } catch (ExecutionException ex) {

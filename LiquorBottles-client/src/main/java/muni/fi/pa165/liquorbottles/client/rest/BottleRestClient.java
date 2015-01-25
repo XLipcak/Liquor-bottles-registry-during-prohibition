@@ -7,14 +7,18 @@ package muni.fi.pa165.liquorbottles.client.rest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.jersey.api.client.ClientResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ws.rs.client.Entity;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Jersey REST client generated for REST resource:BottleRestService
@@ -40,7 +44,7 @@ public class BottleRestClient {
         webTarget = client.target(BASE_URI).path("bottle");
     }
 
-    public <T> T getBottleById(Class<T> responseType, String param) throws javax.ws.rs.ClientErrorException {
+    public <T> T getBottleById(Class<T> responseType, long param) throws javax.ws.rs.ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("id/{0}", new Object[]{param}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
@@ -79,7 +83,8 @@ public class BottleRestClient {
             resource = resource.path("all");
             String response = resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
             ObjectMapper map = new ObjectMapper();
-            List<BottleDTO> allBottles = map.readValue(response,new TypeReference<List<BottleDTO>>(){});
+            List<BottleDTO> allBottles = map.readValue(response, new TypeReference<List<BottleDTO>>() {
+            });
             return allBottles;
         } catch (IOException ex) {
             Logger.getLogger(BottleRestClient.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,8 +100,11 @@ public class BottleRestClient {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public void remove(Object requestEntity) throws javax.ws.rs.ClientErrorException {
+    public void remove(long requestEntity) throws javax.ws.rs.ClientErrorException {
         //webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+        // webTarget.request(MediaType.APPLICATION_JSON).delete(Entity.entity(requestEntity, MediaType.APPLICATION_JSON));
+        RestTemplate template = new RestTemplate();
+        template.delete(BASE_URI + "/bottle/delete/{id}", requestEntity);
     }
 
     public void close() {

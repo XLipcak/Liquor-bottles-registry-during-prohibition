@@ -5,6 +5,10 @@
  */
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
@@ -23,27 +27,34 @@ public class DeleteBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Inte
     Long bottleTypeID;
     JTable bottleTypeTable;
 
-    public DeleteBottleTypeSwingWorker(BottleTypeRestClient bottleTypeRestClient, BottleTypeTableModel bottleTypeTableModel, Long bottleTypeID, JTable bottleTypeTable) {
+    public DeleteBottleTypeSwingWorker(BottleTypeRestClient bottleTypeRestClient, BottleTypeTableModel bottleTypeTableModel, BottleTypeDTO bottleType, JTable bottleTypeTable) {
         this.bottleTypeRestClient = bottleTypeRestClient;
         this.bottleTypeTableModel = bottleTypeTableModel;
-        this.bottleTypeID = bottleTypeID;
+        this.bottleType = bottleType;
         this.bottleTypeTable = bottleTypeTable;
     }
 
     @Override
     protected BottleTypeDTO doInBackground() throws Exception {
-        BottleTypeDTO bottleTypeDTO = bottleTypeRestClient.getBottleTypeById(BottleTypeDTO.class, bottleTypeID.toString());
-        this.bottleType = bottleTypeDTO;
-        bottleTypeRestClient.remove(bottleType);
+       /* BottleTypeDTO bottleTypeDTO = bottleTypeRestClient.getBottleTypeById(BottleTypeDTO.class, bottleTypeID.toString());
+        this.bottleType = bottleTypeDTO;*/
+        bottleTypeRestClient.remove(bottleType.getId());
         bottleTypeRestClient.close();
         return bottleType;
     }
 
     @Override
     protected void done() {
-        bottleTypeTableModel.deleteBottleType(bottleType);
-        bottleTypeTable.revalidate();
-        bottleTypeTable.repaint();
+        try {
+            get();
+            bottleTypeTableModel.deleteBottleType(bottleType);
+            bottleTypeTable.revalidate();
+            bottleTypeTable.repaint();
+        } catch (InterruptedException ex) {
+            JOptionPane.showMessageDialog(null, "Error while deleting Bottle Type!", "Bottle Type delete error", JOptionPane.WARNING_MESSAGE);
+        } catch (ExecutionException ex) {
+            Logger.getLogger(DeleteBottleTypeSwingWorker.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

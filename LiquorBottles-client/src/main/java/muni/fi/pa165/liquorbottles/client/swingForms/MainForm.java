@@ -288,9 +288,11 @@ public class MainForm extends javax.swing.JFrame {
         } else {
             DeleteBottleSwingWorker deleteBottleSwingWorker;
             deleteBottleSwingWorker = new DeleteBottleSwingWorker(bottleRestClient, bottleTableModel,
-                    (Long) bottlesTable.getValueAt(bottlesTable.getSelectedRow(), 0), bottlesTable);
+                    bottleTableModel.getBottleAt(bottlesTable.getSelectedRow()), bottlesTable);
+            
 
             deleteBottleSwingWorker.execute();
+           refreshData();
         }
     }//GEN-LAST:event_deleteBottleButtonActionPerformed
 
@@ -361,9 +363,10 @@ public class MainForm extends javax.swing.JFrame {
         } else {
             DeleteBottleTypeSwingWorker deleteBottleTypeSwingWorker;
             deleteBottleTypeSwingWorker = new DeleteBottleTypeSwingWorker(bottleTypeRestClient, bottleTypeTableModel,
-                    (Long) bottleTypeTable.getValueAt(bottleTypeTable.getSelectedRow(), 0), bottleTypeTable);
+                   bottleTypeTableModel.getBottleAt(bottleTypeTable.getSelectedRow()), bottleTypeTable);
 
             deleteBottleTypeSwingWorker.execute();
+            refreshData();
         }
     }//GEN-LAST:event_deleteBottleTypeButtonActionPerformed
 

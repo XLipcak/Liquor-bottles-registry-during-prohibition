@@ -11,6 +11,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Jersey REST client generated for REST resource:BottleTypeRestService
@@ -85,8 +86,9 @@ public class BottleTypeRestClient {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public void remove(Object requestEntity) throws ClientErrorException {
-        //webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).delete(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
+    public void remove(long requestEntity) throws ClientErrorException {
+       RestTemplate template = new RestTemplate();
+        template.delete(BASE_URI + "/bottleType/delete/{id}", requestEntity);
     }
 
     public void close() {

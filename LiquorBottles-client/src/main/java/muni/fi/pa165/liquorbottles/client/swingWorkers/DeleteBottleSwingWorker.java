@@ -1,5 +1,9 @@
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleDTO;
@@ -18,27 +22,33 @@ public class DeleteBottleSwingWorker extends SwingWorker<BottleDTO, Integer> {
     BottleDTO bottle;
     JTable bottleTable;
 
-    public DeleteBottleSwingWorker(BottleRestClient bottleRest, BottleTableModel bottleTableModel, Long bottleId, JTable bottleTable) {
-        this.bottleRest = bottleRest;
+    public DeleteBottleSwingWorker(BottleRestClient bottleRest, BottleTableModel bottleTableModel, BottleDTO bottleD, JTable bottleTable) {
+        this.bottleRest = new BottleRestClient();
         this.bottleTableModel = bottleTableModel;
-        this.bottleId = bottleId;
+        this.bottle = bottleD;
         this.bottleTable = bottleTable;
     }
 
     @Override
     protected BottleDTO doInBackground() throws Exception {
-        BottleDTO bottleDTO = bottleRest.getBottleById(BottleDTO.class, bottleId.toString());
-        this.bottle = bottleDTO;
-        bottleRest.remove(bottle);
+        bottleRest.remove(bottle.getId());
         bottleRest.close();
         return bottle;
     }
 
     @Override
     protected void done() {
-        bottleTableModel.deleteBottle(bottle);
-        bottleTable.revalidate();
-        bottleTable.repaint();
+        try {
+            get();
+            bottleTableModel.deleteBottle(bottle);
+            bottleTable.revalidate();
+            bottleTable.repaint();
+        }catch (ExecutionException ex) {
+            JOptionPane.showMessageDialog(null, "Error while deleting Bottle. Bottle doesnt exist!", "No Bottle", JOptionPane.WARNING_MESSAGE);
+        } 
+        catch (InterruptedException ex) {
+            Logger.getLogger(FindAllBottlesSwingWorker.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

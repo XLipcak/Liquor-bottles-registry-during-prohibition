@@ -29,11 +29,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @Path("/bottle")
 public class BottleRestService {
-    
+
     private BottleService bottleService;
-    
+
     private BottleDTO bottle;
-    
+
     private void initBeforeRequest() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         bottleService = (BottleService) applicationContext.getBean(BottleService.class);
@@ -51,7 +51,7 @@ public class BottleRestService {
             return Response.status(Response.Status.OK).entity(list).build();
         }
     }
-    
+
     @GET
     @Path("/id/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -64,7 +64,7 @@ public class BottleRestService {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @GET
     @Path("/stamp/(param)")
     @Produces(MediaType.APPLICATION_JSON)
@@ -77,7 +77,7 @@ public class BottleRestService {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @GET
     @Path("/batchId/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -90,7 +90,7 @@ public class BottleRestService {
             return Response.status(Response.Status.OK).entity(list).build();
         }
     }
-    
+
     @GET
     @Path("/date/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -103,7 +103,7 @@ public class BottleRestService {
             return Response.status(Response.Status.OK).entity(list).build();
         }
     }
-    
+
     @GET
     @Path("/toxicity/{param}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -116,42 +116,46 @@ public class BottleRestService {
             return Response.status(Response.Status.OK).entity(list).build();
         }
     }
-    
+
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public void update(BottleDTO toUpdate) {
         initBeforeRequest();
         bottleService.updateBottle(toUpdate);
     }
-    
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(BottleDTO toAdd) {
         initBeforeRequest();
         bottleService.insertBottle(toAdd);
     }
-    
+
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
-    public void remove(BottleDTO toDelete) {
+    @Path("/delete/{param}")
+    public void remove(@PathParam("param") long Id) {
         initBeforeRequest();
-        bottleService.deleteBottle(toDelete);
+        BottleDTO toDelete = bottleService.findById(Id);
+        if (toDelete != null) {
+            bottleService.deleteBottle(toDelete);
+        }
     }
-    
+
     public BottleService getBottleService() {
         return bottleService;
     }
-    
+
     public void setBottleService(BottleService bottleService) {
         this.bottleService = bottleService;
     }
-    
+
     public BottleDTO getBottle() {
         return bottle;
     }
-    
+
     public void setBottle(BottleDTO bottle) {
         this.bottle = bottle;
     }
-    
+
 }

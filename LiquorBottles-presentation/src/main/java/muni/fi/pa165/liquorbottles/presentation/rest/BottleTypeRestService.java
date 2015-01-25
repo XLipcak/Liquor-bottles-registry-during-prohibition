@@ -147,10 +147,14 @@ public class BottleTypeRestService {
     }
 
     @DELETE
+    @Path("/delete/{param}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void remove(BottleTypeDTO toDelete) {
+    public void remove(@PathParam("param") long Id) {
         initBeforeRequest();
-        bottleTypeService.deleteBottleType(toDelete);
+        BottleTypeDTO toDelete = bottleTypeService.findById(Id);
+        if (toDelete != null){
+            bottleTypeService.deleteBottleType(toDelete);
+        }
     }
     
     
