@@ -5,6 +5,10 @@
  */
 package muni.fi.pa165.liquorbottles.client.swingWorkers;
 
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingWorker;
 import muni.fi.pa165.liquorbottles.api.dto.BottleTypeDTO;
@@ -31,17 +35,25 @@ public class EditBottleTypeSwingWorker extends SwingWorker<BottleTypeDTO, Intege
 
     @Override
     protected BottleTypeDTO doInBackground() throws Exception {
-         bottleTypeRestClient.update(bottleType);
-         bottleTypeRestClient.close(); 
+        bottleTypeRestClient.update(bottleType);
+        bottleTypeRestClient.close();
         //bottleService.updateBottle(bottle);
         return bottleType;
     }
 
     @Override
     protected void done() {
-        bottleTypeTableModel.updateBottleType(bottleType);
-        bottleTypeTable.revalidate();
-        bottleTypeTable.repaint();
+        try {
+            // gets the result from doInBackground and invokes exception from it if happened
+            get();
+            bottleTypeTableModel.updateBottleType(bottleType);
+            bottleTypeTable.revalidate();
+            bottleTypeTable.repaint();
+        } catch (ExecutionException ex) {
+            JOptionPane.showMessageDialog(null, "Error while inserting Bottle Type!", "Bottle Type insert error", JOptionPane.WARNING_MESSAGE);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(FindAllBottlesSwingWorker.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
